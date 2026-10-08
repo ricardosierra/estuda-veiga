@@ -26,6 +26,3 @@
 .env
 .env.*
 !.env.example
-
-# Boletim e histórico acadêmico pessoal: manter localmente, fora do Git.
-/REGISTRO_ACADEMICO_PRIVADO.md
