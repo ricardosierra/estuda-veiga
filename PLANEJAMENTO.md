@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-Como as frequências nas aulas estão baixas, manter uma rotina para abrir, acompanhar e utilizar todas as aulas de cada disciplina, baixar os materiais assim que forem disponibilizados e organizar os arquivos por semestre e matéria.
+Como as frequências nas aulas estão baixas, manter uma rotina para abrir, acompanhar e utilizar todas as aulas de cada disciplina. Registrar em arquivos de texto as notas de estudo e os links oficiais dos materiais, sem guardar cópias locais dos PDFs.
 
 ## Acesso
 
@@ -19,8 +19,8 @@ Como as frequências nas aulas estão baixas, manter uma rotina para abrir, acom
 5. No Canvas, conferir o semestre e abrir as disciplinas desejadas. Para o período encerrado desta conferência, foram usadas as inscrições anteriores de **2026.1**.
 6. Dentro de cada disciplina, abrir **Módulos**; consultar o guia da disciplina, plano de ensino e calendário quando disponíveis.
 7. Abrir cada unidade e revisar o conteúdo, páginas, vídeos e anexos publicados.
-8. Baixar os PDFs e anexos para `materiais/<semestre>/<nome-da-disciplina>/`, preservando os nomes originais.
-9. Confirmar que cada arquivo foi salvo e abre localmente; atualizar [MATERIAIS_2026.1.md](MATERIAIS_2026.1.md) ou o inventário do semestre correspondente.
+8. Para cada unidade, registrar em notas próprias o tema, os conceitos centrais, dúvidas e uma pergunta de revisão. Manter o link oficial para consultar exemplos e detalhes completos.
+9. Atualizar [NOTAS_DE_ESTUDO_2026.1.md](NOTAS_DE_ESTUDO_2026.1.md) e [MATERIAIS_2026.1.md](MATERIAIS_2026.1.md), sem copiar PDFs para o computador.
 
 ### Acesso confirmado nesta sessão
 
@@ -28,7 +28,7 @@ Em 2026-10-08, a matrícula marcada como **Ativo** foi selecionada e o Portal do
 
 ## Semestre conferido
 
-O Canvas identificou cinco disciplinas em inscrições anteriores no período **2026.1**. No acesso conferido, o Canvas também mostrava o período **2026.2** como atual. O mapa com link para cada curso, módulo, unidade, calendário e avaliação está em [CURSOS_2026.1.md](CURSOS_2026.1.md); os links UVA e o estado de cada cópia local estão em [MATERIAIS_2026.1.md](MATERIAIS_2026.1.md).
+O Canvas identificou cinco disciplinas em inscrições anteriores no período **2026.1**. No acesso conferido, o Canvas também mostrava o período **2026.2** como atual. O mapa com link para cada curso, módulo, unidade, calendário e avaliação está em [CURSOS_2026.1.md](CURSOS_2026.1.md); os links oficiais e o estado das notas estão em [MATERIAIS_2026.1.md](MATERIAIS_2026.1.md).
 
 ## Como percorrer uma disciplina
 
@@ -47,10 +47,10 @@ Os links específicos de 2026.1 estão guardados para referência histórica. No
 - Acesso ao Portal do Aluno e ao Canvas concluído.
 - As cinco disciplinas e suas quatro unidades foram abertas para conferir títulos e materiais disponíveis.
 - Os módulos das cinco disciplinas foram conferidos para registrar também links de abertura, planos, calendários, critérios, tutoriais e avaliações quando estavam visíveis. O mapa está em [CURSOS_2026.1.md](CURSOS_2026.1.md).
-- Um PDF foi confirmado na pasta local e copiado para `materiais/2026.1/desenvolvimento-aplicacoes-web/`.
-- O PDF da U2 de Desenvolvimento Web foi aberto dentro da unidade do Canvas e apareceu no visualizador do navegador, mas não há confirmação de uma cópia local; ele permanece pendente.
-- Outros links de PDF aparecem dentro do Canvas. Uma tentativa de download direto de material UVA retornou HTTP 403; cada material permanece pendente até haver uma cópia local confirmada.
-- Em Interfaces de Sistemas Computacionais, não apareceu um link de PDF nas unidades verificadas.
+- Foram identificados 15 links oficiais de PDF. Uma cópia local antiga de Desenvolvimento Web U1 foi removida após a decisão de manter somente texto e links.
+- O visualizador do Canvas abriu o PDF de Desenvolvimento Web U2, mas não foi feita cópia local. Os demais PDFs também permanecem apenas nos endereços oficiais.
+- Em Interfaces de Sistemas Computacionais, não apareceu um link de PDF nas quatro unidades verificadas; Leitura e Produção Acadêmica U2 também não apresentou link de PDF.
+- As notas autorais das 20 unidades estão em [NOTAS_DE_ESTUDO_2026.1.md](NOTAS_DE_ESTUDO_2026.1.md). Elas sintetizam os títulos, objetivos e tópicos textuais acessíveis nas páginas do Canvas; não substituem a consulta aos exemplos e detalhes do material oficial.
 
 ## Rotina para o próximo período e seguintes
 
@@ -60,17 +60,17 @@ Os links específicos de 2026.1 estão guardados para referência histórica. No
 2. Conferir quais disciplinas estão ativas e abrir cada curso.
 3. Ler o guia da disciplina, o plano de ensino, o calendário e os critérios de avaliação.
 4. Abrir **Módulos** e conferir a sequência completa de aulas, fóruns, atividades, provas e itens de apoio.
-5. Criar uma pasta `materiais/<semestre>/<nome-da-disciplina>/` para cada matéria.
+5. Criar ou atualizar um arquivo Markdown de notas por semestre; manter links para as páginas e materiais oficiais, sem cópias locais dos PDFs.
 6. Registrar neste acervo as datas de aula, avaliações e entregas encontradas nos calendários oficiais.
 
 ### A cada semana
 
 1. Abrir cada disciplina ativa e verificar todos os módulos, aulas, fóruns, tarefas e avisos liberados.
 2. Percorrer todas as aulas liberadas na ordem do curso, incluindo texto interativo, abas, vídeos e anexos.
-3. Baixar cada PDF e anexo oficial assim que estiver disponível, pelo link do próprio Canvas; quando abrir no visualizador PDF, usar o comando de download do visualizador.
-4. Salvar em `materiais/<semestre>/<nome-da-disciplina>/`, preservar o nome original e não colocar arquivos binários no Git.
-5. Confirmar que o arquivo foi salvo localmente, conferir se não ficou vazio e abrir o PDF. Atualizar o inventário para **Baixado** somente depois dessa confirmação; caso falhe, anotar URL e erro observado.
-6. Atualizar o checklist com data, aula, conteúdo revisado, arquivo local, dúvidas e próxima atividade.
+3. Ler o conteúdo textual da aula e, se houver PDF, manter o link oficial no inventário para consulta.
+4. Escrever notas próprias em Markdown com os conceitos principais, exemplos a estudar, dúvidas e próxima atividade; não transcrever nem armazenar o PDF.
+5. Atualizar o inventário com o estado das notas e anotar links indisponíveis ou erros observados, sem marcar uma cópia local inexistente como baixada.
+6. Atualizar o checklist com data, aula, conteúdo revisado, link oficial, dúvidas e próxima atividade.
 7. Conferir prazos no calendário oficial e reservar tempo para a próxima aula/estudo no calendário pessoal.
 
 ### Para manter a frequência
@@ -83,7 +83,7 @@ Os links específicos de 2026.1 estão guardados para referência histórica. No
 
 ## Checklist reutilizável
 
-| Semana/data | Disciplina | Aula/unidade e link | Conteúdo revisado | Arquivo local conferido | Prazo/dúvida/próxima ação |
+| Semana/data | Disciplina | Aula/unidade e link | Conteúdo revisado | Notas em texto atualizadas | Prazo/dúvida/próxima ação |
 |---|---|---|---|---|---|
 |  |  |  | ☐ | ☐ |  |
 |  |  |  | ☐ | ☐ |  |
