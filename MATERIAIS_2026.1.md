@@ -1,17 +1,19 @@
 # Materiais oficiais e notas — 2026.1
 
-Este inventário mantém os endereços oficiais e o estado da documentação em texto. PDFs de aula e documentos de apoio da UVA não são copiados para esta pasta nem adicionados ao Git. As notas de estudo são resumos autorais, não transcrições integrais. Os anexos de trabalhos enviados permanecem no Canvas e são referenciados pela página da atividade, sem links privados de download.
+Este inventário mantém os endereços oficiais e o estado da documentação em texto. PDFs de aula e documentos de apoio da UVA não são copiados para esta pasta nem adicionados ao Git. As notas de estudo são resumos autorais do texto acessível nas páginas HTML do Canvas; não são transcrições integrais dos PDFs. Os anexos de trabalhos enviados permanecem no Canvas e são referenciados pela página da atividade, sem links privados de download.
 
 ## Resultado da conferência — 8 de outubro de 2026
 
 - Foram revisados **75 itens de módulos** nas cinco disciplinas de 2026.1 e encontrados **34 PDFs únicos**, contando materiais repetidos em mais de um curso uma única vez.
 - Os 34 PDFs se dividem em **16 materiais das unidades** (quatro por disciplina com unidade PDF), **10 documentos de apoio**, **2 documentos institucionais** e **6 PDFs de trabalhos enviados pelo estudante**.
 - O inventário tem **28 endereços oficiais diretos de PDF**; os outros seis arquivos são anexos de atividades do Canvas, referenciados por suas páginas de entrega.
-- Existem notas autorais em texto para **20 unidades**. Foram localizados PDFs oficiais nas 16 unidades de Desenvolvimento Web, Laboratório de Gestão de Negócios, Leitura e Produção Acadêmica e Sistemas Computacionais e Aplicações. Nas quatro unidades de Interfaces de Sistemas Computacionais não apareceu PDF de unidade.
+- Existem notas autorais em texto para **20 unidades**, com base nos textos e roteiros HTML acessíveis nas páginas do Canvas. Foram localizados PDFs oficiais nas 16 unidades de Desenvolvimento Web, Laboratório de Gestão de Negócios, Leitura e Produção Acadêmica e Sistemas Computacionais e Aplicações. Nas quatro unidades de Interfaces de Sistemas Computacionais não apareceu PDF de unidade.
 - Em Leitura e Produção Acadêmica U2 foi localizado o PDF oficial, além do conteúdo textual do Canvas. A nota de U2 tem agora o link correto.
-- Na prévia do PDF de Desenvolvimento Web U2, as páginas 12–13 ficaram legíveis e foram resumidas em [notas de estudo](NOTAS_DE_ESTUDO_2026.1.md). A prévia não permitiu copiar ou percorrer o documento inteiro.
-- **Nenhum PDF de disciplina ou material de apoio foi guardado localmente ou versionado.** Os originais de trabalhos locais ficam separados em `originais/`, ignorados pelo Git; os seis anexos listados abaixo continuam no Canvas.
-- **Extração integral dos PDFs: não realizada.** As notas das unidades resumem o texto acessível nas páginas do Canvas e não devem ser confundidas com texto extraído dos PDFs. O visualizador integrado não expôs texto copiável; em um PDF de critérios, a prévia ficou preta. Não foram preenchidas lacunas por suposição.
+- O texto integral dos PDFs de Desenvolvimento Web U1 (29 páginas) e U2 (31 páginas) foi extraído para conferência a partir de arquivos acessíveis localmente. Só resumos autorais e links oficiais foram registrados neste repositório; os PDFs e o texto bruto não foram adicionados ao Git.
+- A página HTML de Desenvolvimento Web U2 também expõe os quatro temas com explicações, exemplos, estudo de caso e síntese. Na prévia visual do PDF U2, as páginas 12–13 ficaram legíveis.
+- **Nenhum PDF de disciplina ou material de apoio está dentro deste repositório ou versionado.** Duas cópias de PDFs de unidade encontradas em Downloads foram usadas para conferir a extração textual e depois movidas para a Lixeira, onde continuam recuperáveis. DOCX, TXT e Pages de trabalhos locais permanecem separados em `originais/`, ignorados pelo Git; os seis anexos listados abaixo continuam no Canvas.
+- Dois PDFs locais de trabalhos pessoais (Bases de Programação AVA 2 e Paradigmas AVA 2), fora da lista de 34 itens do Canvas, foram comparados aos DOCX correspondentes. A extração normalizada teve similaridade **1,000** em ambos; os PDFs foram movidos para a Lixeira, mantendo DOCX, TXT e os textos versionados em [Bases](materias/bases-de-programacao/ava2-monitoramento-de-esteira.md) e [Paradigmas](materias/paradigmas-de-programacao/ava2-modelagem-uml-biblioteca.md).
+- **Extração dos 34 PDFs: parcial.** O texto foi extraído dos PDFs de Web U1 e U2. Os outros 14 PDFs de unidade, 10 documentos de apoio, 2 documentos institucionais e 6 anexos de trabalhos ainda não tiveram o texto integral extraído. As demais notas resumem o conteúdo textual HTML do Canvas e não afirmam que o HTML contém cada página ou elemento do PDF. A prévia de um PDF de critérios ficou preta. Não foram preenchidas lacunas por suposição.
 
 ## PDFs de estudo das unidades
 
@@ -21,8 +23,8 @@ Curso: <https://uva.instructure.com/courses/54293>.
 
 | Unidade | Material | Link UVA | Registro em texto |
 |---|---|---|---|
-| U1 | Introdução ao Desenvolvimento Front-End | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u1/documents/Desenvolvimento-Frontend-I---U1.pdf) | Resumo autoral em [notas de estudo](NOTAS_DE_ESTUDO_2026.1.md); sem cópia PDF local |
-| U2 | Análise de Requisitos para Projetos Front-End | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u2/documents/Ilumno_Desenvolvimento-Frontend-I_U2.pdf) | Resumo do Canvas e complemento parcial das páginas 12–13 em [notas de estudo](NOTAS_DE_ESTUDO_2026.1.md); sem cópia PDF local |
+| U1 | Introdução ao Desenvolvimento Front-End | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u1/documents/Desenvolvimento-Frontend-I---U1.pdf) | Texto extraído (29 páginas; cerca de 5.595 palavras) para conferir o resumo autoral e o roteiro do Canvas em [notas de estudo](NOTAS_DE_ESTUDO_2026.1.md); PDF e texto bruto fora do Git |
+| U2 | Análise de Requisitos para Projetos Front-End | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u2/documents/Ilumno_Desenvolvimento-Frontend-I_U2.pdf) | Texto extraído (31 páginas; cerca de 6.988 palavras) para conferir o resumo autoral e o roteiro HTML do Canvas; observação visual das páginas 12–13 em [notas de estudo](NOTAS_DE_ESTUDO_2026.1.md); PDF e texto bruto fora do Git |
 | U3 | Ferramentas e Programas Essenciais para Desenvolvimento Front-End | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u3/documents/Ilumno_Desenvolvimento-Frontend-I_U3.pdf) | Resumo autoral em [notas de estudo](NOTAS_DE_ESTUDO_2026.1.md); sem cópia PDF local |
 | U4 | Princípios de User Experience (UX) em Interfaces Web | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u4/documents/Ilumno_Desenvolvimento-Frontend-I_U4.pdf) | Resumo autoral em [notas de estudo](NOTAS_DE_ESTUDO_2026.1.md); sem cópia PDF local |
 

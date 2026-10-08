@@ -46,11 +46,12 @@ Os links específicos de 2026.1 estão guardados para referência histórica. No
 
 - Acesso ao Portal do Aluno e ao Canvas concluído.
 - Foram revisados 75 itens dos módulos e catalogados 34 PDFs únicos: 16 materiais das unidades, 10 documentos de apoio, 2 documentos institucionais e 6 trabalhos enviados pelo estudante. A lista por disciplina e os links estão em [MATERIAIS_2026.1.md](MATERIAIS_2026.1.md).
-- Nenhum PDF de disciplina ou de apoio foi guardado localmente. Os links oficiais ficam no inventário; os trabalhos enviados continuam como anexos no Canvas e são referenciados pelas páginas de atividade.
+- Nenhum PDF de disciplina ou de apoio está dentro do repositório ou versionado. Duas cópias de unidade encontradas em Downloads foram usadas para extrair texto e conferir as notas; depois foram movidas para a Lixeira, onde permanecem recuperáveis. Os materiais didáticos seguem referenciados por links oficiais no inventário.
+- Os PDFs locais de Bases de Programação AVA 2 e Paradigmas AVA 2 foram comparados aos DOCX correspondentes; a similaridade após normalização foi 1,000 para cada par. Como as versões editáveis e os textos versionados permanecem, as cópias PDF também foram movidas para a Lixeira.
 - Leitura e Produção Acadêmica U2 tem um PDF oficial, agora incluído no inventário. As quatro unidades de Interfaces não mostraram PDF de estudo.
-- As notas autorais das 20 unidades estão em [NOTAS_DE_ESTUDO_2026.1.md](NOTAS_DE_ESTUDO_2026.1.md). Elas sintetizam títulos, objetivos e tópicos textuais acessíveis nas páginas do Canvas, não o texto integral dos PDFs.
-- A prévia de Desenvolvimento Web U2 permitiu ler visualmente as páginas 12–13; o resumo parcial foi acrescentado à nota da unidade e está claramente delimitado.
-- A extração integral dos PDFs não foi concluída: o leitor integrado não expôs texto copiável dos demais materiais e a prévia de um documento de critérios ficou preta. O inventário registra links, títulos e localização, sem preencher texto indisponível por suposição.
+- As notas autorais das 20 unidades estão em [NOTAS_DE_ESTUDO_2026.1.md](NOTAS_DE_ESTUDO_2026.1.md). Foram ampliadas a partir dos textos, temas, exemplos e resumos acessíveis nas páginas HTML do Canvas. Isso não confirma que a página HTML reproduza todas as páginas e elementos dos PDFs.
+- Em Desenvolvimento Web U2, o Canvas expõe um roteiro textual extenso com quatro temas; a nota foi ampliada para registrar os conceitos, técnicas, caso de uso e etapas de prototipação. A prévia do PDF permitiu observar visualmente as páginas 12–13.
+- A extração dos 34 PDFs está parcial: os PDFs de Desenvolvimento Web U1 e U2 tiveram o texto extraído para conferência e resumo; o texto bruto e os arquivos não estão no repositório. Os outros 14 PDFs de unidade, 10 documentos de apoio, 2 documentos institucionais e 6 anexos não tiveram o texto integral extraído. A prévia de um documento de critérios ficou preta. O inventário registra links e estados de leitura sem preencher lacunas por suposição.
 
 ## Rotina para o próximo período e seguintes
 
@@ -60,15 +61,15 @@ Os links específicos de 2026.1 estão guardados para referência histórica. No
 2. Conferir quais disciplinas estão ativas e abrir cada curso.
 3. Ler o guia da disciplina, o plano de ensino, o calendário e os critérios de avaliação.
 4. Abrir **Módulos** e conferir a sequência completa de aulas, fóruns, atividades, provas e itens de apoio.
-5. Criar ou atualizar um arquivo Markdown de notas por semestre; manter links para as páginas e materiais oficiais, sem cópias locais dos PDFs.
+5. Criar ou atualizar um arquivo Markdown de notas por semestre; resumir autoralmente o conteúdo textual acessível nas aulas e manter os links oficiais, sem cópias locais dos PDFs.
 6. Registrar neste acervo as datas de aula, avaliações e entregas encontradas nos calendários oficiais.
 
 ### A cada semana
 
 1. Abrir cada disciplina ativa e verificar todos os módulos, aulas, fóruns, tarefas e avisos liberados.
 2. Percorrer todas as aulas liberadas na ordem do curso, incluindo texto interativo, abas, vídeos e anexos.
-3. Ler o conteúdo textual da aula e, se houver PDF, manter o link oficial no inventário para consulta.
-4. Escrever resumos próprios em Markdown com os conceitos principais, exemplos a estudar, dúvidas e próxima atividade; não guardar cópias locais dos PDFs.
+3. Ler o conteúdo textual da aula; se houver PDF, manter o link oficial no inventário e conferir se o material está disponível em texto na própria página.
+4. Escrever resumos próprios em Markdown com conceitos principais, exemplos a estudar, dúvidas e próxima atividade; não guardar cópias locais dos PDFs nem apresentar resumos de página como transcrição do PDF.
 5. Atualizar o inventário com o estado das notas e anotar links indisponíveis ou erros observados, sem marcar uma cópia local inexistente como baixada.
 6. Atualizar o checklist com data, aula, conteúdo revisado, link oficial, dúvidas e próxima atividade.
 7. Conferir prazos no calendário oficial e reservar tempo para a próxima aula/estudo no calendário pessoal.

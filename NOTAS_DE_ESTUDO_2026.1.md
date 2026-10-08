@@ -1,45 +1,45 @@
 # Notas de estudo — 2026.1
 
-Notas autorais e compactas organizadas pelas cinco disciplinas e suas unidades. Elas sintetizam objetivos e tópicos visíveis nas páginas das unidades do Canvas; quando o Canvas apresentou um resumo, ele também serviu de referência. O complemento de Desenvolvimento Web U2 inclui uma leitura visual parcial das páginas 12–13 do PDF. As explicações estão reescritas para revisão rápida e não são transcrições integrais. Os materiais originais continuam acessíveis pelos links oficiais abaixo; cópias PDF não são armazenadas neste acervo.
+Notas autorais organizadas pelas cinco disciplinas e suas unidades. Elas sintetizam o texto e os recursos textuais acessíveis nas páginas HTML das unidades no Canvas, incluindo explicações, exemplos e resumos quando disponíveis. O PDF de Desenvolvimento Web U2 também foi conferido visualmente nas páginas 12–13. As notas são paráfrases para estudo; não são transcrições integrais nem extrações completas dos PDFs. Os materiais originais continuam acessíveis pelos links oficiais abaixo; cópias dos PDFs de aula e apoio não são armazenadas neste acervo.
 
-Use estas notas como base de revisão. Para detalhes, exemplos, exercícios, referências e eventuais diferenças entre a página do Canvas e o PDF, consulte a fonte oficial de cada unidade. As notas resumem as páginas e roteiros textuais do Canvas; não são transcrições dos PDFs. Os endereços e o estado de cada arquivo estão em [MATERIAIS_2026.1.md](MATERIAIS_2026.1.md).
+Use estas notas como base de revisão. Para detalhes, exemplos, exercícios, referências e eventuais diferenças entre a página do Canvas e o PDF, consulte a fonte oficial de cada unidade. A página HTML pode apresentar o material didático em formato textual, mas isso não confirma que todos os elementos ou páginas do PDF correspondente estejam reproduzidos nela. Os endereços e o estado de cada arquivo estão em [MATERIAIS_2026.1.md](MATERIAIS_2026.1.md).
 
 ## Desenvolvimento de Aplicações para Web
 
 ### U1 — Introdução ao Desenvolvimento Front-End
 
 - [Unidade no Canvas](https://uva.instructure.com/courses/54293/modules/items/1064760) · [Material oficial (PDF)](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u1/documents/Desenvolvimento-Frontend-I---U1.pdf)
-- **Ideia central:** Front-End é a parte da aplicação web com a qual a pessoa interage. Sua evolução acompanha a passagem de páginas simples para experiências dinâmicas, responsivas e acessíveis.
-- **Conceitos para revisar:** HTML organiza o conteúdo; CSS define apresentação e layout; JavaScript implementa comportamento. UI descreve os elementos de interação e UX considera a experiência completa. A modelagem por componentes e o Atomic Design ajudam a manter interfaces organizadas e reutilizáveis.
-- **Também aparecem:** evolução histórica, bibliotecas e frameworks, gerenciamento de estado e técnicas como divisão de código e carregamento sob demanda.
+- **Ideia central:** A história do Front-End acompanha a evolução da web de páginas estáticas para interfaces interativas, componentizadas e modeladas para diferentes necessidades de uso.
+- **Temas do material:** (1) evolução de HTML/CSS/JavaScript, bibliotecas e frameworks, Web 2.0 e ferramentas de desenvolvimento como VS Code e Git; (2) papéis de UI e UX, clareza e consistência da interface, tecnologias e competências necessárias ao desenvolvimento; (3) modelagem com Atomic Design, componentes reutilizáveis, gerenciamento previsível de estado com Flux/Redux e tratamento de fluxos assíncronos, além de divisão de código para carregar aplicações com eficiência.
+- **Aplicação:** relacionar as decisões de arquitetura e ferramentas à experiência de uso, manutenção, acessibilidade, desempenho e capacidade de evolução da aplicação.
 - **Pergunta de revisão:** Como a separação entre estrutura, aparência e comportamento facilita a evolução de uma interface?
+- **Fonte:** resumo conferido com o texto do PDF de 29 páginas e o roteiro disponível no Canvas; o arquivo integral não está no repositório.
 
 ### U2 — Análise de Requisitos para Projetos Front-End
 
 - [Unidade no Canvas](https://uva.instructure.com/courses/54293/modules/items/1064761) · [Material oficial (PDF)](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u2/documents/Ilumno_Desenvolvimento-Frontend-I_U2.pdf)
-- **Ideia central:** Requisitos traduzem necessidades de usuários e partes interessadas em critérios compreensíveis para projetar e construir a interface. A análise orienta o projeto durante todo o desenvolvimento, não apenas no início.
-- **Conceitos para revisar:** compreender o problema e os usuários; distinguir requisitos funcionais e qualidades esperadas; registrar decisões com clareza; negociar prioridades; prototipar e colher retorno antes de implementar.
-- **Aplicação:** técnicas de priorização, como MoSCoW, ajudam a separar o indispensável do desejável. Protótipos permitem testar hipóteses, identificar falhas de entendimento e iterar com menor custo.
-- **Pergunta de revisão:** Como validar que um requisito representa uma necessidade real do usuário e não apenas uma suposição da equipe?
+- **Ideia central:** A análise de requisitos liga objetivos organizacionais e tarefas dos usuários a funções, qualidades e decisões de interface, acompanhando todo o ciclo de desenvolvimento.
+- **Temas do material:** (1) Front-End e Back-End cooperam por APIs; componentes e modularidade apoiam manutenção, reutilização, testes e escala, enquanto PWAs, automação, acessibilidade e SEO ampliam a qualidade. (2) Requisitos são levantados por entrevistas, JAD/e-JAD, questionários, análise de documentos e observação; funções e qualidades não funcionais são priorizadas com MoSCoW e mudanças passam por controle, análise de impacto e comunicação. (3) Trello, Jira e Microsoft Project organizam requisitos; um caso de aplicativo de tarefas mostra critérios de aceitação, Confluence, sprints, testes e feedback. (4) Storyboards e protótipos HTML ou interativos evoluem de baixa a alta fidelidade; testes e colaboração entre design, desenvolvimento e usuários orientam a iteração.
+- **Pergunta de revisão:** Como validar que um requisito representa uma necessidade real do usuário e como demonstrar essa solução antes de implementá-la?
 
-#### Complemento parcial observado no PDF — páginas 12–13
+#### Fonte e cobertura consultadas
 
-A tabela visível organiza os requisitos em níveis: objetivos da organização, ações necessárias aos usuários, funções que o software deve executar, qualidades esperadas e características técnicas de construção. O texto destaca que a análise ajuda a tornar as necessidades claras para o projeto e a reduzir ambiguidades, mudanças posteriores e custos de manutenção. Este complemento cobre apenas as páginas 12–13 que ficaram legíveis na prévia; não representa o conteúdo integral do PDF.
+O PDF tem 31 páginas, com os quatro temas iniciando nas páginas 4, 12, 19 e 23, síntese na página 29 e referências na página 30. Seu texto foi extraído para conferir a cobertura desta paráfrase; apenas a síntese e o link ficam no repositório. A prévia visual das páginas 12–13 mostrou uma classificação de requisitos desde objetivos organizacionais até características técnicas. A página HTML do Canvas também apresenta os temas e exemplos interativos.
 
 ### U3 — Ferramentas e Programas Essenciais para Desenvolvimento Front-End
 
 - [Unidade no Canvas](https://uva.instructure.com/courses/54293/modules/items/1064762) · [Material oficial (PDF)](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u3/documents/Ilumno_Desenvolvimento-Frontend-I_U3.pdf)
 - **Ideia central:** Ferramentas de design aproximam concepção, prototipação e implementação. O Figma é apresentado como ambiente colaborativo para criar interfaces, organizar componentes e compartilhar protótipos.
-- **Conceitos para revisar:** colaboração em tempo real, bibliotecas, plugins e protótipos interativos; comparação entre Figma e alternativas como Sketch e Adobe XD; escolha de ferramentas conforme o projeto e o fluxo da equipe.
-- **Aplicação:** documentar decisões no protótipo e usar componentes consistentes facilita a comunicação entre design e desenvolvimento. Ferramentas de controle de versão e empacotamento complementam o fluxo de trabalho.
+- **Conceitos para revisar:** colaboração em tempo real, bibliotecas, plugins, componentes e protótipos interativos; comparação com Sketch e Adobe XD; critérios de escolha ligados a colaboração, integrações, recursos e curva de aprendizado.
+- **Aplicação:** manter decisões e componentes consistentes no protótipo facilita a passagem do design para o desenvolvimento. O roteiro apresenta fluxos de criação e exemplos de uso das ferramentas; ferramentas de controle de versão e empacotamento complementam o trabalho de implementação.
 - **Pergunta de revisão:** Que critérios do projeto e da equipe devem orientar a escolha de uma ferramenta de design?
 
 ### U4 — Princípios de User Experience (UX) em Interfaces Web
 
 - [Unidade no Canvas](https://uva.instructure.com/courses/54293/modules/items/1064763) · [Material oficial (PDF)](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u4/documents/Ilumno_Desenvolvimento-Frontend-I_U4.pdf)
 - **Ideia central:** UX envolve a experiência completa de uso, incluindo utilidade, facilidade, acessibilidade, desempenho e satisfação. Aparência visual é apenas uma parte do resultado.
-- **Conceitos para revisar:** pesquisar necessidades e expectativas; observar tarefas e dificuldades; projetar mensagens e fluxos claros; considerar diferentes capacidades e contextos de uso; validar propostas com usuários.
-- **Aplicação:** combinar princípios de UX com decisões de interface e prototipação no Figma, recolhendo feedback e revisando o design ao longo do processo.
+- **Conceitos para revisar:** pesquisar necessidades e expectativas; observar tarefas e dificuldades; projetar mensagens e fluxos claros; considerar usabilidade e acessibilidade em diferentes capacidades e contextos de uso; validar propostas com usuários.
+- **Aplicação:** combinar princípios de UX com decisões de interface e prototipação no Figma. Casos e práticas de prototipação ajudam a recolher feedback, encontrar problemas de uso e revisar o design durante o processo, em vez de avaliar apenas a aparência final.
 - **Pergunta de revisão:** Como pesquisa, acessibilidade e iteração podem revelar problemas que não aparecem ao avaliar apenas a aparência da tela?
 
 ## Interfaces de Sistemas Computacionais
@@ -154,8 +154,9 @@ As páginas verificadas das quatro unidades não apresentavam link de PDF. As no
 ### U3 — Sistemas Integrados
 
 - [Unidade no Canvas](https://uva.instructure.com/courses/53498/modules/items/1045495) · [Material oficial (PDF)](https://ead.uva.br/disciplinas/grad/publica/cont/stu/sif/mat-download/u3.pdf)
-- **Ideia central:** Sistemas integrados conectam dados, processos ou funções para reduzir silos e melhorar coordenação e controle.
-- **Conceitos para revisar:** ERP para integrar recursos e áreas; CRM para organizar o relacionamento com clientes; BPMS para modelar, executar e acompanhar processos; relação entre gestão de processos e investimento em sistemas.
+- **Ideia central:** O roteiro relaciona integração de processos empresariais a ferramentas que conectam dados, áreas e fluxos de trabalho. Também apresenta uma introdução a sistemas embarcados, isto é, sistemas especializados incorporados a dispositivos maiores.
+- **Conceitos para revisar:** ERP para integrar recursos e áreas; CRM para organizar o relacionamento com clientes; BPMS para modelar, executar e acompanhar processos; BPM e seus efeitos sobre custo, tempo e qualidade.
+- **Observação de fonte:** há uma mistura aparente entre o título “Sistemas Integrados”, a introdução sobre sistemas embarcados e a sequência sobre ERP, CRM e BPMS. O resumo registra os dois assuntos sem presumir que sejam equivalentes; conferir o PDF oficial para esclarecer a organização do material.
 - **Pergunta de revisão:** Que problema de integração cada sistema resolve e quais processos ou dados precisam estar conectados?
 
 ### U4 — Planejamento Estratégico e TI
