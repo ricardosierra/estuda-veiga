@@ -2,12 +2,19 @@
 
 **Status significa cópia confirmada no computador.** Ver um PDF dentro do Canvas não significa que ele foi salvo localmente. Os PDFs ficam em `materiais/2026.1/` e são ignorados pelo Git.
 
+## Resumo conferido em 8 de outubro de 2026
+
+- Foram identificados **15 links de PDF** nas unidades: 4 em Desenvolvimento Web, 4 em Laboratório de Gestão de Negócios, 3 em Leitura e Produção Acadêmica e 4 em Sistemas Computacionais e Aplicações.
+- **1 cópia local confirmada** (Desenvolvimento Web U1); **14 links ainda sem cópia local confirmada**.
+- Em Interfaces de Sistemas Computacionais, nenhum link de PDF apareceu nas quatro páginas de unidade verificadas. Em Leitura e Produção Acadêmica U2, também não apareceu link de PDF.
+- A unidade de Desenvolvimento Web U2 abriu no visualizador PDF dentro do Canvas, mas isso não comprova que o arquivo foi baixado para o computador.
+
 ## Desenvolvimento de Aplicações para Web
 
 | Unidade | Material | Link UVA | Estado local |
 |---|---|---|---|
 | U1 | Introdução ao Desenvolvimento Front-End | [PDF](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u1/documents/Desenvolvimento-Frontend-I---U1.pdf) | **Baixado**: `materiais/2026.1/desenvolvimento-aplicacoes-web/Desenvolvimento-Frontend-I---U1.pdf` |
-| U2 | Análise de Requisitos para Projetos Front-End | [PDF](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u2/documents/Ilumno_Desenvolvimento-Frontend-I_U2.pdf) | Pendente — aparece no Canvas; download direto retornou HTTP 403 |
+| U2 | Análise de Requisitos para Projetos Front-End | [PDF](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u2/documents/Ilumno_Desenvolvimento-Frontend-I_U2.pdf) | Pendente — a unidade do Canvas abriu o PDF no visualizador; cópia local não confirmada. A tentativa anterior de download direto retornou HTTP 403 |
 | U3 | Ferramentas e Programas Essenciais para Desenvolvimento Front-End | [PDF](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u3/documents/Ilumno_Desenvolvimento-Frontend-I_U3.pdf) | Pendente — link aparece no Canvas; cópia local não confirmada |
 | U4 | Princípios de User Experience (UX) em Interfaces Web | [PDF](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u4/documents/Ilumno_Desenvolvimento-Frontend-I_U4.pdf) | Pendente — link aparece no Canvas; cópia local não confirmada |
 
