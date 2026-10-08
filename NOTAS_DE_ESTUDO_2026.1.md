@@ -2,7 +2,7 @@
 
 Notas autorais e compactas organizadas pelas cinco disciplinas e suas unidades. Elas sintetizam objetivos e tópicos visíveis nas páginas das unidades do Canvas; quando o Canvas apresentou um resumo, ele também serviu de referência. As explicações estão reescritas para revisão rápida e não são transcrição integral dos PDFs. Os materiais originais continuam acessíveis pelos links oficiais abaixo; cópias PDF não são armazenadas neste acervo.
 
-Use estas notas como base de revisão. Para detalhes, exemplos, exercícios, referências e eventuais diferenças entre a página do Canvas e o PDF, consulte a fonte oficial de cada unidade. Na unidade sem PDF registrado, a nota se baseia no conteúdo e no roteiro textual do Canvas.
+Use estas notas como base de revisão. Para detalhes, exemplos, exercícios, referências e eventuais diferenças entre a página do Canvas e o PDF, consulte a fonte oficial de cada unidade. As notas resumem as páginas e roteiros textuais do Canvas; não são transcrições dos PDFs. Os endereços e o estado de cada arquivo estão em [MATERIAIS_2026.1.md](MATERIAIS_2026.1.md).
 
 ## Desenvolvimento de Aplicações para Web
 
@@ -111,8 +111,8 @@ As páginas verificadas das quatro unidades não apresentavam link de PDF. As no
 
 ### U2 — Coesão e coerência: estruturação do parágrafo e estratégias argumentativas
 
-- [Unidade no Canvas](https://uva.instructure.com/courses/53442/modules/items/1044455) · [Curso no Canvas](https://uva.instructure.com/courses/53442)
-- **Material:** não havia link de PDF registrado na unidade verificada; a nota se baseia no conteúdo textual do Canvas.
+- [Unidade no Canvas](https://uva.instructure.com/courses/53442/modules/items/1044455) · [Material oficial (PDF)](https://ead.uva.br/disciplinas/grad/publica/cont/jkl/lpa/mat-download/u2.pdf)
+- **Fonte da nota:** conteúdo textual da unidade no Canvas; o PDF oficial está catalogado, mas não foi transcrito.
 - **Ideia central:** Um texto claro precisa conectar suas partes e desenvolver uma sequência lógica. Coesão liga elementos linguísticos; coerência organiza os sentidos e a progressão das ideias.
 - **Conceitos para revisar:** mecanismos de coesão; coerência e textualidade; parágrafo e tópico frasal; continuidade temática; seleção de argumentos conforme gênero, público e objetivo.
 - **Pergunta de revisão:** Como conectivos, tópico frasal e ordem das ideias ajudam o leitor a acompanhar uma argumentação?
@@ -163,6 +163,6 @@ As páginas verificadas das quatro unidades não apresentavam link de PDF. As no
 
 ## Fontes e atualização
 
-- Os títulos, objetivos e tópicos foram conferidos nas páginas das unidades do Canvas em 8 de outubro de 2026. As sínteses foram reescritas para revisão rápida.
+- Os títulos, objetivos e tópicos foram conferidos nas páginas das unidades do Canvas em 8 de outubro de 2026. As sínteses foram reescritas para revisão rápida e não são transcrições integrais dos PDFs.
 - Os links oficiais podem exigir uma sessão autenticada e podem mudar quando a UVA reorganizar as turmas. Consulte o mapa em [CURSOS_2026.1.md](CURSOS_2026.1.md) para navegar pelos módulos.
 - Ao preparar notas de um novo semestre, confirme as disciplinas ativas, leia as aulas publicadas e atualize este arquivo ou crie uma cópia com o novo período. Guarde apenas texto autoral e links, sem copiar o PDF para a pasta local.

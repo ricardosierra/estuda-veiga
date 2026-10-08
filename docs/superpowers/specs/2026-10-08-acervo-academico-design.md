@@ -13,7 +13,7 @@ Manter no histórico Git documentos acadêmicos em formatos textuais, organizado
 - Os arquivos atualmente em `Faculdade`, incluindo os trabalhos locais de Bases de Programação e Paradigmas de Programação e a documentação já versionada para o semestre UVA 2026.1 (`README.md`, `CURSOS_2026.1.md`, `MATERIAIS_2026.1.md` e `PLANEJAMENTO.md`). Os documentos existentes de 2026.1 serão preservados e complementados.
 - O arquivo Pages `../trabalho-paradigmas-ricardo.pages`, cuja prévia confirma o mesmo trabalho CSU01 – Realizar Saque Bancário e hoje está localizado na pasta pai. A capa chama a disciplina de “Paradigmas de Linguagens de Programação”, enquanto o DOCX local usa “Paradigmas de Programação”; os dois originais serão preservados sem forçar uma equivalência de versão.
 - As cinco disciplinas UVA de 2026.1, com links oficiais e notas autorais das 20 unidades em `NOTAS_DE_ESTUDO_2026.1.md`. Os PDFs de aula não serão copiados para o computador.
-- O PDF U2 de Desenvolvimento Frontend I abriu no visualizador do Canvas, mas não há uma cópia local; uma tentativa anterior de acesso direto retornou HTTP 403. A nota autoral e o link oficial serão preservados, sem alegar que a nota seja uma extração integral do PDF.
+- O PDF U2 de Desenvolvimento Frontend I abriu no visualizador integrado, mas não foi possível copiar seu texto e não há cópia local. Uma tentativa anterior de acesso direto retornou HTTP 403. A nota autoral e o link oficial serão preservados, sem alegar que a nota seja uma extração integral do PDF.
 
 A implementação não deve inferir nem inventar conteúdo de materiais indisponíveis.
 
@@ -80,10 +80,10 @@ O caminho do arquivo Pages será ajustado durante a implementação para preserv
 
 ## Limitações conhecidas
 
-A UVA respondeu HTTP 403 ao pedido do PDF U2 e exibiu uma página padrão do IIS no endereço raiz. O PDF não pode ser convertido até que o arquivo esteja acessível no ambiente local.
+Uma tentativa anterior de acesso direto ao PDF U2 respondeu HTTP 403. Em 8 de outubro, o PDF abriu no visualizador do navegador integrado, mas o texto não ficou disponível para copiar. A prévia de um PDF de critérios apareceu preta. Não se deve preencher o texto desses arquivos por suposição.
 
 ## Decisão posterior: material didático das disciplinas UVA
 
-Em 8 de outubro de 2026, o estudante decidiu que o acervo deve guardar somente texto autoral de estudo e links oficiais para materiais das disciplinas; cópias locais de PDFs de aula não são necessárias. Esta decisão posterior substitui, para os materiais didáticos UVA, as referências anteriores a manter o PDF U1 em `materiais/2026.1/` e a extrair o PDF U1 integralmente. A cópia local existente de U1 foi removida; as URLs oficiais dos 15 PDFs encontrados permanecem em `MATERIAIS_2026.1.md` e as notas das 20 unidades estão em `NOTAS_DE_ESTUDO_2026.1.md`.
+Em 8 de outubro de 2026, o estudante decidiu que o acervo deve guardar apenas notas em texto e links oficiais, sem cópias locais de PDFs das disciplinas. A revisão posterior dos 75 itens de módulos encontrou 34 PDFs únicos: 16 materiais de unidade, 10 documentos de apoio, 2 documentos institucionais e 6 PDFs anexados a trabalhos enviados. Os 16 PDFs de unidade incluem Leitura e Produção Acadêmica U2, que não aparecia no primeiro inventário. A lista atualizada está em `MATERIAIS_2026.1.md` e as notas das 20 unidades estão em `NOTAS_DE_ESTUDO_2026.1.md`.
 
-Esta mudança se aplica aos materiais didáticos dos cursos e não altera a preservação local de originais de trabalhos acadêmicos pessoais descrita nesta especificação. As notas são sínteses autorais dos objetivos, tópicos e textos acessíveis no Canvas; não afirmam ser extrações integrais dos PDFs.
+Esta decisão não altera a preservação local dos originais pessoais descrita nesta especificação. As notas são sínteses autorais dos objetivos, tópicos e textos acessíveis nas páginas do Canvas; não são transcrições dos PDFs. Não foi possível obter texto copiável dos PDFs no visualizador integrado, e a prévia de um documento de critérios ficou preta. O inventário registra os materiais, links e limites de leitura sem alegar uma extração integral.

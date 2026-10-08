@@ -12,9 +12,9 @@
 
 ## Decisão posterior sobre PDFs das disciplinas UVA — 2026-10-08
 
-O estudante decidiu manter somente notas autorais em texto e links oficiais para os materiais das disciplinas UVA. Esta decisão substitui as etapas abaixo que pedem para guardar o PDF de Desenvolvimento Web U1 ou criar uma extração integral desse PDF. A cópia local de U1 foi removida, os 15 links oficiais permanecem em `MATERIAIS_2026.1.md` e as notas de todas as 20 unidades foram criadas em `NOTAS_DE_ESTUDO_2026.1.md`, com os limites de cobertura descritos no arquivo. Esta decisão não altera o tratamento dos PDFs originais dos trabalhos pessoais em `originais/`.
+O estudante decidiu manter somente notas autorais em texto e links oficiais para os materiais das disciplinas UVA. Esta decisão substitui as etapas abaixo que pedem cópias locais ou extração integral de PDFs de aula. A revisão dos 75 itens de módulos encontrou 34 PDFs únicos: 16 materiais de unidade, 10 documentos de apoio, 2 documentos institucionais e 6 PDFs anexados a trabalhos enviados. A nota para LPA U2 foi atualizada com o PDF oficial. As notas das 20 unidades permanecem em `NOTAS_DE_ESTUDO_2026.1.md`; elas resumem conteúdo acessível no Canvas, não transcrevem os PDFs. Esta decisão não altera o tratamento dos PDFs originais dos trabalhos pessoais em `originais/`.
 
-As verificações de conclusão deste plano devem confirmar que não há cópias locais dos PDFs de aula UVA; links oficiais e notas autorais devem permanecer versionáveis. A antiga Task 3 de extração integral U1 e qualquer verificação que exija manter esse PDF ficam supersedidas por esta atualização.
+As verificações de conclusão deste plano devem confirmar que não há cópias locais dos PDFs de disciplina e apoio UVA, que os links estejam indexados e que as limitações de leitura estejam registradas sem inventar conteúdo. O visualizador integrado não expôs texto copiável dos PDFs consultados e a prévia de um PDF de critérios ficou preta. O conteúdo integral não foi extraído; a tabela registra metadados, links e status. A antiga Task 3 de extração integral U1 fica supersedida por esta atualização.
 
 ## Global Constraints
 
@@ -33,6 +33,7 @@ As verificações de conclusão deste plano devem confirmar que não há cópias
 - **Alternate text version:** Existing Paradigmas AVA 2 text differs from the final DOCX/PDF; verify it remains a separate, clearly labeled derivative in Task 2.
 - **Ignored and tracked images:** `.gitignore` excludes all PNGs by default; verify only the three UML diagrams are re-included and ordinary binary sources remain ignored in Task 1 and Task 4.
 - **Course-note coverage:** Verify all 20 Canvas units have a text note and that notes point to official source pages; disclose that they are concise summaries, not full PDF transcriptions, in Task 3.
+- **PDF inventory:** Verify the 34 unique PDFs are represented by category and that six Canvas submission PDFs use assignment-page links rather than private download URLs.
 
 ---
 
@@ -122,11 +123,11 @@ Use `git check-ignore -v` for representative paths under `originais/`. Confirm a
 
 **Interfaces:**
 - Consumes: The five course maps and the readable objectives, topics, summaries, and material links on their Canvas unit pages.
-- Produces: Searchable original-language study notes for 20 units, links to all 15 official PDFs found, and a note for units without a PDF link.
+- Produces: Searchable original-language study notes for 20 units, links to all 16 official unit PDFs, and an inventory of 34 unique course, support, institutional, and submitted-work PDFs with reading limits stated.
 
 - [x] **Step 1: Confirm the course-unit inventory**
 
-Review the five course maps and verify the four module items for each course. Record which units have a PDF link and which do not.
+Review all five courses' module items, including the four unit pages for each. Record which units have a PDF link and which do not; separately classify support documents and submitted-work attachments.
 
 - [x] **Step 2: Write concise notes in original wording**
 
@@ -138,7 +139,7 @@ Point the README, material inventory, and planning checklist to `NOTAS_DE_ESTUDO
 
 - [x] **Step 4: Verify the text-only inventory**
 
-Confirm that the notes cover 20 units, the inventory retains 15 official PDF links, no course PDF remains under `materiais/`, and `git diff --check` reports no whitespace errors.
+Confirm that the notes cover 20 units, all 16 official unit PDF links and the additional 18 unique PDFs are categorized in the inventory, no course PDF is stored locally, and `git diff --check` reports no whitespace errors. State that full PDF text extraction was not achieved.
 
 - [x] **Step 5: Commit the course notes and semester index**
 

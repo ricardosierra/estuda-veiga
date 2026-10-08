@@ -20,7 +20,7 @@ Como as frequências nas aulas estão baixas, manter uma rotina para abrir, acom
 6. Dentro de cada disciplina, abrir **Módulos**; consultar o guia da disciplina, plano de ensino e calendário quando disponíveis.
 7. Abrir cada unidade e revisar o conteúdo, páginas, vídeos e anexos publicados.
 8. Para cada unidade, registrar em notas próprias o tema, os conceitos centrais, dúvidas e uma pergunta de revisão. Manter o link oficial para consultar exemplos e detalhes completos.
-9. Atualizar [NOTAS_DE_ESTUDO_2026.1.md](NOTAS_DE_ESTUDO_2026.1.md) e [MATERIAIS_2026.1.md](MATERIAIS_2026.1.md), sem copiar PDFs para o computador.
+9. Atualizar [NOTAS_DE_ESTUDO_2026.1.md](NOTAS_DE_ESTUDO_2026.1.md), guardando resumos autorais em texto, e [MATERIAIS_2026.1.md](MATERIAIS_2026.1.md), sem copiar PDFs para o computador.
 
 ### Acesso confirmado nesta sessão
 
@@ -45,12 +45,11 @@ Os links específicos de 2026.1 estão guardados para referência histórica. No
 ## Andamento desta conferência
 
 - Acesso ao Portal do Aluno e ao Canvas concluído.
-- As cinco disciplinas e suas quatro unidades foram abertas para conferir títulos e materiais disponíveis.
-- Os módulos das cinco disciplinas foram conferidos para registrar também links de abertura, planos, calendários, critérios, tutoriais e avaliações quando estavam visíveis. O mapa está em [CURSOS_2026.1.md](CURSOS_2026.1.md).
-- Foram identificados 15 links oficiais de PDF. Uma cópia local antiga de Desenvolvimento Web U1 foi removida após a decisão de manter somente texto e links.
-- O visualizador do Canvas abriu o PDF de Desenvolvimento Web U2, mas não foi feita cópia local. Os demais PDFs também permanecem apenas nos endereços oficiais.
-- Em Interfaces de Sistemas Computacionais, não apareceu um link de PDF nas quatro unidades verificadas; Leitura e Produção Acadêmica U2 também não apresentou link de PDF.
-- As notas autorais das 20 unidades estão em [NOTAS_DE_ESTUDO_2026.1.md](NOTAS_DE_ESTUDO_2026.1.md). Elas sintetizam os títulos, objetivos e tópicos textuais acessíveis nas páginas do Canvas; não substituem a consulta aos exemplos e detalhes do material oficial.
+- Foram revisados 75 itens dos módulos e catalogados 34 PDFs únicos: 16 materiais das unidades, 10 documentos de apoio, 2 documentos institucionais e 6 trabalhos enviados pelo estudante. A lista por disciplina e os links estão em [MATERIAIS_2026.1.md](MATERIAIS_2026.1.md).
+- Nenhum PDF de disciplina ou de apoio foi guardado localmente. Os links oficiais ficam no inventário; os trabalhos enviados continuam como anexos no Canvas e são referenciados pelas páginas de atividade.
+- Leitura e Produção Acadêmica U2 tem um PDF oficial, agora incluído no inventário. As quatro unidades de Interfaces não mostraram PDF de estudo.
+- As notas autorais das 20 unidades estão em [NOTAS_DE_ESTUDO_2026.1.md](NOTAS_DE_ESTUDO_2026.1.md). Elas sintetizam títulos, objetivos e tópicos textuais acessíveis nas páginas do Canvas, não o texto integral dos PDFs.
+- A extração integral dos PDFs não foi concluída: o leitor integrado não expôs texto copiável dos materiais consultados e a prévia de um documento de critérios ficou preta. O inventário registra links, títulos e localização, sem preencher texto indisponível por suposição.
 
 ## Rotina para o próximo período e seguintes
 
@@ -68,7 +67,7 @@ Os links específicos de 2026.1 estão guardados para referência histórica. No
 1. Abrir cada disciplina ativa e verificar todos os módulos, aulas, fóruns, tarefas e avisos liberados.
 2. Percorrer todas as aulas liberadas na ordem do curso, incluindo texto interativo, abas, vídeos e anexos.
 3. Ler o conteúdo textual da aula e, se houver PDF, manter o link oficial no inventário para consulta.
-4. Escrever notas próprias em Markdown com os conceitos principais, exemplos a estudar, dúvidas e próxima atividade; não transcrever nem armazenar o PDF.
+4. Escrever resumos próprios em Markdown com os conceitos principais, exemplos a estudar, dúvidas e próxima atividade; não guardar cópias locais dos PDFs.
 5. Atualizar o inventário com o estado das notas e anotar links indisponíveis ou erros observados, sem marcar uma cópia local inexistente como baixada.
 6. Atualizar o checklist com data, aula, conteúdo revisado, link oficial, dúvidas e próxima atividade.
 7. Conferir prazos no calendário oficial e reservar tempo para a próxima aula/estudo no calendário pessoal.
