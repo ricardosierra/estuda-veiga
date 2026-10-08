@@ -1,6 +1,6 @@
 # Notas de estudo — 2026.1
 
-Notas autorais e compactas organizadas pelas cinco disciplinas e suas unidades. Elas sintetizam objetivos e tópicos visíveis nas páginas das unidades do Canvas; quando o Canvas apresentou um resumo, ele também serviu de referência. As explicações estão reescritas para revisão rápida e não são transcrição integral dos PDFs. Os materiais originais continuam acessíveis pelos links oficiais abaixo; cópias PDF não são armazenadas neste acervo.
+Notas autorais e compactas organizadas pelas cinco disciplinas e suas unidades. Elas sintetizam objetivos e tópicos visíveis nas páginas das unidades do Canvas; quando o Canvas apresentou um resumo, ele também serviu de referência. O complemento de Desenvolvimento Web U2 inclui uma leitura visual parcial das páginas 12–13 do PDF. As explicações estão reescritas para revisão rápida e não são transcrições integrais. Os materiais originais continuam acessíveis pelos links oficiais abaixo; cópias PDF não são armazenadas neste acervo.
 
 Use estas notas como base de revisão. Para detalhes, exemplos, exercícios, referências e eventuais diferenças entre a página do Canvas e o PDF, consulte a fonte oficial de cada unidade. As notas resumem as páginas e roteiros textuais do Canvas; não são transcrições dos PDFs. Os endereços e o estado de cada arquivo estão em [MATERIAIS_2026.1.md](MATERIAIS_2026.1.md).
 
@@ -21,6 +21,10 @@ Use estas notas como base de revisão. Para detalhes, exemplos, exercícios, ref
 - **Conceitos para revisar:** compreender o problema e os usuários; distinguir requisitos funcionais e qualidades esperadas; registrar decisões com clareza; negociar prioridades; prototipar e colher retorno antes de implementar.
 - **Aplicação:** técnicas de priorização, como MoSCoW, ajudam a separar o indispensável do desejável. Protótipos permitem testar hipóteses, identificar falhas de entendimento e iterar com menor custo.
 - **Pergunta de revisão:** Como validar que um requisito representa uma necessidade real do usuário e não apenas uma suposição da equipe?
+
+#### Complemento parcial observado no PDF — páginas 12–13
+
+A tabela visível organiza os requisitos em níveis: objetivos da organização, ações necessárias aos usuários, funções que o software deve executar, qualidades esperadas e características técnicas de construção. O texto destaca que a análise ajuda a tornar as necessidades claras para o projeto e a reduzir ambiguidades, mudanças posteriores e custos de manutenção. Este complemento cobre apenas as páginas 12–13 que ficaram legíveis na prévia; não representa o conteúdo integral do PDF.
 
 ### U3 — Ferramentas e Programas Essenciais para Desenvolvimento Front-End
 

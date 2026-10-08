@@ -49,7 +49,8 @@ Os links específicos de 2026.1 estão guardados para referência histórica. No
 - Nenhum PDF de disciplina ou de apoio foi guardado localmente. Os links oficiais ficam no inventário; os trabalhos enviados continuam como anexos no Canvas e são referenciados pelas páginas de atividade.
 - Leitura e Produção Acadêmica U2 tem um PDF oficial, agora incluído no inventário. As quatro unidades de Interfaces não mostraram PDF de estudo.
 - As notas autorais das 20 unidades estão em [NOTAS_DE_ESTUDO_2026.1.md](NOTAS_DE_ESTUDO_2026.1.md). Elas sintetizam títulos, objetivos e tópicos textuais acessíveis nas páginas do Canvas, não o texto integral dos PDFs.
-- A extração integral dos PDFs não foi concluída: o leitor integrado não expôs texto copiável dos materiais consultados e a prévia de um documento de critérios ficou preta. O inventário registra links, títulos e localização, sem preencher texto indisponível por suposição.
+- A prévia de Desenvolvimento Web U2 permitiu ler visualmente as páginas 12–13; o resumo parcial foi acrescentado à nota da unidade e está claramente delimitado.
+- A extração integral dos PDFs não foi concluída: o leitor integrado não expôs texto copiável dos demais materiais e a prévia de um documento de critérios ficou preta. O inventário registra links, títulos e localização, sem preencher texto indisponível por suposição.
 
 ## Rotina para o próximo período e seguintes
 

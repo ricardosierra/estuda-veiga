@@ -9,6 +9,7 @@ Este inventário mantém os endereços oficiais e o estado da documentação em 
 - O inventário tem **28 endereços oficiais diretos de PDF**; os outros seis arquivos são anexos de atividades do Canvas, referenciados por suas páginas de entrega.
 - Existem notas autorais em texto para **20 unidades**. Foram localizados PDFs oficiais nas 16 unidades de Desenvolvimento Web, Laboratório de Gestão de Negócios, Leitura e Produção Acadêmica e Sistemas Computacionais e Aplicações. Nas quatro unidades de Interfaces de Sistemas Computacionais não apareceu PDF de unidade.
 - Em Leitura e Produção Acadêmica U2 foi localizado o PDF oficial, além do conteúdo textual do Canvas. A nota de U2 tem agora o link correto.
+- Na prévia do PDF de Desenvolvimento Web U2, as páginas 12–13 ficaram legíveis e foram resumidas em [notas de estudo](NOTAS_DE_ESTUDO_2026.1.md). A prévia não permitiu copiar ou percorrer o documento inteiro.
 - **Nenhum PDF de disciplina ou material de apoio foi guardado localmente ou versionado.** Os originais de trabalhos locais ficam separados em `originais/`, ignorados pelo Git; os seis anexos listados abaixo continuam no Canvas.
 - **Extração integral dos PDFs: não realizada.** As notas das unidades resumem o texto acessível nas páginas do Canvas e não devem ser confundidas com texto extraído dos PDFs. O visualizador integrado não expôs texto copiável; em um PDF de critérios, a prévia ficou preta. Não foram preenchidas lacunas por suposição.
 
@@ -21,7 +22,7 @@ Curso: <https://uva.instructure.com/courses/54293>.
 | Unidade | Material | Link UVA | Registro em texto |
 |---|---|---|---|
 | U1 | Introdução ao Desenvolvimento Front-End | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u1/documents/Desenvolvimento-Frontend-I---U1.pdf) | Resumo autoral em [notas de estudo](NOTAS_DE_ESTUDO_2026.1.md); sem cópia PDF local |
-| U2 | Análise de Requisitos para Projetos Front-End | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u2/documents/Ilumno_Desenvolvimento-Frontend-I_U2.pdf) | Resumo autoral em [notas de estudo](NOTAS_DE_ESTUDO_2026.1.md); sem cópia PDF local |
+| U2 | Análise de Requisitos para Projetos Front-End | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u2/documents/Ilumno_Desenvolvimento-Frontend-I_U2.pdf) | Resumo do Canvas e complemento parcial das páginas 12–13 em [notas de estudo](NOTAS_DE_ESTUDO_2026.1.md); sem cópia PDF local |
 | U3 | Ferramentas e Programas Essenciais para Desenvolvimento Front-End | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u3/documents/Ilumno_Desenvolvimento-Frontend-I_U3.pdf) | Resumo autoral em [notas de estudo](NOTAS_DE_ESTUDO_2026.1.md); sem cópia PDF local |
 | U4 | Princípios de User Experience (UX) em Interfaces Web | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u4/documents/Ilumno_Desenvolvimento-Frontend-I_U4.pdf) | Resumo autoral em [notas de estudo](NOTAS_DE_ESTUDO_2026.1.md); sem cópia PDF local |
 
