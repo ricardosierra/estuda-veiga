@@ -169,3 +169,8 @@ Repeat the name/matrícula search across all tracked subject files, run `git dif
 - [x] **Step 4: Commit the final audit/index updates**
 
 Commit only remaining text/index updates. Confirm a clean tracked working tree and verify the final commit log contains no original binaries.
+
+
+## Adendo — autorização para extrair PDFs para texto
+
+A aprovação posterior da usuária amplia a decisão original de manter apenas links e resumos: os PDFs oficiais podem ser baixados e preservados localmente em `originais/uva/<semestre>/`, ignorados pelo Git, e seu texto extraído deve ser versionado em `materias/fontes-uva/<semestre>/` sempre que a camada textual permitir. Nenhum PDF original entra no histórico Git. Na atualização de 2026-10-08, os 28 PDFs públicos diretos do inventário 2026.1 foram baixados e extraídos; os seis anexos pessoais dependem de acesso autenticado ao Canvas.

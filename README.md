@@ -1,6 +1,6 @@
 # Acervo acadêmico — Faculdade
 
-Repositório local para organizar planejamento e notas acadêmicas em formatos de texto. Os materiais didáticos em PDF são consultados pelos links oficiais e resumidos autoralmente quando há conteúdo textual acessível; cópias locais desses PDFs não são guardadas neste acervo.
+Repositório local para organizar planejamento e notas acadêmicas em formatos de texto. Materiais didáticos em PDF são consultados pelos links oficiais e organizados como texto versionável sempre que a camada textual permite. Os PDFs originais ficam separados em `originais/`, fora do Git.
 
 ## Endereços
 
@@ -14,10 +14,10 @@ As credenciais não são armazenadas neste repositório. Entre diretamente no po
 - [Planejamento e rotina para os próximos semestres](PLANEJAMENTO.md)
 - [Disciplinas, unidades e links do Canvas de 2026.1](CURSOS_2026.1.md)
 - [Inventário de materiais oficiais e links — 2026.1](MATERIAIS_2026.1.md)
-- [Notas de estudo em texto — 2026.1](NOTAS_DE_ESTUDO_2026.1.md) — resumos do texto acessível nas páginas do Canvas; não são transcrições integrais dos PDFs.
+- [Notas de estudo em texto — 2026.1](NOTAS_DE_ESTUDO_2026.1.md) — resumos das páginas do Canvas. As extrações textuais integrais dos 28 PDFs públicos estão em [fontes UVA 2026.1](materias/fontes-uva/2026.1/README.md).
 - [Registro acadêmico, disciplinas, notas, frequência e progresso](REGISTRO_ACADEMICO.md)
 - [Trabalhos e documentos de texto por matéria](materias/README.md)
 
 ## Git
 
-Repositório Git local, na branch `main`, sem remoto configurado. Os documentos Markdown de planejamento, registro acadêmico, links oficiais, notas autorais e trabalhos convertidos são mantidos em texto para versionamento. DOCX, TXT e Pages restantes ficam na pasta local `originais/`, ignorada pelo Git; PDFs de materiais e cópias PDF redundantes de trabalhos foram movidos para a Lixeira depois de conferir as versões textuais/editáveis. PDFs, Word, Pages e demais binários são ignorados, com exceção dos três diagramas UML pequenos referenciados pelo trabalho de Paradigmas. Credenciais e identificadores pessoais não devem ser adicionados ao repositório.
+Repositório Git local, na branch `main`, sem remoto configurado. Os documentos Markdown de planejamento, registro acadêmico, links oficiais, notas autorais e trabalhos convertidos são mantidos em texto para versionamento. DOCX, Pages e PDFs originais ficam na pasta local `originais/`, ignorada pelo Git. Os 28 PDFs públicos de 2026.1 estão preservados ali, e suas extrações `.txt` estão em `materias/fontes-uva/2026.1/`. Os trabalhos Word existentes foram convertidos para Markdown por matéria. PDFs, Word, Pages e demais binários são ignorados, com exceção dos três diagramas UML pequenos referenciados pelo trabalho de Paradigmas. Credenciais e identificadores pessoais não devem ser adicionados ao repositório.

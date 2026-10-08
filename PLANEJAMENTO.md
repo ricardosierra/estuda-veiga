@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-Como as frequências nas aulas estão baixas, manter uma rotina para abrir, acompanhar e utilizar todas as aulas de cada disciplina. Registrar em arquivos de texto as notas de estudo e os links oficiais dos materiais, sem guardar cópias locais dos PDFs.
+Como as frequências nas aulas estão baixas, manter uma rotina para abrir, acompanhar e utilizar todas as aulas de cada disciplina. Versionar no Git a documentação acadêmica, notas, materiais textuais e extrações de PDFs/Word quando possível. Preservar os PDFs, DOCX, Pages e outros arquivos grandes em `originais/`, ignorada pelo Git.
 
 ## Acesso
 
@@ -20,15 +20,15 @@ Como as frequências nas aulas estão baixas, manter uma rotina para abrir, acom
 6. Dentro de cada disciplina, abrir **Módulos**; consultar o guia da disciplina, plano de ensino e calendário quando disponíveis.
 7. Abrir cada unidade e revisar o conteúdo, páginas, vídeos e anexos publicados.
 8. Para cada unidade, registrar em notas próprias o tema, os conceitos centrais, dúvidas e uma pergunta de revisão. Manter o link oficial para consultar exemplos e detalhes completos.
-9. Atualizar [NOTAS_DE_ESTUDO_2026.1.md](NOTAS_DE_ESTUDO_2026.1.md), guardando resumos autorais em texto, e [MATERIAIS_2026.1.md](MATERIAIS_2026.1.md), sem copiar PDFs para o computador.
+9. Atualizar as notas e o inventário do semestre; manter cópias PDF/DOCX em `originais/` (ignorado pelo Git) e extrair texto pesquisável para `materias/fontes-uva/<semestre>/` quando possível.
 
-### Acesso confirmado nesta sessão
+### Acesso autenticado anterior
 
-Em 2026-10-08, a matrícula marcada como **Ativo** foi selecionada e o Portal do Aluno abriu a página inicial com a opção **Plataforma Virtual - CANVAS**. O identificador da matrícula e dados de login não foram copiados para este documento.
+Em 2026-10-08, a matrícula marcada como **Ativo** foi selecionada e o Portal do Aluno abriu a página inicial com a opção **Plataforma Virtual - CANVAS**. O identificador da matrícula e dados de login não foram copiados para este documento. A retomada da consulta atual aguarda o desbloqueio do Mac; nenhuma senha foi solicitada ou armazenada.
 
 ## Semestre conferido
 
-O Canvas identificou cinco disciplinas em inscrições anteriores no período **2026.1**. No acesso conferido, o Canvas também mostrava o período **2026.2** como atual. O mapa com link para cada curso, módulo, unidade, calendário e avaliação está em [CURSOS_2026.1.md](CURSOS_2026.1.md); os links oficiais e o estado das notas estão em [MATERIAIS_2026.1.md](MATERIAIS_2026.1.md).
+O Canvas identificou cinco disciplinas em inscrições anteriores no período **2026.1**. Na conferência autenticada anterior, o Canvas também mostrava o período **2026.2** como atual. A consulta autenticada precisa ser retomada para confirmar a grade atual e obter as datas do próximo semestre. O mapa com link para cada curso, módulo, unidade, calendário e avaliação está em [CURSOS_2026.1.md](CURSOS_2026.1.md); os links oficiais e o estado das notas estão em [MATERIAIS_2026.1.md](MATERIAIS_2026.1.md).
 
 ## Como percorrer uma disciplina
 
@@ -40,18 +40,25 @@ O Canvas identificou cinco disciplinas em inscrições anteriores no período **
 6. Use o fórum de dúvidas/tutoria quando necessário. Registre apenas a ação que realmente foi feita; não indique presença ou conclusão sem ter participado.
 7. Depois de concluir uma unidade, anote data, conteúdo revisado, dúvida ou tarefa pendente e o próximo passo no checklist.
 
-Os links específicos de 2026.1 estão guardados para referência histórica. No próximo semestre, confirme novamente os cursos ativos, os nomes dos módulos, as datas e os IDs; o Canvas pode substituir esses links.
+Os links específicos de 2026.1 estão guardados para referência histórica. Na data desta atualização (2026-10-08), 2027.1 é o próximo semestre. A busca nas páginas oficiais públicas não localizou calendário 2027.1; confirme a publicação no Portal/Canvas antes de lançar datas no sistema Tauri. Depois, confirme novamente os cursos ativos, módulos, links e IDs.
 
 ## Andamento desta conferência
 
-- Acesso ao Portal do Aluno e ao Canvas concluído.
+- O Portal do Aluno e o Canvas foram abertos em sessão autenticada anterior; a conferência atual do período foi interrompida porque o Mac está bloqueado.
 - Foram revisados 75 itens dos módulos e catalogados 34 PDFs únicos: 16 materiais das unidades, 10 documentos de apoio, 2 documentos institucionais e 6 trabalhos enviados pelo estudante. A lista por disciplina e os links estão em [MATERIAIS_2026.1.md](MATERIAIS_2026.1.md).
-- Nenhum PDF de disciplina ou de apoio está dentro do repositório ou versionado. Duas cópias de unidade encontradas em Downloads foram usadas para extrair texto e conferir as notas; depois foram movidas para a Lixeira, onde permanecem recuperáveis. Os materiais didáticos seguem referenciados por links oficiais no inventário.
+- Nenhum PDF original está versionado. Os 28 PDFs públicos do inventário 2026.1 estão preservados na pasta ignorada `originais/uva/2026.1/`, com extrações `.txt` versionadas. Os seis anexos do Canvas ainda requerem sessão autenticada para download e conversão.
 - Os PDFs locais de Bases de Programação AVA 2 e Paradigmas AVA 2 foram comparados aos DOCX correspondentes; a similaridade após normalização foi 1,000 para cada par. Como as versões editáveis e os textos versionados permanecem, as cópias PDF também foram movidas para a Lixeira.
 - Leitura e Produção Acadêmica U2 tem um PDF oficial, agora incluído no inventário. As quatro unidades de Interfaces não mostraram PDF de estudo.
 - As notas autorais das 20 unidades estão em [NOTAS_DE_ESTUDO_2026.1.md](NOTAS_DE_ESTUDO_2026.1.md). Foram ampliadas a partir dos textos, temas, exemplos e resumos acessíveis nas páginas HTML do Canvas. Isso não confirma que a página HTML reproduza todas as páginas e elementos dos PDFs.
 - Em Desenvolvimento Web U2, o Canvas expõe um roteiro textual extenso com quatro temas; a nota foi ampliada para registrar os conceitos, técnicas, caso de uso e etapas de prototipação. A prévia do PDF permitiu observar visualmente as páginas 12–13.
-- A extração dos 34 PDFs está parcial: os PDFs de Desenvolvimento Web U1 e U2 tiveram o texto extraído para conferência e resumo; o texto bruto e os arquivos não estão no repositório. Os outros 14 PDFs de unidade, 10 documentos de apoio, 2 documentos institucionais e 6 anexos não tiveram o texto integral extraído. A prévia de um documento de critérios ficou preta. O inventário registra links e estados de leitura sem preencher lacunas por suposição.
+- A extração está concluída para os 28 PDFs públicos (447 páginas). Os seis anexos de trabalhos dependem do Canvas autenticado. Elementos visuais e texto presente somente em capturas de tela não são reproduzidos integralmente pelos `.txt`; os originais seguem locais e ignorados pelo Git.
+
+## Próximo semestre: 2027.1
+
+- O calendário acadêmico oficial 2027.1 ainda não foi localizado em fonte pública até 2026-10-08.
+- As disciplinas ativas e os prazos específicos dependem da consulta autenticada ao Canvas/Portal.
+- Não lançar datas estimadas. Assim que a fonte oficial estiver disponível, registrar as datas e atualizar o sistema Tauri correto, após identificá-lo.
+- O alvo local é o app `app/` (Estuda UVA). Ele ainda tem tela de carregamento e não implementa calendário nem persistência; a atualização de eventos depende da consulta autenticada e de definir como o calendário deve ser exibido nesse esqueleto.
 
 ## Rotina para o próximo período e seguintes
 
@@ -61,15 +68,15 @@ Os links específicos de 2026.1 estão guardados para referência histórica. No
 2. Conferir quais disciplinas estão ativas e abrir cada curso.
 3. Ler o guia da disciplina, o plano de ensino, o calendário e os critérios de avaliação.
 4. Abrir **Módulos** e conferir a sequência completa de aulas, fóruns, atividades, provas e itens de apoio.
-5. Criar ou atualizar um arquivo Markdown de notas por semestre; resumir autoralmente o conteúdo textual acessível nas aulas e manter os links oficiais, sem cópias locais dos PDFs.
+5. Criar ou atualizar arquivos Markdown de notas por semestre; manter os links oficiais, guardar os originais PDF/Word fora do Git em `originais/` e extrair texto pesquisável para `materias/fontes-uva/<semestre>/` sempre que possível.
 6. Registrar neste acervo as datas de aula, avaliações e entregas encontradas nos calendários oficiais.
 
 ### A cada semana
 
 1. Abrir cada disciplina ativa e verificar todos os módulos, aulas, fóruns, tarefas e avisos liberados.
 2. Percorrer todas as aulas liberadas na ordem do curso, incluindo texto interativo, abas, vídeos e anexos.
-3. Ler o conteúdo textual da aula; se houver PDF, manter o link oficial no inventário e conferir se o material está disponível em texto na própria página.
-4. Escrever resumos próprios em Markdown com conceitos principais, exemplos a estudar, dúvidas e próxima atividade; não guardar cópias locais dos PDFs nem apresentar resumos de página como transcrição do PDF.
+3. Ler o conteúdo textual da aula; se houver PDF oficial, atualizar o inventário, preservar a cópia original fora do Git e extrair a camada textual para um arquivo versionado quando possível.
+4. Escrever resumos próprios em Markdown com conceitos principais, exemplos a estudar, dúvidas e próxima atividade; distinguir claramente resumo autoral de texto extraído e apontar quando imagens ou páginas escaneadas não foram convertidas.
 5. Atualizar o inventário com o estado das notas e anotar links indisponíveis ou erros observados, sem marcar uma cópia local inexistente como baixada.
 6. Atualizar o checklist com data, aula, conteúdo revisado, link oficial, dúvidas e próxima atividade.
 7. Conferir prazos no calendário oficial e reservar tempo para a próxima aula/estudo no calendário pessoal.

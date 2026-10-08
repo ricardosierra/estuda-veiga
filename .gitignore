@@ -26,3 +26,7 @@
 .env
 .env.*
 !.env.example
+# Dependências e artefatos de build do app Tauri Estuda UVA.
+/app/node_modules/
+/app/dist/
+/app/src-tauri/target/
