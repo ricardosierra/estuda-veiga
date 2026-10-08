@@ -13,12 +13,19 @@
 *.7z
 *.key
 
+# Originais completos dos trabalhos: preservar localmente, fora do Git.
+/originais/
+
+# Diagramas UML pequenos e referenciados no trabalho convertido.
+!materias/paradigmas-de-programacao/diagramas/diag_classes.png
+!materias/paradigmas-de-programacao/diagramas/diag_estados.png
+!materias/paradigmas-de-programacao/diagramas/diag_sequencia.png
+
 # Arquivos do sistema e configurações locais.
 .DS_Store
 .env
 .env.*
 !.env.example
 
-# Textos acadêmicos preexistentes com dados pessoais, manter apenas localmente.
-/Trabalho_2_Bases_Programacao_RicardoSierra.txt
-/trabalho2-paradigmas-ricardo.txt
+# Boletim e histórico acadêmico pessoal: manter localmente, fora do Git.
+/REGISTRO_ACADEMICO_PRIVADO.md

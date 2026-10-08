@@ -15,7 +15,8 @@ As credenciais não são armazenadas neste repositório. Entre diretamente no po
 - [Disciplinas, unidades e links do Canvas de 2026.1](CURSOS_2026.1.md)
 - [Inventário de materiais oficiais e links — 2026.1](MATERIAIS_2026.1.md)
 - [Notas de estudo em texto — 2026.1](NOTAS_DE_ESTUDO_2026.1.md)
+- [Trabalhos e documentos de texto por matéria](materias/README.md)
 
 ## Git
 
-Repositório Git local, na branch `main`, sem remoto configurado. Os documentos Markdown de planejamento, links oficiais e notas autorais são mantidos em texto para versionamento. Dois arquivos `.txt` acadêmicos preexistentes com dados pessoais permanecem locais e ignorados pelo Git. PDFs e outros binários também são ignorados; as credenciais e identificadores pessoais não devem ser adicionados ao repositório.
+Repositório Git local, na branch `main`, sem remoto configurado. Os documentos Markdown de planejamento, links oficiais, notas autorais e trabalhos convertidos são mantidos em texto para versionamento. Os documentos-fonte completos ficam na pasta local `originais/`, ignorada pelo Git. PDFs, Word, Pages e demais binários são ignorados, com exceção dos três diagramas UML pequenos referenciados pelo trabalho de Paradigmas. Credenciais e identificadores pessoais não devem ser adicionados ao repositório.
