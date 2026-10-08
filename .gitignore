@@ -1,0 +1,24 @@
+# Arquivos binários e originais acadêmicos: manter localmente, fora do Git.
+*.docx
+*.pdf
+*.pages
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.mp4
+*.mov
+*.zip
+*.7z
+*.key
+
+# Arquivos do sistema e configurações locais.
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# Textos acadêmicos preexistentes com dados pessoais, manter apenas localmente.
+/Trabalho_2_Bases_Programacao_RicardoSierra.txt
+/trabalho2-paradigmas-ricardo.txt
