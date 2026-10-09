@@ -1,6 +1,6 @@
 # Registro acadêmico
 
-> Atualizado em 8 de outubro de 2026 a partir das telas autenticadas do Portal do Aluno UVA (Lyceum) e do Canvas UVA. Este registro contém informações acadêmicas pessoais.
+> Atualizado em 9 de outubro de 2026 a partir das telas autenticadas do Portal do Aluno UVA (Lyceum) e do Canvas UVA. Este registro contém informações acadêmicas pessoais.
 
 ## Resumo atual
 
@@ -137,6 +137,14 @@ O inventário local do Canvas identifica cinco disciplinas em **Inscrições ant
 | Sistemas Computacionais e Aplicações (E10300021) | 0/100 (0%) | 100/100 (100%) | 100/200 (50%) |
 
 Estas inscrições estão em período anterior; não confundir seus percentuais do Canvas com as médias gerais de disciplinas ativas em 2026.2. As tarefas listadas estavam fechadas na consulta.
+
+## Consulta sobre a formação anterior em Engenharia de Computação
+
+O estudante relatou que cursava Engenharia de Computação antes de ingressar por transferência em Ciência da Computação. A consulta adicional ao Portal do Aluno, em 9 de outubro de 2026, confirmou a transferência e mostrou **330 h cursadas**, mas o Histórico Detalhado não discrimina quais disciplinas compõem essa carga. A tabela de disciplinas pendentes é do currículo atual de Ciência da Computação; ela não serve como histórico das matérias cursadas no programa anterior.
+
+No Canvas, as inscrições anteriores visíveis continham as cinco disciplinas curriculares de 2026.1 e o curso gratuito Liderança e Empreendedorismo. Em outra seção aparecia o espaço de apoio de Ciência da Computação identificado como 2023.1.21, que não é uma disciplina curricular. Não apareceu uma turma curricular com título de Engenharia de Computação. A tela “Últimas Notas” do Lyceum também mostrou apenas avaliações recentes de 2026.2. Portanto, ainda não há base confiável para associar as 330 h a disciplinas específicas de Engenharia de Computação ou para buscar seus materiais por nome.
+
+Para completar esse levantamento, é necessário localizar no próprio portal um histórico escolar analítico/ementas da formação anterior ou receber do estudante o histórico/ementário e, se possível, os nomes das disciplinas ou links antigos do Canvas. Até essa evidência aparecer, os cursos e conteúdos não devem ser inferidos a partir da grade atual de Ciência da Computação.
 
 ## Pendências e observações para revisar
 

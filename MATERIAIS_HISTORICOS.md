@@ -1,5 +1,9 @@
 # Inventário de materiais históricos
 
+## Engenharia de Computação — sem materiais identificados
+
+O estudante relatou que cursava Engenharia de Computação antes da transferência para Ciência da Computação. Na consulta autenticada de 9 de outubro de 2026, o Portal do Aluno mostrou 330 h cursadas, mas não discriminou as disciplinas; o Canvas não exibiu turmas curriculares anteriores com esse nome. Por isso, nenhum material foi atribuído a Engenharia de Computação nem extraído para texto. Consulte o [levantamento de cursos históricos](CURSOS_HISTORICOS.md) e o [registro acadêmico](REGISTRO_ACADEMICO.md) para as fontes e limitações.
+
 ## Cursos curriculares de 2026.1
 
 Os endereços, unidades, materiais, atividades e estados de extração estão no [inventário completo de 2026.1](MATERIAIS_2026.1.md). As extrações de 28 PDFs públicos estão organizadas por disciplina em [fontes UVA 2026.1](materias/fontes-uva/2026.1/README.md). As notas autorais das unidades estão em [NOTAS_DE_ESTUDO_2026.1.md](NOTAS_DE_ESTUDO_2026.1.md).
