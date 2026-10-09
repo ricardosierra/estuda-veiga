@@ -20,13 +20,20 @@
 !materias/paradigmas-de-programacao/diagramas/diag_classes.png
 !materias/paradigmas-de-programacao/diagramas/diag_estados.png
 !materias/paradigmas-de-programacao/diagramas/diag_sequencia.png
+!/app/src-tauri/icons/icon.png
 
 # Arquivos do sistema e configurações locais.
 .DS_Store
 .env
 .env.*
 !.env.example
-# Dependências e artefatos de build do app Tauri Estuda UVA.
+
+# Aplicativo Tauri Estuda UVA: dependências e artefatos de compilação.
 /app/node_modules/
 /app/dist/
 /app/src-tauri/target/
+/app/src-tauri/gen/schemas/
+/app/src-tauri/.estuda-uva-data/
+/app/src-tauri/chromium-profile/
+/app/src-tauri/*.app
+/app/src-tauri/*.dmg

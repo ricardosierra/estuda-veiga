@@ -2,6 +2,8 @@
 
 Este inventário mantém os endereços oficiais e o estado da documentação em texto. A extração dos 28 PDFs públicos está versionada em [fontes UVA 2026.1](materias/fontes-uva/2026.1/README.md); as cópias PDF locais foram descartadas depois da extração. As notas de estudo são resumos autorais das páginas HTML do Canvas, não transcrições integrais dos PDFs. Os anexos de trabalhos enviados permanecem no Canvas e são referenciados pela página da atividade, sem links privados de download.
 
+As datas dos calendários gerais oficiais de 2026.1 também estão organizadas em [Calendário acadêmico UVA 2026.1](CALENDARIO_2026.1.md). Confira avisos e prazos específicos publicados no Canvas.
+
 ## Resultado da conferência — 8 de outubro de 2026
 
 - Foram revisados **75 itens de módulos** nas cinco disciplinas de 2026.1 e encontrados **34 PDFs únicos**, contando materiais repetidos em mais de um curso uma única vez.

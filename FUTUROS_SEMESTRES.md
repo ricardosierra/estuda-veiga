@@ -1,11 +1,11 @@
 # Semestres futuros
 
-> Conferido em 8 de outubro de 2026. Este arquivo registra somente o que apareceu nas fontes consultadas; não cria disciplinas, datas ou horários estimados.
+> Conferido em 9 de outubro de 2026. Este arquivo registra somente o que apareceu nas fontes consultadas; não cria disciplinas, datas ou horários estimados.
 
 ## 2027.1
 
-- O Canvas autenticado não mostrava cartões nem inscrições para 2027.1 durante a consulta.
-- O calendário acadêmico oficial de 2027.1 também não foi localizado.
+- O Canvas autenticado não mostrava cartões nem inscrições para 2027.1 durante a consulta de 8 de outubro.
+- A página oficial da [Vida Acadêmica UVA](https://www.uva.br/vida-academica/calendario-academico/) continua sendo a referência para o calendário acadêmico. Em 9 de outubro, a busca pública e a página consultada não apresentaram calendário de 2027.1.
 - Portanto, ainda não há disciplinas, aulas, materiais, links ou prazos futuros que possam ser arquivados com confirmação.
 - As sete matrículas listadas no Portal pertencem a 2026.2; não devem ser copiadas automaticamente para 2027.1.
 

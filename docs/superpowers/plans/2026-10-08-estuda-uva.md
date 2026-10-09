@@ -140,8 +140,9 @@
 3. Mostrar importações concluídas, parciais, canceladas e falhas por arquivo.
 4. Oferecer seleção de pasta do acervo; padrão deste uso aponta para a raiz Faculdade configurada, nunca para perfil/browser/temporary.
 5. Integrar cancelamento, repetição, resolução de colisões e abrir o Markdown no app.
+6. Disponibilizar Agenda em SQLite; sincronizar prazos publicados de atribuições atuais em consulta GET, com data aplicável ao estudante e URL de origem; manter o semestre 2027.1 sem datas até confirmação oficial.
 
-**Verificação:** persistência reabre corretamente; migrações idempotentes; fixture de matéria produz índice consistente e todos os links relativos resolvem.
+**Verificação:** persistência reabre corretamente; migrações idempotentes; agenda preserva eventos por semestre e origem; fixture de matéria produz índice consistente e todos os links relativos resolvem.
 
 ## Fase 7 — Homologação real e pacote macOS
 

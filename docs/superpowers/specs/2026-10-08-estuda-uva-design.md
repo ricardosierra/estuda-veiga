@@ -43,15 +43,15 @@ Em 8 de outubro de 2026, a lista `https://uva.instructure.com/courses` mostrou s
 - A sessão persiste localmente para evitar novo login a cada abertura. O usuário pode encerrar sessão no Canvas ou remover o perfil nas configurações, com confirmação na ação de exclusão.
 - Navegar inicialmente para `https://uva.instructure.com/courses`. Detectar login/SSO/expiração e esperar o usuário completar autenticação no próprio Chromium. Nunca preencher credenciais, automatizar ou contornar MFA/CAPTCHA.
 - Ler HTML e DOM por CDP e analisar a estrutura em Rust. Não usar automação por coordenadas. Preferir links visíveis e atributos semânticos; interpretar rotas Canvas (`/courses/{id}`, `/modules/items/{id}`) dinamicamente. IDs observados durante descoberta não podem ser fixados no código.
-- Domínios padrão autorizados para navegação de material: `uva.instructure.com`, `ead.uva.br` e hosts sob `uva.br`. Outros hosts são exibidos ao usuário e não são baixados automaticamente.
+- Domínios padrão autorizados para navegação de material: `uva.instructure.com`, `ead.uva.br` e hosts sob `uva.br`. O Canvas pode redirecionar arquivos para links S3 assinados; só endpoints S3 reconhecidos com assinatura temporária são aceitos, e o usuário ainda escolhe o material na interface.
 - O app não executa operações de escrita no Canvas. Materiais, mensagens, avaliações e páginas remotas são conteúdo não confiável; o app só usa os links/textos como dados.
 
 ### Download autenticado e segurança
 
-- O download é iniciado pelo backend Rust a partir de URL observada no browser. `https` obrigatório; redirecionamentos limitados; cada salto revalida o host. Não enviar cookies de um host para outro.
+- O download é iniciado pelo backend Rust a partir de URL observada no browser. `https` obrigatório; redirecionamentos limitados; cada salto revalida o host, incluindo somente endpoints S3 reconhecidos com assinatura temporária. Não enviar cookies de um host para outro.
 - Cookies existentes podem ser lidos do contexto CDP e usados somente em memória para uma requisição ao próprio host de origem quando o PDF exigir autenticação. Valores não entram em logs, banco de dados, arquivos `.md`, eventos de frontend ou telemetria.
 - Validar MIME, assinatura PDF, tamanho máximo configurável e nome de arquivo sanitizado. Evitar traversal, URLs `file:`, `javascript:`, protocolos não HTTP e downloads automáticos de conteúdo fora dos domínios autorizados.
-- Limitar concorrência e tamanho; cancelamento encerra requisições e remove temporários. Itens bloqueados, expirados ou não PDF aparecem com erro por item, sem interromper outras conversões.
+- Limitar concorrência e tamanho; cancelamento interrompe requisições em andamento antes da persistência do material. Itens bloqueados, expirados ou não PDF aparecem com erro por item, sem interromper outras conversões.
 - Sem analytics, upload, telemetria, chamadas LLM ou serviço remoto de IA.
 
 ### Extração e acervo Markdown
@@ -76,10 +76,19 @@ Todo o mecanismo é determinístico e local. Não usa rede para gerar explicaç�
 ## Dados locais
 
 - Perfil separado do Chromium: `{app_data_dir}/chromium-profile/`.
-- Banco SQLite: cursos, metadados de materiais, estado de importação e progresso de estudo. Sem notas oficiais, RA, senha ou cookies no banco.
+- Banco SQLite: cursos, metadados de materiais, estado de importação, progresso de estudo e eventos acadêmicos com fonte e semestre. Sem notas oficiais, RA, senha ou cookies no banco.
 - Temporários e PDFs durante conversão: área temporária por tarefa com remoção em sucesso, cancelamento ou reabertura após falha; não dentro do histórico Git.
 - Saídas `.md`: pasta de acervo indicada pelo usuário; padrão deste uso é a pasta `materias/` do repositório da Faculdade.
 - Configurações: URI base do Canvas UVA (fixa na primeira entrega), executável Chromium escolhido, diretório do acervo e preferências locais.
+
+## Agenda acadêmica
+
+- A agenda mantém eventos locais no SQLite com semestre, disciplina quando houver, data/hora, tipo e endereço oficial da fonte.
+- Para sincronizar prazos das matérias atuais, o Chromium abre a área de tarefas e consulta a listagem de atribuições do próprio Canvas por uma requisição GET same-origin. A sessão existente do navegador é usada; nenhum token ou cookie é copiado para o app, os arquivos ou o log.
+- A consulta usa a data aplicável ao estudante segundo os overrides do Canvas, inclui apenas atribuições publicadas com prazo e não abre a página de entrega nem altera tarefa, nota ou submissão.
+- Cada evento conserva seu link direto de origem. Uma falha de consulta mantém os eventos que já estavam salvos para aquela matéria.
+- O semestre seguinte fica sem datas até aparecerem no calendário UVA/Portal ou nas matérias correspondentes do Canvas. O app não desloca datas de semestres anteriores nem infere prazos.
+- Em 9 de outubro de 2026, as páginas públicas consultadas ainda não apresentaram calendário oficial 2027.1; o estado pendente deve ficar explícito na interface.
 
 ## Estados e erros visíveis
 
