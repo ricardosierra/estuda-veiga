@@ -1,8 +1,8 @@
 # Textos extraidos dos PDFs UVA — 2026.1
 
-> Extração textual para pesquisa e histórico Git. PDFs originais preservados localmente em `originais/uva/2026.1/`, ignorados pelo Git. A extração não reproduz imagens, diagramas, cores ou toda a disposição visual; consulte o PDF original para esses elementos.
+> Extração textual para pesquisa e histórico Git. As cópias PDF foram descartadas após a extração; reabra o link oficial se precisar consultar imagens, diagramas, cores ou a disposição visual.
 
-Foram baixados 28 PDFs públicos indicados no inventário, totalizando 27.410.021 bytes. `pdftotext -layout -enc UTF-8` produziu texto para os 28, sem falhas ou arquivos vazios. O número de páginas informado vem dos PDFs originais.
+Foram baixados 28 PDFs públicos indicados no inventário, que somavam 27.410.021 bytes; as cópias foram descartadas após a extração. `pdftotext -layout -enc UTF-8` produziu texto para os 28, sem falhas ou arquivos vazios. O número de páginas informado vem dos PDFs no momento da extração.
 
 ## Desenvolvimento Web
 
@@ -56,5 +56,5 @@ Foram baixados 28 PDFs públicos indicados no inventário, totalizando 27.410.02
 ## Limites da extração
 
 - A camada textual selecionável foi extraída em todas as 28 fontes; não houve página totalmente vazia nos arquivos de texto.
-- Capturas de tela, ilustrações e textos existentes apenas como imagem podem não aparecer no `.txt`; PDFs originais continuam disponíveis localmente para consulta.
+- Capturas de tela, ilustrações e textos existentes apenas como imagem podem não aparecer no arquivo texto; consulte os links oficiais para esses elementos.
 - Os seis PDFs de atividades enviados pelo estudante estão catalogados em [MATERIAIS_2026.1.md](../../../MATERIAIS_2026.1.md), mas são anexos acessíveis por páginas autenticadas do Canvas. Eles não fazem parte dos 28 links públicos e aguardam a sessão autenticada para download e conversão.

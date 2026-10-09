@@ -1,23 +1,24 @@
 # Acervo acadêmico — Faculdade
 
-Repositório local para organizar planejamento e notas acadêmicas em formatos de texto. Materiais didáticos em PDF são consultados pelos links oficiais e organizados como texto versionável sempre que a camada textual permite. Os PDFs originais ficam separados em `originais/`, fora do Git.
+Repositório local para organizar planejamento, cursos, notas e materiais acadêmicos em formatos de texto. Os PDFs são consultados por seus links oficiais; quando acessíveis, sua camada textual é extraída para arquivos versionáveis. Após conferir a extração, a cópia PDF local é descartada para economizar espaço.
 
-## Endereços
+## Endereços oficiais
 
 - [Portal do Aluno UVA](https://portalaluno.uva.br/Aluno/PortalAluno)
 - [Canvas UVA](https://uva.instructure.com/)
 
-As credenciais não são armazenadas neste repositório. Entre diretamente no portal.
+As credenciais devem ser digitadas diretamente no Portal. Não são armazenadas neste repositório.
 
-## Arquivos principais
+## Índices e planejamento
 
-- [Planejamento e rotina para os próximos semestres](PLANEJAMENTO.md)
-- [Disciplinas, unidades e links do Canvas de 2026.1](CURSOS_2026.1.md)
-- [Inventário de materiais oficiais e links — 2026.1](MATERIAIS_2026.1.md)
-- [Notas de estudo em texto — 2026.1](NOTAS_DE_ESTUDO_2026.1.md) — resumos das páginas do Canvas. As extrações textuais integrais dos 28 PDFs públicos estão em [fontes UVA 2026.1](materias/fontes-uva/2026.1/README.md).
-- [Registro acadêmico, disciplinas, notas, frequência e progresso](REGISTRO_ACADEMICO.md)
-- [Trabalhos e documentos de texto por matéria](materias/README.md)
+- [Planejamento e passo a passo para acompanhar as aulas](PLANEJAMENTO.md)
+- [Registro acadêmico e frequência](REGISTRO_ACADEMICO.md)
+- [Cursos e materiais anteriores](CURSOS_HISTORICOS.md) · [inventário histórico](MATERIAIS_HISTORICOS.md) · [notas históricas adicionais](NOTAS_DE_ESTUDO_HISTORICOS.md)
+- [Disciplinas matriculadas em 2026.2](CURSOS_2026.2.md) · [inventário de materiais](MATERIAIS_2026.2.md) · [notas de estudo](NOTAS_DE_ESTUDO_2026.2.md) · [textos extraídos](materias/fontes-uva/2026.2/README.md)
+- [Disciplinas, unidades e links de 2026.1](CURSOS_2026.1.md) · [inventário de materiais](MATERIAIS_2026.1.md) · [notas de estudo](NOTAS_DE_ESTUDO_2026.1.md) · [textos extraídos dos 28 PDFs](materias/fontes-uva/2026.1/README.md)
+- [Semestres futuros](FUTUROS_SEMESTRES.md)
+- [Trabalhos em texto por matéria](materias/README.md)
 
-## Git
+## Git e arquivos
 
-Repositório Git local, na branch `main`, sem remoto configurado. Os documentos Markdown de planejamento, registro acadêmico, links oficiais, notas autorais e trabalhos convertidos são mantidos em texto para versionamento. DOCX, Pages e PDFs originais ficam na pasta local `originais/`, ignorada pelo Git. Os 28 PDFs públicos de 2026.1 estão preservados ali, e suas extrações `.txt` estão em `materias/fontes-uva/2026.1/`. Os trabalhos Word existentes foram convertidos para Markdown por matéria. PDFs, Word, Pages e demais binários são ignorados, com exceção dos três diagramas UML pequenos referenciados pelo trabalho de Paradigmas. Credenciais e identificadores pessoais não devem ser adicionados ao repositório.
+Repositório Git local, na branch main, sem remoto configurado. Documentos Markdown, notas autorais e extrações textuais são versionados. PDFs de aula não são mantidos depois da extração; os links oficiais permitem reabri-los quando necessário. Arquivos Word e Pages-fonte de trabalhos ficam em originais, ignorado pelo Git. Credenciais e identificadores pessoais não devem ser adicionados ao repositório. Binários acadêmicos e de mídia são ignorados, com exceção dos três diagramas UML pequenos referenciados por um trabalho.

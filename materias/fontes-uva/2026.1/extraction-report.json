@@ -5,228 +5,256 @@
   "errors": [],
   "files": [
     {
-      "pdf": "originais/uva/2026.1/desenvolvimento-web/unidade-u1.pdf",
       "text": "materias/fontes-uva/2026.1/desenvolvimento-web/unidade-u1.txt",
       "status": "ok",
       "pages": 29,
       "characters": 43920,
-      "bytes": 4981427
+      "source_url": "https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u1/documents/Desenvolvimento-Frontend-I---U1.pdf",
+      "source_pdf_bytes": 4981427,
+      "text_bytes": 45103
     },
     {
-      "pdf": "originais/uva/2026.1/desenvolvimento-web/unidade-u2.pdf",
       "text": "materias/fontes-uva/2026.1/desenvolvimento-web/unidade-u2.txt",
       "status": "ok",
       "pages": 31,
       "characters": 52708,
-      "bytes": 2913266
+      "source_url": "https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u2/documents/Ilumno_Desenvolvimento-Frontend-I_U2.pdf",
+      "source_pdf_bytes": 2913266,
+      "text_bytes": 54200
     },
     {
-      "pdf": "originais/uva/2026.1/desenvolvimento-web/unidade-u3.pdf",
       "text": "materias/fontes-uva/2026.1/desenvolvimento-web/unidade-u3.txt",
       "status": "ok",
       "pages": 34,
       "characters": 61525,
-      "bytes": 2607758
+      "source_url": "https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u3/documents/Ilumno_Desenvolvimento-Frontend-I_U3.pdf",
+      "source_pdf_bytes": 2607758,
+      "text_bytes": 62806
     },
     {
-      "pdf": "originais/uva/2026.1/desenvolvimento-web/unidade-u4.pdf",
       "text": "materias/fontes-uva/2026.1/desenvolvimento-web/unidade-u4.txt",
       "status": "ok",
       "pages": 28,
       "characters": 47039,
-      "bytes": 5845952
+      "source_url": "https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u4/documents/Ilumno_Desenvolvimento-Frontend-I_U4.pdf",
+      "source_pdf_bytes": 5845952,
+      "text_bytes": 48301
     },
     {
-      "pdf": "originais/uva/2026.1/laboratorio-de-gestao/unidade-u1.pdf",
       "text": "materias/fontes-uva/2026.1/laboratorio-de-gestao/unidade-u1.txt",
       "status": "ok",
       "pages": 31,
       "characters": 67883,
-      "bytes": 545325
+      "source_url": "https://ead.uva.br/disciplinas/grad/publica/cont/mno/mnn/mod5/re/u1/pdf/u1.pdf",
+      "source_pdf_bytes": 545325,
+      "text_bytes": 70188
     },
     {
-      "pdf": "originais/uva/2026.1/laboratorio-de-gestao/unidade-u2.pdf",
       "text": "materias/fontes-uva/2026.1/laboratorio-de-gestao/unidade-u2.txt",
       "status": "ok",
       "pages": 24,
       "characters": 51293,
-      "bytes": 944873
+      "source_url": "https://ead.uva.br/disciplinas/grad/publica/cont/mno/mnn/mod5/re/u2/pdf/u2.pdf",
+      "source_pdf_bytes": 944873,
+      "text_bytes": 52918
     },
     {
-      "pdf": "originais/uva/2026.1/laboratorio-de-gestao/unidade-u3.pdf",
       "text": "materias/fontes-uva/2026.1/laboratorio-de-gestao/unidade-u3.txt",
       "status": "ok",
       "pages": 23,
       "characters": 54182,
-      "bytes": 585984
+      "source_url": "https://ead.uva.br/disciplinas/grad/publica/cont/mno/mnn/mod5/re/u3/pdf/u3.pdf",
+      "source_pdf_bytes": 585984,
+      "text_bytes": 55886
     },
     {
-      "pdf": "originais/uva/2026.1/laboratorio-de-gestao/unidade-u4.pdf",
       "text": "materias/fontes-uva/2026.1/laboratorio-de-gestao/unidade-u4.txt",
       "status": "ok",
       "pages": 23,
       "characters": 51146,
-      "bytes": 513508
+      "source_url": "https://ead.uva.br/disciplinas/grad/publica/cont/mno/mnn/mod5/re/u4/pdf/u4.pdf",
+      "source_pdf_bytes": 513508,
+      "text_bytes": 52768
     },
     {
-      "pdf": "originais/uva/2026.1/leitura-e-producao-academica/unidade-u1.pdf",
       "text": "materias/fontes-uva/2026.1/leitura-e-producao-academica/unidade-u1.txt",
       "status": "ok",
       "pages": 14,
       "characters": 26123,
-      "bytes": 263541
+      "source_url": "https://ead.uva.br/disciplinas/grad/publica/cont/jkl/lpa/mat-download/u1.pdf",
+      "source_pdf_bytes": 263541,
+      "text_bytes": 27089
     },
     {
-      "pdf": "originais/uva/2026.1/leitura-e-producao-academica/unidade-u2.pdf",
       "text": "materias/fontes-uva/2026.1/leitura-e-producao-academica/unidade-u2.txt",
       "status": "ok",
       "pages": 12,
       "characters": 17758,
-      "bytes": 270950
+      "source_url": "https://ead.uva.br/disciplinas/grad/publica/cont/jkl/lpa/mat-download/u2.pdf",
+      "source_pdf_bytes": 270950,
+      "text_bytes": 18373
     },
     {
-      "pdf": "originais/uva/2026.1/leitura-e-producao-academica/unidade-u3.pdf",
       "text": "materias/fontes-uva/2026.1/leitura-e-producao-academica/unidade-u3.txt",
       "status": "ok",
       "pages": 14,
       "characters": 23365,
-      "bytes": 293589
+      "source_url": "https://ead.uva.br/disciplinas/grad/publica/cont/jkl/lpa/mat-download/u3.pdf",
+      "source_pdf_bytes": 293589,
+      "text_bytes": 24191
     },
     {
-      "pdf": "originais/uva/2026.1/leitura-e-producao-academica/unidade-u4.pdf",
       "text": "materias/fontes-uva/2026.1/leitura-e-producao-academica/unidade-u4.txt",
       "status": "ok",
       "pages": 18,
       "characters": 29715,
-      "bytes": 694726
+      "source_url": "https://ead.uva.br/disciplinas/grad/publica/cont/jkl/lpa/mat-download/u4.pdf",
+      "source_pdf_bytes": 694726,
+      "text_bytes": 30738
     },
     {
-      "pdf": "originais/uva/2026.1/sistemas-computacionais/unidade-u1.pdf",
       "text": "materias/fontes-uva/2026.1/sistemas-computacionais/unidade-u1.txt",
       "status": "ok",
       "pages": 18,
       "characters": 42863,
-      "bytes": 248828
+      "source_url": "https://ead.uva.br/disciplinas/grad/publica/cont/stu/sif/mat-download/u1.pdf",
+      "source_pdf_bytes": 248828,
+      "text_bytes": 44409
     },
     {
-      "pdf": "originais/uva/2026.1/sistemas-computacionais/unidade-u2.pdf",
       "text": "materias/fontes-uva/2026.1/sistemas-computacionais/unidade-u2.txt",
       "status": "ok",
       "pages": 16,
       "characters": 39116,
-      "bytes": 281092
+      "source_url": "https://ead.uva.br/disciplinas/grad/publica/cont/stu/sif/mat-download/u2.pdf",
+      "source_pdf_bytes": 281092,
+      "text_bytes": 40478
     },
     {
-      "pdf": "originais/uva/2026.1/sistemas-computacionais/unidade-u3.pdf",
       "text": "materias/fontes-uva/2026.1/sistemas-computacionais/unidade-u3.txt",
       "status": "ok",
       "pages": 17,
       "characters": 40593,
-      "bytes": 315783
+      "source_url": "https://ead.uva.br/disciplinas/grad/publica/cont/stu/sif/mat-download/u3.pdf",
+      "source_pdf_bytes": 315783,
+      "text_bytes": 41908
     },
     {
-      "pdf": "originais/uva/2026.1/sistemas-computacionais/unidade-u4.pdf",
       "text": "materias/fontes-uva/2026.1/sistemas-computacionais/unidade-u4.txt",
       "status": "ok",
       "pages": 17,
       "characters": 36732,
-      "bytes": 196900
+      "source_url": "https://ead.uva.br/disciplinas/grad/publica/cont/stu/sif/mat-download/u4.pdf",
+      "source_pdf_bytes": 196900,
+      "text_bytes": 37918
     },
     {
-      "pdf": "originais/uva/2026.1/apoio/calendario-gead-2026-02.pdf",
       "text": "materias/fontes-uva/2026.1/apoio/calendario-gead-2026-02.txt",
       "status": "ok",
       "pages": 1,
       "characters": 3897,
-      "bytes": 328053
+      "source_url": "https://ead.uva.br/filemanager/file/documentos/calendar/CALEND_UVA_GEAD_TE_SA_2026_02.pdf",
+      "source_pdf_bytes": 328053,
+      "text_bytes": 3950
     },
     {
-      "pdf": "originais/uva/2026.1/apoio/calendario-graduacao-2026-1-presencial.pdf",
       "text": "materias/fontes-uva/2026.1/apoio/calendario-graduacao-2026-1-presencial.txt",
       "status": "ok",
       "pages": 1,
       "characters": 3420,
-      "bytes": 228093
+      "source_url": "https://ead.uva.br/filemanager/file/documentos/CALENDARIO_GRAD_2026_1_PRES_UVA.pdf",
+      "source_pdf_bytes": 228093,
+      "text_bytes": 3470
     },
     {
-      "pdf": "originais/uva/2026.1/apoio/calendario-gead-2026-01.pdf",
       "text": "materias/fontes-uva/2026.1/apoio/calendario-gead-2026-01.txt",
       "status": "ok",
       "pages": 1,
       "characters": 3420,
-      "bytes": 228093
+      "source_url": "https://ead.uva.br/filemanager/file/documentos/calendar/CALEND_UVA_GEAD_TE_SA_2026_01.pdf",
+      "source_pdf_bytes": 228093,
+      "text_bytes": 3470
     },
     {
-      "pdf": "originais/uva/2026.1/leitura-e-producao-academica/plano-de-ensino.pdf",
       "text": "materias/fontes-uva/2026.1/leitura-e-producao-academica/plano-de-ensino.txt",
       "status": "ok",
       "pages": 3,
       "characters": 4881,
-      "bytes": 137917
+      "source_url": "https://ead.uva.br/disciplinas/grad/publica/cont/jkl/lpa/pe/LPA_PE.pdf",
+      "source_pdf_bytes": 137917,
+      "text_bytes": 5111
     },
     {
-      "pdf": "originais/uva/2026.1/apoio/CRITERIOS_GRADUACAO_AVALIACAO_2024.pdf",
       "text": "materias/fontes-uva/2026.1/apoio/CRITERIOS_GRADUACAO_AVALIACAO_2024.txt",
       "status": "ok",
       "pages": 3,
       "characters": 7184,
-      "bytes": 162752
+      "source_url": "https://ead.uva.br/filemanager/file/documentos/CRITERIOS_GRADUACAO_AVALIACAO_2024.pdf",
+      "source_pdf_bytes": 162752,
+      "text_bytes": 7388
     },
     {
-      "pdf": "originais/uva/2026.1/apoio/CRITERIOS_GRADUACAO_FORUM_AVALIATIVO_2018.pdf",
       "text": "materias/fontes-uva/2026.1/apoio/CRITERIOS_GRADUACAO_FORUM_AVALIATIVO_2018.txt",
       "status": "ok",
       "pages": 4,
       "characters": 10561,
-      "bytes": 185514
+      "source_url": "https://ead.uva.br/filemanager/file/documentos/CRITERIOS_GRADUACAO_FORUM_AVALIATIVO_2018.pdf",
+      "source_pdf_bytes": 185514,
+      "text_bytes": 10861
     },
     {
-      "pdf": "originais/uva/2026.1/apoio/Agendamento_Prova_Avalia_v1.pdf",
       "text": "materias/fontes-uva/2026.1/apoio/Agendamento_Prova_Avalia_v1.txt",
       "status": "ok",
       "pages": 13,
       "characters": 5112,
-      "bytes": 523672
+      "source_url": "https://ead.uva.br/filemanager/file/documentos/Apoio_aluno/disc_informcao_prova/grad/documentos/Agendamento_Prova_Avalia_v1.pdf",
+      "source_pdf_bytes": 523672,
+      "text_bytes": 5264
     },
     {
-      "pdf": "originais/uva/2026.1/apoio/orientacoes-prova-presencial.pdf",
       "text": "materias/fontes-uva/2026.1/apoio/orientacoes-prova-presencial.txt",
       "status": "ok",
       "pages": 15,
       "characters": 9814,
-      "bytes": 1387226
+      "source_url": "https://ead.uva.br/filemanager/file/documentos/Apoio_aluno/disc_informcao_prova/grad/documentos/%5BSGP%5DOrientacoes_gerais_Prova_Presencial-ALUNOS.pdf",
+      "source_pdf_bytes": 1387226,
+      "text_bytes": 10092
     },
     {
-      "pdf": "originais/uva/2026.1/apoio/orientacoes-prova-online.pdf",
       "text": "materias/fontes-uva/2026.1/apoio/orientacoes-prova-online.txt",
       "status": "ok",
       "pages": 14,
       "characters": 8376,
-      "bytes": 1294493
+      "source_url": "https://ead.uva.br/filemanager/file/documentos/Apoio_aluno/disc_informcao_prova/grad/documentos/%5BSGP%5DOrientacoes_gerais_Prova-Online-ALUNOS.pdf",
+      "source_pdf_bytes": 1294493,
+      "text_bytes": 8596
     },
     {
-      "pdf": "originais/uva/2026.1/apoio/Tutorial_esp_curso_grad_EAD_Semi.pdf",
       "text": "materias/fontes-uva/2026.1/apoio/Tutorial_esp_curso_grad_EAD_Semi.txt",
       "status": "ok",
       "pages": 11,
       "characters": 2407,
-      "bytes": 461377
+      "source_url": "https://ead.uva.br/filemanager/file/documentos/INFO/grad/Tutorial_esp_curso_grad_EAD_Semi.pdf",
+      "source_pdf_bytes": 461377,
+      "text_bytes": 2497
     },
     {
-      "pdf": "originais/uva/2026.1/institucional/Cartilha_plagio.pdf",
       "text": "materias/fontes-uva/2026.1/institucional/Cartilha_plagio.txt",
       "status": "ok",
       "pages": 23,
       "characters": 31549,
-      "bytes": 780363
+      "source_url": "https://ead.uva.br/filemanager/file/11/Cartilha_plagio.pdf",
+      "source_pdf_bytes": 780363,
+      "text_bytes": 32451
     },
     {
-      "pdf": "originais/uva/2026.1/institucional/Orientacoes-IA-educacao.pdf",
       "text": "materias/fontes-uva/2026.1/institucional/Orientacoes-IA-educacao.txt",
       "status": "ok",
       "pages": 9,
       "characters": 12018,
-      "bytes": 188966
+      "source_url": "https://ead.uva.br/filemanager/file/11/Orientacoes-IA-educacao.pdf",
+      "source_pdf_bytes": 188966,
+      "text_bytes": 12329
     }
   ]
 }
