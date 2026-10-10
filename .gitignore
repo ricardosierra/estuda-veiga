@@ -29,6 +29,10 @@
 !.env.example
 
 # Aplicativo Tauri Estuda UVA: dependências e artefatos de compilação.
+/.estuda-uva.sqlite3
+/.estuda-uva.sqlite3-wal
+/.estuda-uva.sqlite3-shm
+/.estuda-uva.sqlite3-journal
 /app/node_modules/
 /app/dist/
 /app/src-tauri/target/
@@ -37,3 +41,11 @@
 /app/src-tauri/chromium-profile/
 /app/src-tauri/*.app
 /app/src-tauri/*.dmg
+
+# Capturas autenticadas do boletim podem conter notas, frequência e identificadores.
+/materias/catalogo/capturas/
+
+# Área temporária local do Estuda UVA.
+/.estuda-uva/sync-tmp/
+/.estuda-uva/mirrors/
+**/.estuda-sync-*.tmp

@@ -18,6 +18,8 @@ use uuid::Uuid;
 pub enum ArchiveError {
     #[error("falha ao gravar o acervo: {0}")]
     Io(String),
+    #[error("origem acadêmica fora da lista HTTPS permitida")]
+    UnsafeOrigin,
     #[error("o PDF não tem texto suficiente para montar uma aula; o original não foi guardado")]
     NoText,
     #[error(transparent)]
@@ -31,11 +33,66 @@ pub struct ImportedBundle {
     pub lesson_markdown: String,
 }
 
+pub fn reuse_existing_material(
+    store: &AcademicStore,
+    course: &Course,
+    semester: Option<&str>,
+    origin: &str,
+) -> Result<Option<ImportedBundle>, ArchiveError> {
+    crate::download::validate_material_url(origin).map_err(|_| ArchiveError::UnsafeOrigin)?;
+    let clean_origin = normalize_origin(origin);
+    let Some(mut material) = store.find_material_by_origin(&course.id, &clean_origin)? else {
+        return Ok(None);
+    };
+    let library_root = store.library_path()?;
+    let Some(_material_markdown) = read_existing_file_beneath(&library_root, &material.path) else {
+        return Ok(None);
+    };
+    let Some(lesson_markdown) = read_existing_file_beneath(&library_root, &material.lesson_path)
+    else {
+        return Ok(None);
+    };
+    if let Some(semester) = semester
+        && material.semester.as_deref() != Some(semester)
+    {
+        store.set_material_semester(&material.id, semester)?;
+        material.semester = Some(semester.to_owned());
+        refresh_indexes(store, &library_root.join("materias"))?;
+    }
+    Ok(Some(ImportedBundle {
+        material,
+        lesson_markdown,
+    }))
+}
+
+fn read_existing_file_beneath(root: &Path, path: &str) -> Option<String> {
+    let root = fs::canonicalize(root).ok()?;
+    let path = fs::canonicalize(path).ok()?;
+    if !path.starts_with(root) || !path.is_file() {
+        return None;
+    }
+    fs::read_to_string(path).ok()
+}
+
+fn normalize_origin(origin: &str) -> String {
+    Url::parse(origin)
+        .ok()
+        .map(|mut url| {
+            let _ = url.set_username("");
+            let _ = url.set_password(None);
+            url.set_query(None);
+            url.set_fragment(None);
+            url.to_string()
+        })
+        .unwrap_or_default()
+}
+
 pub fn import_pdf(
     store: &AcademicStore,
     course: &Course,
     module_title: &str,
     title: &str,
+    semester: Option<&str>,
     origin: &str,
     pdf_bytes: &[u8],
     pages: &[String],
@@ -49,17 +106,16 @@ pub fn import_pdf(
     let material_dir = course_dir.join("materiais");
     fs::create_dir_all(&material_dir).map_err(io_error)?;
 
-    let clean_origin = Url::parse(origin)
-        .ok()
-        .map(|mut url| {
-            url.set_query(None);
-            url.set_fragment(None);
-            url.to_string()
-        })
-        .unwrap_or_default();
+    let clean_origin = normalize_origin(origin);
     let content_hash = hex_digest(pdf_bytes);
     let id = hex_digest(format!("{}\n{}\n{}", course.id, clean_origin, content_hash).as_bytes());
-    if let Some(existing) = store.find_material(&id)? {
+    if let Some(mut existing) = store.find_material(&id)? {
+        if let Some(semester) = semester {
+            existing.semester = Some(semester.to_owned());
+            store.save_material(&existing, &content_hash)?;
+            refresh_indexes(store, &root)?;
+            existing = store.find_material(&id)?.unwrap_or(existing);
+        }
         let lesson_markdown = fs::read_to_string(&existing.lesson_path).unwrap_or_default();
         return Ok(ImportedBundle {
             material: existing,
@@ -96,6 +152,7 @@ pub fn import_pdf(
         lesson_path: lesson_path.display().to_string(),
         origin: clean_origin,
         pages: pages.len(),
+        semester: semester.map(str::to_owned),
         imported_at: String::new(),
     };
     store.save_material(&material, &content_hash)?;
@@ -138,11 +195,16 @@ fn refresh_indexes(store: &AcademicStore, archive_root: &Path) -> Result<(), Arc
                 .to_string_lossy()
                 .replace('\\', "/");
             entries.push_str(&format!(
-                "- [{}]({}) — {} páginas · {}\n  - Aula: [{}]({})\n",
+                "- [{}]({}) — {} páginas · {} · {}\n  - Aula: [{}]({})\n",
                 md_link(&material.title),
                 md_path(&material_rel),
                 material.pages,
                 md_link(&material.module_title),
+                material
+                    .semester
+                    .as_deref()
+                    .map(|term| format!("período {term}"))
+                    .unwrap_or_else(|| "período não identificado".to_owned()),
                 md_link(&material.title),
                 md_path(&lesson_rel)
             ));

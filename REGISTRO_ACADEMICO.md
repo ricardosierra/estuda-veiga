@@ -1,6 +1,6 @@
 # Registro acadêmico
 
-> Atualizado em 9 de outubro de 2026 a partir das telas autenticadas do Portal do Aluno UVA (Lyceum) e do Canvas UVA. Este registro contém informações acadêmicas pessoais.
+> Revisto em 10 de outubro de 2026. As notas e matrículas conservam as datas de observação indicadas em cada seção; a frequência de 2026.2 foi rechecada no Lyceum nesta data. Este registro contém informações acadêmicas pessoais.
 
 ## Resumo atual
 
@@ -106,6 +106,8 @@ O boletim do Lyceum marca as sete disciplinas acima como **Em andamento**. A mé
 | Projeto de Extensão I - Ciência da Computação | Avaliação 4: — | — | 0 / 100% |
 
 **Frequência total mostrada pelo Lyceum:** 0 faltas e 100,0%. O relatório apresentou 0 faltas e 100% em cada uma das sete disciplinas.
+
+**Rechecagem em 10/10/2026:** a tela autenticada de Frequência do Lyceum voltou a mostrar as sete disciplinas de 2026.2 com 0 faltas e 100% cada, totalizando 0 faltas e 100,0%. É uma leitura pontual do portal nessa data; não altera nem substitui o registro oficial da UVA.
 
 ### Datas das notas recentes exibidas pelo portal
 

@@ -19,7 +19,7 @@ As credenciais devem ser digitadas diretamente no Portal. Não são armazenadas 
 - [Semestres futuros](FUTUROS_SEMESTRES.md)
 - [Calendário acadêmico transcrito de 2026.1](CALENDARIO_2026.1.md)
 - [Trabalhos em texto por matéria](materias/README.md)
-- [Aplicativo local Estuda UVA](app/README.md)
+- [Aplicativo local Estuda UVA e passo a passo](app/README.md) · [estado de implementação e verificações](docs/ESTADO_IMPLEMENTACAO_ESTUDA_UVA.md)
 
 ## Git e arquivos
 

@@ -1,0 +1,358 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-09",
+  "trajectories": [
+    {
+      "id": "uva:trajectory:ciencia-da-computacao:210062",
+      "institutionId": "uva",
+      "programId": "uva:program:ciencia-da-computacao",
+      "programTitle": "Ciência da Computação",
+      "programCode": "210062",
+      "curriculumId": "uva:curriculum:ecmp20261v",
+      "status": "active",
+      "series": 2,
+      "semester": "2026.2",
+      "admissionDate": "2026-02-07",
+      "admissionType": "transferencia",
+      "progress": {
+        "totalHours": 3448,
+        "completedHours": 330,
+        "enrolledHours": 416,
+        "remainingHours": 3118,
+        "reportedCompletionPercent": 9.6,
+        "completedHoursByOfferingKnown": false,
+        "sourceReportedDiscrepancyHours": 592,
+        "note": "As 36 pendências somam 2.526 h; o portal declara 3.118 h faltantes. A origem não explica a diferença."
+      },
+      "complementaryActivities": {
+        "requiredHours": 0,
+        "completedHours": 0
+      },
+      "currentEnrollments": [
+        {
+          "id": "uva:program:ciencia-da-computacao:enrollment:2026.2:calculo-de-uma-variavel",
+          "title": "Cálculo de Uma Variável",
+          "section": "21PRD3262A",
+          "startDate": "13/10/2026",
+          "instructorAsDisplayed": "Ronaldo Camara Cavalcante",
+          "status": "enrolled",
+          "semester": "2026.2",
+          "source": {
+            "file": "REGISTRO_ACADEMICO.md",
+            "section": "Disciplinas matriculadas em 2026.2",
+            "observedAt": "2026-10-09"
+          }
+        },
+        {
+          "id": "uva:program:ciencia-da-computacao:enrollment:2026.2:bases-de-programacao",
+          "title": "Bases de Programação",
+          "section": "21CMP2262A",
+          "startDate": "03/08/2026",
+          "instructorAsDisplayed": "A",
+          "status": "enrolled",
+          "semester": "2026.2",
+          "source": {
+            "file": "REGISTRO_ACADEMICO.md",
+            "section": "Disciplinas matriculadas em 2026.2",
+            "observedAt": "2026-10-09"
+          }
+        },
+        {
+          "id": "uva:program:ciencia-da-computacao:enrollment:2026.2:linguagens-formais-e-automatos",
+          "title": "Linguagens Formais e Autômatos",
+          "section": "21CMP2262A",
+          "startDate": "13/10/2026",
+          "instructorAsDisplayed": "A",
+          "status": "enrolled",
+          "semester": "2026.2",
+          "source": {
+            "file": "REGISTRO_ACADEMICO.md",
+            "section": "Disciplinas matriculadas em 2026.2",
+            "observedAt": "2026-10-09"
+          }
+        },
+        {
+          "id": "uva:program:ciencia-da-computacao:enrollment:2026.2:paradigmas-de-linguagens-de-programacao",
+          "title": "Paradigmas de Linguagens de Programação",
+          "section": "21CMP2262A",
+          "startDate": "03/08/2026",
+          "instructorAsDisplayed": "Marco Aurelio Novaes Esteves",
+          "status": "enrolled",
+          "semester": "2026.2",
+          "source": {
+            "file": "REGISTRO_ACADEMICO.md",
+            "section": "Disciplinas matriculadas em 2026.2",
+            "observedAt": "2026-10-09"
+          }
+        },
+        {
+          "id": "uva:program:ciencia-da-computacao:enrollment:2026.2:estatistica-para-computacao",
+          "title": "Estatística para Computação",
+          "section": "21CMP2262A",
+          "startDate": "13/10/2026",
+          "instructorAsDisplayed": "A",
+          "status": "enrolled",
+          "semester": "2026.2",
+          "source": {
+            "file": "REGISTRO_ACADEMICO.md",
+            "section": "Disciplinas matriculadas em 2026.2",
+            "observedAt": "2026-10-09"
+          }
+        },
+        {
+          "id": "uva:program:ciencia-da-computacao:enrollment:2026.2:projeto-de-extensao-i-ciencia-da-computacao",
+          "title": "Projeto de Extensão I - Ciência da Computação",
+          "section": "21CMP2262A",
+          "startDate": "13/10/2026",
+          "instructorAsDisplayed": "A",
+          "status": "enrolled",
+          "semester": "2026.2",
+          "source": {
+            "file": "REGISTRO_ACADEMICO.md",
+            "section": "Disciplinas matriculadas em 2026.2",
+            "observedAt": "2026-10-09"
+          }
+        },
+        {
+          "id": "uva:program:ciencia-da-computacao:enrollment:2026.2:projeto-de-extensao-i",
+          "title": "Projeto de Extensão I",
+          "section": "21CIV2262A",
+          "startDate": "13/10/2026",
+          "instructorAsDisplayed": "A",
+          "status": "enrolled",
+          "semester": "2026.2",
+          "source": {
+            "file": "REGISTRO_ACADEMICO.md",
+            "section": "Disciplinas matriculadas em 2026.2",
+            "observedAt": "2026-10-09"
+          }
+        }
+      ],
+      "outcomes": [
+        {
+          "courseTitle": "Bases de Programação",
+          "status": "in_progress",
+          "lyceumGrades": [
+            {
+              "assessment": "AVA 1",
+              "score": 1.2,
+              "scale": 10,
+              "date": "2026-09-07"
+            },
+            {
+              "assessment": "AVA 2",
+              "score": 9.6,
+              "scale": 10,
+              "date": "2026-09-10"
+            },
+            {
+              "assessment": "Avaliação 1",
+              "score": 5.4,
+              "scale": 10,
+              "date": null
+            },
+            {
+              "assessment": "Prova Regular",
+              "score": null,
+              "scale": 10,
+              "date": null
+            },
+            {
+              "assessment": "Prova Substituta",
+              "score": 10,
+              "scale": 10,
+              "date": "2026-10-03"
+            }
+          ],
+          "lyceumAverage": 8.1,
+          "absences": 0,
+          "attendancePercent": 100.0,
+          "canvasCourseCode": "E10300000",
+          "canvasAvaTotals": {
+            "earnedPoints": 108,
+            "possiblePoints": 200,
+            "percent": 54
+          }
+        },
+        {
+          "courseTitle": "Cálculo de Uma Variável",
+          "status": "in_progress",
+          "lyceumGrades": [],
+          "lyceumAverage": null,
+          "absences": 0,
+          "attendancePercent": 100.0
+        },
+        {
+          "courseTitle": "Estatística para Computação",
+          "status": "in_progress",
+          "lyceumGrades": [],
+          "lyceumAverage": null,
+          "absences": 0,
+          "attendancePercent": 100.0
+        },
+        {
+          "courseTitle": "Linguagens Formais e Autômatos",
+          "status": "in_progress",
+          "lyceumGrades": [],
+          "lyceumAverage": null,
+          "absences": 0,
+          "attendancePercent": 100.0
+        },
+        {
+          "courseTitle": "Paradigmas de Linguagens de Programação",
+          "status": "in_progress",
+          "lyceumGrades": [
+            {
+              "assessment": "AVA 1",
+              "score": 10,
+              "scale": 10,
+              "date": "2026-09-03"
+            },
+            {
+              "assessment": "AVA 2",
+              "score": 7,
+              "scale": 10,
+              "date": "2026-09-10"
+            },
+            {
+              "assessment": "Avaliação 1",
+              "score": 8.5,
+              "scale": 10,
+              "date": null
+            },
+            {
+              "assessment": "Prova Regular",
+              "score": null,
+              "scale": 10,
+              "date": null
+            },
+            {
+              "assessment": "Prova Substituta",
+              "score": 10,
+              "scale": 10,
+              "date": "2026-10-03"
+            }
+          ],
+          "lyceumAverage": 9.4,
+          "absences": 0,
+          "attendancePercent": 100.0,
+          "canvasCourseCode": "E10300024",
+          "canvasAvaTotals": {
+            "earnedPoints": 170,
+            "possiblePoints": 200,
+            "percent": 85
+          }
+        },
+        {
+          "courseTitle": "Projeto de Extensão I",
+          "status": "in_progress",
+          "lyceumGrades": [],
+          "lyceumAverage": null,
+          "absences": 0,
+          "attendancePercent": 100.0
+        },
+        {
+          "courseTitle": "Projeto de Extensão I - Ciência da Computação",
+          "status": "in_progress",
+          "lyceumGrades": [],
+          "lyceumAverage": null,
+          "absences": 0,
+          "attendancePercent": 100.0
+        }
+      ],
+      "attendanceSnapshot": {
+        "totalAbsences": 0,
+        "overallAttendancePercent": 100.0,
+        "coursesChecked": 7,
+        "source": {
+          "file": "REGISTRO_ACADEMICO.md",
+          "section": "Boletim oficial e frequência — 2026.2",
+          "system": "Lyceum",
+          "observedAt": "2026-10-10"
+        }
+      },
+      "priorCanvasCourses": [
+        {
+          "courseTitle": "Desenvolvimento de Aplicações para Web",
+          "canvasCode": "E10300023",
+          "earnedPoints": 190,
+          "possiblePoints": 200,
+          "percent": 95
+        },
+        {
+          "courseTitle": "Interfaces de Sistemas Computacionais",
+          "canvasCode": "E10300008",
+          "earnedPoints": 175,
+          "possiblePoints": 200,
+          "percent": 87.5
+        },
+        {
+          "courseTitle": "Laboratório de Gestão de Negócios",
+          "canvasCode": "E10300022",
+          "earnedPoints": 200,
+          "possiblePoints": 200,
+          "percent": 100
+        },
+        {
+          "courseTitle": "Leitura e Produção Acadêmica",
+          "canvasCode": "E80200050",
+          "earnedPoints": 173,
+          "possiblePoints": 200,
+          "percent": 86.5
+        },
+        {
+          "courseTitle": "Sistemas Computacionais e Aplicações",
+          "canvasCode": "E10300021",
+          "earnedPoints": 100,
+          "possiblePoints": 200,
+          "percent": 50
+        }
+      ],
+      "source": {
+        "file": "REGISTRO_ACADEMICO.md",
+        "section": "Resumo atual; Progresso curricular; Disciplinas matriculadas em 2026.2; Boletim oficial e frequência; Notas das atividades no Canvas; Inscrições anteriores no Canvas",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:trajectory:engenharia-de-computacao:310171",
+      "institutionId": "uva",
+      "programId": "uva:program:engenharia-de-computacao",
+      "programTitle": "Engenharia de Computação",
+      "programCode": "310171",
+      "curriculumId": "uva:curriculum:curr-ecp20122ni-ajv",
+      "status": "evadido",
+      "series": 5,
+      "admissionDate": "2012-08-27",
+      "admissionType": "transferencia_externa_motivo_cortado_na_fonte",
+      "progress": {
+        "totalHours": 5047,
+        "completedHours": 1446,
+        "enrolledHours": 0,
+        "remainingHours": 3601,
+        "completedHoursByOfferingKnown": false,
+        "sourceReportedDiscrepancyHours": 180,
+        "note": "As 43 pendências somam 3.421 h; o portal declara 3.601 h faltantes. A origem não explica a diferença."
+      },
+      "complementaryActivities": {
+        "requiredHours": 300,
+        "completedHours": 0
+      },
+      "outcomes": [],
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Dados que o portal exibe; Disciplinas pendentes; Notas, frequência e turmas",
+        "observedAt": "2026-10-09"
+      },
+      "limitations": [
+        "Notas, aprovações, frequência e distribuição das 1.446 horas não foram fornecidas nas telas observadas.",
+        "Não inferir motivo da evasão nem equivalência entre disciplinas."
+      ]
+    }
+  ],
+  "notes": [
+    "Os cursos representam vínculos diferentes da mesma estudante; situação e resultados permanecem específicos de cada vínculo.",
+    "Totais e médias são transcritos com fonte e data, sem calcular aprovação ou equivalência curricular.",
+    "Não armazene RA, CPF, senha, cookies, token nem identificadores de login nestes arquivos."
+  ]
+}

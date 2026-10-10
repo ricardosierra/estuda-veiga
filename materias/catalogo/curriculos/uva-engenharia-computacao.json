@@ -1,0 +1,583 @@
+{
+  "schemaVersion": 1,
+  "id": "uva:curriculum:curr-ecp20122ni-ajv",
+  "institutionId": "uva",
+  "programId": "uva:program:engenharia-de-computacao",
+  "programTitle": "Engenharia de Computação",
+  "programCode": "310171",
+  "curriculumVersion": "CURR_ECP20122NI_AJV",
+  "curriculumVersionConfidence": "portal_text_accessibility_could_not_distinguish_I_from_1",
+  "trajectoryStatus": "evadido",
+  "offerings": [
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:ENG8033_22",
+      "code": "ENG8033_22",
+      "title": "PRINCIPIOS DA ENGENHARIA",
+      "workloadHours": 99,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:principios-da-engenharia",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:UVA8001_22",
+      "code": "UVA8001_22",
+      "title": "COMUNICAÇÃO ORAL E ESCRITA",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:comunicacao-oral-e-escrita",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:ENG8034_22",
+      "code": "ENG8034_22",
+      "title": "LABORATÓRIO DE CRIATIVIDADE E INOVAÇÃO",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:laboratorio-de-criatividade-e-inovacao",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:ENG8012_22",
+      "code": "ENG8012_22",
+      "title": "FISICA II",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:fisica-ii",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:ENG8035_22",
+      "code": "ENG8035_22",
+      "title": "PROJETO I",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:projeto-i",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:ECP8001_22",
+      "code": "ECP8001_22",
+      "title": "MATEMATICA DISCRETA I",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:matematica-discreta-i",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:ENG8004_22",
+      "code": "ENG8004_22",
+      "title": "EXPRESSAO GRAFICA I",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:expressao-grafica-i",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:ENG8008_22",
+      "code": "ENG8008_22",
+      "title": "CIÊNCIAS DOS MATERIAIS",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:ciencias-dos-materiais",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:ENG8017_22",
+      "code": "ENG8017_22",
+      "title": "FISICA III",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:fisica-iii",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:ENG8029_22",
+      "code": "ENG8029_22",
+      "title": "FENOMENOS DE TRANSPORTE",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:fenomenos-de-transporte",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:ENG8030_22",
+      "code": "ENG8030_22",
+      "title": "CALCULO DIFERENCIAL E INTEGRAL III",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:calculo-diferencial-e-integral-iii",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:ENG8039_22",
+      "code": "ENG8039_22",
+      "title": "PROJETO II",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:projeto-ii",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:INF8052_22",
+      "code": "INF8052_22",
+      "title": "PROGRAMAÇAO ESTRUTURADA",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:programacao-estruturada",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:INF8053_22",
+      "code": "INF8053_22",
+      "title": "SISTEMAS OPERACIONAIS",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:sistemas-operacionais",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:UVA8003_22",
+      "code": "UVA8003_22",
+      "title": "CIÊNCIAS AMBIENTAIS",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:ciencias-ambientais",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:ECP8002_22",
+      "code": "ECP8002_22",
+      "title": "MATEMATICA DISCRETA II",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:matematica-discreta-ii",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:ICT8002_22",
+      "code": "ICT8002_22",
+      "title": "CALCULO NUMERICO",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:discipline:calculo-numerico",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:INF8025_22",
+      "code": "INF8025_22",
+      "title": "REDES DE COMPUTADORES II",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:redes-de-computadores-ii",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:INF8050_22",
+      "code": "INF8050_22",
+      "title": "GESTAO DE NEGOCIOS E ETICA",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:gestao-de-negocios-e-etica",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:INF8063_22",
+      "code": "INF8063_22",
+      "title": "ARQUITETURA DOS COMPUTADORES",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:arquitetura-dos-computadores",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:INF8028_22",
+      "code": "INF8028_22",
+      "title": "COMPUTACAO GRAFICA I",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:computacao-grafica-i",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:INF8054_22",
+      "code": "INF8054_22",
+      "title": "ANÁLISE ORIENTADA A OBJETOS",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:analise-orientada-a-objetos",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:INF8081_22",
+      "code": "INF8081_22",
+      "title": "GOVERNANÇA CORPORATIVA EM TI",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:governanca-corporativa-em-ti",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:INF8088_22",
+      "code": "INF8088_22",
+      "title": "SISTEMAS DISTRIBUIDOS",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:sistemas-distribuidos",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:INF8091_22",
+      "code": "INF8091_22",
+      "title": "MICROCONTROLADORES",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:microcontroladores",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:INF8259_22",
+      "code": "INF8259_22",
+      "title": "ESTRUTURA DE DADOS I",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:estrutura-de-dados-i",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:UVA8004_22",
+      "code": "UVA8004_22",
+      "title": "METODOLOGIA CIENTIFICA",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:metodologia-cientifica",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:ECP8003_22",
+      "code": "ECP8003_22",
+      "title": "ELETRICIDADE BASICA",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:eletricidade-basica",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:INF8090_22",
+      "code": "INF8090_22",
+      "title": "PROJETO DE SOFTWARE ORIENT A OBJETOS",
+      "workloadHours": 132,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:projeto-de-software-orient-a-objetos",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:INF8092_22",
+      "code": "INF8092_22",
+      "title": "SISTEMAS EMBARCADOS",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:discipline:sistemas-embarcados",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:INF8260_22",
+      "code": "INF8260_22",
+      "title": "ESTRUTURA DE DADOS II",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:estrutura-de-dados-ii",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:INF8261_22",
+      "code": "INF8261_22",
+      "title": "LINGUAGENS FORMAIS, AUTOMATOS E COMPUTABILIDADE",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:linguagens-formais-automatos-e-computabilidade",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:INF8029_22",
+      "code": "INF8029_22",
+      "title": "ENGENHARIA DE SOFTWARE",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:discipline:engenharia-de-software",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:INF8045_22",
+      "code": "INF8045_22",
+      "title": "INTELIGENCIA COMPUTACIONAL",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:inteligencia-computacional",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:INF8096_22",
+      "code": "INF8096_22",
+      "title": "MONOGRAFIA I",
+      "workloadHours": 154,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:monografia-i",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:INF8263_22",
+      "code": "INF8263_22",
+      "title": "PROJETO EM AUTOMACAO",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:projeto-em-automacao",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:UVA8002_22",
+      "code": "UVA8002_22",
+      "title": "FILOSOFIA",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:filosofia",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:INF8039_22",
+      "code": "INF8039_22",
+      "title": "GERENCIA DE PROJETOS",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:gerencia-de-projetos",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:INF8093_22",
+      "code": "INF8093_22",
+      "title": "ESTAGIO SUPERVISIONADO EM ENG DA COMPUTAÇAO",
+      "workloadHours": 330,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:estagio-supervisionado-em-eng-da-computacao",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:INF8097_22",
+      "code": "INF8097_22",
+      "title": "MONOGRAFIA II",
+      "workloadHours": 198,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:monografia-ii",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:INF8209_22",
+      "code": "INF8209_22",
+      "title": "PROGRAMACAO PARALELA",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:programacao-paralela",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:INF8262_22",
+      "code": "INF8262_22",
+      "title": "PROJETO E ANALISE DE ALGORITIMOS",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:projeto-e-analise-de-algoritimos",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    },
+    {
+      "id": "uva:program:engenharia-de-computacao:offering:UVA8005_22",
+      "code": "UVA8005_22",
+      "title": "EMPREENDEDORISMO",
+      "workloadHours": 66,
+      "status": "pending",
+      "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:empreendedorismo",
+      "source": {
+        "file": "ENGENHARIA_DE_COMPUTACAO.md",
+        "section": "Disciplinas pendentes no Histórico Detalhado",
+        "observedAt": "2026-10-09"
+      }
+    }
+  ],
+  "activeEnrollments": [],
+  "source": {
+    "file": "ENGENHARIA_DE_COMPUTACAO.md",
+    "section": "Disciplinas pendentes no Histórico Detalhado",
+    "observedAt": "2026-10-09"
+  },
+  "limitations": [
+    "As 1.446 horas cursadas não estão discriminadas por disciplina no registro disponível.",
+    "A matriz pública consultada não foi confirmada como a versão curricular individual deste vínculo.",
+    "A tela não informa qual disciplina foi concluída, dispensada ou reprovada no vínculo antigo."
+  ]
+}

@@ -5,11 +5,15 @@ use crate::{
         parse_module_items,
     },
     download::validate_material_url,
+    lyceum::{self, PortalCapture, PortalState, PortalStatus, VisibleLink},
 };
 use chromiumoxide::Page;
 use chromiumoxide::{Browser, BrowserConfig};
 use futures_util::StreamExt;
-use std::{collections::HashMap, path::Path};
+use std::{
+    collections::{HashMap, HashSet, VecDeque},
+    path::Path,
+};
 use thiserror::Error;
 use tokio::{
     task::JoinHandle,
@@ -62,6 +66,7 @@ pub enum BrowserError {
 pub struct CanvasSession {
     browser: Browser,
     page: Page,
+    lyceum_page: Option<Page>,
     handler_task: JoinHandle<()>,
     discovered_materials: HashMap<String, String>,
 }
@@ -105,6 +110,7 @@ impl CanvasSession {
         Ok(Self {
             browser,
             page,
+            lyceum_page: None,
             handler_task,
             discovered_materials: HashMap::new(),
         })
@@ -320,11 +326,205 @@ impl CanvasSession {
             .map_err(|_| BrowserError::Page("não foi possível consultar a página atual".into()))
     }
 
+    pub async fn open_lyceum(&mut self) -> Result<PortalStatus, BrowserError> {
+        if self.lyceum_page.is_none() {
+            let page = match timeout(
+                Duration::from_secs(20),
+                self.browser.new_page(lyceum::PORTAL_START_URL),
+            )
+            .await
+            {
+                Ok(Ok(page)) => page,
+                Ok(Err(_)) | Err(_) => {
+                    return Err(BrowserError::Page(
+                        "não foi possível abrir o portal UVA na janela segura do app".into(),
+                    ));
+                }
+            };
+            let current = page.url().await.ok().flatten();
+            if current
+                .as_deref()
+                .and_then(lyceum::sanitize_source_url)
+                .is_none()
+            {
+                let _ = page.close().await;
+                return Err(BrowserError::Page(
+                    "o portal redirecionou para um domínio fora da lista oficial permitida".into(),
+                ));
+            }
+            self.lyceum_page = Some(page);
+        }
+        Ok(self.lyceum_status().await)
+    }
+
+    pub async fn lyceum_status(&self) -> PortalStatus {
+        let Some(page) = self.lyceum_page.as_ref() else {
+            return PortalStatus {
+                state: PortalState::Disconnected,
+                message: "Lyceum ainda não foi aberto na janela do Estuda UVA.".into(),
+                current_url: None,
+                pages_read: 0,
+                inaccessible_sections: Vec::new(),
+            };
+        };
+        let current_url = page.url().await.ok().flatten();
+        let content = page.content().await.unwrap_or_default();
+        let safe_url = current_url.as_deref().and_then(lyceum::sanitize_source_url);
+        let (state, message) = if lyceum::login_required(current_url.as_deref(), &content) {
+            (
+                PortalState::WaitingForLogin,
+                "Conclua o login ou MFA manualmente na janela Chromium do app. O Estuda UVA não salva sua senha.",
+            )
+        } else if safe_url.is_some() {
+            (
+                PortalState::Authenticated,
+                "Acesso ao portal ativo nesta janela do app. Você pode capturar as páginas acadêmicas disponíveis.",
+            )
+        } else {
+            (
+                PortalState::Error,
+                "A página atual saiu dos domínios oficiais UVA permitidos; a captura foi interrompida.",
+            )
+        };
+        PortalStatus {
+            state,
+            message: message.into(),
+            current_url: safe_url,
+            pages_read: 0,
+            inaccessible_sections: Vec::new(),
+        }
+    }
+
+    pub async fn refresh_lyceum_catalog(&self) -> Result<PortalCapture, BrowserError> {
+        let status = self.lyceum_status().await;
+        if status.state != PortalState::Authenticated {
+            return Err(BrowserError::Page(
+                "abra o Lyceum e conclua o login manual antes de iniciar a captura".into(),
+            ));
+        }
+        let page = self.lyceum_page.as_ref().ok_or_else(|| {
+            BrowserError::Page("o portal UVA não está aberto na janela do app".into())
+        })?;
+        page.goto(lyceum::PORTAL_START_URL).await.map_err(|_| {
+            BrowserError::Page("não foi possível iniciar a leitura do portal UVA".into())
+        })?;
+
+        let captured_at = lyceum::captured_at_utc();
+        let mut capture = PortalCapture {
+            captured_at: captured_at.clone(),
+            pages_read: 0,
+            pages: Vec::new(),
+            inaccessible_sections: Vec::new(),
+            warnings: Vec::new(),
+            complete: false,
+            json_path: None,
+            markdown_path: None,
+        };
+        let mut pending = VecDeque::from([lyceum::PORTAL_START_URL.to_owned()]);
+        let mut visited = HashSet::<String>::new();
+        let mut truncated_sections = false;
+
+        while let Some(target) = pending.pop_front() {
+            if capture.pages.len() >= lyceum::MAX_PORTAL_PAGES {
+                capture.warnings.push(format!(
+                    "O limite de {} páginas por atualização foi atingido.",
+                    lyceum::MAX_PORTAL_PAGES
+                ));
+                break;
+            }
+            if !visited.insert(target.clone()) {
+                continue;
+            }
+            if lyceum::sanitize_source_url(&target).is_none() {
+                capture
+                    .inaccessible_sections
+                    .push("um link observado saiu dos domínios oficiais permitidos".into());
+                continue;
+            }
+            if page.goto(&target).await.is_err() {
+                let label = lyceum::sanitize_source_url(&target).unwrap_or_default();
+                capture
+                    .inaccessible_sections
+                    .push(format!("não foi possível abrir {label}"));
+                continue;
+            }
+            let actual_url = page.url().await.ok().flatten();
+            let Some(safe_url) = actual_url.as_deref().and_then(lyceum::sanitize_source_url) else {
+                capture.inaccessible_sections.push(
+                    "uma página redirecionou para fora dos domínios oficiais permitidos".into(),
+                );
+                continue;
+            };
+            let html = page.content().await.map_err(|_| {
+                BrowserError::Page("não foi possível ler uma página do portal UVA".into())
+            })?;
+            if lyceum::login_required(actual_url.as_deref(), &html) {
+                capture
+                    .inaccessible_sections
+                    .push("o acesso do Lyceum expirou durante a captura".into());
+                break;
+            }
+            let links = visible_portal_links(page).await?;
+            let parsed = lyceum::parse_page(&safe_url, &html, &links, &captured_at)
+                .map_err(BrowserError::Page)?;
+            truncated_sections |= parsed.truncated;
+            capture.warnings.extend(parsed.warnings.iter().cloned());
+            for next in parsed.targets {
+                if !visited.contains(&next) {
+                    pending.push_back(next);
+                }
+            }
+            if parsed.page.tables.is_empty() && parsed.page.fields.is_empty() {
+                capture.warnings.push(format!(
+                    "{} não exibiu tabelas ou campos estruturados nesta captura; seus títulos e links foram preservados.",
+                    parsed.page.title
+                ));
+            }
+            capture.pages.push(parsed.page);
+        }
+        capture.pages_read = capture.pages.len() as u32;
+        capture.complete = !capture.pages.is_empty()
+            && capture.inaccessible_sections.is_empty()
+            && pending.is_empty()
+            && !truncated_sections;
+        Ok(capture)
+    }
+
     pub async fn close(mut self) {
+        if let Some(page) = self.lyceum_page.as_ref() {
+            let _ = timeout(BROWSER_CLOSE_TIMEOUT, page.clone().close()).await;
+        }
         let _ = timeout(BROWSER_CLOSE_TIMEOUT, self.page.close()).await;
         let _ = shutdown_browser(&mut self.browser).await;
         self.handler_task.abort();
     }
+}
+
+async fn visible_portal_links(page: &Page) -> Result<Vec<VisibleLink>, BrowserError> {
+    let expression = r#"JSON.stringify(Array.from(document.querySelectorAll('a[href]'))
+      .filter(a => {
+        const style = getComputedStyle(a);
+        return a.getClientRects().length > 0 && style.visibility !== 'hidden' && style.display !== 'none';
+      })
+      .slice(0, 2000)
+      .map(a => {
+        const context = a.closest('nav,[role="navigation"],.pagination,[class*="pagination"]');
+        return {
+          label: (a.innerText || a.getAttribute('aria-label') || '').trim().slice(0, 180),
+          href: a.href,
+          context: (context ? context.innerText : '').trim().slice(0, 400),
+          rel: a.getAttribute('rel') || ''
+        };
+      }))"#;
+    let result = page.evaluate(expression).await.map_err(|_| {
+        BrowserError::Page("não foi possível identificar os links visíveis do portal".into())
+    })?;
+    let json = result.into_value::<String>().map_err(|_| {
+        BrowserError::Page("os links do portal vieram em formato inesperado".into())
+    })?;
+    serde_json::from_str(&json).map_err(|_| {
+        BrowserError::Page("não foi possível interpretar os links visíveis do portal".into())
+    })
 }
 
 async fn shutdown_browser(browser: &mut Browser) -> Result<(), BrowserError> {
