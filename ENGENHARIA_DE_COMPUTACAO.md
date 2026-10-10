@@ -87,6 +87,23 @@ As 43 linhas somam **3.421 h**. O resumo do portal informa **3.601 h faltantes**
 
 Isso deixa sem resposta quais disciplinas foram aprovadas, reprovadas, dispensadas ou efetivamente cursadas no vínculo antigo. “Pendente” é o estado que a tabela curricular mostra hoje; não é o histórico completo das avaliações.
 
+## Secretaria Virtual — histórico escolar completo
+
+Na consulta de 9 de outubro de 2026, com o vínculo antigo de Engenharia de Computação selecionado como **Evadido**, a área **Secretaria Virtual → Serviços** não mostrou solicitações anteriores. O catálogo de serviços ofereceu **Histórico Escolar com CR**, listado entre os serviços executados eletronicamente, com valor **R$ 0,00**.
+
+O serviço não foi avançado nem solicitado nesta consulta. Portanto, nenhum histórico foi emitido ou baixado e as notas/disciplinas já concluídas continuam sem confirmação documental. Esse serviço é o caminho identificado no portal para obter o histórico analítico; é necessário abrir e concluir a solicitação no Lyceum para receber o documento.
+
+### Passos observados para localizar o serviço
+
+1. Entrar pelo [Portal do Aluno UVA](https://portalaluno.uva.br/Aluno/PortalAluno) e abrir o Sistema do Aluno (Lyceum).
+2. No seletor do cabeçalho, escolher o vínculo **310171 — Engenharia de Computação**, que aparece com status **Evadido**. O vínculo ativo de Ciência da Computação é diferente.
+3. Abrir **Secretaria Virtual → Serviços**. A rota observada no Lyceum foi [`/home/servico-list`](https://sis.lyceum.com.br/AOnline3/index.html#/home/servico-list).
+4. Escolher **Nova Solicitação → Adicionar Serviço** para abrir o catálogo.
+5. Localizar **Histórico Escolar com CR**. Na consulta, o catálogo o mostrava como eletrônico e sem custo.
+6. Parar antes de **Avançar**: esse passo não foi acionado e nenhuma solicitação foi enviada.
+
+O histórico de solicitações permaneceu vazio tanto antes quanto depois de abrir o catálogo. Os nomes dos controles e o valor foram observados na tela; a emissão efetiva, o formato do documento e o prazo não foram verificados.
+
 ## Materiais e matriz pública
 
 O painel autenticado do Canvas não apresentou turma curricular de Engenharia de Computação nessa matrícula. A lista visível mostrou cursos de 2026.1/2026.2, um curso gratuito e o espaço de apoio de Ciência da Computação; não houve módulos antigos de Engenharia para baixar ou transcrever. O atalho Moodle do Lyceum retornou HTTP 404 nesta consulta. Portanto, não há material didático antigo dessa graduação identificado ou incorporado ao acervo até agora.
@@ -99,6 +116,7 @@ A UVA mantém uma [matriz pública de Engenharia de Computação — Currículo 
 2. Abrir o Sistema do Aluno (Lyceum) e consultar **Histórico do Aluno → Carga Horária** e **Disciplinas Pendentes**.
 3. Consultar as abas **Atividades Complementares** e **Disciplinas Eletivas/Optativas**.
 4. Consultar **Avaliação → Boletim** e **Frequência**, e **Índice de Rendimentos**.
-5. Abrir a **Plataforma Virtual — Canvas** pelo Portal do Aluno e revisar **Todas as disciplinas** e **Inscrições anteriores**.
+5. Abrir **Secretaria Virtual → Serviços** no vínculo antigo e localizar o serviço eletrônico **Histórico Escolar com CR**; não avançar a solicitação sem decidir fazê-la.
+6. Abrir a **Plataforma Virtual — Canvas** pelo Portal do Aluno e revisar **Todas as disciplinas** e **Inscrições anteriores**.
 
 O [registro acadêmico geral](REGISTRO_ACADEMICO.md) mantém este vínculo separado da matrícula ativa em Ciência da Computação. O [índice de cursos históricos](CURSOS_HISTORICOS.md) e o [inventário de materiais históricos](MATERIAIS_HISTORICOS.md) apontam para esta análise.

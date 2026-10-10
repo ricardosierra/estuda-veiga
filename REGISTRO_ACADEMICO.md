@@ -144,6 +144,8 @@ O Portal do Aluno também apresenta um vínculo anterior em **Engenharia de Comp
 
 Esse vínculo é separado da matrícula atual em Ciência da Computação. A lista pendente não explica quais disciplinas formam as 1.446 h cursadas. Boletim, frequência e índice de rendimento não apresentaram registros; o Canvas não exibiu cursos curriculares de Engenharia de Computação. Não inferi notas, causa da evasão ou equivalências com a matrícula atual. O histórico e as limitações estão descritos em [ENGENHARIA_DE_COMPUTACAO.md](ENGENHARIA_DE_COMPUTACAO.md).
 
+No Lyceum, com o vínculo evadido selecionado, o catálogo da Secretaria Virtual ofereceu **Histórico Escolar com CR** como serviço eletrônico de R$ 0,00. A solicitação não foi avançada nem enviada. Esse é o caminho encontrado para obter o histórico analítico; notas e disciplinas concluídas ainda precisam ser confirmadas no documento emitido. O passo a passo e os limites da consulta estão em [ENGENHARIA_DE_COMPUTACAO.md](ENGENHARIA_DE_COMPUTACAO.md).
+
 ## Pendências e observações para revisar
 
 - O portal UVA indicava **6 documentos pendentes de entrega**. Na visualização parcial ficaram legíveis: Certificado de Conclusão (título parcialmente encoberto), CPF, Histórico Escolar do Ensino Médio, Identificação Civil (Frente e Verso) e Título de Eleitor. O sexto item não ficou legível. Nenhum documento foi enviado.
