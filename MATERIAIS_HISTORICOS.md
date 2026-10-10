@@ -1,8 +1,10 @@
 # Inventário de materiais históricos
 
-## Engenharia de Computação — sem materiais identificados
+## Engenharia de Computação — matrícula antiga
 
-O estudante relatou que cursava Engenharia de Computação antes da transferência para Ciência da Computação. Na consulta autenticada de 9 de outubro de 2026, o Portal do Aluno mostrou 330 h cursadas, mas não discriminou as disciplinas; o Canvas não exibiu turmas curriculares anteriores com esse nome. Por isso, nenhum material foi atribuído a Engenharia de Computação nem extraído para texto. Consulte o [levantamento de cursos históricos](CURSOS_HISTORICOS.md) e o [registro acadêmico](REGISTRO_ACADEMICO.md) para as fontes e limitações.
+O Portal do Aluno identificou o vínculo anterior marcado como “Evadido” e listou 43 disciplinas pendentes; a relação detalhada está em [ENGENHARIA_DE_COMPUTACAO.md](ENGENHARIA_DE_COMPUTACAO.md). O Canvas não mostrou uma turma curricular antiga de Engenharia de Computação, e o atalho do Moodle do Lyceum retornou HTTP 404. As disciplinas pendentes são uma lista curricular, não materiais de aula, e ainda não há PDFs, páginas ou notas de estudo dessa graduação neste acervo.
+
+A [matriz pública UVA de Engenharia de Computação](https://www.uva.br/wp-content/uploads/2022/02/Engenharia_de_Computacao_-_Entrada_Maio.pdf) fica apenas como referência geral; não há comprovação de que corresponda ao currículo individual. Consulte também o [índice histórico de cursos](CURSOS_HISTORICOS.md) e o [registro acadêmico](REGISTRO_ACADEMICO.md).
 
 ## Cursos curriculares de 2026.1
 

@@ -138,13 +138,11 @@ O inventário local do Canvas identifica cinco disciplinas em **Inscrições ant
 
 Estas inscrições estão em período anterior; não confundir seus percentuais do Canvas com as médias gerais de disciplinas ativas em 2026.2. As tarefas listadas estavam fechadas na consulta.
 
-## Consulta sobre a formação anterior em Engenharia de Computação
+## Matrícula anterior — Engenharia de Computação
 
-O estudante relatou que cursava Engenharia de Computação antes de ingressar por transferência em Ciência da Computação. A consulta adicional ao Portal do Aluno, em 9 de outubro de 2026, confirmou a transferência e mostrou **330 h cursadas**, mas o Histórico Detalhado não discrimina quais disciplinas compõem essa carga. A tabela de disciplinas pendentes é do currículo atual de Ciência da Computação; ela não serve como histórico das matérias cursadas no programa anterior.
+O Portal do Aluno também apresenta um vínculo anterior em **Engenharia de Computação**, código 310171, com status **Evadido**, série 5 e ingresso em 27/08/2012 por transferência externa (o texto do motivo está cortado na tela). O Histórico Detalhado informa 1.446 h cursadas, 3.601 h faltantes, 0 h matriculadas e 5.047 h totais. Os nomes das 43 disciplinas pendentes, seus códigos e cargas estão em [ENGENHARIA_DE_COMPUTACAO.md](ENGENHARIA_DE_COMPUTACAO.md).
 
-No Canvas, as inscrições anteriores visíveis continham as cinco disciplinas curriculares de 2026.1 e o curso gratuito Liderança e Empreendedorismo. Em outra seção aparecia o espaço de apoio de Ciência da Computação identificado como 2023.1.21, que não é uma disciplina curricular. Não apareceu uma turma curricular com título de Engenharia de Computação. A tela “Últimas Notas” do Lyceum também mostrou apenas avaliações recentes de 2026.2. Portanto, ainda não há base confiável para associar as 330 h a disciplinas específicas de Engenharia de Computação ou para buscar seus materiais por nome.
-
-Para completar esse levantamento, é necessário localizar no próprio portal um histórico escolar analítico/ementas da formação anterior ou receber do estudante o histórico/ementário e, se possível, os nomes das disciplinas ou links antigos do Canvas. Até essa evidência aparecer, os cursos e conteúdos não devem ser inferidos a partir da grade atual de Ciência da Computação.
+Esse vínculo é separado da matrícula atual em Ciência da Computação. A lista pendente não explica quais disciplinas formam as 1.446 h cursadas. Boletim, frequência e índice de rendimento não apresentaram registros; o Canvas não exibiu cursos curriculares de Engenharia de Computação. Não inferi notas, causa da evasão ou equivalências com a matrícula atual. O histórico e as limitações estão descritos em [ENGENHARIA_DE_COMPUTACAO.md](ENGENHARIA_DE_COMPUTACAO.md).
 
 ## Pendências e observações para revisar
 

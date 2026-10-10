@@ -22,13 +22,11 @@ O Canvas mostrou cinco cursos em inscrições anteriores. Os mapas, unidades e a
 - Cada módulo tinha uma página de conteúdo, um PDF, um vídeo, uma página de conceitos e um exame. Os itens por módulo estão detalhados em [MATERIAIS_HISTORICOS.md](MATERIAIS_HISTORICOS.md).
 - O conteúdo das páginas acessíveis foi resumido em [NOTAS_DE_ESTUDO_HISTORICOS.md](NOTAS_DE_ESTUDO_HISTORICOS.md). Os quatro PDFs não foram baixados nem extraídos integralmente.
 
-## Formação anterior em Engenharia de Computação — levantamento incompleto
+## Engenharia de Computação — vínculo antigo marcado como evadido
 
-O estudante informou que cursava Engenharia de Computação antes da transferência para Ciência da Computação. O Histórico Detalhado atual confirma ingresso por transferência e 330 h cursadas, porém não exibe a relação das disciplinas que formam essas horas. A lista de disciplinas pendentes pertence ao currículo atual de Ciência da Computação e não identifica aprovações nem equivalências do curso anterior.
+O Portal do Aluno identifica um vínculo anterior em Engenharia de Computação com status “Evadido”. O Histórico Detalhado fornece carga horária, disciplinas pendentes e atividades complementares, mas não lista as disciplinas já cursadas com notas. A [análise detalhada do vínculo antigo](ENGENHARIA_DE_COMPUTACAO.md) transcreve os 43 itens pendentes, registra o que não apareceu no boletim/frequência e separa esses dados da graduação atual.
 
-Na consulta de 9 de outubro de 2026, o Canvas não apresentou cartão de disciplina curricular com título de Engenharia de Computação nas inscrições anteriores. As inscrições curriculares antigas visíveis eram as cinco de 2026.1 listadas acima; o espaço 53418 é apoio acadêmico de Ciência da Computação, não uma turma curricular histórica. Assim, ainda não foi possível confirmar nomes, períodos, notas ou módulos de matérias cursadas em Engenharia de Computação.
-
-Para identificar as matérias antigas e localizar seus materiais, falta um histórico analítico ou ementário da Engenharia de Computação, ou links/nomes de disciplinas antigas que o Canvas não mostrou na lista de inscrições anteriores. Não associe automaticamente as disciplinas pendentes atuais às disciplinas cursadas antes da transferência.
+O Canvas não apresentou turmas curriculares de Engenharia de Computação na lista de cursos nem em inscrições anteriores; os materiais didáticos da graduação antiga ainda não foram localizados. A [matriz pública UVA de Engenharia de Computação](https://www.uva.br/wp-content/uploads/2022/02/Engenharia_de_Computacao_-_Entrada_Maio.pdf) pode servir como referência geral, mas não foi confirmada como a versão do currículo individual.
 
 ## Espaço Curso — Ciência da Computação
 

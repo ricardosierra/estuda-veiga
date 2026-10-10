@@ -13,7 +13,7 @@ As credenciais devem ser digitadas diretamente no Portal. Não são armazenadas 
 
 - [Planejamento e passo a passo para acompanhar as aulas](PLANEJAMENTO.md)
 - [Registro acadêmico e frequência](REGISTRO_ACADEMICO.md)
-- [Cursos e materiais anteriores](CURSOS_HISTORICOS.md) · [inventário histórico](MATERIAIS_HISTORICOS.md) · [notas históricas adicionais](NOTAS_DE_ESTUDO_HISTORICOS.md)
+- [Cursos e materiais anteriores](CURSOS_HISTORICOS.md) · [Engenharia de Computação — vínculo evadido](ENGENHARIA_DE_COMPUTACAO.md) · [inventário histórico](MATERIAIS_HISTORICOS.md) · [notas históricas adicionais](NOTAS_DE_ESTUDO_HISTORICOS.md)
 - [Disciplinas matriculadas em 2026.2](CURSOS_2026.2.md) · [inventário de materiais](MATERIAIS_2026.2.md) · [notas de estudo](NOTAS_DE_ESTUDO_2026.2.md) · [textos extraídos](materias/fontes-uva/2026.2/README.md)
 - [Disciplinas, unidades e links de 2026.1](CURSOS_2026.1.md) · [inventário de materiais](MATERIAIS_2026.1.md) · [notas de estudo](NOTAS_DE_ESTUDO_2026.1.md) · [textos extraídos dos 28 PDFs](materias/fontes-uva/2026.1/README.md)
 - [Semestres futuros](FUTUROS_SEMESTRES.md)
