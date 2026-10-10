@@ -5,15 +5,19 @@ Aplicativo desktop local para organizar materiais acadêmicos do Canvas UVA, con
 ## Desenvolvimento
 
 Requisitos: Rust estável compatível com a versão indicada no `Cargo.toml`, Node.js/npm apenas para o frontend e Chromium ou Chrome instalado.
+O app usa `chromiumoxide`/CDP em Rust, sem Playwright; Node serve apenas para compilar a interface. Extração, regras e pontuação rodam localmente em Rust, sem geração por IA.
 
 ```sh
 npm install
 npm run build
 cargo check --manifest-path src-tauri/Cargo.toml
+cargo test --manifest-path src-tauri/Cargo.toml --lib
+npm run tauri build
 npm run tauri dev
 ```
 
 O login do Canvas acontece manualmente numa janela Chromium visível e num perfil separado do navegador pessoal. O app não solicita nem guarda senha. A automação navega e consulta conteúdo em modo de leitura.
+O botão de cancelamento interrompe um download ativo antes de gravar o material. Cookies, URLs assinadas e parâmetros temporários são usados apenas em memória; não aparecem no acervo, no banco ou nas mensagens de erro.
 
 ## Agenda
 

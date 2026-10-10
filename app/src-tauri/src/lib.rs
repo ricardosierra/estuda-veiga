@@ -275,7 +275,11 @@ async fn import_material_inner(
         let url = session.material_url(&material_id).map_err(error_text)?;
         let parsed = download::validate_material_url(&url).map_err(error_text)?;
         let host = parsed.host_str().unwrap_or_default().to_owned();
-        let cookie = session.cookies_for_host(&host).await.map_err(error_text)?;
+        let cookie = if host.ends_with(".amazonaws.com") {
+            String::new()
+        } else {
+            session.cookies_for_host(&host).await.map_err(error_text)?
+        };
         let referer = session.current_url().await.map_err(error_text)?;
         (url, referer, cookie, host)
     };
@@ -464,7 +468,10 @@ mod tests {
     use crate::{
         archive::import_pdf,
         browser::run_browser_smoke,
-        canvas::{CourseKind, discover_material_links, group_module_items, parse_courses, parse_module_items},
+        canvas::{
+            CourseKind, discover_material_links, group_module_items, parse_courses,
+            parse_module_items,
+        },
         download::validate_material_url,
         lesson::{build_lesson, grade_answers, score_answer},
         pdf::{pages_to_markdown, safe_slug, split_pdf_pages},
@@ -653,10 +660,16 @@ mod tests {
         let course_dir = library.join("materias/desenvolvimento-web-8765");
         let materials_dir = course_dir.join("materiais");
         std::fs::create_dir_all(&materials_dir).unwrap();
-        std::fs::write(library.join("materias/README.md"), "Índice manual da faculdade.\n")
-            .unwrap();
-        std::fs::write(course_dir.join("README.md"), "Observação manual da matéria.\n")
-            .unwrap();
+        std::fs::write(
+            library.join("materias/README.md"),
+            "Índice manual da faculdade.\n",
+        )
+        .unwrap();
+        std::fs::write(
+            course_dir.join("README.md"),
+            "Observação manual da matéria.\n",
+        )
+        .unwrap();
         let manual_material = materials_dir.join("e-book-u1.md");
         std::fs::write(&manual_material, "Anotação que não pode ser sobrescrita.\n").unwrap();
         let bytes = two_page_pdf();
@@ -718,7 +731,7 @@ mod tests {
             library.clone(),
         )
         .unwrap();
-        assert!(split_pdf_pages(b"isso não é um PDF").is_err());
+        assert!(split_pdf_pages(b"this is not a PDF").is_err());
         let course = crate::canvas::Course {
             id: "8765".into(),
             title: "Desenvolvimento Web".into(),

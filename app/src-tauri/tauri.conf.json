@@ -24,8 +24,11 @@
   "bundle": {
     "active": true,
     "targets": ["app", "dmg"],
-    "icon": ["icons/icon.png"],
+    "icon": ["icons/icon.png", "icons/icon.icns"],
     "category": "Education",
-    "shortDescription": "Acervo e estudo local para cursos UVA"
+    "shortDescription": "Acervo e estudo local para cursos UVA",
+    "macOS": {
+      "signingIdentity": "-"
+    }
   }
 }

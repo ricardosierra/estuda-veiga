@@ -276,7 +276,7 @@ pub fn discover_material_links(html: &str, page_url: &str) -> Vec<MaterialLink> 
             let file_path = path.ends_with(".pdf") || path.contains("/files/");
             let trusted_embedded_material =
                 embedded && crate::download::validate_material_url(url.as_str()).is_ok();
-            if (!(file_path || trusted_embedded_material) || !seen.insert(url.to_string())) {
+            if !(file_path || trusted_embedded_material) || !seen.insert(url.to_string()) {
                 continue;
             }
             let title = element

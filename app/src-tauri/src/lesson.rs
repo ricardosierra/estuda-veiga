@@ -1,3 +1,4 @@
+use crate::pdf::escape_markdown_text;
 use serde::{Deserialize, Serialize};
 use unicode_normalization::{UnicodeNormalization, char::is_combining_mark};
 
@@ -40,7 +41,7 @@ pub fn build_lesson(course_title: &str, pages: &[(u32, &str)]) -> String {
 pub fn generate_lesson(course_title: &str, pages: &[(u32, &str)]) -> (String, Vec<LessonQuestion>) {
     let mut output = format!(
         "# Aula guiada — {}\n\n> Roteiro determinístico, montado localmente a partir do texto extraído. Não é uma explicação gerada por IA. Confira cada ponto no material oficial.\n\n## Mapa do material\n\n",
-        escape(course_title)
+        escape_markdown_text(course_title)
     );
     let mut questions = Vec::new();
     for (page_number, text) in pages {
@@ -57,7 +58,7 @@ pub fn generate_lesson(course_title: &str, pages: &[(u32, &str)]) -> (String, Ve
             .unwrap_or("Página sem texto");
         output.push_str(&format!(
             "- **Página {page_number}:** {}\n",
-            escape(heading)
+            escape_markdown_text(heading)
         ));
         let paragraph = lines
             .iter()
@@ -66,7 +67,7 @@ pub fn generate_lesson(course_title: &str, pages: &[(u32, &str)]) -> (String, Ve
         if let Some(paragraph) = paragraph {
             output.push_str(&format!(
                 "\n## Leitura guiada — página {page_number}\n\n{}\n\n",
-                escape(paragraph)
+                escape_markdown_text(paragraph)
             ));
         }
         for line in &lines {
@@ -91,9 +92,9 @@ pub fn generate_lesson(course_title: &str, pages: &[(u32, &str)]) -> (String, Ve
             output.push_str(&format!(
                 "{}. {} (página {})\n\n   **Resposta:** {}\n\n   **Fonte:** página {}.\n\n",
                 index + 1,
-                escape(&question.prompt),
+                escape_markdown_text(&question.prompt),
                 question.source_page,
-                escape(&question.answer),
+                escape_markdown_text(&question.answer),
                 question.source_page
             ));
         }
@@ -180,9 +181,21 @@ fn definition_in(line: &str) -> Option<(&str, &str)> {
     None
 }
 
-fn escape(value: &str) -> String {
-    value
-        .replace('&', "&amp;")
-        .replace('<', "&lt;")
-        .replace('>', "&gt;")
+#[cfg(test)]
+mod tests {
+    use super::build_lesson;
+
+    #[test]
+    fn source_markdown_links_remain_plain_text_in_the_lesson() {
+        let lesson = build_lesson(
+            "Compiladores [material](https://example.test/course)",
+            &[(
+                1,
+                "Conceito significa [abrir](https://example.test/material). Esta segunda frase completa o trecho.",
+            )],
+        );
+
+        assert!(!lesson.contains("](https://example.test/"));
+        assert!(!lesson.contains("![abrir]"));
+    }
 }

@@ -423,6 +423,9 @@ mod tests {
         let overview = reopened.overview().unwrap();
         assert_eq!(overview.study_sessions, 1);
         assert_eq!(overview.accuracy_percent, 75);
-        assert_eq!(overview.library_path, alternate_library.display().to_string());
+        assert_eq!(
+            overview.library_path,
+            alternate_library.display().to_string()
+        );
     }
 }

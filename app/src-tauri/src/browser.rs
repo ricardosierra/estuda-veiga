@@ -1,8 +1,8 @@
 use crate::{
     calendar::CanvasAssignment,
     canvas::{
-        Course, ModuleGroup, discover_material_links, group_module_items,
-        parse_courses, parse_module_items,
+        Course, ModuleGroup, discover_material_links, group_module_items, parse_courses,
+        parse_module_items,
     },
     download::validate_material_url,
 };
@@ -15,6 +15,10 @@ use tokio::{
     task::JoinHandle,
     time::{Duration, timeout},
 };
+
+const BROWSER_CLOSE_TIMEOUT: Duration = Duration::from_secs(5);
+const BROWSER_EXIT_TIMEOUT: Duration = Duration::from_secs(5);
+const BROWSER_KILL_TIMEOUT: Duration = Duration::from_secs(5);
 
 #[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 #[serde(rename_all = "snake_case")]
@@ -90,10 +94,9 @@ impl CanvasSession {
         {
             Ok(Ok(page)) => page,
             Ok(Err(_)) | Err(_) => {
-                handler_task.abort();
                 let mut browser = browser;
-                let _ = timeout(Duration::from_secs(3), browser.close()).await;
-                let _ = timeout(Duration::from_secs(3), browser.wait()).await;
+                let _ = shutdown_browser(&mut browser).await;
+                handler_task.abort();
                 return Err(BrowserError::Page(
                     "Chromium não abriu a página de navegação no tempo esperado".into(),
                 ));
@@ -318,11 +321,31 @@ impl CanvasSession {
     }
 
     pub async fn close(mut self) {
-        let _ = self.page.close().await;
-        let _ = self.browser.close().await;
-        let mut browser = self.browser;
-        let _ = browser.wait().await;
+        let _ = timeout(BROWSER_CLOSE_TIMEOUT, self.page.close()).await;
+        let _ = shutdown_browser(&mut self.browser).await;
         self.handler_task.abort();
+    }
+}
+
+async fn shutdown_browser(browser: &mut Browser) -> Result<(), BrowserError> {
+    let close_acknowledged = matches!(
+        timeout(BROWSER_CLOSE_TIMEOUT, browser.close()).await,
+        Ok(Ok(_))
+    );
+    if close_acknowledged
+        && matches!(
+            timeout(BROWSER_EXIT_TIMEOUT, browser.wait()).await,
+            Ok(Ok(_))
+        )
+    {
+        return Ok(());
+    }
+
+    match timeout(BROWSER_KILL_TIMEOUT, browser.kill()).await {
+        Ok(Some(Ok(()))) | Ok(None) => Ok(()),
+        Ok(Some(Err(_))) | Err(_) => Err(BrowserError::Page(
+            "não foi possível encerrar o processo Chromium".into(),
+        )),
     }
 }
 
@@ -362,14 +385,10 @@ pub async fn run_browser_smoke(
         Ok(())
     }).await.unwrap_or_else(|_| Err(BrowserError::Page("Chromium não respondeu ao teste local no tempo esperado".into())));
     let mut browser = browser;
-    let closed = timeout(Duration::from_secs(5), browser.close()).await;
-    let waited = timeout(Duration::from_secs(5), browser.wait()).await;
+    let shutdown = shutdown_browser(&mut browser).await;
     handler_task.abort();
-    match (result, closed, waited) {
-        (Err(error), _, _) => Err(error),
-        (Ok(()), Ok(Ok(_)), Ok(Ok(_))) => Ok(()),
-        (Ok(()), _, _) => Err(BrowserError::Page(
-            "Chromium não encerrou no tempo esperado".into(),
-        )),
+    match result {
+        Err(error) => Err(error),
+        Ok(()) => shutdown,
     }
 }

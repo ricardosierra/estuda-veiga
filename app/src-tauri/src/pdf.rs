@@ -42,6 +42,8 @@ pub fn pages_to_markdown(title: &str, origin: &str, pages: &[String]) -> String 
     let safe_origin = Url::parse(origin)
         .ok()
         .map(|mut url| {
+            let _ = url.set_username("");
+            let _ = url.set_password(None);
             url.set_query(None);
             url.set_fragment(None);
             url.to_string()
@@ -57,7 +59,7 @@ pub fn pages_to_markdown(title: &str, origin: &str, pages: &[String]) -> String 
         if page.trim().is_empty() {
             output.push_str("_Nenhum texto extraível nesta página._\n\n");
         } else {
-            output.push_str(page.trim());
+            output.push_str(&escape_markdown_text(page.trim()));
             output.push_str("\n\n");
         }
     }
@@ -88,7 +90,7 @@ pub fn safe_slug(value: &str) -> String {
     }
 }
 
-fn escape_markdown_text(value: &str) -> String {
+pub(crate) fn escape_markdown_text(value: &str) -> String {
     value
         .chars()
         .map(|character| match character {
@@ -102,4 +104,23 @@ fn escape_markdown_text(value: &str) -> String {
             other => other.to_string(),
         })
         .collect()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::pages_to_markdown;
+
+    #[test]
+    fn origin_markdown_never_persists_url_userinfo() {
+        let markdown = pages_to_markdown(
+            "Aula",
+            "https://sierra:nao-gravar@ead.uva.br/aula.pdf?token=segredo",
+            &["Conteúdo local".into()],
+        );
+
+        assert!(markdown.contains("https://ead.uva.br/aula.pdf"));
+        assert!(!markdown.contains("sierra"));
+        assert!(!markdown.contains("nao-gravar"));
+        assert!(!markdown.contains("segredo"));
+    }
 }
