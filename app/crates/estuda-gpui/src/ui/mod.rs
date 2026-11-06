@@ -17,8 +17,9 @@ use estuda_core::catalog::scanner::{LocalDocument, LocalDocumentContent};
 
 use crate::services::Services;
 
+use gpui_kit::component::input::{Input, InputEvent, InputState, Textarea, TextareaState};
 use gpui_kit::gpui::{
-    AnyElement, ClickEvent, Context, FontWeight, InteractiveElement, IntoElement, MouseButton,
+    AnyElement, ClickEvent, Context, Entity, Subscription, FontWeight, InteractiveElement, IntoElement, MouseButton,
     ParentElement, Render, StatefulInteractiveElement, Styled, Window, div, prelude::*, px,
 };
 
@@ -145,6 +146,14 @@ pub struct AppView {
     pub doc: Option<LocalDocumentContent>,
     /// RSS do processo em MB, atualizado periodicamente.
     pub ram_used_mb: Option<u64>,
+    /// Campo de busca do cabeçalho (criado no primeiro render, pois precisa da janela).
+    pub search: Option<Entity<InputState>>,
+    search_sub: Option<Subscription>,
+    /// Campo de tentativa do tutor e rascunho de Organizar.
+    pub msg_input: Option<Entity<InputState>>,
+    pub draft_input: Option<Entity<TextareaState>>,
+    msg_sub: Option<Subscription>,
+    draft_sub: Option<Subscription>,
 }
 
 impl AppView {
@@ -180,6 +189,12 @@ impl AppView {
             library_status: String::from("Acervo não carregado"),
             doc: None,
             ram_used_mb: None,
+            search: None,
+            search_sub: None,
+            msg_input: None,
+            draft_input: None,
+            msg_sub: None,
+            draft_sub: None,
         }
     }
 
@@ -453,17 +468,16 @@ impl AppView {
                     .bg(p.surface)
                     .text_color(p.muted)
                     .child(icon("search", 16., p.muted))
-                    .child(
-                        div()
+                    .child(match &self.search {
+                        Some(state) => div()
                             .flex_1()
                             .min_w_0()
                             .text_size(px(13.))
-                            .child(if self.query.is_empty() {
-                                "Buscar no acervo".to_string()
-                            } else {
-                                self.query.clone()
-                            }),
-                    ),
+                            .text_color(p.text)
+                            .child(Input::new(state).appearance(false).cleanable(false))
+                            .into_any_element(),
+                        None => div().flex_1().into_any_element(),
+                    }),
             )
             .child(
                 div()
@@ -697,8 +711,74 @@ impl AppView {
     }
 }
 
+impl AppView {
+    /// Cria o campo de busca na primeira renderização. Cada mudança de texto atualiza
+    /// a consulta e leva à Biblioteca, como o `onQuery` do layout original.
+    fn ensure_search(&mut self, window: &mut Window, cx: &mut Context<Self>) {
+        if self.search.is_some() {
+            return;
+        }
+        let state = cx.new(|cx| InputState::new(window, cx).placeholder("Buscar no acervo"));
+        let subscription = cx.subscribe_in(&state, window, |this: &mut AppView, state, event: &InputEvent, _window, cx| {
+            if let InputEvent::Change = event {
+                this.query = state.read(cx).value().to_string();
+                this.screen = Screen::Biblioteca;
+                cx.notify();
+            }
+        });
+        self.search = Some(state);
+        self.search_sub = Some(subscription);
+    }
+
+    /// Cria os campos de texto do tutor e do rascunho na primeira renderização.
+    fn ensure_composers(&mut self, window: &mut Window, cx: &mut Context<Self>) {
+        if self.msg_input.is_none() {
+            let state = cx.new(|cx| InputState::new(window, cx).placeholder("Escreva sua tentativa ou dúvida"));
+            let subscription = cx.subscribe_in(&state, window, |this: &mut AppView, state, event: &InputEvent, window, cx| {
+                match event {
+                    InputEvent::Change => {
+                        this.msg = state.read(cx).value().to_string();
+                    }
+                    InputEvent::PressEnter { .. } => {
+                        this.send_composer(window, cx);
+                    }
+                    _ => {}
+                }
+            });
+            self.msg_input = Some(state);
+            self.msg_sub = Some(subscription);
+        }
+        if self.draft_input.is_none() {
+            let state = cx.new(|cx| {
+                TextareaState::new(window, cx).placeholder(
+                    "Estruture sua resposta aqui. O texto fica no acervo local; a entrega no Canvas é sempre feita por você.",
+                )
+            });
+            let subscription = cx.subscribe_in(&state, window, |this: &mut AppView, state, event: &InputEvent, _window, cx| {
+                if let InputEvent::Change = event {
+                    this.draft = state.read(cx).value().to_string();
+                    cx.notify();
+                }
+            });
+            self.draft_input = Some(state);
+            self.draft_sub = Some(subscription);
+        }
+    }
+
+    /// Envia a mensagem digitada e limpa o campo (botão Enviar ou Enter).
+    pub fn send_composer(&mut self, window: &mut Window, cx: &mut Context<Self>) {
+        if let Some(state) = self.msg_input.clone() {
+            state.update(cx, |state, cx| state.set_value("", window, cx));
+        }
+        self.msg = String::new();
+        self.send_message(cx);
+    }
+}
+
 impl Render for AppView {
-    fn render(&mut self, _window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
+    fn render(&mut self, window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
+        self.ensure_search(window, cx);
+        self.ensure_composers(window, cx);
         let p = Palette::new(self.dark);
         div()
             .size_full()

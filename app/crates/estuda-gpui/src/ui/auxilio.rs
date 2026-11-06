@@ -1,7 +1,8 @@
 //! Tela Auxílio: tutor com narração, organização de atividades e simulado de treino.
 
+use gpui_kit::component::input::{Input, Textarea};
 use gpui_kit::gpui::{
-    ClickEvent, Context, Div, FontWeight, InteractiveElement, ParentElement, Styled, div,
+    ClickEvent, Context, Div, FontWeight, InteractiveElement, IntoElement, ParentElement, Styled, div,
     prelude::*, px,
 };
 
@@ -188,6 +189,10 @@ fn tutor(view: &AppView, p: &Palette, cx: &mut Context<AppView>, kind: &str, sub
         );
     }
 
+    let field = match &view.msg_input {
+        Some(state) => Input::new(state).appearance(false).into_any_element(),
+        None => div().child("Escreva sua tentativa ou dúvida").into_any_element(),
+    };
     let composer = div()
         .flex()
         .items_center()
@@ -203,17 +208,12 @@ fn tutor(view: &AppView, p: &Palette, cx: &mut Context<AppView>, kind: &str, sub
                 .border_color(p.border)
                 .bg(p.surface)
                 .text_size(px(14.))
-                .text_color(if view.msg.is_empty() { p.muted } else { p.text })
-                .child(if view.msg.is_empty() {
-                    "Escreva sua tentativa ou dúvida".to_string()
-                } else {
-                    view.msg.clone()
-                }),
+                .child(field),
         )
         .child(
             kit::button(p, "aux-send", "Enviar", Variant::Primary, Size::Md, Some("send")).on_click(
-                cx.listener(|this, _: &ClickEvent, _, cx| {
-                    this.send_message(cx);
+                cx.listener(|this, _: &ClickEvent, window, cx| {
+                    this.send_composer(window, cx);
                 }),
             ),
         );
@@ -342,11 +342,9 @@ fn organizar(view: &AppView, p: &Palette, cx: &mut Context<AppView>) -> Div {
                 .bg(p.surface)
                 .text_size(px(14.))
                 .line_height(px(22.))
-                .text_color(if view.draft.is_empty() { p.muted } else { p.text })
-                .child(if view.draft.is_empty() {
-                    "Estruture sua resposta aqui. O texto fica no acervo local; a entrega no Canvas é sempre feita por você.".to_string()
-                } else {
-                    view.draft.clone()
+                .child(match &view.draft_input {
+                    Some(state) => Textarea::new(state).appearance(false).into_any_element(),
+                    None => div().into_any_element(),
                 }),
         );
 
