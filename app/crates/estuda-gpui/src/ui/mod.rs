@@ -19,7 +19,7 @@ use std::sync::Arc;
 
 use crate::portal::Portal;
 use crate::speech::Narrator;
-use crate::services::{Discipline, Services};
+use crate::services::{Discipline, Enrollment, Services};
 use estuda_core::lyceum::PortalState;
 
 use gpui_kit::component::input::{Input, InputEvent, InputState, TextareaState};
@@ -166,6 +166,8 @@ pub struct AppView {
     /// Disciplinas do catálogo acadêmico lidas do banco sincronizado.
     pub disciplines: Vec<Discipline>,
     pub disciplines_status: String,
+    /// Matrículas (trajetórias) do catálogo, para a tela Usuário.
+    pub enrollments: Vec<Enrollment>,
 }
 
 impl AppView {
@@ -212,6 +214,7 @@ impl AppView {
             narration_note: None,
             disciplines: Vec::new(),
             disciplines_status: String::from("Catálogo acadêmico não carregado"),
+            enrollments: Vec::new(),
         }
     }
 
@@ -688,11 +691,21 @@ impl AppView {
             cx.notify();
             return;
         };
+        let services_for_enrollments = services.clone();
         cx.spawn(async move |this, cx| {
             let result = cx
                 .background_spawn(async move { services.disciplines() })
                 .await;
+            let enrollments = cx
+                .background_spawn({
+                    let services = services_for_enrollments.clone();
+                    async move { services.enrollments() }
+                })
+                .await;
             let _ = this.update(cx, |this, cx| {
+                if let Ok(list) = enrollments {
+                    this.enrollments = list;
+                }
                 match result {
                     Ok(list) if list.is_empty() => {
                         this.disciplines_status = "Nenhuma disciplina sincronizada ainda".into();

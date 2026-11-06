@@ -42,73 +42,66 @@ pub fn render(view: &AppView, p: &Palette, cx: &mut Context<AppView>) -> Div {
             ),
     );
 
-    let matriculas = card(p)
-        .child(section_title(p, "school", "Matrículas no Portal"))
-        .child(
+    let mut linhas = div().flex().flex_col().gap(px(10.));
+    if view.enrollments.is_empty() {
+        linhas = linhas.child(
+            div()
+                .text_size(px(13.))
+                .text_color(p.muted)
+                .child("Nenhuma matrícula sincronizada ainda."),
+        );
+    }
+    for enrollment in &view.enrollments {
+        let (border, opacity) = if enrollment.active {
+            (hex(AZUL_MEDIO), 1.0)
+        } else {
+            (p.border, 0.65)
+        };
+        let note = if enrollment.active {
+            "usada pelo app".to_string()
+        } else {
+            "trajetória separada, ignorada".to_string()
+        };
+        let semester = if enrollment.semester.is_empty() {
+            String::new()
+        } else {
+            format!(" · semestre {}", enrollment.semester)
+        };
+        linhas = linhas.child(
             div()
                 .flex()
-                .flex_col()
-                .gap(px(10.))
+                .items_center()
+                .gap(px(12.))
+                .p(px(12.))
+                .rounded(px(10.))
+                .border_1()
+                .border_color(border)
+                .bg(if enrollment.active { p.surface } else { p.card })
+                .opacity(opacity)
                 .child(
                     div()
+                        .flex_1()
                         .flex()
-                        .items_center()
-                        .gap(px(12.))
-                        .p(px(12.))
-                        .rounded(px(10.))
-                        .border_1()
-                        .border_color(hex(AZUL_MEDIO))
-                        .bg(p.surface)
+                        .flex_col()
                         .child(
                             div()
-                                .flex_1()
-                                .flex()
-                                .flex_col()
-                                .child(
-                                    div()
-                                        .text_size(px(14.))
-                                        .font_weight(FontWeight::SEMIBOLD)
-                                        .child("Ciência da Computação"),
-                                )
-                                .child(
-                                    div()
-                                        .text_size(px(12.))
-                                        .text_color(p.muted)
-                                        .child("Situação: Ativo · usada pelo app"),
-                                ),
+                                .text_size(px(14.))
+                                .font_weight(FontWeight::SEMIBOLD)
+                                .child(enrollment.program.clone()),
                         )
-                        .child(icon("check", 18., p.text)),
-                )
-                .child(
-                    div()
-                        .flex()
-                        .items_center()
-                        .gap(px(12.))
-                        .p(px(12.))
-                        .rounded(px(10.))
-                        .border_1()
-                        .border_color(p.border)
-                        .opacity(0.65)
                         .child(
                             div()
-                                .flex_1()
-                                .flex()
-                                .flex_col()
-                                .child(
-                                    div()
-                                        .text_size(px(14.))
-                                        .font_weight(FontWeight::SEMIBOLD)
-                                        .child("Engenharia de Computação"),
-                                )
-                                .child(
-                                    div()
-                                        .text_size(px(12.))
-                                        .text_color(p.muted)
-                                        .child("Situação: Evadido · trajetória separada, ignorada"),
-                                ),
+                                .text_size(px(12.))
+                                .text_color(p.muted)
+                                .child(format!("Situação: {} · {}{}", enrollment.status, note, semester)),
                         ),
-                ),
+                )
+                .when(enrollment.active, |d| d.child(icon("check", 18., p.text))),
         );
+    }
+    let matriculas = card(p)
+        .child(section_title(p, "school", "Matrículas no Portal"))
+        .child(linhas);
 
     let left = div()
         .flex_1()

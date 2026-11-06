@@ -37,6 +37,15 @@ pub fn identity_label(raw: &str) -> String {
     }
 }
 
+/// Trajetória (matrícula) do estudante no catálogo: programa, situação e semestre.
+#[derive(Clone, Debug)]
+pub struct Enrollment {
+    pub program: String,
+    pub status: String,
+    pub semester: String,
+    pub active: bool,
+}
+
 /// Disciplina do catálogo acadêmico, lida da projeção do banco (que vem de `dados/`).
 #[derive(Clone, Debug)]
 pub struct Discipline {
@@ -63,6 +72,32 @@ impl Services {
             catalog: Arc::new(CatalogService::new(root)?),
             sync: Arc::new(sync),
         })
+    }
+
+    /// Trajetórias do catálogo (uma por programa). Só lê a projeção do banco.
+    pub fn enrollments(&self) -> Result<Vec<Enrollment>, String> {
+        let catalog = estuda_core::catalog::academic::load(&self.sync)?;
+        let text = |value: &serde_json::Value, key: &str| {
+            value.get(key).and_then(|v| v.as_str()).unwrap_or_default().to_string()
+        };
+        Ok(catalog
+            .trajectories
+            .iter()
+            .map(|value| {
+                let status = text(value, "status");
+                let active = status == "active";
+                Enrollment {
+                    program: text(value, "programTitle"),
+                    status: match status.as_str() {
+                        "active" => "Ativo".to_string(),
+                        "evadido" => "Evadido".to_string(),
+                        other => other.to_string(),
+                    },
+                    semester: text(value, "semester"),
+                    active,
+                }
+            })
+            .collect())
     }
 
     /// Disciplinas do catálogo acadêmico já sincronizadas. Só lê a projeção do banco.
@@ -109,6 +144,8 @@ mod tests {
         let disciplines = services.disciplines().expect("ler disciplinas");
         println!("disciplinas no catálogo: {}", disciplines.len());
         println!("com pendências: {}", disciplines.iter().filter(|d| d.pending > 0).count());
+        let enrollments = services.enrollments().expect("ler matrículas");
+        println!("matrículas no catálogo: {} (ativas: {})", enrollments.len(), enrollments.iter().filter(|e| e.active).count());
     }
 
     /// Lê o acervo real (somente leitura) e imprime contagens agregadas, sem títulos.
