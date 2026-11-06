@@ -119,4 +119,4 @@ A UVA mantém uma [matriz pública de Engenharia de Computação — Currículo 
 5. Abrir **Secretaria Virtual → Serviços** no vínculo antigo e localizar o serviço eletrônico **Histórico Escolar com CR**; não avançar a solicitação sem decidir fazê-la.
 6. Abrir a **Plataforma Virtual — Canvas** pelo Portal do Aluno e revisar **Todas as disciplinas** e **Inscrições anteriores**.
 
-O [registro acadêmico geral](REGISTRO_ACADEMICO.md) mantém este vínculo separado da matrícula ativa em Ciência da Computação. O [índice de cursos históricos](CURSOS_HISTORICOS.md) e o [inventário de materiais históricos](MATERIAIS_HISTORICOS.md) apontam para esta análise.
+O [registro acadêmico geral](../../REGISTRO_ACADEMICO.md) mantém este vínculo separado da matrícula ativa em Ciência da Computação. O [índice de cursos históricos](../../periodos/historicos/README.md) e o [inventário de materiais históricos](../../periodos/historicos/materiais.md) apontam para esta análise.

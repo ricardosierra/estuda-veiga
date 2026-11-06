@@ -21,4 +21,4 @@
 8. Só inserir datas e horários apresentados em calendários oficiais ou no Portal; não estimar.
 9. Conferir a frequência no Portal periodicamente e registrar somente o que estiver no relatório oficial.
 
-O procedimento geral está em [PLANEJAMENTO.md](PLANEJAMENTO.md). Os cursos atualmente matriculados em 2026.2 estão em [CURSOS_2026.2.md](CURSOS_2026.2.md).
+O procedimento geral está em [PLANEJAMENTO.md](../PLANEJAMENTO.md). Os cursos atualmente matriculados em 2026.2 estão em [periodos/2026.2/README.md](2026.2/README.md).

@@ -63,4 +63,4 @@ Esses critérios foram registrados como conteúdo da página didática, sem real
 
 ## Uso no tutor local
 
-Este Markdown permite estudar as duas ofertas de Projeto de Extensão I com a mesma fonte acadêmica consultada. A captura não comprova que os cursos sejam equivalentes em matrícula, avaliação ou calendário; confirma apenas que as páginas HTML acessadas expunham o mesmo material didático. A lista atual de materiais PDF continua separada em `MATERIAIS_2026.2.md`.
+Este Markdown permite estudar as duas ofertas de Projeto de Extensão I com a mesma fonte acadêmica consultada. A captura não comprova que os cursos sejam equivalentes em matrícula, avaliação ou calendário; confirma apenas que as páginas HTML acessadas expunham o mesmo material didático. A lista atual de materiais PDF continua separada em `periodos/2026.2/materiais.md`.

@@ -259,9 +259,9 @@ Regra dos critérios oficiais de avaliação da graduação EAD (2024):
 
 ## Fontes
 
-Tutoriais oficiais do Espaço Curso — Ciência da Computação (Canvas 53418), extraídos em `materias/fontes-uva/2026.2/espaco-curso-ciencia-da-computacao-2023.1/`:
+Tutoriais oficiais do Espaço Curso — Ciência da Computação (Canvas 53418), extraídos em `fontes-uva/2026.2/espaco-curso-ciencia-da-computacao-2023.1/`:
 `Como_consultar_as_notas_no_boletim.md`, `Financeiro_e_Plataforma_de_Pagamento.md`, `Solicitacao_de_Servicos.md`, `Rematrícula_Secretaria_Virtual.md`, `Bibliotecas.md`, `Como_acessar_o_conteudo_das_disciplinas.md`, `Como_consultar_o_prazo_de_cada_atividade_nas_disciplinas.md`, `Como_enviar_uma_atividade_avaliativa_da_A1.md`, `Como_visualizar_a_correcao_das_atividades_avaliativas_da_A1.md`, `Como_realizar_as_atividades_de_A4.md`, `Como_calcular_a_Media_Final_Ponderada.md`, `Como_pedir_revisao_de_provas_A2_A3.md`, `Forum_de_Duvidas_Fale_com_o_tutor.md`, `Forum_de_Interacao_dos_Alunos.md`, `Forum_de_Coordenacao_de_Curso.md`, `Avisos.md`, `Conhecendo_os_canais_de_comunicacao.md`, `Agendamento_Prova_Avalia_v1.md`, `[SGP]Orientacoes_gerais_Prova-Online-ALUNOS.md`, `[SGP]Orientacoes_gerais_Prova_Presencial-ALUNOS.md`.
 
-Critérios de avaliação: `materias/fontes-uva/2026.1/apoio/CRITERIOS_GRADUACAO_AVALIACAO_2024.md`.
-Rotas e telas do Lyceum observadas: [ENGENHARIA_DE_COMPUTACAO.md](../ENGENHARIA_DE_COMPUTACAO.md) (9/10/2026) e [REGISTRO_ACADEMICO.md](../REGISTRO_ACADEMICO.md).
+Critérios de avaliação: `fontes-uva/2026.1/apoio/CRITERIOS_GRADUACAO_AVALIACAO_2024.md`.
+Rotas e telas do Lyceum observadas: [cursos/engenharia-de-computacao/README.md](../cursos/engenharia-de-computacao/README.md) (9/10/2026) e [REGISTRO_ACADEMICO.md](../REGISTRO_ACADEMICO.md).
 Código: `app/src-tauri/src/browser.rs`, `lyceum.rs`, `canvas.rs`, `canvas_capture.rs`, `download.rs`, `pdf.rs`, `calendar.rs`.

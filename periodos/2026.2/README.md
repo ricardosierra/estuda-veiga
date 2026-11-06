@@ -16,7 +16,7 @@ A captura oficial já registrada do Portal lista sete matrículas para 2026/2. E
 | Projeto de Extensão I — Ciência da Computação | 21CMP2262A | 13/10/2026 | Favorito; curso 57397 |
 | Projeto de Extensão I | 21CIV2262A | 13/10/2026 | Favorito; curso 57897 |
 
-O horário semanal do Portal retornou “Nenhum resultado encontrado” na consulta anterior. Consulte novamente os avisos e horários oficiais antes de planejar presença. O [registro acadêmico](REGISTRO_ACADEMICO.md) continua sendo a referência local para notas e frequência.
+O horário semanal do Portal retornou “Nenhum resultado encontrado” na consulta anterior. Consulte novamente os avisos e horários oficiais antes de planejar presença. O [registro acadêmico](../../REGISTRO_ACADEMICO.md) continua sendo a referência local para notas e frequência.
 
 ## Favoritos que devem aparecer na lista de cursos do Canvas
 
@@ -32,13 +32,13 @@ Na página “Todas as disciplinas” do Canvas, os cinco cursos abaixo foram ma
 
 “Espaço Curso — Ciência da Computação” (curso Canvas 53418, seção 210062.21, período 2023.1.21) é um espaço de apoio, não uma matéria. Seguindo a orientação de 13 de outubro, ele foi removido dos favoritos. O curso e seus avisos antigos continuam acessíveis no Canvas; os PDFs baixados antes dessa orientação ficaram separados e fora do inventário das matérias.
 
-A lista atual de PDFs e conversões está em [MATERIAIS_2026.2.md](MATERIAIS_2026.2.md).
+A lista atual de PDFs e conversões está em [periodos/2026.2/materiais.md](materiais.md).
 
 ## Outras matrículas Canvas do Portal
 
 Bases de Programação (55558) e Paradigmas de Linguagens de Programação (57159) continuam registradas no inventário do Portal para 2026/2. Na consulta de 14 de outubro, ambas apareciam em “Inscrições anteriores” do Canvas. As linhas não oferecem controle para favoritar; não tentei alterar matrícula ou situação. A página “Todas as disciplinas” lista as sete matérias entre a seção atual e a seção de inscrições anteriores; o menu de favoritos continua com cinco.
 
-Os módulos de Bases estão publicados e oferecem plano e quatro capítulos em PDF. Paradigmas mostra um índice de módulos e dois materiais com conteúdo de ASI1, ainda sem associação confirmada com a disciplina. Veja o inventário e os links em [MATERIAIS_2026.2.md](MATERIAIS_2026.2.md).
+Os módulos de Bases estão publicados e oferecem plano e quatro capítulos em PDF. Paradigmas mostra um índice de módulos e dois materiais com conteúdo de ASI1, ainda sem associação confirmada com a disciplina. Veja o inventário e os links em [periodos/2026.2/materiais.md](materiais.md).
 
 ## Cobertura de módulos
 
@@ -49,7 +49,7 @@ Os módulos de Bases estão publicados e oferecem plano e quatro capítulos em P
 - **Linguagens Formais e Autômatos:** a página informa que nenhum módulo foi definido; a rota Arquivos retorna à página do curso.
 - **Projeto de Extensão I — Ciência da Computação** e **Projeto de Extensão I (Engenharia Civil):** módulos publicados com conteúdo HTML externo; nenhum link PDF encontrado nas páginas consultadas. A rota Arquivos não apresentou listagem acessível.
 
-O inventário detalhado, as conversões e os limites da captura estão em [MATERIAIS_2026.2.md](MATERIAIS_2026.2.md).
+O inventário detalhado, as conversões e os limites da captura estão em [periodos/2026.2/materiais.md](materiais.md).
 
 ## Histórico de conferência
 

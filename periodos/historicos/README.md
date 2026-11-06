@@ -4,7 +4,7 @@
 
 ## Semestre 2026.1
 
-O Canvas mostrou cinco cursos em inscrições anteriores. Os mapas, unidades e atividades permanecem no [inventário de cursos 2026.1](CURSOS_2026.1.md); o estado dos arquivos e links está em [MATERIAIS_2026.1.md](MATERIAIS_2026.1.md); as sínteses autorais das aulas estão em [NOTAS_DE_ESTUDO_2026.1.md](NOTAS_DE_ESTUDO_2026.1.md). As extrações dos 28 PDFs públicos estão em [fontes UVA 2026.1](materias/fontes-uva/2026.1/README.md).
+O Canvas mostrou cinco cursos em inscrições anteriores. Os mapas, unidades e atividades permanecem no [inventário de cursos 2026.1](../2026.1/README.md); o estado dos arquivos e links está em [periodos/2026.1/materiais.md](../2026.1/materiais.md); as sínteses autorais das aulas estão em [periodos/2026.1/notas-de-estudo.md](../2026.1/notas-de-estudo.md). As extrações dos 28 PDFs públicos estão em [fontes UVA 2026.1](../../fontes-uva/2026.1/README.md).
 
 | Disciplina | Código | Curso Canvas |
 |---|---|---:|
@@ -19,12 +19,12 @@ O Canvas mostrou cinco cursos em inscrições anteriores. Os mapas, unidades e a
 - [Curso no Canvas](https://uva.instructure.com/courses/53973)
 - É exibido em inscrições anteriores como curso gratuito, sem período letivo identificado. Não é contado entre as cinco disciplinas curriculares de 2026.1.
 - Módulos: [introdução](https://uva.instructure.com/courses/53973/modules/items/1047961); [M1](https://uva.instructure.com/courses/53973/modules/items/1047963); [M2](https://uva.instructure.com/courses/53973/modules/items/1047968); [M3](https://uva.instructure.com/courses/53973/modules/items/1047973); [M4](https://uva.instructure.com/courses/53973/modules/items/1047978); [encerramento](https://uva.instructure.com/courses/53973/modules/items/1047983).
-- Cada módulo tinha uma página de conteúdo, um PDF, um vídeo, uma página de conceitos e um exame. Os itens por módulo estão detalhados em [MATERIAIS_HISTORICOS.md](MATERIAIS_HISTORICOS.md).
-- O conteúdo das páginas acessíveis foi resumido em [NOTAS_DE_ESTUDO_HISTORICOS.md](NOTAS_DE_ESTUDO_HISTORICOS.md). Os quatro PDFs não foram baixados nem extraídos integralmente.
+- Cada módulo tinha uma página de conteúdo, um PDF, um vídeo, uma página de conceitos e um exame. Os itens por módulo estão detalhados em [periodos/historicos/materiais.md](materiais.md).
+- O conteúdo das páginas acessíveis foi resumido em [periodos/historicos/notas-de-estudo.md](notas-de-estudo.md). Os quatro PDFs não foram baixados nem extraídos integralmente.
 
 ## Engenharia de Computação — vínculo antigo marcado como evadido
 
-O Portal do Aluno identifica um vínculo anterior em Engenharia de Computação com status “Evadido”. O Histórico Detalhado fornece carga horária, disciplinas pendentes e atividades complementares, mas não lista as disciplinas já cursadas com notas. A [análise detalhada do vínculo antigo](ENGENHARIA_DE_COMPUTACAO.md) transcreve os 43 itens pendentes, registra o que não apareceu no boletim/frequência e separa esses dados da graduação atual.
+O Portal do Aluno identifica um vínculo anterior em Engenharia de Computação com status “Evadido”. O Histórico Detalhado fornece carga horária, disciplinas pendentes e atividades complementares, mas não lista as disciplinas já cursadas com notas. A [análise detalhada do vínculo antigo](../../cursos/engenharia-de-computacao/README.md) transcreve os 43 itens pendentes, registra o que não apareceu no boletim/frequência e separa esses dados da graduação atual.
 
 O Canvas não apresentou turmas curriculares de Engenharia de Computação na lista de cursos nem em inscrições anteriores; os materiais didáticos da graduação antiga ainda não foram localizados. A [matriz pública UVA de Engenharia de Computação](https://www.uva.br/wp-content/uploads/2022/02/Engenharia_de_Computacao_-_Entrada_Maio.pdf) pode servir como referência geral, mas não foi confirmada como a versão do currículo individual.
 

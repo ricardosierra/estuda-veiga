@@ -14,7 +14,7 @@ Este índice aponta para trabalhos convertidos em texto e outros materiais acad�
 
 ## Desenvolvimento de Aplicações para Web
 
-- [Notas autorais das unidades de 2026.1](../NOTAS_DE_ESTUDO_2026.1.md), com os links oficiais para consultar os materiais completos.
+- [Notas autorais das unidades de 2026.1](../periodos/2026.1/notas-de-estudo.md), com os links oficiais para consultar os materiais completos.
 
 ## Estatística para Computação
 
@@ -23,8 +23,8 @@ Este índice aponta para trabalhos convertidos em texto e outros materiais acad�
 ## Linguagens Formais e Autômatos
 
 - [AVA 1 — Autômato Finito Determinístico para cadeias binárias terminadas em 1](linguagens-formais-e-automatos/ava1-automato-finito-deterministico.md)
-- [Diagrama de Estados do AFD](linguagens-formais-e-automatos/diagrama-afd-termina-em-1.png)
-- [Modelo JFLAP estrutural](linguagens-formais-e-automatos/automato_termina_em_1.jff)
+- Diagrama de Estados do AFD (imagem não encontrada no acervo)
+- Modelo JFLAP estrutural (arquivo não encontrado no acervo)
 
 ## Paradigmas de Programação
 
@@ -35,6 +35,6 @@ Este índice aponta para trabalhos convertidos em texto e outros materiais acad�
 
 ## Materiais UVA 2026.1
 
-As notas autorais das 20 unidades de todas as cinco disciplinas estão em [NOTAS_DE_ESTUDO_2026.1.md](../NOTAS_DE_ESTUDO_2026.1.md). O [inventário de materiais](../MATERIAIS_2026.1.md) mantém os links oficiais. As extrações integrais dos 28 PDFs públicos estão em [fontes UVA 2026.1](fontes-uva/2026.1/README.md); as cópias PDF foram descartadas após extração. Reabra os links oficiais para elementos visuais.
+As notas autorais das 20 unidades de todas as cinco disciplinas estão em [periodos/2026.1/notas-de-estudo.md](../periodos/2026.1/notas-de-estudo.md). O [inventário de materiais](../periodos/2026.1/materiais.md) mantém os links oficiais. As extrações integrais dos 28 PDFs públicos estão em [fontes UVA 2026.1](../fontes-uva/2026.1/README.md); as cópias PDF foram descartadas após extração. Reabra os links oficiais para elementos visuais.
 
 Os documentos Word, Pages e textos-fonte originais dos trabalhos ficam na pasta local ignorada originais. As versões Markdown por matéria preservam os trabalhos convertidos e redigidos para versionamento. As versões textuais acompanhadas neste índice removem nome completo e matrícula.
