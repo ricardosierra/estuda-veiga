@@ -7,10 +7,7 @@
 use std::path::PathBuf;
 use std::sync::Arc;
 
-use estuda_core::catalog::scanner::{
-    CatalogService, LocalCatalogSnapshot, LocalDocumentContent, LocalSearchFilter,
-    LocalSearchResponse,
-};
+use estuda_core::catalog::scanner::{CatalogService, LocalCatalogSnapshot, LocalDocumentContent};
 
 /// Raiz do acervo: o diretório do repositório, a partir de `app/crates/estuda-gpui`.
 pub fn default_library() -> PathBuf {
@@ -45,15 +42,6 @@ impl Services {
     /// Relê a pasta do acervo e atualiza o índice em RAM.
     pub fn refresh(&self) -> Result<LocalCatalogSnapshot, String> {
         self.catalog.refresh()
-    }
-
-    /// Último índice conhecido, sem varrer o disco de novo.
-    pub fn snapshot(&self) -> Result<LocalCatalogSnapshot, String> {
-        self.catalog.snapshot()
-    }
-
-    pub fn search(&self, query: &str) -> Result<LocalSearchResponse, String> {
-        self.catalog.search(query, &LocalSearchFilter::default())
     }
 
     pub fn read_document(&self, relative_path: &str) -> Result<LocalDocumentContent, String> {

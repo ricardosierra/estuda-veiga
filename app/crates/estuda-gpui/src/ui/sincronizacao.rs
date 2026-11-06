@@ -1,8 +1,7 @@
 //! Tela Sincronização: fontes somente leitura, login manual e registro da sessão.
 
 use gpui_kit::gpui::{
-    ClickEvent, Context, Div, FontWeight, Hsla, InteractiveElement, ParentElement, Styled, div,
-    prelude::*, px,
+    ClickEvent, Context, Div, FontWeight, Hsla, ParentElement, Styled, div, prelude::*, px,
 };
 
 use super::AppView;

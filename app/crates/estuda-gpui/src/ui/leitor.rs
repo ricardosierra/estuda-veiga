@@ -1,8 +1,7 @@
 //! Tela Leitor PDF→MD: mostra a origem do documento e o Markdown lido do acervo.
 
 use gpui_kit::gpui::{
-    ClickEvent, Context, Div, FontWeight, Hsla, InteractiveElement, ParentElement, Styled, div,
-    prelude::*, px,
+    ClickEvent, Context, Div, FontWeight, Hsla, ParentElement, Styled, div, prelude::*, px,
 };
 
 use super::AppView;

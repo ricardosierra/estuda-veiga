@@ -64,7 +64,6 @@ pub enum Variant {
     Primary,
     Secondary,
     Outline,
-    Ghost,
 }
 
 #[derive(Clone, Copy, PartialEq)]
@@ -128,7 +127,6 @@ pub fn button_ex(
             .border_color(p.border)
             .bg(p.card)
             .text_color(p.text),
-        Variant::Ghost => base.text_color(p.muted),
     };
     let styled = styled.hover(|s| s.opacity(0.92));
     let icon_px = if size == Size::Sm { 16. } else { 18. };
@@ -274,23 +272,4 @@ pub fn avatar(initials: &str, size: f32) -> Div {
 /// Ponto de status de 7–8px.
 pub fn dot(color: Hsla, size: f32) -> Div {
     div().flex_none().size(px(size)).rounded_full().bg(color)
-}
-
-pub fn font_sans() -> &'static str {
-    FONT_SANS
-}
-
-pub fn font_numeric() -> &'static str {
-    FONT_NUMERIC
-}
-
-/// Linha de texto com trechos em negrito, preservando a quebra natural.
-pub fn rich_row() -> Div {
-    div().flex().flex_wrap().items_baseline()
-}
-
-pub fn rich_bold(text: &str) -> Div {
-    div()
-        .font_weight(FontWeight::BOLD)
-        .child(text.to_string())
 }

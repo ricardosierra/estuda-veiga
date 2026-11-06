@@ -17,7 +17,7 @@ use estuda_core::catalog::scanner::{LocalDocument, LocalDocumentContent};
 
 use crate::services::Services;
 
-use gpui_kit::component::input::{Input, InputEvent, InputState, Textarea, TextareaState};
+use gpui_kit::component::input::{Input, InputEvent, InputState, TextareaState};
 use gpui_kit::gpui::{
     AnyElement, ClickEvent, Context, Entity, Subscription, FontWeight, InteractiveElement, IntoElement, MouseButton,
     ParentElement, Render, StatefulInteractiveElement, Styled, Window, div, prelude::*, px,
