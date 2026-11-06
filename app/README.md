@@ -54,6 +54,16 @@ O caminho de cada tela do Portal e dos seus 5 subsistemas, e o procedimento Rust
 
 O catálogo em **Acadêmico** lê currículos, relações entre ofertas e trajetórias do SQLite, após reconciliar as fontes JSON. Ciência da Computação e Engenharia de Computação continuam separadas; relações candidatas não confirmam equivalência nem aproveitamento. Divergências do registro são preservadas junto com suas fontes.
 
+### Ler notas, fóruns, avisos e Caixa de Entrada do Canvas
+
+1. Conecte o Canvas (**Matérias** → **Abrir Canvas para entrar**) e faça o login manual na janela Chromium do app.
+2. Em **Currículos**, no painel **Notas, fóruns, avisos e Caixa de Entrada do Canvas**, marque as partes que quer ler. A Caixa de Entrada vem desmarcada por ter mensagens privadas.
+3. Selecione **Ler agora**. O app lê pela API do Canvas, sem IA, todas as disciplinas listadas em `/courses`, incluindo o Espaço Curso. Nada é postado, enviado ou marcado como lido; conversas são lidas com `auto_mark_as_read=false`.
+4. A captura é gravada como arquivos novos em `materias/catalogo/capturas/canvas-<id>.json` e `.md`, fora do Git, e sincronizada no SQLite. Falhas em um item aparecem como aviso e marcam a captura como parcial.
+5. As notas do Canvas são das atividades online (A1). A nota oficial continua sendo a do boletim do Lyceum, e a captura não altera `dados/notas/`.
+
+No mesmo painel, **Nota final ponderada** calcula localmente a NFp (A1 × 0,4 + maior entre A2 e A3 × 0,6; especiais com A4 e aprovação com 7,0) e a nota mínima que falta na prova. É uma estimativa.
+
 ### Consultar e estudar materiais do Canvas
 
 1. Abra **Matérias** e selecione **Abrir Canvas para entrar**. O Chromium do Estuda UVA usa um perfil próprio; faça o login manualmente nessa janela.

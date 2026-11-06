@@ -16,6 +16,8 @@ Os caminhos de tela vêm dos tutoriais oficiais extraídos para o acervo (ver [F
 
 **Legenda de estado:** ✅ implementado no código · 🟡 procedimento definido, a implementar · ⛔ manual, o app não automatiza.
 
+✅ quer dizer código e testes offline no checkout. Não quer dizer que a leitura já tenha rodado numa sessão autenticada; isso fica registrado em [Pendências](#pendências-deste-guia).
+
 ## Índice rápido: “quero…”
 
 | Quero… | Subsistema | Procedimento | Estado |
@@ -23,11 +25,11 @@ Os caminhos de tela vêm dos tutoriais oficiais extraídos para o acervo (ver [F
 | Ver notas oficiais (boletim) e média | Sistema do Aluno (Lyceum) | [L1](#l1-boletim-notas-e-média) | ✅ captura genérica · 🟡 rota dedicada |
 | Ver frequência | Sistema do Aluno (Lyceum) | [L2](#l2-frequência) | ✅ captura genérica |
 | Ver histórico, carga horária e pendências | Sistema do Aluno (Lyceum) | [L3](#l3-histórico-do-aluno) | ✅ captura genérica |
-| Ver nota e feedback das AVAs (A1) | Plataforma Virtual (Canvas) | [C4](#c4-notas-e-feedback-das-avas-a1) | 🟡 |
+| Ver nota e feedback das AVAs (A1) | Plataforma Virtual (Canvas) | [C4](#c4-notas-e-feedback-das-avas-a1) |✅ |
 | Ver prazos das atividades | Plataforma Virtual (Canvas) | [C3](#c3-prazos-das-atividades) | ✅ |
-| Ler fórum da disciplina ou do Espaço Curso | Plataforma Virtual (Canvas) | [C5](#c5-fóruns) | 🟡 |
-| Ler avisos da monitoria | Plataforma Virtual (Canvas) | [C6](#c6-avisos) | 🟡 |
-| Ler Caixa de Entrada | Plataforma Virtual (Canvas) | [C7](#c7-caixa-de-entrada) | 🟡 |
+| Ler fórum da disciplina ou do Espaço Curso | Plataforma Virtual (Canvas) | [C5](#c5-fóruns) |✅ |
+| Ler avisos da monitoria | Plataforma Virtual (Canvas) | [C6](#c6-avisos) |✅ |
+| Ler Caixa de Entrada | Plataforma Virtual (Canvas) | [C7](#c7-caixa-de-entrada) |✅ |
 | Baixar materiais (PDF, páginas de aula) | Plataforma Virtual (Canvas) | [C2](#c2-baixar-materiais) | ✅ |
 | Ver nota e feedback de A2/A3 | Sistema de Provas | [P1](#p1-provas-realizadas-nota-e-feedback) | 🟡 |
 | Ver data, horário e local da prova agendada | Sistema de Provas | [P2](#p2-consultar-agendamento) | 🟡 |
@@ -36,7 +38,7 @@ Os caminhos de tela vêm dos tutoriais oficiais extraídos para o acervo (ver [F
 | Pedir revisão de prova A2/A3 | Zeev | [Z2](#z2-abrir-protocolo-incluindo-revisão-de-a2a3) | ⛔ |
 | Pedir histórico, declaração ou serviço | Sistema do Aluno → Secretaria Virtual | [L4](#l4-secretaria-virtual-serviços-e-rematrícula) | ⛔ |
 | Boletos, extrato, negociação | Financeiro / Plataforma de Pagamento | [F1](#5-plataforma-de-pagamento) | ⛔ |
-| Calcular a nota final ponderada | Local (sem rede) | [M1](#m1-nota-final-ponderada) | 🟡 |
+| Calcular a nota final ponderada | Local (sem rede) | [M1](#m1-nota-final-ponderada) | ✅ |
 
 ## Mapa do Portal
 
@@ -139,10 +141,12 @@ Os endpoints abaixo são da API pública do Canvas. Só `/api/v1/courses/:id/ass
 ### C4. Notas e feedback das AVAs (A1)
 
 - **Tela:** disciplina → **Notas** (menu à esquerda). Mostra a pontuação de cada atividade avaliativa; o ícone de comentário abre o feedback do tutor.
-- **Rust (🟡):**
+- **No app:** **Currículos** → painel **Notas, fóruns, avisos e Caixa de Entrada do Canvas** → marcar as partes → **Ler agora**. Comando Tauri `refresh_canvas_academic`; a captura sai em `materias/catalogo/capturas/canvas-<id>.json` e `.md` (pasta ignorada pelo Git) e entra no SQLite pela sincronização. Os itens C4 a C7 são lidos na mesma execução, por todas as disciplinas que `/courses` lista (até 40), incluindo o Espaço Curso.
+- **Rust (✅):** `CanvasSession::capture_canvas_academic` em `browser.rs`; caminhos, conversões e Markdown em `canvas_api.rs`. Toda requisição passa por `canvas_api::validate_api_path` (só `/api/v1/`, sem host, sem `..`) e por `CanvasSession::canvas_api_json` (`fetch` da própria origem, paginação por `Link`, tempo-limite de 45 s). Falha num item vira aviso e deixa a captura parcial; o restante continua.
   1. `GET /api/v1/courses/:id/assignments?include[]=submission&per_page=100` → por tarefa: `name`, `points_possible`, `due_at`, `submission.score`, `submission.grade`, `submission.workflow_state`, `submission.submitted_at`.
   2. Feedback: `GET /api/v1/courses/:id/assignments/:assignment_id/submissions/self?include[]=submission_comments` → `submission_comments[].comment` e `created_at`. A validar: confirmar na instância que essa leitura não muda o indicador de comentário não lido (`REGISTRO_ACADEMICO.md` registra que os comentários foram deixados fechados de propósito).
-  3. Gravar em `dados/notas/<período>/<disciplina>.json` no campo `canvasAvaTotals`, com fonte e data, sem substituir a nota do Lyceum.
+  3. Busca o feedback só de atividades com entrega ou correção, até 40 por disciplina.
+  4. A captura não altera `dados/notas/`. Passar valores para `canvasAvaTotals` continua sendo revisão humana, com fonte e data, sem substituir a nota do Lyceum.
 - **Pedir revisão de AVA:** pela **Caixa de Entrada** do Canvas ao tutor. ⛔ manual.
 
 ### C5. Fóruns
@@ -156,10 +160,10 @@ Há quatro tipos:
 | Fórum de Interação dos Alunos | página inicial do **Espaço Curso** | colegas |
 | Fórum Fale com o Coordenador | página inicial do **Espaço Curso** | coordenação, até 48 h úteis |
 
-- **Rust (🟡), leitura:**
+- **Rust (✅), leitura:** mesma execução de C4 (`capture_course_forums`).
   1. `GET /api/v1/courses/:id/discussion_topics?per_page=100` → `id`, `title`, `posted_at`, `last_reply_at`, `discussion_subentry_count`, `assignment_id` (preenchido = fórum avaliativo), `locked`.
   2. `GET /api/v1/courses/:id/discussion_topics/:topic_id/view` → árvore completa de mensagens (`view[]`, `replies[]`) e `participants[]` para resolver nomes.
-  3. Converter para Markdown (uma seção por mensagem, com autor e data) em arquivo novo por tópico.
+  3. `canvas_api::apply_discussion_view` achata a árvore na ordem da conversa, com profundidade, autor e data; HTML vira texto (`html_to_text`). Limites: 60 fóruns por disciplina e 2.000 mensagens por fórum. Fórum que exige postagem inicial pode recusar `/view`; isso aparece como aviso.
   4. Não abrir a página HTML do tópico para ler; a interface web pode marcar entradas como lidas. A validar: confirmar que `/view` não altera o estado de leitura.
 - **Postar ou responder:** ⛔ manual. No fórum avaliativo, a postagem é a entrega da A1.
 - **Privacidade:** mensagens de colegas são dados de terceiros. Gravar só no acervo local ignorado pelo Git, ou omitir autores que não sejam tutor/coordenação.
@@ -167,14 +171,14 @@ Há quatro tipos:
 ### C6. Avisos
 
 - **Tela:** **Quadro de Avisos** do Espaço Curso (monitoria administrativa) e avisos de cada disciplina. A monitoria também os encaminha para a Caixa de Entrada.
-- **Rust (🟡):** `GET /api/v1/announcements?context_codes[]=course_<id>&per_page=100` (aceita vários `context_codes[]`; incluir o Espaço Curso) → `title`, `posted_at`, `message` (HTML → texto). Gravar arquivo novo por captura.
+- **Rust (✅):** `GET /api/v1/courses/:id/discussion_topics?only_announcements=true&per_page=50` por disciplina, incluindo o Espaço Curso → `title`, `posted_at`, autor, `message` (HTML → texto). Foi escolhido no lugar de `/api/v1/announcements` porque esse endpoint, sem `start_date`/`end_date`, devolve só as últimas semanas.
 
 ### C7. Caixa de Entrada
 
 - **Tela:** **Caixa de Entrada** do Canvas. Canais: Monitoria Administrativa (24 h úteis), Tutor (48 h úteis), Coordenador (48 h úteis).
-- **Rust (🟡), leitura:**
+- **Rust (✅), leitura:** `capture_inbox`, desmarcado por padrão no painel por ter mensagens privadas.
   1. `GET /api/v1/conversations?scope=inbox&per_page=50` → assunto, participantes, `last_message_at`, `workflow_state`.
-  2. `GET /api/v1/conversations/:id?auto_mark_as_read=false`. **Obrigatório** passar `auto_mark_as_read=false`: sem ele o Canvas marca a conversa como lida.
+  2. `GET /api/v1/conversations/:id?auto_mark_as_read=false`. **Obrigatório** passar `auto_mark_as_read=false`: sem ele o Canvas marca a conversa como lida. `validate_api_path` recusa qualquer leitura de conversa sem esse parâmetro, e há teste para isso. Até 100 conversas por captura.
 - **Enviar mensagem:** ⛔ manual.
 
 ### C8. Enviar AVA, A4 e tarefas
@@ -246,7 +250,7 @@ Regra dos critérios oficiais de avaliação da graduação EAD (2024):
 - **Disciplinas especiais (estágio, TCC, monografia):** sem A2/A3; `NFp = A1 × 0,4 + A4 × 0,6`, aprovação com `NFp ≥ 7,0`, sem 2ª chamada nem recuperação.
 - **Pendência:** o tutorial menciona disciplinas sem A1, mas não traz a fórmula para elas. Não calcular nesse caso; consultar os Critérios Avaliativos da disciplina.
 
-**Rust (🟡):** função pura (`fn nota_final(a1, a2, a3, a4, tipo) -> Resultado`) com testes cobrindo os exemplos do tutorial (10/9/7 → 9,4; 10/4/8 → 8,8; especial 10/9 → 9,4). O resultado é **estimativa** até o Lyceum publicar a média oficial e deve ser exibido assim.
+**Rust (✅):** `grading::final_grade` (`app/src-tauri/src/grading.rs`), comando Tauri `calculate_final_grade`, painel **Nota final ponderada** em **Currículos**. A conta usa centésimos inteiros, então a comparação com 6,0 e 7,0 é exata (6,66 com A1 = 5 dá 5,996 e reprova; o app mostra 5,99, nunca 6,00). Também informa a nota mínima necessária na prova que falta (A2/A3 ou A4). Testes cobrem os exemplos do tutorial (10/9/7 → 9,4; 10/4/8 → 8,8; especial 10/9 → 9,4), o limite exato, A1 = 0 e entradas inválidas. O resultado aparece como **estimativa** até o Lyceum publicar a média oficial.
 
 ---
 
@@ -254,7 +258,8 @@ Regra dos critérios oficiais de avaliação da graduação EAD (2024):
 
 - Registrar o host do Sistema de Provas, do Zeev e da Plataforma de Pagamento na primeira abertura pela janela do app.
 - Registrar as rotas `#/...` do Lyceum para Boletim, Frequência e Histórico do Aluno. Só `#/home/servico-list` foi observada até agora.
-- Validar na instância UVA os endpoints Canvas de C4 a C7 e os efeitos de leitura apontados acima.
+- Rodar a leitura C4–C7 numa sessão autenticada pelo app. Até agora só há testes offline com JSON de exemplo; nenhuma captura real foi feita.
+- Validar na instância UVA os efeitos de leitura: se `submissions/self?include[]=submission_comments` e `discussion_topics/:id/view` mudam algum indicador de “não lido”. Até confirmar, rodar primeiro com uma disciplina antiga.
 - O atalho Moodle do Lyceum respondeu HTTP 404 em 9/10/2026; não faz parte da navegação.
 
 ## Fontes
