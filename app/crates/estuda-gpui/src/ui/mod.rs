@@ -13,6 +13,10 @@ pub mod usuario;
 
 use std::time::Duration;
 
+use estuda_core::catalog::scanner::{LocalDocument, LocalDocumentContent};
+
+use crate::services::Services;
+
 use gpui_kit::gpui::{
     AnyElement, ClickEvent, Context, FontWeight, InteractiveElement, IntoElement, MouseButton,
     ParentElement, Render, StatefulInteractiveElement, Styled, Window, div, prelude::*, px,
@@ -132,10 +136,19 @@ pub struct AppView {
     pub log: Vec<(String, String)>,
     pub ram_limit: u32,
     pub prefs: [bool; 4],
+    /// Serviços do acervo; `None` quando a pasta não pôde ser aberta.
+    pub services: Option<Services>,
+    /// Documentos do índice em RAM (sem varrer o disco a cada tela).
+    pub library: Vec<LocalDocument>,
+    pub library_status: String,
+    /// Documento aberto no leitor, lido sob demanda.
+    pub doc: Option<LocalDocumentContent>,
+    /// RSS do processo em MB, atualizado periodicamente.
+    pub ram_used_mb: Option<u64>,
 }
 
 impl AppView {
-    pub fn new() -> Self {
+    pub fn new(services: Option<Services>) -> Self {
         Self {
             screen: Screen::Painel,
             dark: false,
@@ -162,6 +175,11 @@ impl AppView {
             log: vec![("—".into(), "Nenhuma leitura nesta sessão".into())],
             ram_limit: 256,
             prefs: [true, true, true, true],
+            services,
+            library: Vec::new(),
+            library_status: String::from("Acervo não carregado"),
+            doc: None,
+            ram_used_mb: None,
         }
     }
 
@@ -251,16 +269,8 @@ impl AppView {
 
     fn sidebar(&self, p: &Palette, cx: &mut Context<Self>) -> impl IntoElement {
         let (sync_label, sync_color) = self.sync_status(p);
-        let ram_used = (self.ram_limit as f32
-            * (0.18
-                + 0.04
-                    * self
-                        .src_state
-                        .iter()
-                        .filter(|s| **s == SrcState::Done)
-                        .count() as f32))
-            .round();
-        let ram_pct = ram_used / self.ram_limit as f32 * 100.;
+        let ram_used = self.ram_used_mb.unwrap_or(0);
+        let ram_pct = ram_used as f32 / self.ram_limit as f32 * 100.;
 
         let mut nav = div().flex().flex_col().gap(px(2.));
         for screen in Screen::ALL {
@@ -386,7 +396,7 @@ impl AppView {
                         div()
                             .font_family(FONT_NUMERIC)
                             .text_color(p.muted)
-                            .child(format!("RAM {} / {} MB", ram_used as u32, self.ram_limit)),
+                            .child(format!("RAM {} / {} MB", ram_used, self.ram_limit)),
                     ),
             )
     }
@@ -524,11 +534,84 @@ impl AppView {
 }
 
 impl AppView {
-    /// Abre um documento no leitor e reinicia a conversão animada.
+    /// Lê o Markdown do documento escolhido e abre o leitor com a conversão animada.
     pub fn open_doc(&mut self, idx: usize, cx: &mut Context<Self>) {
-        self.doc_idx = idx;
+        let Some(document) = self.library.get(idx).cloned() else {
+            return;
+        };
         self.screen = Screen::Leitor;
-        self.convert(cx);
+        self.doc = None;
+        self.doc_idx = idx;
+        let Some(services) = self.services.clone() else {
+            self.library_status = "Acervo indisponível".into();
+            cx.notify();
+            return;
+        };
+        cx.spawn(async move |this, cx| {
+            let relative = document.relative_path.clone();
+            let result = cx
+                .background_spawn(async move { services.read_document(&relative) })
+                .await;
+            let _ = this.update(cx, |this, cx| {
+                match result {
+                    Ok(content) => {
+                        this.doc = Some(content);
+                        this.convert(cx);
+                    }
+                    Err(error) => this.library_status = error,
+                }
+                cx.notify();
+            });
+        })
+        .detach();
+        cx.notify();
+    }
+
+    /// Atualiza a leitura de memória do processo a cada 3 s, sem bloquear a interface.
+    pub fn start_memory_monitor(&mut self, cx: &mut Context<Self>) {
+        cx.spawn(async move |this, cx| {
+            loop {
+                let used = cx.background_spawn(async { crate::services::resident_mb() }).await;
+                let alive = this
+                    .update(cx, |this, cx| {
+                        this.ram_used_mb = used;
+                        cx.notify();
+                    })
+                    .is_ok();
+                if !alive {
+                    break;
+                }
+                cx.background_executor().timer(Duration::from_secs(3)).await;
+            }
+        })
+        .detach();
+    }
+
+    /// Relê a pasta do acervo em segundo plano e atualiza o índice em RAM.
+    pub fn refresh_library(&mut self, cx: &mut Context<Self>) {
+        let Some(services) = self.services.clone() else {
+            self.library_status = "Acervo indisponível".into();
+            cx.notify();
+            return;
+        };
+        self.library_status = "Lendo a pasta do acervo…".into();
+        cx.notify();
+        cx.spawn(async move |this, cx| {
+            let result = cx
+                .background_spawn(async move { services.refresh() })
+                .await;
+            let _ = this.update(cx, |this, cx| {
+                match result {
+                    Ok(snapshot) => {
+                        this.library_status = format!("{} documentos no índice", snapshot.documents.len());
+                        this.library = snapshot.documents;
+                    }
+                    Err(error) => this.library_status = error,
+                }
+                cx.notify();
+            });
+        })
+        .detach();
     }
 
     /// Animação de conversão do leitor (10 passos de 220 ms, como no layout).

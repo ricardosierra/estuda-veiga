@@ -1,6 +1,7 @@
 //! Estuda UVA nativo: interface GPUI com o layout do canvas "Estuda UVA".
 
 mod assets;
+mod services;
 mod theme;
 mod ui;
 
@@ -21,7 +22,21 @@ fn main() {
                     ..Default::default()
                 },
                 |window, cx| {
-                    let view = cx.new(|_| ui::AppView::new());
+                    let view = cx.new(|cx| {
+                        let root = services::default_library();
+                        let (services, status) = match services::Services::open(root.clone()) {
+                            Ok(services) => (Some(services), None),
+                            Err(error) => (None, Some(error)),
+                        };
+                        let mut view = ui::AppView::new(services);
+                        if let Some(status) = status {
+                            view.library_status = status;
+                        } else {
+                            view.refresh_library(cx);
+                        }
+                        view.start_memory_monitor(cx);
+                        view
+                    });
                     cx.new(|cx| Root::new(view, window, cx))
                 },
             )
