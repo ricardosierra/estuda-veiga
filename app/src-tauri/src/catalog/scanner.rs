@@ -467,7 +467,7 @@ fn should_skip_directory(root: &Path, directory: &Path) -> bool {
             .first()
             .map(|part| part.to_ascii_lowercase())
             .as_deref(),
-        Some("docs" | "materias" | "originais")
+        Some("docs" | "materias" | "originais" | "fontes-uva" | "periodos" | "cursos")
     );
     !in_academic_tree
         || components.windows(2).any(|parts| {
@@ -500,7 +500,11 @@ fn is_in_scope_file(root: &Path, path: &Path) -> bool {
             !second.eq_ignore_ascii_case("superpowers")
         }
         [first, ..] => {
-            first.eq_ignore_ascii_case("materias") || first.eq_ignore_ascii_case("originais")
+            first.eq_ignore_ascii_case("materias")
+                || first.eq_ignore_ascii_case("originais")
+                || first.eq_ignore_ascii_case("fontes-uva")
+                || first.eq_ignore_ascii_case("periodos")
+                || first.eq_ignore_ascii_case("cursos")
         }
         _ => false,
     }
@@ -692,6 +696,33 @@ mod tests {
             .documents
             .iter()
             .any(|document| document.relative_path == "materias/bases-de-programacao/anexo.bin"));
+    }
+
+    #[test]
+    fn indexes_top_level_academic_folders_moved_out_of_materias() {
+        let root = tempfile::tempdir().unwrap();
+        let files = [
+            "fontes-uva/2026.2/bases-de-programacao/BPR_Cap_01.md",
+            "periodos/2026.2/README.md",
+            "cursos/engenharia-de-computacao/README.md",
+        ];
+        for relative in files {
+            let file = root.path().join(relative);
+            fs::create_dir_all(file.parent().unwrap()).unwrap();
+            fs::write(&file, "Conteúdo acadêmico.").unwrap();
+        }
+
+        let snapshot = scan_library(root.path()).unwrap();
+
+        for relative in files {
+            assert!(
+                snapshot
+                    .documents
+                    .iter()
+                    .any(|document| document.relative_path == relative),
+                "{relative} deveria estar no catálogo"
+            );
+        }
     }
 
     #[test]

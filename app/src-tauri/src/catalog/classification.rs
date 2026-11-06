@@ -92,6 +92,24 @@ fn classify_category(parts: &[&str]) -> String {
             "documentação acadêmica".into()
         }
         Some("materias") => "não classificado".into(),
+        Some("fontes-uva") if is_official_record_file(&file_name) => "registro acadêmico".into(),
+        Some("fontes-uva")
+            if parts
+                .iter()
+                .any(|part| matches!(fold(part).as_str(), "apoio" | "institucional")) =>
+        {
+            "documentação acadêmica".into()
+        }
+        Some("fontes-uva") => "material acadêmico".into(),
+        Some("cursos") => "histórico de programa".into(),
+        Some("periodos") => match file_name.trim_end_matches(".md") {
+            "readme" => "registro de cursos".into(),
+            "materiais" => "índice de materiais".into(),
+            "calendario" => "calendário acadêmico".into(),
+            "notas-de-estudo" => "notas de estudo".into(),
+            "futuros" => "planejamento acadêmico".into(),
+            _ => "não classificado".into(),
+        },
         Some("originais") => "original acadêmico".into(),
         Some("docs") => "documentação".into(),
         _ => {
@@ -151,7 +169,7 @@ mod tests {
     #[test]
     fn classifies_known_course_and_only_explicit_semester() {
         let classification = classify_path(Path::new(
-            "materias/fontes-uva/2026.2/bases-de-programacao/capitulo-01.txt",
+            "fontes-uva/2026.2/bases-de-programacao/capitulo-01.txt",
         ));
 
         assert_eq!(
@@ -183,7 +201,7 @@ mod tests {
             "registro-de-frequencia.md",
             "registro-de-presenca.md",
         ] {
-            let path = format!("materias/fontes-uva/2026.2/bases-de-programacao/{file_name}");
+            let path = format!("fontes-uva/2026.2/bases-de-programacao/{file_name}");
             assert_eq!(
                 classify_path(Path::new(&path)).category,
                 "registro acadêmico",

@@ -419,8 +419,8 @@ mod tests {
 
     fn prepare_subject(root: &Path) -> (CatalogService, AcademicStore) {
         let library = root.join("library");
-        let course = library.join("materias/fontes-uva/2026.2/bases-de-programacao");
-        let previous_semester = library.join("materias/fontes-uva/2025.2/bases-de-programacao");
+        let course = library.join("fontes-uva/2026.2/bases-de-programacao");
+        let previous_semester = library.join("fontes-uva/2025.2/bases-de-programacao");
         std::fs::create_dir_all(&course).unwrap();
         std::fs::create_dir_all(&previous_semester).unwrap();
         std::fs::write(
@@ -520,7 +520,7 @@ mod tests {
         let temporary = tempfile::tempdir().unwrap();
         let (catalog, store) = prepare_subject(temporary.path());
         let root = store.library_path().unwrap();
-        let course = root.join("materias/fontes-uva/2026.2/bases-de-programacao");
+        let course = root.join("fontes-uva/2026.2/bases-de-programacao");
         let imported_path = course.join("canvas-importado.md");
         std::fs::write(&imported_path, "Conteúdo importado do Canvas.").unwrap();
         let unreadable_path = course.join("aula-inacessivel.md");
@@ -532,8 +532,8 @@ mod tests {
         store
             .save_material(
                 &imported_material(
-                    "materias/fontes-uva/2026.2/bases-de-programacao/canvas-importado.md".into(),
-                    "materias/fontes-uva/2026.2/bases-de-programacao/aula-derivada.md",
+                    "fontes-uva/2026.2/bases-de-programacao/canvas-importado.md".into(),
+                    "fontes-uva/2026.2/bases-de-programacao/aula-derivada.md",
                 ),
                 "fixture-hash",
             )
@@ -551,8 +551,8 @@ mod tests {
         assert_eq!(
             paths,
             [
-                "materias/fontes-uva/2026.2/bases-de-programacao/aula-local.md",
-                "materias/fontes-uva/2026.2/bases-de-programacao/canvas-importado.md",
+                "fontes-uva/2026.2/bases-de-programacao/aula-local.md",
+                "fontes-uva/2026.2/bases-de-programacao/canvas-importado.md",
             ]
         );
         assert!(
