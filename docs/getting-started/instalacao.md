@@ -9,8 +9,7 @@ Este guia cobre o que é preciso ter instalado para ler o acervo, rodar o gerado
 | Item | Versão | Fundamento |
 |---|---|---|
 | Rust | 1.90 ou mais novo, edition 2024. A revisão usou `rustc 1.99.0`. | `rust-version = "1.90"` em `app/Cargo.toml` e `crates/estuda-domain/Cargo.toml` |
-| Node.js | 24. A revisão usou `v24.22.0`. | `tools/acervo` usa `node:sqlite`; `npm test` usa `--experimental-strip-types` |
-| npm | o que acompanha o Node | `app/package.json` |
+| Node.js | 24. A revisão usou `v24.22.0`. | `tools/acervo` usa `node:sqlite`. É o único uso de Node: o frontend React foi removido (`aeab5f8`) e `npm` não é mais necessário |
 | Chromium ou Chrome | atual | só para capturar Canvas e Portal |
 | `pdftotext` (poppler) | qualquer | só para `tools/acervo/src/pdf-para-md.mjs` |
 | Git | qualquer | a tela de dados mostra o estado do repositório |
@@ -21,13 +20,12 @@ O teste `launches_real_isolated_chromium_and_reads_fixture_dom` de `estuda-core`
 
 ## Dependências nativas da interface GPUI
 
-**Planejado / não verificado.** O crate `estuda-gpui` não declara dependência de GPUI (`app/crates/estuda-gpui/Cargo.toml` só depende de `estuda-core`), então nenhuma dependência nativa de GPUI é exigida hoje. Quando a migração começar, esta seção precisa ser preenchida com o que o toolchain pedir. Ver [migracao-gpui.md](../arquitetura/migracao-gpui.md).
+**Parcial / não verificado.** O crate `estuda-gpui` depende de `gpui-kit = "0.9.0"` (`app/crates/estuda-gpui/Cargo.toml`) e já abre janela com 8 telas. As dependências nativas que o GPUI exige em cada sistema **não foram verificadas**; em 2026-11-06 o crate não compilava por uma edição em andamento (`E0583`, módulo `speech` ausente). Ver [migracao-gpui.md](../arquitetura/migracao-gpui.md).
 
 ## Obter e preparar o código
 
 ```sh
 cd Faculdade                      # raiz do repositório
-npm install --prefix app          # dependências do frontend (React, Vite, Tauri CLI)
 ```
 
 O gerador do acervo (`tools/acervo`) não tem dependências externas e não precisa de `npm install`.
@@ -39,8 +37,7 @@ Comandos que existem e foram executados em 2026-11-06:
 ```sh
 node tools/acervo/build.mjs --validar        # OK: 234 registros válidos
 node tools/acervo/build.mjs --verificar-texto  # 0 erros, 0 avisos
-npm test --prefix app                        # 40 testes
-cargo test --offline --manifest-path app/Cargo.toml -p estuda-core --lib   # 152 testes
+cargo test --offline --manifest-path app/Cargo.toml -p estuda-core --lib   # 152 testes (antes do esquema v8; recontar)
 ```
 
 `--offline` assume que as dependências já estão no cache do Cargo. Na primeira compilação, sem o cache, omita a flag.
@@ -50,4 +47,4 @@ Compilação completa e uso do aplicativo: [ambiente-e-compilacao.md](../desenvo
 ## Observações sobre o estado do repositório
 
 - `app/Cargo.lock` está sem versionar e, ao ser conferido com `--locked`, não acompanha o manifesto do workspace (`cargo check --locked -p estuda-gpui` falhou com "cannot update the lock file"). Ver [lacunas-e-contradicoes.md](../referencia/lacunas-e-contradicoes.md).
-- `app/target/` (cerca de 2 GB) não aparece no `.gitignore` e figura como não rastreado.
+- `app/target/` (cerca de 3 GB) não aparece no `.gitignore` e figura como não rastreado.
