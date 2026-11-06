@@ -13,7 +13,8 @@ Este diretório descreve como o acervo e o Estuda UVA podem usar a API da Anthro
 - **Chave:** `ANTHROPIC_API_KEY` está definida no `.env` do projeto `~/Dev/Projetos/gerenciador-de-conteudo/` (permissão `0600`). O valor não foi lido para este repositório nem copiado. O arquivo não faz parte do Git.
 - **Modelo configurado:** `ANTHROPIC_MODEL=claude-haiku-5-5`. Sem a variável, o padrão do código também é `claude-haiku-5-5`.
 - **Opus e Sonnet:** não estão configurados no app. Hoje há um único modelo para todas as chamadas.
-- **Cliente Rust:** `app/src-tauri/src/anthropic.rs`, ainda não versionado. Os 8 testes com servidor mock passaram em `cargo test anthropic`. Essa verificação não fez nenhuma chamada real à API, então a chave ainda não foi validada contra a Anthropic.
+- **Ping real (2026-11-06):** uma chamada mínima com `claude-haiku-5-5` foi feita com a chave lida do `.env`. Resposta `HTTP 400`: "This API key is not scoped to a workspace, so this request must include the anthropic-workspace-id header". A chave chega à API, mas não funciona sem o ID do workspace.
+- **Cliente Rust:** `app/src-tauri/src/anthropic.rs`, ainda não versionado. Envia só `x-api-key` e `anthropic-version`, sem `anthropic-workspace-id`. Com essa chave, o app receberia o mesmo 400. Os 8 testes com servidor mock passaram em `cargo test anthropic`, mas eles não exercitam a API real.
 - **Resumos com IA:** spec em `docs/superpowers/specs/2026-10-14-estuda-uva-resumos-anthropic-design.md`, plano em `docs/superpowers/plans/2026-10-14-estuda-uva-resumos-anthropic.md`, código em `app/src-tauri/src/study_summaries.rs`. Também não versionado.
 - **Tutor interativo:** funciona sem IA, por decisão de design (`docs/superpowers/specs/2026-10-14-estuda-uva-tutor-interativo-local-design.md`).
 
