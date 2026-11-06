@@ -75,7 +75,9 @@ fn find_explicit_semester(segment: &str) -> Option<&str> {
 }
 
 fn classify_category(parts: &[&str]) -> String {
+    let file_name = parts.last().map(|part| fold(part)).unwrap_or_default();
     match parts.first().map(|part| fold(part)).as_deref() {
+        Some("materias") if is_official_record_file(&file_name) => "registro acadêmico".into(),
         Some("materias") if parts.iter().any(|part| known_course(part).is_some()) => {
             "material acadêmico".into()
         }
@@ -93,8 +95,7 @@ fn classify_category(parts: &[&str]) -> String {
         Some("originais") => "original acadêmico".into(),
         Some("docs") => "documentação".into(),
         _ => {
-            let file_name = parts.last().map(|part| fold(part)).unwrap_or_default();
-            if file_name.starts_with("registro_academico") {
+            if is_official_record_file(&file_name) {
                 "registro acadêmico".into()
             } else if file_name.starts_with("cursos_") {
                 "registro de cursos".into()
@@ -115,6 +116,22 @@ fn classify_category(parts: &[&str]) -> String {
             }
         }
     }
+}
+
+fn is_official_record_file(file_name: &str) -> bool {
+    let normalized = file_name.replace('_', "-");
+    [
+        "registro-academico",
+        "registro-de-notas",
+        "notas-oficiais",
+        "boletim-escolar",
+        "historico-escolar",
+        "historico-academico",
+        "registro-de-frequencia",
+        "registro-de-presenca",
+    ]
+    .iter()
+    .any(|prefix| normalized.starts_with(prefix))
 }
 
 fn fold(value: &str) -> String {
@@ -152,6 +169,27 @@ mod tests {
         assert_eq!(classification.course, None);
         assert_eq!(classification.semester, None);
         assert_eq!(classification.category, "não classificado");
+    }
+
+    #[test]
+    fn keeps_official_academic_records_out_of_materials_inside_subject_folders() {
+        for file_name in [
+            "registro_academico.md",
+            "registro-de-notas.md",
+            "notas-oficiais.md",
+            "boletim-escolar.md",
+            "histórico-escolar.md",
+            "histórico-acadêmico.md",
+            "registro-de-frequencia.md",
+            "registro-de-presenca.md",
+        ] {
+            let path = format!("materias/fontes-uva/2026.2/bases-de-programacao/{file_name}");
+            assert_eq!(
+                classify_path(Path::new(&path)).category,
+                "registro acadêmico",
+                "{file_name} must not enter material-based study summaries",
+            );
+        }
     }
 
     #[test]

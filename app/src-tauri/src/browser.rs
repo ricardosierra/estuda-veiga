@@ -1,8 +1,10 @@
 use crate::{
     calendar::CanvasAssignment,
     canvas::{
-        Course, ModuleGroup, discover_material_links, group_module_items, parse_courses,
-        parse_module_items,
+        CanvasCourseInventory, CanvasCourseListing, CanvasModuleItemContent, Course,
+        CourseListingAccumulator, MaterialLink, ModuleGroup, discover_material_links,
+        group_module_items, module_item_url, parse_course_page, parse_courses, parse_module_items,
+        sanitize_source_url,
     },
     download::validate_material_url,
     lyceum::{self, PortalCapture, PortalState, PortalStatus, VisibleLink},
@@ -23,6 +25,36 @@ use tokio::{
 const BROWSER_CLOSE_TIMEOUT: Duration = Duration::from_secs(5);
 const BROWSER_EXIT_TIMEOUT: Duration = Duration::from_secs(5);
 const BROWSER_KILL_TIMEOUT: Duration = Duration::from_secs(5);
+
+fn pdf_reference_content(
+    url: &url::Url,
+    title: &str,
+) -> Result<CanvasModuleItemContent, BrowserError> {
+    validate_material_url(url.as_str()).map_err(|_| BrowserError::Content)?;
+    let source_url = sanitize_source_url(url.as_str()).ok_or(BrowserError::Content)?;
+    let canvas_item_id = url
+        .path_segments()
+        .map(|segments| segments.collect::<Vec<_>>())
+        .and_then(|segments| {
+            segments
+                .windows(2)
+                .find(|parts| parts[0] == "files")
+                .map(|parts| parts[1].to_owned())
+        })
+        .filter(|id| id.bytes().all(|byte| byte.is_ascii_digit()));
+    Ok(CanvasModuleItemContent {
+        canvas_item_id,
+        title: title.into(),
+        source_url,
+        markdown: None,
+        pdf_links: vec![MaterialLink {
+            title: title.into(),
+            href: url.to_string(),
+            embedded: false,
+        }],
+        unsupported_reason: None,
+    })
+}
 
 #[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 #[serde(rename_all = "snake_case")]
@@ -179,6 +211,144 @@ impl CanvasSession {
                 BrowserError::Page("não foi possível ler a página do Canvas".into())
             })?;
         Ok(parse_courses(&content))
+    }
+
+    pub async fn list_all_courses(
+        &self,
+        max_pages: usize,
+    ) -> Result<CanvasCourseListing, BrowserError> {
+        let mut accumulator = CourseListingAccumulator::new(max_pages);
+        let mut page_url = Some("https://uva.instructure.com/courses".to_owned());
+        while let Some(url) = page_url.take() {
+            if !matches!(self.status().await.state, CanvasState::Authenticated) {
+                return Err(BrowserError::Page(
+                    "Entre manualmente no Canvas na janela Chromium para continuar a captura."
+                        .into(),
+                ));
+            }
+            self.page.goto(url.as_str()).await.map_err(|_| {
+                BrowserError::Page("não foi possível abrir a lista do Canvas".into())
+            })?;
+            if !matches!(self.status().await.state, CanvasState::Authenticated) {
+                return Err(BrowserError::Page(
+                    "A sessão do Canvas expirou. Entre novamente na janela Chromium.".into(),
+                ));
+            }
+            let content = self.page.content().await.map_err(|_| {
+                BrowserError::Page("não foi possível ler a lista de matérias do Canvas".into())
+            })?;
+            let page = parse_course_page(&content, &url);
+            page_url = accumulator.push_page(&url, page);
+        }
+        Ok(accumulator.finish())
+    }
+
+    pub async fn load_course_inventory(
+        &self,
+        course_id: &str,
+        max_items: usize,
+    ) -> Result<CanvasCourseInventory, BrowserError> {
+        if course_id.is_empty() || !course_id.bytes().all(|byte| byte.is_ascii_digit()) {
+            return Err(BrowserError::Content);
+        }
+        if !matches!(self.status().await.state, CanvasState::Authenticated) {
+            return Err(BrowserError::Page(
+                "Entre manualmente no Canvas na janela Chromium para continuar a captura.".into(),
+            ));
+        }
+        self.page
+            .goto(format!("https://uva.instructure.com/courses/{course_id}"))
+            .await
+            .map_err(|_| BrowserError::Page("não foi possível abrir a matéria".into()))?;
+        if !matches!(self.status().await.state, CanvasState::Authenticated) {
+            return Err(BrowserError::Page(
+                "A sessão do Canvas expirou. Entre novamente na janela Chromium.".into(),
+            ));
+        }
+        let content =
+            self.page.content().await.map_err(|_| {
+                BrowserError::Page("não foi possível ler os módulos da matéria".into())
+            })?;
+        let mut items = parse_module_items(&content);
+        let limit = max_items.clamp(1, 20_000);
+        let complete = items.len() <= limit;
+        items.truncate(limit);
+        Ok(CanvasCourseInventory {
+            modules: group_module_items(items),
+            complete,
+            warning: (!complete)
+                .then(|| format!("A lista de aulas foi interrompida no limite de {limit} itens.")),
+        })
+    }
+
+    pub async fn read_module_item(
+        &mut self,
+        course_id: &str,
+        href: &str,
+    ) -> Result<CanvasModuleItemContent, BrowserError> {
+        let url = module_item_url(course_id, href).ok_or(BrowserError::Content)?;
+        if !matches!(self.status().await.state, CanvasState::Authenticated) {
+            return Err(BrowserError::Page(
+                "Entre manualmente no Canvas na janela Chromium para continuar a captura.".into(),
+            ));
+        }
+        let initial_path = url.path().to_ascii_lowercase();
+        if initial_path.starts_with("/files/")
+            || initial_path.contains("/files/")
+            || initial_path.ends_with(".pdf")
+        {
+            return Ok(pdf_reference_content(&url, "Material PDF")?);
+        }
+
+        self.page
+            .goto(url.as_str())
+            .await
+            .map_err(|_| BrowserError::Page("não foi possível abrir a aula do Canvas".into()))?;
+        let final_url = self
+            .page
+            .url()
+            .await
+            .map_err(|_| BrowserError::Page("não foi possível validar a página aberta".into()))?
+            .ok_or(BrowserError::Content)?;
+        let parsed_final_url = url::Url::parse(&final_url).map_err(|_| BrowserError::Content)?;
+        if parsed_final_url.host_str() != Some("uva.instructure.com") {
+            if validate_material_url(&final_url).is_ok()
+                && (parsed_final_url
+                    .path()
+                    .to_ascii_lowercase()
+                    .ends_with(".pdf")
+                    || initial_path.contains("/modules/items/"))
+            {
+                return pdf_reference_content(&parsed_final_url, "Material PDF");
+            }
+            return Err(BrowserError::Content);
+        }
+        if !matches!(self.status().await.state, CanvasState::Authenticated) {
+            return Err(BrowserError::Page(
+                "A sessão do Canvas expirou. Entre novamente na janela Chromium.".into(),
+            ));
+        }
+        let content =
+            self.page.content().await.map_err(|_| {
+                BrowserError::Page("não foi possível ler o conteúdo da aula".into())
+            })?;
+        match crate::canvas::parse_canvas_page(&content, &final_url) {
+            Ok(content) => Ok(content),
+            Err(crate::canvas::CanvasParseError::MissingContent) => {
+                let pdf_links = discover_material_links(&content, &final_url);
+                Ok(CanvasModuleItemContent {
+                    canvas_item_id: None,
+                    title: "Conteúdo da aula".into(),
+                    source_url: sanitize_source_url(&final_url).ok_or(BrowserError::Content)?,
+                    markdown: None,
+                    unsupported_reason: pdf_links
+                        .is_empty()
+                        .then(|| "O item não apresenta texto ou PDF selecionável.".into()),
+                    pdf_links,
+                })
+            }
+            Err(crate::canvas::CanvasParseError::UnsafePageUrl) => Err(BrowserError::Content),
+        }
     }
 
     pub async fn load_course(&self, course_id: &str) -> Result<Vec<ModuleGroup>, BrowserError> {
