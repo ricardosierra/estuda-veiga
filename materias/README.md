@@ -8,9 +8,23 @@ Este índice aponta para trabalhos convertidos em texto e outros materiais acad�
 - [AVA 2 — Monitoramento de esteira](bases-de-programacao/ava2-monitoramento-de-esteira.md)
 - [Código VisuAlg complementar](bases-de-programacao/codigo/monitoramento-de-esteira.alg)
 
+## Cálculo de Uma Variável (Cálculo 1)
+
+- [AVA 1 — Custo marginal, pontos críticos e segunda derivada](calculo-de-uma-variavel/ava1-custo-marginal-pontos-criticos.md)
+
 ## Desenvolvimento de Aplicações para Web
 
 - [Notas autorais das unidades de 2026.1](../NOTAS_DE_ESTUDO_2026.1.md), com os links oficiais para consultar os materiais completos.
+
+## Estatística para Computação
+
+- [AVA 1 — Amostra versus população: métodos de pesquisa e análise estatística](estatistica-para-computacao/ava1-amostra-populacao-analise-estatistica.md)
+
+## Linguagens Formais e Autômatos
+
+- [AVA 1 — Autômato Finito Determinístico para cadeias binárias terminadas em 1](linguagens-formais-e-automatos/ava1-automato-finito-deterministico.md)
+- [Diagrama de Estados do AFD](linguagens-formais-e-automatos/diagrama-afd-termina-em-1.png)
+- [Modelo JFLAP estrutural](linguagens-formais-e-automatos/automato_termina_em_1.jff)
 
 ## Paradigmas de Programação
 

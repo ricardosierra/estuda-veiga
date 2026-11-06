@@ -1,26 +1,24 @@
-# Catálogo acadêmico estruturado
+# Catálogo acadêmico (gerado)
 
-Os arquivos JSON desta pasta organizam informações já registradas em `REGISTRO_ACADEMICO.md` e `ENGENHARIA_DE_COMPUTACAO.md`. O Estuda UVA poderá carregá-los no SQLite sem reinterpretar os vínculos do Portal/Canvas.
+Os JSON desta pasta são **gerados** por `node tools/acervo/build.mjs` a partir de `dados/`.
+Não edite estes arquivos: a edição se perde no próximo build. Para mudar um dado, edite o registro em `dados/` (veja `dados/LEIA-ME.md`).
 
-## Arquivos
+## Arquivos gerados
 
-- `disciplinas.json`: identificadores canônicos estáveis e referências às ofertas por currículo.
-- `relacoes.json`: possíveis sobreposições entre ofertas; nenhuma relação candidata confirma equivalência ou aproveitamento.
-- `curriculos/uva-ciencia-computacao.json`: 36 pendências exibidas no vínculo atual e as 7 matrículas de 2026.2.
-- `curriculos/uva-engenharia-computacao.json`: 43 pendências do vínculo anterior marcado como evadido.
-- `trajetorias.json`: situação separada de cada vínculo, cargas horárias, notas e frequência observadas, totais de Canvas e limites das fontes.
+- `disciplinas.json`: matérias canônicas (pendências do currículo e matérias cursadas ou em curso).
+- `relacoes.json`: sobreposições candidatas entre ofertas de CC e EC. Nenhuma confirma equivalência ou aproveitamento.
+- `curriculos/uva-ciencia-computacao.json`: 36 pendências do currículo atual e as matrículas de 2026.2.
+- `curriculos/uva-engenharia-computacao.json`: 43 pendências do vínculo anterior, marcado como evadido no Portal.
+- `trajetorias.json`: situação de cada vínculo, carga horária, notas, frequência e totais do Canvas.
 
-## Regras de manutenção
+O app Estuda UVA lê estes arquivos no formato que sempre leu.
 
-- `schemaVersion` é obrigatório. IDs de programa, currículo, oferta, disciplina canônica e trajetória são estáveis.
-- Códigos, grafias exibidas, cargas, datas e estados reproduzem as fontes locais. Um campo ausente não vira aprovação, nota zero ou equivalência.
+## Regras que continuam valendo
+
 - Ciência da Computação e Engenharia de Computação são trajetórias diferentes. Uma disciplina canônica pode referenciar ofertas candidatas sem unir matrículas, status, notas ou créditos.
-- Para atualizar um dado, acrescente uma proveniência com arquivo, seção e data de observação. Preserve também a informação anterior quando uma fonte nova divergir, registrando a divergência.
+- Um campo ausente nas fontes vira `null` com pendência. Nunca vira aprovação, nota zero ou equivalência.
 - Não guardar RA, CPF, credenciais, cookies, tokens, caminhos absolutos ou estado do navegador.
-- Não mover materiais existentes. `offeringIds` e os documentos acadêmicos mantêm referências relativas ao repositório.
 
-## Proveniência e limitações atuais
+## Limitações da fonte
 
-Os catálogos refletem as capturas autenticadas de 9 de outubro de 2026 já documentadas nos dois registros. O histórico disponível não distribui as 330 horas cursadas em Ciência da Computação nem as 1.446 horas da Engenharia por disciplina. A soma das pendências também diverge do total faltante informado em ambos os cursos. Esses números permanecem agregados e com a divergência explícita; não foram distribuídos ou corrigidos por estimativa.
-
-As relações em `relacoes.json` são candidatas para facilitar a busca de materiais em comum. A confirmação depende de ementas ou documento institucional. Até lá, o app deve apresentar cada oferta e trajetória separadamente.
+As capturas autenticadas são de 9 de outubro de 2026. As 330 horas cursadas em Ciência da Computação e as 1.446 horas de Engenharia não são distribuídas por disciplina nas telas observadas. A soma das pendências diverge do total faltante informado pelo Portal nos dois cursos. Essa divergência fica registrada, sem correção por estimativa.

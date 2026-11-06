@@ -22,7 +22,7 @@ A classe Exemplar materializa as unidades físicas emprestáveis e possui identi
 
 **Figura 1 –** Diagrama de Classes do Sistema de Biblioteca Universitária
 
-![Diagrama de classes do sistema de biblioteca](diagramas/diag_classes.png)
+**Figura (texto Mermaid):** Diagrama de classes do sistema de biblioteca — [diagramas/diag_classes.md](diagramas/diag_classes.md)
 
 Fonte: Elaborado pelo autor (2026), gerado via PlantUML com base no cenário proposto.
 
@@ -40,7 +40,7 @@ Por fim, o estado terminal BaixadoDoAcervo representa a eliminação definitiva 
 
 **Figura 2 –** Diagrama de Transição de Estados da Classe Exemplar
 
-![Diagrama de transição de estados da classe Exemplar](diagramas/diag_estados.png)
+**Figura (texto Mermaid):** Diagrama de transição de estados da classe Exemplar — [diagramas/diag_estados.md](diagramas/diag_estados.md)
 
 Fonte: Elaborado pelo autor (2026), gerado via PlantUML.
 
@@ -58,7 +58,7 @@ Na sequência, o sistema atualiza em cascata o status de cada exemplar para Empr
 
 **Figura 3 –** Diagrama de Sequência do Caso de Uso Realizar Empréstimo
 
-![Diagrama de sequência do empréstimo de exemplar](diagramas/diag_sequencia.png)
+**Figura (texto Mermaid):** Diagrama de sequência do empréstimo de exemplar — [diagramas/diag_sequencia.md](diagramas/diag_sequencia.md)
 
 Fonte: Elaborado pelo autor (2026), gerado via PlantUML.
 
