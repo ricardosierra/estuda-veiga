@@ -12,6 +12,9 @@ import { StudyHistory } from "./StudyHistory";
 import { LessonPresenter } from "./LessonPresenter";
 import { invokeWithTimeout } from "./asyncCommand";
 import { AcademicPortal, type PortalCapture, type PortalStatus } from "./AcademicPortal";
+import { CanvasAcademicPanel } from "./CanvasAcademicPanel";
+import type { CanvasAcademicCapture, CanvasAcademicOptions } from "./canvasAcademic";
+import { FinalGradeCalculator } from "./FinalGradeCalculator";
 import { sharedAcademicSubjects, type CatalogCurriculum, type CatalogDiscipline } from "./academicCatalog";
 import { documentsForEnrollment, getOrBeginLessonSession, lessonSectionCount, materialsForEnrollment, normalizeSubjectName, type ActiveEnrollment, type ImportedStudyMaterial, type LessonSession, type StudyDocument, type StudyHistoryEntry } from "./studyTypes";
 import { validateCanvasCaptureLimits, type CanvasCaptureLimits, type CaptureItem, type CaptureRun } from "./canvasCapture";
@@ -53,6 +56,7 @@ export function App() {
   const [status, setStatus] = useState(initialStatus);
   const [portalStatus, setPortalStatus] = useState(initialPortalStatus);
   const [portalCapture, setPortalCapture] = useState<PortalCapture | null>(null);
+  const [canvasAcademicCapture, setCanvasAcademicCapture] = useState<CanvasAcademicCapture | null>(null);
   const [overview, setOverview] = useState<Overview | null>(null);
   const [calendarSemester, setCalendarSemester] = useState("2027.1");
   const [calendarEvents, setCalendarEvents] = useState<CalendarEvent[]>([]);
@@ -313,6 +317,13 @@ export function App() {
     });
     await refreshLocalLibrary();
     setNotice("O registro capturado foi salvo em SQLite, Markdown e JSON.");
+  });
+
+  const captureCanvasAcademic = (options: CanvasAcademicOptions) => withBusy("canvas-academic", async () => {
+    const capture = await invoke<CanvasAcademicCapture>("refresh_canvas_academic", { options });
+    setCanvasAcademicCapture(capture);
+    await refreshLocalLibrary();
+    setNotice(capture.complete ? "Leitura do Canvas concluída e salva no acervo local." : "Leitura parcial do Canvas salva; os avisos mostram o que faltou.");
   });
 
   const pickChromium = () => withBusy("chromium", async () => {
@@ -751,6 +762,8 @@ export function App() {
             <PageIntro eyebrow="UVA · TRAJETÓRIA ACADÊMICA" title="Currículos e disciplinas" copy="Consulte as duas trajetórias e seus registros separados. Disciplinas candidatas a conteúdo comum não representam equivalência nem aproveitamento confirmado." />
             {academicCatalogError && <div className="catalog-note" role="status">{academicCatalogError}</div>}
             <AcademicPortal status={portalStatus} capture={portalCapture} busy={!!busy} onOpen={openLyceum} onCheck={checkLyceum} onCapture={captureLyceum} />
+            <CanvasAcademicPanel canvasConnected={status.state === "authenticated"} capture={canvasAcademicCapture} busy={!!busy} onConnect={() => void connectCanvas()} onCapture={(options) => void captureCanvasAcademic(options)} />
+            <FinalGradeCalculator />
             {academicCatalog && <AcademicCurricula catalog={academicCatalog} />}
           </section>}
 
