@@ -10,7 +10,7 @@
   "note": "Sobreposição de títulos selecionada para revisão; ementas e equivalência oficial não foram confirmadas.",
   "sourceFiles": [
     "REGISTRO_ACADEMICO.md",
-    "ENGENHARIA_DE_COMPUTACAO.md"
+    "cursos/engenharia-de-computacao/README.md"
   ],
   "ordem": 4,
   "pendencias": []

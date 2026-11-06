@@ -32,10 +32,10 @@ const escrever = (relativo, objeto) => {
 const slugDe = (id) => id.split(':').pop();
 const semNulos = [];
 
-const FONTE_2026_2_MATRICULAS = { file: 'CURSOS_2026.2.md', section: 'Matrículas informadas pelo Portal do Aluno', observedAt: '2026-10-14' };
-const FONTE_2026_2_FAVORITOS = { file: 'CURSOS_2026.2.md', section: 'Favoritos que devem aparecer na lista de cursos do Canvas', observedAt: '2026-10-13' };
-const FONTE_2026_1 = { file: 'CURSOS_2026.1.md', section: 'Como navegar', observedAt: '2026-10-08' };
-const FONTE_HISTORICOS = { file: 'CURSOS_HISTORICOS.md', section: 'Cursos anteriores e espaços de apoio', observedAt: '2026-10-09' };
+const FONTE_2026_2_MATRICULAS = { file: 'periodos/2026.2/README.md', section: 'Matrículas informadas pelo Portal do Aluno', observedAt: '2026-10-14' };
+const FONTE_2026_2_FAVORITOS = { file: 'periodos/2026.2/README.md', section: 'Favoritos que devem aparecer na lista de cursos do Canvas', observedAt: '2026-10-13' };
+const FONTE_2026_1 = { file: 'periodos/2026.1/README.md', section: 'Como navegar', observedAt: '2026-10-08' };
+const FONTE_HISTORICOS = { file: 'periodos/historicos/README.md', section: 'Cursos anteriores e espaços de apoio', observedAt: '2026-10-09' };
 const FONTE_BOLETIM = { file: 'REGISTRO_ACADEMICO.md', section: 'Boletim oficial e frequência — 2026.2', observedAt: '2026-10-10' };
 const FONTE_CANVAS_2026_1 = { file: 'REGISTRO_ACADEMICO.md', section: 'Inscrições anteriores no Canvas — 2026.1', observedAt: '2026-10-10' };
 const FONTE_PORTAL_DOCENTE = { file: 'REGISTRO_ACADEMICO.md', section: 'Disciplinas matriculadas em 2026.2', observedAt: '2026-10-10' };

@@ -12,7 +12,7 @@
   "note": "Candidata a mesma disciplina; equivalência curricular e aproveitamento não foram confirmados por fonte institucional.",
   "sourceFiles": [
     "REGISTRO_ACADEMICO.md",
-    "ENGENHARIA_DE_COMPUTACAO.md"
+    "cursos/engenharia-de-computacao/README.md"
   ],
   "ordem": 0,
   "pendencias": []
