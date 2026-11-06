@@ -864,3 +864,34 @@ mod testes {
         assert!(!depois.is_empty(), "motor não voltou a sintetizar após o aborto");
     }
 }
+
+/// Reprodução real pelo dispositivo de áudio padrão. Não roda por padrão, porque toca som.
+/// Rode com: cargo test -p estuda-gpui reproducao_real -- --ignored --nocapture
+#[cfg(test)]
+mod reproducao_real {
+    use super::*;
+    use std::time::{Duration, Instant};
+
+    #[test]
+    #[ignore]
+    fn toca_frase_inteira_no_dispositivo_padrao() {
+        let narrator = Narrator::new().expect("iniciar o eSpeak NG e o narrador");
+        let inicio = Instant::now();
+        narrator.speak("Olá. Este é o teste de narração do Estuda UVA.");
+        // A reprodução começa de forma assíncrona: espera o narrador começar a falar.
+        let limite = Instant::now() + Duration::from_secs(10);
+        while !narrator.is_speaking() && Instant::now() < limite {
+            std::thread::sleep(Duration::from_millis(20));
+        }
+        assert!(narrator.is_speaking(), "o narrador não começou a falar em 10 s");
+        // Espera a frase terminar (limite de 30 s).
+        let fim = Instant::now() + Duration::from_secs(30);
+        while narrator.is_speaking() && Instant::now() < fim {
+            std::thread::sleep(Duration::from_millis(50));
+        }
+        assert!(!narrator.is_speaking(), "a fala não terminou em 30 s");
+        let decorrido = inicio.elapsed();
+        assert!(decorrido >= Duration::from_millis(800), "fala curta demais: {decorrido:?}");
+        println!("fala reproduzida em {decorrido:?}");
+    }
+}
