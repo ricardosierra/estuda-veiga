@@ -389,6 +389,7 @@ impl AppView {
                                 div()
                                     .text_size(px(12.))
                                     .text_color(p.muted)
+                                    .w(px(150.))
                                     .child("2026.2 · Ciência da Computação"),
                             ),
                     ),

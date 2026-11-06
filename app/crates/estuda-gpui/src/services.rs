@@ -27,6 +27,16 @@ pub fn resident_mb() -> Option<u64> {
     Some(kilobytes / 1024)
 }
 
+/// Texto em português para o estado de identidade vindo dos dados (sem o identificador cru).
+pub fn identity_label(raw: &str) -> String {
+    match raw {
+        "matricula_registrada" => "matrícula registrada".to_string(),
+        "same_title_and_workload_candidate" => "candidata: mesmo título e carga horária".to_string(),
+        "" => String::new(),
+        other => other.replace('_', " "),
+    }
+}
+
 /// Disciplina do catálogo acadêmico, lida da projeção do banco (que vem de `dados/`).
 #[derive(Clone, Debug)]
 pub struct Discipline {
@@ -67,7 +77,7 @@ impl Services {
             .map(|value| Discipline {
                 id: text(value, "id"),
                 title: text(value, "title"),
-                identity_status: text(value, "identityStatus"),
+                identity_status: identity_label(&text(value, "identityStatus")),
                 pending: value
                     .get("pendencias")
                     .and_then(|v| v.as_array())

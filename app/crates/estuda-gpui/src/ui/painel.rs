@@ -201,7 +201,7 @@ fn exams_card(p: &Palette, cx: &mut Context<AppView>) -> gpui_kit::gpui::Div {
                         Size::Sm,
                         Some("bolt"),
                     )
-                    .w(px(180.))
+                    .w_full()
                     .on_click(cx.listener(|this, _: &ClickEvent, _, cx| {
                         this.go(Screen::Sync);
                         cx.notify();
