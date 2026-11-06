@@ -66,7 +66,7 @@ docs/arquitetura/         ← novo: 5 documentos
 2. **Em andamento por outro processo (`estuda-core`, não verificado por mim).** Depois, `estuda-app` e `estuda-storage` recebem o código de `storage.rs` por *extração mecânica* (mover funções, manter assinaturas), com os 152 testes como rede de segurança. Critério: mesmos 152 testes verdes antes e depois.
 3. **Sem banco.** Trocar `Course` por `LmsCourse` e usar `SubjectId`/`LmsCourseId` nas assinaturas novas; só renomeia tipos e campos serializados com `#[serde(alias)]` para não quebrar JSON existente.
 4. **Precisa de aprovação.** Divisão física dos bancos (03 §4): SQL, rollback e backup estão em 03 §7.
-5. **Precisa de aprovação.** Mover dados pessoais para fora do repositório e reescrever histórico (04 §4).
+5. **Superada pela política de 6/11/2026 (confirmada pelo dono).** Dados pessoais podem ficar no Git, inclusive em `dados/`. Seguem proibidos: senhas, cookies, tokens, `.env`, `*.sqlite3*`, perfil do Chromium e `originais/`; RA, CPF e RG ficam fora até decisão do dono.
 6. **Etapa própria.** GPUI. Só depois de 2 e 4.
 
 ## 6. Métricas para provar ganho (não prometidas, a medir)
