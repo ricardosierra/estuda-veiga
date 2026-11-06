@@ -43,6 +43,8 @@ O app escreve textos e aulas em Markdown na pasta local do acervo configurada pe
 
 ### Registrar o Portal do Aluno e o Lyceum
 
+O caminho de cada tela do Portal e dos seus 5 subsistemas, e o procedimento Rust de cada tarefa (implementado, a implementar ou manual), estão em [docs/NAVEGACAO_PORTAL_UVA.md](../docs/NAVEGACAO_PORTAL_UVA.md).
+
 1. Em **Acadêmico**, selecione **Abrir janela do Lyceum**.
 2. Se o portal pedir autenticação, digite CPF/senha e conclua MFA apenas na janela visível do Estuda UVA. O app não lê senha de arquivos nem a grava.
 3. Depois do acesso, selecione **Capturar histórico e notas**. A navegação segue links acadêmicos oficiais visíveis, em modo de leitura, até o limite configurado de páginas.
@@ -54,13 +56,18 @@ O catálogo em **Acadêmico** lê currículos, relações entre ofertas e trajet
 
 ### Consultar e estudar materiais do Canvas
 
-1. Abra **Canvas e importação** e conecte a janela Chromium. Faça o login manualmente quando necessário.
-2. Atualize a lista de cursos e selecione uma disciplina para ver seus módulos e itens publicados.
-3. Abra o material disponível. Para PDF acessível, inicie a importação do item: o app extrai texto por página para Markdown, guarda a URL oficial sem query ou fragmento e descarta o PDF temporário ao terminar.
-4. Para estudar uma nota local, abra-a em **Aula guiada**. As sessões locais registram material e progresso de leitura para retomar o estudo.
-5. Mantenha as notas e os inventários do semestre atualizados com fonte, data, conteúdo revisto e próxima ação.
+1. Abra **Matérias** e selecione **Abrir Canvas para entrar**. O Chromium do Estuda UVA usa um perfil próprio; faça o login manualmente nessa janela.
+2. Volte à lista **Matérias** e selecione **Capturar todas as disciplinas**. A varredura percorre em sequência os cursos e materiais publicados que a conta autenticada consegue ver, exclui “Espaço Curso” e ignora avaliações, fóruns, notas e frequência.
+3. Acompanhe o progresso por curso e por item. Você pode cancelar com segurança, retomar uma execução parcial ou repetir somente um item com falha. Se a sessão expirar, entre novamente no Chromium e retome a execução.
+4. PDFs acessíveis são validados e convertidos para Markdown por página em memória; o PDF bruto temporário é descartado pelo importador em lote. Páginas de aula compatíveis também viram Markdown. Arquivos já existentes e edições locais são preservados; versões alteradas ficam sinalizadas para revisão.
+5. Ao concluir, abra a matéria e escolha um material capturado para iniciar a aula local. A narração usa a voz pt-BR local disponível, quando suportada, e as respostas digitadas ficam apenas no SQLite local.
+6. Materiais com período confirmado são associados à matrícula do semestre. Semestre desconhecido aparece sem inferência; cursos antigos, páginas inacessíveis, PDFs sem texto e links não suportados continuam identificados no resultado.
 
-A listagem de cursos e a importação de materiais são iniciadas pelo estudante. A varredura completa de cada página, vídeo, atividade e arquivo de todos os cursos ainda precisa de validação no Canvas autenticado; a frequência oficial continua sendo a exibida pelo Portal/Lyceum. Abrir um material ou registrar uma sessão de estudo no app não altera frequência, notas, matrícula ou entregas na UVA.
+A captura começa por ação do estudante e navega somente pelo conteúdo publicado visível. O acesso pode aparecer no histórico comum do Canvas; não marca presença, conclusão, notas, entrega, fórum ou matrícula. O painel informa “captura concluída/parcial” do acervo local, nunca conclusão acadêmica oficial. A varredura autenticada precisa ser iniciada pelo botão no app; uma compilação ou teste local não comprova que todos os cursos foram baixados.
+
+Para abrir um item específico que a varredura não reconheceu, use **Canvas e importação** para consultar o módulo e importar aquele material individualmente. Sessões locais registram material e progresso de leitura para retomar o estudo.
+
+O fluxo de captura não tenta baixar vídeo, avaliação, fórum, nota, presença ou entrega. A frequência oficial continua sendo a exibida pelo Portal/Lyceum. Abrir um material ou registrar uma sessão de estudo no app não altera frequência, notas, matrícula ou entregas na UVA.
 
 ### Verificações documentadas
 

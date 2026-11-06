@@ -20,7 +20,7 @@ export function StudyHistory({
           {entry.kind === "lesson" && entry.sectionCount ? <em>{entry.completedAt ? "Concluída" : `Seção ${(entry.sectionIndex ?? 0) + 1} de ${entry.sectionCount}`} · iniciada {formatHistoryDate(entry.startedAt)}</em> : null}
           {entry.kind === "practice" && <em>{entry.correct ?? 0} de {entry.total ?? 0} acerto(s) · {entry.percent ?? 0}%</em>}
         </div>
-        {entry.kind === "lesson" && entry.resourcePath && onOpenLesson && <button className="history-reopen" onClick={() => onOpenLesson(entry)} aria-label={`Retomar ${entry.materialTitle}`}>Retomar →</button>}
+        {entry.kind === "lesson" && entry.resourcePath && onOpenLesson && <button className="history-reopen" onClick={() => onOpenLesson(entry)} aria-label={`${entry.completedAt ? "Revisar" : "Retomar"} ${entry.materialTitle}`}>{entry.completedAt ? "Revisar" : "Retomar"} →</button>}
       </li>)}
     </ol>}
   </section>;

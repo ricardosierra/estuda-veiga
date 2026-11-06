@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { StudySummaryPanel } from "./StudySummaryPanel";
 import { StudyHistory } from "./StudyHistory";
 import type {
   ActiveEnrollment,
@@ -12,7 +13,7 @@ import type {
   StudyOutcome,
 } from "./studyTypes";
 
-type Tab = "aulas" | "materiais" | "historico" | "notas";
+type Tab = "aulas" | "materiais" | "resumos" | "historico" | "notas";
 
 export function SubjectDetail({
   enrollment,
@@ -67,7 +68,7 @@ export function SubjectDetail({
     <header className="subject-detail-header"><div><p className="eyebrow">{enrollment.semester ?? "MATRÍCULA ATIVA"}{enrollment.section ? ` · ${enrollment.section}` : ""}</p><h1>{enrollment.title}</h1><p className="lead">{enrollment.instructorAsDisplayed ? `Professor(a): ${enrollment.instructorAsDisplayed}` : "Aulas, materiais e desempenho desta matéria."}</p></div><span className="enrolled-badge"><i /> Em andamento</span></header>
 
     <nav className="subject-tabs" aria-label={`Seções de ${enrollment.title}`}>
-      {([ ["aulas", "Aulas"], ["materiais", "Materiais"], ["historico", "Histórico"], ["notas", "Desempenho"] ] as [Tab, string][]).map(([key, label]) => <button key={key} className={tab === key ? "active" : ""} onClick={() => setTab(key)}>{label}{key === "aulas" && hasLessons ? <span className="tab-count">{localLessonCount + importedMaterials.length + modules.reduce((sum, module) => sum + module.items.length, 0)}</span> : null}</button>)}
+      {([ ["aulas", "Aulas"], ["materiais", "Materiais"], ["resumos", "Resumos"], ["historico", "Histórico"], ["notas", "Desempenho"] ] as [Tab, string][]).map(([key, label]) => <button key={key} className={tab === key ? "active" : ""} onClick={() => setTab(key)}>{label}{key === "aulas" && hasLessons ? <span className="tab-count">{localLessonCount + importedMaterials.length + modules.reduce((sum, module) => sum + module.items.length, 0)}</span> : null}</button>)}
     </nav>
 
     {tab === "aulas" && <div className="subject-lessons-panel">
@@ -76,7 +77,7 @@ export function SubjectDetail({
         <span className="lesson-row-icon">▤</span><span className="lesson-row-copy"><small>{document.semester ? `${document.semester} · ` : "Período do material não informado · "}{document.category ?? "Material local"}</small><b>{document.title}</b><em>Disponível na pasta local</em></span><span className="lesson-row-action">Apresentar →</span>
       </button>)}
       {importedMaterials.map((material) => <button className="lesson-list-row" key={material.id} onClick={() => onOpenImported(material)}>
-        <span className="lesson-row-icon imported">✳</span><span className="lesson-row-copy"><small>{material.moduleTitle} · {material.semester ?? "período não informado"} · Canvas</small><b>{material.title}</b><em>{material.pages} páginas · atualizada {formatDate(material.importedAt)}</em></span><span className="lesson-row-action">Apresentar →</span>
+        <span className="lesson-row-icon imported">✳</span><span className="lesson-row-copy"><small>{material.moduleTitle} · {material.semester ?? "período não informado"} · <span className="material-source-kind">{material.sourceKind === "pdf" ? "PDF → Markdown" : "Página Canvas → Markdown"}</span></small><b>{material.title}</b><em>{material.pages} páginas · atualizada {formatDate(material.importedAt)}</em></span><span className="lesson-row-action">Apresentar →</span>
       </button>)}
       {modules.map((module) => <article className="canvas-module-card" key={module.title}><div className="canvas-module-heading"><span>▤</span><div><small>UNIDADE / MÓDULO</small><b>{module.title}</b></div></div>{module.items.map((item) => <div className="canvas-lesson-row" key={item.href}><span className="file-format-chip">{item.itemType === "file" ? "ARQ" : "WEB"}</span><span><b>{item.title}</b><small>{item.itemType === "file" ? "Arquivo do curso" : "Conteúdo do módulo"}</small></span><button className="text-button" disabled={canvasBusy} onClick={() => onInspectItem(item)}>Localizar material →</button></div>)}</article>)}
       {selectedItem && choices.length > 0 && <div className="canvas-choice-panel"><div><small>CONTEÚDO ENCONTRADO</small><b>{selectedItem.title}</b></div>{choices.map((choice) => <div className="canvas-choice-row" key={choice.id}><span><b>{choice.title}</b><small>{choice.host}{choice.embedded ? " · incorporado no módulo" : ""}</small></span><button className="button primary small" disabled={!choice.allowed || canvasBusy} onClick={() => onImportChoice(choice, selectedItem)}>{choice.allowed ? "Baixar texto e preparar aula" : "Origem não permitida"}</button></div>)}</div>}
@@ -86,9 +87,11 @@ export function SubjectDetail({
     {tab === "materiais" && <div className="subject-materials-panel">
       <div className="subject-panel-heading"><div><p className="eyebrow">ARQUIVOS ASSOCIADOS</p><h2>Materiais</h2></div></div>
       {[...documents].map((document) => <button className="material-resource-row" key={document.relativePath} onClick={() => onOpenDocument(document)}><span className="file-format-chip">{document.format.toUpperCase()}</span><span><b>{document.title}</b><small>{document.semester ?? "Período não identificado"} · {document.category ?? "Material local"}</small></span><span>↗</span></button>)}
-      {importedMaterials.map((material) => <button className="material-resource-row" key={material.id} onClick={() => onOpenImported(material)}><span className="file-format-chip">MD</span><span><b>{material.title}</b><small>{material.moduleTitle} · {material.semester ?? "período não informado"} · {material.pages} páginas · Canvas</small></span><span>↗</span></button>)}
+      {importedMaterials.map((material) => <button className="material-resource-row" key={material.id} onClick={() => onOpenImported(material)}><span className="file-format-chip">MD</span><span><b>{material.title}</b><small>{material.moduleTitle} · {material.semester ?? "período não informado"} · {material.pages} páginas · {material.sourceKind === "pdf" ? "PDF convertido" : "Página Canvas"}</small></span><span>↗</span></button>)}
       {!documents.length && !importedMaterials.length && <div className="study-history-empty"><b>Nenhum material local associado</b><p>Use a atualização do Canvas na aba Aulas para procurar conteúdos novos.</p></div>}
     </div>}
+
+    {tab === "resumos" && <StudySummaryPanel key={`${enrollment.id}:${enrollment.semester ?? ""}`} enrollment={enrollment} />}
 
     {tab === "historico" && <div className="subject-history-panel"><div className="subject-panel-heading"><div><p className="eyebrow">SUAS SESSÕES</p><h2>Histórico de aulas</h2></div></div><StudyHistory items={history} loading={historyLoading} courseTitle={enrollment.title} onOpenLesson={onResumeHistory} /></div>}
 

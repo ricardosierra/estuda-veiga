@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, type FormEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
 import { open } from "@tauri-apps/plugin-dialog";
@@ -6,13 +6,15 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { StudyHome } from "./StudyHome";
 import { SubjectList } from "./SubjectList";
+import { CanvasCapturePanel } from "./CanvasCapturePanel";
 import { SubjectDetail } from "./SubjectDetail";
 import { StudyHistory } from "./StudyHistory";
 import { LessonPresenter } from "./LessonPresenter";
 import { invokeWithTimeout } from "./asyncCommand";
 import { AcademicPortal, type PortalCapture, type PortalStatus } from "./AcademicPortal";
 import { sharedAcademicSubjects, type CatalogCurriculum, type CatalogDiscipline } from "./academicCatalog";
-import { documentsForEnrollment, lessonSectionCount, materialsForEnrollment, normalizeSubjectName, type ActiveEnrollment, type LessonSession, type StudyDocument, type StudyHistoryEntry } from "./studyTypes";
+import { documentsForEnrollment, getOrBeginLessonSession, lessonSectionCount, materialsForEnrollment, normalizeSubjectName, type ActiveEnrollment, type ImportedStudyMaterial, type LessonSession, type StudyDocument, type StudyHistoryEntry } from "./studyTypes";
+import { validateCanvasCaptureLimits, type CanvasCaptureLimits, type CaptureItem, type CaptureRun } from "./canvasCapture";
 
 type CanvasState = "disconnected" | "waiting_for_login" | "authenticated" | "session_expired" | "browser_error";
 type CanvasStatus = { state: CanvasState; message: string; currentUrl: string | null };
@@ -20,7 +22,7 @@ type Course = { id: string; title: string; url: string; kind: "current" | "past"
 type ModuleItem = { moduleTitle: string; title: string; href: string; itemType: string };
 type ModuleGroup = { title: string; items: ModuleItem[] };
 type MaterialChoice = { id: string; title: string; host: string; embedded: boolean; allowed: boolean };
-type Material = { id: string; courseId: string; courseTitle: string; moduleTitle: string; title: string; path: string; lessonPath: string; origin: string; pages: number; semester?: string | null; importedAt: string };
+type Material = ImportedStudyMaterial;
 type Overview = { currentCourses: number; pastCourses: number; materials: number; studySessions: number; accuracyPercent: number; libraryPath: string };
 type PracticePrompt = { position: number; prompt: string; sourcePage: number };
 type PracticeResult = { correct: number; total: number; percent: number; answers: { position: number; correct: boolean; expected: string; sourcePage: number }[] };
@@ -57,6 +59,13 @@ export function App() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [modules, setModules] = useState<ModuleGroup[]>([]);
   const [materials, setMaterials] = useState<Material[]>([]);
+  const [captureRun, setCaptureRun] = useState<CaptureRun | null>(null);
+  const [captureItems, setCaptureItems] = useState<CaptureItem[]>([]);
+  const [captureHasMore, setCaptureHasMore] = useState(false);
+  const [captureLimits, setCaptureLimits] = useState<CanvasCaptureLimits | null>(null);
+  const [captureItemsLoading, setCaptureItemsLoading] = useState(false);
+  const captureRunRef = useRef<CaptureRun | null>(null);
+  const captureItemsRequestRef = useRef(0);
   const [localCatalog, setLocalCatalog] = useState<LocalCatalogSnapshot | null>(null);
   const [localDocument, setLocalDocument] = useState<LocalDocumentContent | null>(null);
   const [localQuery, setLocalQuery] = useState("");
@@ -140,6 +149,34 @@ export function App() {
     setLocalPage(0);
   }, []);
 
+  const loadCaptureItemsPage = useCallback(async (runId: string, offset: number, replace: boolean) => {
+    const requestId = ++captureItemsRequestRef.current;
+    setCaptureItemsLoading(true);
+    try {
+      const page = await invoke<CaptureItem[]>("canvas_capture_items", { runId, offset, limit: 200 });
+      if (requestId !== captureItemsRequestRef.current) return;
+      setCaptureItems((current) => replace ? page : [...current, ...page]);
+      setCaptureHasMore(page.length === 200);
+    } finally {
+      if (requestId === captureItemsRequestRef.current) setCaptureItemsLoading(false);
+    }
+  }, []);
+
+  const refreshCaptureSnapshot = useCallback(async () => {
+    const [run, limits] = await Promise.all([
+      invoke<CaptureRun | null>("canvas_capture_status", { runId: null }),
+      invoke<CanvasCaptureLimits>("get_canvas_capture_limits"),
+    ]);
+    captureRunRef.current = run;
+    setCaptureRun(run);
+    setCaptureLimits(limits);
+    if (run) await loadCaptureItemsPage(run.id, 0, true);
+    else {
+      setCaptureItems([]);
+      setCaptureHasMore(false);
+    }
+  }, [loadCaptureItemsPage]);
+
   useEffect(() => {
     void refresh();
     const timer = window.setInterval(() => { void refresh(); }, 3000);
@@ -151,6 +188,34 @@ export function App() {
   useEffect(() => { void refreshLocalLibrary().catch((reason) => {
     setError(typeof reason === "string" ? reason : "Não foi possível ler a pasta do acervo.");
   }); }, [refreshLocalLibrary]);
+
+  useEffect(() => {
+    void refreshCaptureSnapshot().catch((reason) => {
+      setError(typeof reason === "string" ? reason : "Não foi possível carregar o estado da captura do Canvas.");
+    });
+  }, [refreshCaptureSnapshot]);
+
+  useEffect(() => {
+    let unlisten: (() => void) | undefined;
+    void listen<CaptureRun>("canvas-capture-updated", (event) => {
+      const nextRun = event.payload;
+      const previousRun = captureRunRef.current;
+      captureRunRef.current = nextRun;
+      setCaptureRun(nextRun);
+      void loadCaptureItemsPage(nextRun.id, 0, true).catch((reason) => {
+        setError(typeof reason === "string" ? reason : "Não foi possível atualizar os itens da captura.");
+      });
+      const terminal = ["waiting_for_login", "cancelled", "partial", "completed", "failed"].includes(nextRun.status);
+      const justReachedTerminal = terminal && (previousRun?.id !== nextRun.id || previousRun.status !== nextRun.status);
+      if (justReachedTerminal) {
+        void invoke<Material[]>("list_materials").then(setMaterials).catch(() => undefined);
+        void refreshLocalLibrary().catch((reason) => {
+          setError(typeof reason === "string" ? reason : "Não foi possível atualizar o acervo após a captura.");
+        });
+      }
+    }).then((dispose) => { unlisten = dispose; });
+    return () => unlisten?.();
+  }, [loadCaptureItemsPage, refreshLocalLibrary]);
 
   useEffect(() => {
     let unlisten: (() => void) | undefined;
@@ -177,6 +242,51 @@ export function App() {
     const next = await invoke<CanvasStatus>("connect_canvas");
     setStatus(next);
     setNotice(next.message);
+  });
+
+  const startCanvasCapture = () => withBusy("canvas-capture", async () => {
+    if (!captureLimits) throw "Os limites da captura ainda estão carregando.";
+    const invalid = validateCanvasCaptureLimits(captureLimits);
+    if (invalid.length) throw invalid.join(" · ");
+    await invoke<CanvasCaptureLimits>("set_canvas_capture_limits", { limits: captureLimits });
+    const next = await invoke<CaptureRun>("start_canvas_capture");
+    captureRunRef.current = next;
+    setCaptureRun(next);
+    setCaptureItems([]);
+    await loadCaptureItemsPage(next.id, 0, true);
+    setNotice("Captura iniciada. Os materiais publicados serão lidos em sequência e salvos como Markdown.");
+  });
+
+  const resumeCanvasCapture = () => withBusy("canvas-capture-resume", async () => {
+    if (!captureRun) throw "Não há captura para retomar.";
+    const next = await invoke<CaptureRun>("resume_canvas_capture", { runId: captureRun.id });
+    captureRunRef.current = next;
+    setCaptureRun(next);
+    await loadCaptureItemsPage(next.id, 0, true);
+    setNotice("Captura retomada; os itens já concluídos foram preservados.");
+  });
+
+  const cancelCanvasCapture = () => withBusy("canvas-capture-cancel", async () => {
+    if (!captureRun) return;
+    await invoke("cancel_canvas_capture", { runId: captureRun.id });
+    setNotice("Pedido de cancelamento enviado. O item atual será interrompido com segurança.");
+  });
+
+  const retryCanvasCaptureItem = (item: CaptureItem) => withBusy("canvas-capture-retry", async () => {
+    if (!captureRun) throw "Não há captura para retomar.";
+    const next = await invoke<CaptureRun>("retry_canvas_capture_item", { runId: captureRun.id, referenceKey: item.referenceKey });
+    captureRunRef.current = next;
+    setCaptureRun(next);
+    await loadCaptureItemsPage(next.id, 0, true);
+    setNotice(`Nova tentativa iniciada para “${item.title}”.`);
+  });
+
+  const saveCanvasCaptureLimits = () => withBusy("canvas-capture-limits", async () => {
+    if (!captureLimits) throw "Os limites da captura ainda estão carregando.";
+    const invalid = validateCanvasCaptureLimits(captureLimits);
+    if (invalid.length) throw invalid.join(" · ");
+    setCaptureLimits(await invoke<CanvasCaptureLimits>("set_canvas_capture_limits", { limits: captureLimits }));
+    setNotice("Limites da próxima captura salvos.");
   });
 
   const openLyceum = () => withBusy("lyceum-open", async () => {
@@ -358,16 +468,28 @@ export function App() {
     setView("acervo");
   });
 
-  const openStudyDocument = (document: LocalDocument | string, enrollment: ActiveEnrollment) => withBusy("study-document", async () => {
+  const openStudyDocument = (document: LocalDocument | string, enrollment: ActiveEnrollment, existingSessionId?: string) => withBusy("study-document", async () => {
     const relativePath = typeof document === "string" ? document : document.relativePath;
     const opened = await invokeWithTimeout("read_local_document", () => invoke<LocalDocumentContent>("read_local_document", { relativePath }));
-    const session = await invokeWithTimeout("begin_lesson_session", () => invoke<LessonSession>("begin_lesson_session", {
-      resourcePath: relativePath,
-      courseId: enrollment.id,
-      courseTitle: enrollment.title,
-      materialTitle: opened.document.title,
-      sectionCount: lessonSectionCount(opened.markdown),
-    }));
+    const sectionCount = lessonSectionCount(opened.markdown);
+    let session = await getOrBeginLessonSession(existingSessionId,
+      () => invokeWithTimeout("begin_lesson_session", () => invoke<LessonSession>("begin_lesson_session", {
+        resourcePath: relativePath,
+        courseId: enrollment.id,
+        courseTitle: enrollment.title,
+        materialTitle: opened.document.title,
+        sectionCount,
+      })),
+      (id) => invokeWithTimeout("get_lesson_session", () => invoke<LessonSession | null>("get_lesson_session", { sessionId: id })),
+    );
+    if (existingSessionId) {
+      session = await invokeWithTimeout("save_lesson_progress", () => invoke<LessonSession>("save_lesson_progress", {
+        sessionId: session.id,
+        sectionIndex: Math.min(session.sectionIndex, sectionCount - 1),
+        sectionCount,
+        completed: false,
+      }));
+    }
     setActiveEnrollment(enrollment);
     setLocalDocument(opened);
     setActiveMaterial(null);
@@ -400,19 +522,31 @@ export function App() {
     setNotice(`Conflito resolvido em ${conflict.relativePath}.${report.errors.length ? ` ${report.errors.length} item(ns) com erro.` : ""}`);
   });
 
-  const openMaterial = (material: Material) => withBusy("lesson", async () => {
+  const openMaterial = (material: Material, existingSessionId?: string) => withBusy("lesson", async () => {
     const subject = activeEnrollment && normalizeSubjectName(activeEnrollment.title) === normalizeSubjectName(material.courseTitle)
       ? activeEnrollment
       : (academicCatalog?.trajectories.flatMap((trajectory) => trajectory.currentEnrollments ?? []).find((item) => normalizeSubjectName(item.title) === normalizeSubjectName(material.courseTitle))
         ?? { id: material.courseId, title: material.courseTitle, status: "enrolled" });
     const markdown = await invoke<string>("get_lesson", { materialId: material.id });
-    const session = await invoke<LessonSession>("begin_lesson_session", {
-      resourcePath: `canvas:${material.id}`,
-      courseId: subject.id,
-      courseTitle: subject.title,
-      materialTitle: material.title,
-      sectionCount: lessonSectionCount(markdown),
-    });
+    const sectionCount = lessonSectionCount(markdown);
+    let session = await getOrBeginLessonSession(existingSessionId,
+      () => invoke<LessonSession>("begin_lesson_session", {
+        resourcePath: `canvas:${material.id}`,
+        courseId: subject.id,
+        courseTitle: subject.title,
+        materialTitle: material.title,
+        sectionCount,
+      }),
+      (id) => invoke<LessonSession | null>("get_lesson_session", { sessionId: id }),
+    );
+    if (existingSessionId) {
+      session = await invoke<LessonSession>("save_lesson_progress", {
+        sessionId: session.id,
+        sectionIndex: Math.min(session.sectionIndex, sectionCount - 1),
+        sectionCount,
+        completed: false,
+      });
+    }
     setActiveEnrollment(subject);
     setActiveMaterial(material);
     setLocalDocument(null);
@@ -457,13 +591,13 @@ export function App() {
   const resumeHistoryEntry = (entry: StudyHistoryEntry) => {
     if (entry.resourcePath?.startsWith("canvas:")) {
       const material = materials.find((item) => item.id === entry.resourcePath?.slice("canvas:".length));
-      if (material) void openMaterial(material);
+      if (material) void openMaterial(material, entry.id);
       return;
     }
     if (entry.resourcePath) {
       const enrollment = activeEnrollments.find((item) => normalizeSubjectName(item.title) === normalizeSubjectName(entry.courseTitle ?? ""))
         ?? { id: entry.courseId ?? "local-study", title: entry.courseTitle ?? "Matéria local", status: "enrolled" };
-      void openStudyDocument(entry.resourcePath, enrollment);
+      void openStudyDocument(entry.resourcePath, enrollment, entry.id);
     }
   };
 
@@ -578,6 +712,23 @@ export function App() {
             partial={studyIndexPartial}
             loadError={academicCatalogError}
             onOpenSubject={openSubject}
+            capturePanel={<CanvasCapturePanel
+              run={captureRun}
+              items={captureItems}
+              hasMoreItems={captureHasMore}
+              limits={captureLimits}
+              busy={!!busy || captureItemsLoading}
+              error={error || undefined}
+              canvasAuthenticated={status.state === "authenticated"}
+              onStart={() => void startCanvasCapture()}
+              onResume={() => void resumeCanvasCapture()}
+              onCancel={() => void cancelCanvasCapture()}
+              onConnect={() => void connectCanvas()}
+              onRetry={(item) => void retryCanvasCaptureItem(item)}
+              onLimitsChange={setCaptureLimits}
+              onSaveLimits={() => void saveCanvasCaptureLimits()}
+              onLoadMore={() => { if (captureRun) void loadCaptureItemsPage(captureRun.id, captureItems.length, false); }}
+            />}
           />)}
 
           {view === "canvas" && <section className="content-width">
@@ -646,7 +797,7 @@ export function App() {
                 }}
                 onCompleted={() => { void refreshStudyHistory(); setNotice("Aula concluída e registrada no histórico local."); }}
               />
-              {activeMaterial && <aside className="practice-card lesson-practice-card"><div className="practice-top"><span className="practice-icon">✳</span><p className="eyebrow">PRÁTICA OPCIONAL</p><h3>Quer testar o que aprendeu?</h3><p>O resultado fica no histórico de estudo e não altera suas notas oficiais.</p></div>
+              {activeMaterial && <aside className="practice-card lesson-practice-card"><div className="practice-top"><span className="practice-icon">✳</span><p className="eyebrow">PRÁTICA DO MATERIAL IMPORTADO</p><h3>Quer testar o que aprendeu?</h3><p>Esta prática fica separada da aula interativa. O resultado é salvo no histórico local e não altera suas notas oficiais.</p></div>
                 {prompts.length === 0 ? <div className="no-questions">Este texto não gerou perguntas automáticas confiáveis. Você pode usar a aula e conferir as páginas da fonte.</div> : <div className="question-list">{prompts.map((prompt) => <label className="question" key={prompt.position}><span>{prompt.prompt}</span><small>Fonte: página {prompt.sourcePage}</small><textarea rows={3} value={answers[prompt.position] ?? ""} onChange={(event) => setAnswers((current) => ({ ...current, [prompt.position]: event.target.value }))} placeholder="Escreva sua resposta…" disabled={!!result} /></label>)}<button className="button primary full" disabled={!!busy || !!result} onClick={() => void submitAnswers()}>{busy === "practice" ? "Conferindo…" : "Conferir respostas"}<span>→</span></button></div>}
                 {result && <div className="score-result" role="status"><div className="score-circle">{result.percent}<small>%</small></div><div><b>{result.correct} de {result.total} acerto(s)</b><p>Prática salva no histórico local.</p></div><button className="text-button" onClick={() => { setAnswers({}); setResult(null); }}>Tentar novamente</button>{result.answers.map((answer) => <div key={answer.position} className={`answer-note ${answer.correct ? "right" : "wrong"}`}><b>{answer.correct ? "Correto" : "Resposta de referência"} · pág. {answer.sourcePage}</b><p>{answer.expected}</p></div>)}</div>}
               </aside>}
