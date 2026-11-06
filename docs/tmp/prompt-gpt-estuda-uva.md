@@ -3,7 +3,7 @@
 Você vai me ajudar a escrever um prompt para um agente de código (Claude Code) trabalhar no meu projeto. Leia todo o contexto abaixo antes de responder. Se algo não estiver aqui, pergunte; não invente dados acadêmicos.
 
 ## 1. O projeto
-- Pasta local "Faculdade" (repositório git local, branch main, sem remoto). Guarda meu acervo acadêmico da UVA em Markdown, JSON e SQLite, com notas de estudo, materiais e um app desktop chamado Estuda UVA.
+- Pasta local "Faculdade" (repositório git local, branch master, sem remoto). Guarda meu acervo acadêmico da UVA em Markdown, JSON e SQLite, com notas de estudo, materiais e um app desktop chamado Estuda UVA.
 - Estuda UVA: Tauri 2 + React 19 + Vite 8 + TypeScript no frontend; backend em Rust com rusqlite 0.37 (SQLite embutido), chromiumoxide 0.9.1 (Chromium via CDP, sem Playwright), reqwest com rustls e notify para observar pastas.
 - Telas principais: Acadêmico, Matérias, Histórico, Estudo pessoal, Dados e sincronização, Acervo.
 - Banco: .estuda-uva.sqlite3 na raiz do acervo, PRAGMA user_version = 4 (última verificação documentada, 15/10/2026). As tabelas academic_* são projeção reconstruída a partir dos JSON. Há journal de operações pendentes e tabela de conflitos.

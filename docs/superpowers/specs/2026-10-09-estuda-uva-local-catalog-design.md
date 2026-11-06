@@ -13,7 +13,7 @@ The archive includes the academic record already captured in `REGISTRO_ACADEMICO
 
 ## Current evidence
 
-- The configured library and Git root is `/Users/sierra/Documents/Faculdade` on branch `main`; no Git remote is configured.
+- The configured library and Git root is `/Users/sierra/Documents/Faculdade` on branch `master`; no Git remote is configured.
 - The app currently keeps SQLite under `~/Library/Application Support/br.edu.uva.estuda/estuda-uva.sqlite3`. Its `courses` and `materials` tables are empty. The app currently does not index the existing Markdown files.
 - The repository already contains 28 Markdown files, 29 curated `.txt` files under `materias/`, one `.alg` file, and an academic `extraction-report.json`. `originais/` also contains source documents and personal data that require careful handling.
 - The Estuda UVA app uses Tauri 2, Rust, and React/Vite. It controls an isolated Chromium session through `chromiumoxide`; Canvas and portal browsing stay in Rust/CDP with this existing browser session, without Playwright.

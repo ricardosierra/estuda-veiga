@@ -7,7 +7,7 @@
 
 ## Contrato global
 
-- Trabalhar na branch `main`, sem criar branch/worktree.
+- Trabalhar na branch `master`, sem criar branch/worktree.
 - Commits locais por fase; nenhum push (não há remoto configurado no checkout).
 - Preservar as alterações já commitadas no acervo, inclusive as revisões de inventário feitas após `47f6af3`.
 - Não versionar PDFs brutos, cookies, senhas, tokens, perfil Chromium, downloads temporários nem dados pessoais novos.
