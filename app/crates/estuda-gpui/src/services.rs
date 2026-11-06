@@ -8,6 +8,7 @@ use std::path::PathBuf;
 use std::sync::Arc;
 
 use estuda_core::catalog::scanner::{CatalogService, LocalCatalogSnapshot, LocalDocumentContent};
+use estuda_core::sync::SyncEngine;
 
 /// Raiz do acervo: o diretório do repositório, a partir de `app/crates/estuda-gpui`.
 pub fn default_library() -> PathBuf {
@@ -26,17 +27,53 @@ pub fn resident_mb() -> Option<u64> {
     Some(kilobytes / 1024)
 }
 
+/// Disciplina do catálogo acadêmico, lida da projeção do banco (que vem de `dados/`).
+#[derive(Clone, Debug)]
+pub struct Discipline {
+    pub id: String,
+    pub title: String,
+    pub identity_status: String,
+    pub pending: usize,
+}
+
 /// Serviços compartilhados pela interface. Clonar é barato (`Arc`).
 #[derive(Clone)]
 pub struct Services {
     catalog: Arc<CatalogService>,
+    sync: Arc<SyncEngine>,
 }
 
 impl Services {
+    /// Abre o índice do acervo e o banco. Abrir só garante as tabelas de sincronização
+    /// (`CREATE TABLE IF NOT EXISTS`); não reescreve nem regrava nenhuma linha.
     pub fn open(root: PathBuf) -> Result<Self, String> {
+        let database = root.join(".estuda-uva.sqlite3");
+        let sync = SyncEngine::open(&database, &root)?;
         Ok(Self {
             catalog: Arc::new(CatalogService::new(root)?),
+            sync: Arc::new(sync),
         })
+    }
+
+    /// Disciplinas do catálogo acadêmico já sincronizadas. Só lê a projeção do banco.
+    pub fn disciplines(&self) -> Result<Vec<Discipline>, String> {
+        let catalog = estuda_core::catalog::academic::load(&self.sync)?;
+        let text = |value: &serde_json::Value, key: &str| {
+            value.get(key).and_then(|v| v.as_str()).unwrap_or_default().to_string()
+        };
+        Ok(catalog
+            .disciplines
+            .iter()
+            .map(|value| Discipline {
+                id: text(value, "id"),
+                title: text(value, "title"),
+                identity_status: text(value, "identityStatus"),
+                pending: value
+                    .get("pendencias")
+                    .and_then(|v| v.as_array())
+                    .map_or(0, Vec::len),
+            })
+            .collect())
     }
 
     /// Relê a pasta do acervo e atualiza o índice em RAM.
@@ -52,6 +89,17 @@ impl Services {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    /// Lê as disciplinas do banco sincronizado (somente leitura) e imprime só a contagem.
+    /// Rode com: cargo test -p estuda-gpui disciplinas_do_banco -- --ignored --nocapture
+    #[test]
+    #[ignore]
+    fn disciplinas_do_banco() {
+        let services = Services::open(default_library()).expect("abrir acervo e banco");
+        let disciplines = services.disciplines().expect("ler disciplinas");
+        println!("disciplinas no catálogo: {}", disciplines.len());
+        println!("com pendências: {}", disciplines.iter().filter(|d| d.pending > 0).count());
+    }
 
     /// Lê o acervo real (somente leitura) e imprime contagens agregadas, sem títulos.
     /// Rode com: cargo test -p estuda-gpui services -- --ignored --nocapture

@@ -6,7 +6,6 @@ use gpui_kit::gpui::{
 };
 
 use super::AppView;
-use super::data::SUBJECTS;
 use super::kit::card;
 use crate::theme::{Palette, hexa};
 
@@ -49,7 +48,17 @@ fn table(view: &AppView, p: &Palette, cx: &mut Context<AppView>) -> Div {
         .child(col(1.).child("P4"));
 
     let mut rows = div().flex().flex_col();
-    for (i, (name, _, _)) in SUBJECTS.iter().enumerate() {
+    if view.disciplines.is_empty() {
+        rows = rows.child(
+            div()
+                .py(px(12.))
+                .px(px(16.))
+                .text_size(px(13.))
+                .text_color(p.muted)
+                .child(view.disciplines_status.clone()),
+        );
+    }
+    for (i, discipline) in view.disciplines.iter().enumerate() {
         let selected = view.sel == i;
         rows = rows.child(
             div()
@@ -72,7 +81,7 @@ fn table(view: &AppView, p: &Palette, cx: &mut Context<AppView>) -> Div {
                             .text_size(px(14.))
                             .font_weight(FontWeight::SEMIBOLD)
                             .text_color(p.text)
-                            .child(*name),
+                            .child(discipline.title.clone()),
                     ),
                 )
                 .child(col(1.).child("desconhecido"))
@@ -101,8 +110,23 @@ fn table(view: &AppView, p: &Palette, cx: &mut Context<AppView>) -> Div {
 }
 
 fn detail(view: &AppView, p: &Palette) -> Div {
-    let (name, _, note) = SUBJECTS[view.sel.min(SUBJECTS.len() - 1)];
-    let note = if note.is_empty() { "Sem observações" } else { note };
+    let total = view.disciplines.len();
+    let Some(discipline) = view.disciplines.get(view.sel) else {
+        return card(p).child(
+            div()
+                .text_size(px(13.))
+                .text_color(p.muted)
+                .child(view.disciplines_status.clone()),
+        );
+    };
+    let name = discipline.title.clone();
+    let note = if discipline.pending > 0 {
+        format!("{} pendência(s) · identidade: {}", discipline.pending, discipline.identity_status)
+    } else if discipline.identity_status.is_empty() {
+        "Sem observações".to_string()
+    } else {
+        format!("identidade: {}", discipline.identity_status)
+    };
     let number = view.sel + 1;
 
     let mut avas = div().flex().flex_col().gap(px(8.));
@@ -164,7 +188,7 @@ fn detail(view: &AppView, p: &Palette) -> Div {
                     div()
                         .text_size(px(12.))
                         .text_color(p.muted)
-                        .child(format!("Disciplina {number} de 7 · 2026.2")),
+                        .child(format!("Disciplina {number} de {total} · acervo")),
                 )
                 .child(
                     div()

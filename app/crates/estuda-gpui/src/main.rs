@@ -35,6 +35,7 @@ fn main() {
                             view.library_status = status;
                         } else {
                             view.refresh_library(cx);
+                            view.refresh_disciplines(cx);
                         }
                         view.portal = portal::Portal::new().ok().map(std::sync::Arc::new);
                         view.start_memory_monitor(cx);

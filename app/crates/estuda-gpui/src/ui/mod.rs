@@ -19,7 +19,7 @@ use std::sync::Arc;
 
 use crate::portal::Portal;
 use crate::speech::Narrator;
-use crate::services::Services;
+use crate::services::{Discipline, Services};
 use estuda_core::lyceum::PortalState;
 
 use gpui_kit::component::input::{Input, InputEvent, InputState, TextareaState};
@@ -163,6 +163,9 @@ pub struct AppView {
     pub narrator: Option<Narrator>,
     /// Aviso de narração (voz ausente, motor indisponível).
     pub narration_note: Option<String>,
+    /// Disciplinas do catálogo acadêmico lidas do banco sincronizado.
+    pub disciplines: Vec<Discipline>,
+    pub disciplines_status: String,
 }
 
 impl AppView {
@@ -207,6 +210,8 @@ impl AppView {
             portal: None,
             narrator: None,
             narration_note: None,
+            disciplines: Vec::new(),
+            disciplines_status: String::from("Catálogo acadêmico não carregado"),
         }
     }
 
@@ -666,6 +671,35 @@ impl AppView {
                 }
                 cx.background_executor().timer(Duration::from_secs(3)).await;
             }
+        })
+        .detach();
+    }
+
+    /// Lê as disciplinas do banco sincronizado em segundo plano (só leitura).
+    pub fn refresh_disciplines(&mut self, cx: &mut Context<Self>) {
+        let Some(services) = self.services.clone() else {
+            self.disciplines_status = "Banco acadêmico indisponível".into();
+            cx.notify();
+            return;
+        };
+        cx.spawn(async move |this, cx| {
+            let result = cx
+                .background_spawn(async move { services.disciplines() })
+                .await;
+            let _ = this.update(cx, |this, cx| {
+                match result {
+                    Ok(list) if list.is_empty() => {
+                        this.disciplines_status = "Nenhuma disciplina sincronizada ainda".into();
+                        this.disciplines = list;
+                    }
+                    Ok(list) => {
+                        this.disciplines_status = format!("{} disciplinas no catálogo", list.len());
+                        this.disciplines = list;
+                    }
+                    Err(error) => this.disciplines_status = error,
+                }
+                cx.notify();
+            });
         })
         .detach();
     }

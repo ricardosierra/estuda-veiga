@@ -14,11 +14,11 @@ pub fn render(view: &AppView, p: &Palette, cx: &mut Context<AppView>) -> gpui_ki
     if view.quadro {
         board(p, cx)
     } else {
-        list(p, cx)
+        list(view, p, cx)
     }
 }
 
-fn list(p: &Palette, cx: &mut Context<AppView>) -> gpui_kit::gpui::Div {
+fn list(view: &AppView, p: &Palette, cx: &mut Context<AppView>) -> gpui_kit::gpui::Div {
     div()
         .flex()
         .flex_wrap()
@@ -28,7 +28,7 @@ fn list(p: &Palette, cx: &mut Context<AppView>) -> gpui_kit::gpui::Div {
             div()
                 .flex_1()
                 .min_w(px(380.))
-                .child(subjects_card(p, cx)),
+                .child(subjects_card(view, p, cx)),
         )
         .child(
             div()
@@ -42,11 +42,29 @@ fn list(p: &Palette, cx: &mut Context<AppView>) -> gpui_kit::gpui::Div {
         )
 }
 
-fn subjects_card(p: &Palette, cx: &mut Context<AppView>) -> gpui_kit::gpui::Div {
+fn subjects_card(view: &AppView, p: &Palette, cx: &mut Context<AppView>) -> gpui_kit::gpui::Div {
     let mut rows = div().flex().flex_col();
-    for (i, (name, short, note)) in SUBJECTS.iter().enumerate() {
-        let _ = short;
-        let note = if note.is_empty() { "Sem observações" } else { note };
+    if view.disciplines.is_empty() {
+        rows = rows.child(
+            div()
+                .py(px(12.))
+                .text_size(px(13.))
+                .text_color(p.muted)
+                .child(view.disciplines_status.clone()),
+        );
+    }
+    for (i, discipline) in view.disciplines.iter().enumerate() {
+        let note = if discipline.pending > 0 {
+            format!(
+                "{} pendência(s) · identidade: {}",
+                discipline.pending,
+                if discipline.identity_status.is_empty() { "não informada" } else { &discipline.identity_status }
+            )
+        } else if discipline.identity_status.is_empty() {
+            "Sem observações".to_string()
+        } else {
+            format!("identidade: {}", discipline.identity_status)
+        };
         rows = rows.child(
             div()
                 .id(("subject", i))
@@ -78,7 +96,7 @@ fn subjects_card(p: &Palette, cx: &mut Context<AppView>) -> gpui_kit::gpui::Div 
                             div()
                                 .text_size(px(14.))
                                 .font_weight(FontWeight::SEMIBOLD)
-                                .child(*name),
+                                .child(discipline.title.clone()),
                         )
                         .child(
                             div()
@@ -103,8 +121,13 @@ fn subjects_card(p: &Palette, cx: &mut Context<AppView>) -> gpui_kit::gpui::Div 
                 })),
         );
     }
+    let title = if view.disciplines.is_empty() {
+        "Disciplinas".to_string()
+    } else {
+        format!("Disciplinas do acervo ({})", view.disciplines.len())
+    };
     card(p)
-        .child(section_title(p, "school", "Disciplinas 2026.2"))
+        .child(section_title(p, "school", &title))
         .child(rows)
 }
 
