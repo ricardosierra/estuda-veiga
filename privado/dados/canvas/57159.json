@@ -1,0 +1,30 @@
+{
+  "id": "57159",
+  "titulo": "Paradigmas de Linguagens de Programação",
+  "tipo": "curricular",
+  "situacao": "em_andamento",
+  "periodo": "2026.2",
+  "codigo": "E10300024",
+  "secao": null,
+  "source": {
+    "file": "privado/periodos/2026.2/README.md",
+    "section": "Matrículas informadas pelo Portal do Aluno",
+    "observedAt": "2026-10-14"
+  },
+  "observacao": "Canvas mostra o índice 'Análise e Projeto de Sistemas e Informação I' (ASI1) e os PDFs de ASI1.",
+  "pendencias": [
+    {
+      "campo": "codigo",
+      "motivo": "código aparece só na tabela de notas do REGISTRO_ACADEMICO.md; não confirmado no Canvas"
+    },
+    {
+      "campo": "secao",
+      "motivo": "seção Canvas não registrada; o Portal informa a turma 21CMP2262A"
+    },
+    {
+      "campo": "materiais",
+      "motivo": "PDFs do módulo são de ASI1; vínculo com esta disciplina pendente de confirmação pela UVA"
+    }
+  ],
+  "url": "https://uva.instructure.com/courses/57159"
+}

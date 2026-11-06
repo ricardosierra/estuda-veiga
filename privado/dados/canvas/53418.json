@@ -1,0 +1,30 @@
+{
+  "id": "53418",
+  "titulo": "Espaço Curso — Ciência da Computação",
+  "tipo": "apoio",
+  "situacao": "apoio",
+  "periodo": null,
+  "codigo": null,
+  "secao": null,
+  "source": {
+    "file": "privado/periodos/historicos/README.md",
+    "section": "Cursos anteriores e espaços de apoio",
+    "observedAt": "2026-10-09"
+  },
+  "observacao": "Espaço de apoio, não é matéria. Exibido com período 2023.1.21.",
+  "pendencias": [
+    {
+      "campo": "periodo",
+      "motivo": "exibido com período 2023.1.21, que não é período deste acervo"
+    },
+    {
+      "campo": "codigo",
+      "motivo": "espaço de apoio sem código de disciplina"
+    },
+    {
+      "campo": "secao",
+      "motivo": "espaço de apoio sem seção"
+    }
+  ],
+  "url": "https://uva.instructure.com/courses/53418"
+}

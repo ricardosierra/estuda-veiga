@@ -25,4 +25,4 @@ Esta captura local ainda contém 28 PDFs únicos e 28 conversões Markdown, tota
 
 O diretório local espaco-curso-ciencia-da-computacao-2023.1 contém cópias de materiais de apoio baixadas antes da orientação de 13 de outubro de que esse curso não é matéria. Uma conversão do guia Fale com o Coordenador também já havia sido iniciada; os demais PDFs de apoio não foram convertidos. A pasta fica separada e fora da contagem das 20 conversões das disciplinas.
 
-A lista completa de itens e fontes está em [periodos/2026.2/materiais.md](../../periodos/2026.2/materiais.md); a distinção entre favoritos Canvas e matrículas do Portal está em [periodos/2026.2/README.md](../../periodos/2026.2/README.md).
+A lista completa de itens e fontes está em [periodos/2026.2/materiais.md](../../privado/periodos/2026.2/materiais.md); a distinção entre favoritos Canvas e matrículas do Portal está em [periodos/2026.2/README.md](../../privado/periodos/2026.2/README.md).

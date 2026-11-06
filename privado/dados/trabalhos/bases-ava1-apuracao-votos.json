@@ -1,0 +1,23 @@
+{
+  "id": "uva:trabalho:bases-ava1-apuracao-votos",
+  "titulo": "AVA 1 — Apuração de votos em processo eleitoral empresarial",
+  "arquivo": "privado/materias/bases-de-programacao/ava1-apuracao-de-votos.md",
+  "disciplinaId": "uva:discipline:bases-de-programacao",
+  "canvasCourseId": null,
+  "periodo": null,
+  "pendencias": [
+    {
+      "campo": "canvasCourseId",
+      "motivo": "cabeçalho não informa o curso Canvas"
+    },
+    {
+      "campo": "periodo",
+      "motivo": "cabeçalho não informa o período"
+    }
+  ],
+  "source": {
+    "file": "privado/materias/bases-de-programacao/ava1-apuracao-de-votos.md",
+    "section": "Cabeçalho do trabalho",
+    "observedAt": "2026-11-06"
+  }
+}

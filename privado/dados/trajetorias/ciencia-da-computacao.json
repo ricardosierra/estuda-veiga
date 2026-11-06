@@ -1,0 +1,44 @@
+{
+  "id": "uva:trajectory:ciencia-da-computacao:210062",
+  "institutionId": "uva",
+  "programId": "uva:program:ciencia-da-computacao",
+  "programTitle": "Ciência da Computação",
+  "programCode": "210062",
+  "curriculumId": "uva:curriculum:ecmp20261v",
+  "status": "active",
+  "series": 2,
+  "semester": "2026.2",
+  "admissionDate": "2026-02-07",
+  "admissionType": "transferencia",
+  "progress": {
+    "totalHours": 3448,
+    "completedHours": 330,
+    "enrolledHours": 416,
+    "remainingHours": 3118,
+    "reportedCompletionPercent": 9.6,
+    "completedHoursByOfferingKnown": false,
+    "sourceReportedDiscrepancyHours": 592,
+    "note": "As 36 pendências somam 2.526 h; o portal declara 3.118 h faltantes. A origem não explica a diferença."
+  },
+  "complementaryActivities": {
+    "requiredHours": 0,
+    "completedHours": 0
+  },
+  "attendanceSnapshot": {
+    "totalAbsences": 0,
+    "overallAttendancePercent": 100,
+    "coursesChecked": 7,
+    "source": {
+      "file": "privado/REGISTRO_ACADEMICO.md",
+      "section": "Boletim oficial e frequência — 2026.2",
+      "system": "Lyceum",
+      "observedAt": "2026-10-10"
+    }
+  },
+  "source": {
+    "file": "privado/REGISTRO_ACADEMICO.md",
+    "section": "Resumo atual; Progresso curricular; Disciplinas matriculadas em 2026.2; Boletim oficial e frequência; Notas das atividades no Canvas; Inscrições anteriores no Canvas",
+    "observedAt": "2026-10-09"
+  },
+  "pendencias": []
+}

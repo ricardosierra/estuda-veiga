@@ -3,7 +3,7 @@
 **Atualizado em:** 15 de outubro de 2026
 **Repositório:** local, branch `master`, sem remoto configurado.
 
-Este documento separa o que está implementado e verificado do que ainda depende de acesso autenticado ou trabalho adicional. O planejamento acadêmico geral está em [PLANEJAMENTO.md](../PLANEJAMENTO.md); o passo a passo para usar o app está em [app/README.md](../app/README.md).
+Este documento separa o que está implementado e verificado do que ainda depende de acesso autenticado ou trabalho adicional. O planejamento acadêmico geral está em [PLANEJAMENTO.md](../privado/PLANEJAMENTO.md); o passo a passo para usar o app está em [app/README.md](../app/README.md).
 
 ## Implementado no código local
 

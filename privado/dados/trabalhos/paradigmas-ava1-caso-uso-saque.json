@@ -1,0 +1,27 @@
+{
+  "id": "uva:trabalho:paradigmas-ava1-caso-uso-saque",
+  "titulo": "AVA 1 — Descrição de caso de uso CSU01: realizar saque bancário em caixa eletrônico",
+  "arquivo": "privado/materias/paradigmas-de-programacao/ava1-caso-de-uso-saque.md",
+  "disciplinaId": "uva:discipline:paradigmas-de-linguagens-de-programacao",
+  "canvasCourseId": null,
+  "periodo": null,
+  "pendencias": [
+    {
+      "campo": "disciplinaId",
+      "motivo": "cabeçalho diz \"Paradigmas de Programação\"; ligado a Paradigmas de Linguagens por nome aproximado"
+    },
+    {
+      "campo": "canvasCourseId",
+      "motivo": "cabeçalho não informa o curso Canvas"
+    },
+    {
+      "campo": "periodo",
+      "motivo": "cabeçalho não informa o período"
+    }
+  ],
+  "source": {
+    "file": "privado/materias/paradigmas-de-programacao/ava1-caso-de-uso-saque.md",
+    "section": "Cabeçalho do trabalho",
+    "observedAt": "2026-11-06"
+  }
+}

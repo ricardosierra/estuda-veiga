@@ -1,0 +1,39 @@
+# Cursos anteriores e espaços de apoio
+
+> Estado conferido em 9 de outubro de 2026 no Canvas autenticado e no Histórico Detalhado do Portal do Aluno. Use este índice para consultar inscrições encerradas e recursos de apoio. Os registros não indicam que essas turmas continuem ativas.
+
+## Semestre 2026.1
+
+O Canvas mostrou cinco cursos em inscrições anteriores. Os mapas, unidades e atividades permanecem no [inventário de cursos 2026.1](../2026.1/README.md); o estado dos arquivos e links está em [periodos/2026.1/materiais.md](../2026.1/materiais.md); as sínteses autorais das aulas estão em [periodos/2026.1/notas-de-estudo.md](../../../periodos/2026.1/notas-de-estudo.md). As extrações dos 28 PDFs públicos estão em [fontes UVA 2026.1](../../../fontes-uva/2026.1/README.md).
+
+| Disciplina | Código | Curso Canvas |
+|---|---|---:|
+| Desenvolvimento de Aplicações para Web | E10300023 | [54293](https://uva.instructure.com/courses/54293) |
+| Interfaces de Sistemas Computacionais | E10300008 | [53497](https://uva.instructure.com/courses/53497) |
+| Laboratório de Gestão de Negócios | E10300022 | [54292](https://uva.instructure.com/courses/54292) |
+| Leitura e Produção Acadêmica | E80200050 | [53442](https://uva.instructure.com/courses/53442) |
+| Sistemas Computacionais e Aplicações | E10300021 | [53498](https://uva.instructure.com/courses/53498) |
+
+## Curso gratuito — Liderança e Empreendedorismo
+
+- [Curso no Canvas](https://uva.instructure.com/courses/53973)
+- É exibido em inscrições anteriores como curso gratuito, sem período letivo identificado. Não é contado entre as cinco disciplinas curriculares de 2026.1.
+- Módulos: [introdução](https://uva.instructure.com/courses/53973/modules/items/1047961); [M1](https://uva.instructure.com/courses/53973/modules/items/1047963); [M2](https://uva.instructure.com/courses/53973/modules/items/1047968); [M3](https://uva.instructure.com/courses/53973/modules/items/1047973); [M4](https://uva.instructure.com/courses/53973/modules/items/1047978); [encerramento](https://uva.instructure.com/courses/53973/modules/items/1047983).
+- Cada módulo tinha uma página de conteúdo, um PDF, um vídeo, uma página de conceitos e um exame. Os itens por módulo estão detalhados em [periodos/historicos/materiais.md](materiais.md).
+- O conteúdo das páginas acessíveis foi resumido em [periodos/historicos/notas-de-estudo.md](../../../periodos/historicos/notas-de-estudo.md). Os quatro PDFs não foram baixados nem extraídos integralmente.
+
+## Engenharia de Computação — vínculo antigo marcado como evadido
+
+O Portal do Aluno identifica um vínculo anterior em Engenharia de Computação com status “Evadido”. O Histórico Detalhado fornece carga horária, disciplinas pendentes e atividades complementares, mas não lista as disciplinas já cursadas com notas. A [análise detalhada do vínculo antigo](../../cursos/engenharia-de-computacao/README.md) transcreve os 43 itens pendentes, registra o que não apareceu no boletim/frequência e separa esses dados da graduação atual.
+
+O Canvas não apresentou turmas curriculares de Engenharia de Computação na lista de cursos nem em inscrições anteriores; os materiais didáticos da graduação antiga ainda não foram localizados. A [matriz pública UVA de Engenharia de Computação](https://www.uva.br/wp-content/uploads/2022/02/Engenharia_de_Computacao_-_Entrada_Maio.pdf) pode servir como referência geral, mas não foi confirmada como a versão do currículo individual.
+
+## Espaço Curso — Ciência da Computação
+
+- [Espaço de apoio no Canvas](https://uva.instructure.com/courses/53418), exibido com o período 2023.1.21.
+- É um espaço de suporte, não uma disciplina curricular ativa. Os módulos listados foram Curso Superior, Canais de Comunicação, Apoio ao Aluno — Disciplinas, Serviços e Material de Apoio Acadêmico.
+- Itens visíveis: [1093352](https://uva.instructure.com/courses/53418/modules/items/1093352), [1093354](https://uva.instructure.com/courses/53418/modules/items/1093354), [1043662](https://uva.instructure.com/courses/53418/modules/items/1043662), [1043664](https://uva.instructure.com/courses/53418/modules/items/1043664), [1043666](https://uva.instructure.com/courses/53418/modules/items/1043666), [1043668](https://uva.instructure.com/courses/53418/modules/items/1043668), [1043670](https://uva.instructure.com/courses/53418/modules/items/1043670), [1043672](https://uva.instructure.com/courses/53418/modules/items/1043672) e [1043674](https://uva.instructure.com/courses/53418/modules/items/1043674).
+
+## Limite do levantamento
+
+A lista atual de inscrições anteriores continha os cinco cursos de 2026.1 e o curso gratuito. O espaço 53418 apareceu em outro agrupamento de cursos do Canvas. Não foram vistos cartões de outras matérias curriculares históricas durante esta consulta; se o Canvas voltar a exibi-los, acrescente-os aqui após confirmar título, período e acesso.

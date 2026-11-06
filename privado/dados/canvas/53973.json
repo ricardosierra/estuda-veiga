@@ -1,0 +1,30 @@
+{
+  "id": "53973",
+  "titulo": "Liderança e Empreendedorismo",
+  "tipo": "gratuito",
+  "situacao": "gratuito",
+  "periodo": null,
+  "codigo": null,
+  "secao": null,
+  "source": {
+    "file": "privado/periodos/historicos/README.md",
+    "section": "Cursos anteriores e espaços de apoio",
+    "observedAt": "2026-10-09"
+  },
+  "observacao": "Curso gratuito exibido em inscrições anteriores; não é disciplina curricular.",
+  "pendencias": [
+    {
+      "campo": "periodo",
+      "motivo": "sem período letivo identificado no Canvas"
+    },
+    {
+      "campo": "codigo",
+      "motivo": "curso gratuito sem código de disciplina"
+    },
+    {
+      "campo": "secao",
+      "motivo": "não aplicável a curso gratuito"
+    }
+  ],
+  "url": "https://uva.instructure.com/courses/53973"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "53497",
+  "titulo": "Interfaces de Sistemas Computacionais",
+  "tipo": "curricular",
+  "situacao": "encerrada",
+  "periodo": "2026.1",
+  "codigo": "E10300008",
+  "secao": null,
+  "source": {
+    "file": "privado/periodos/2026.1/README.md",
+    "section": "Como navegar",
+    "observedAt": "2026-10-08"
+  },
+  "pendencias": [
+    {
+      "campo": "secao",
+      "motivo": "turma não registrada nas fontes de 2026.1"
+    }
+  ],
+  "url": "https://uva.instructure.com/courses/53497"
+}

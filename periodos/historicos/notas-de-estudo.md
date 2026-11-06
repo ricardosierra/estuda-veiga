@@ -2,7 +2,7 @@
 
 ## Liderança e Empreendedorismo
 
-Resumos autorais das páginas de conteúdo do curso gratuito [no Canvas](https://uva.instructure.com/courses/53973). Os quatro PDFs associados aos módulos estão catalogados em [periodos/historicos/materiais.md](materiais.md), mas não foram baixados nem extraídos; estas notas não são transcrições integrais deles.
+Resumos autorais das páginas de conteúdo do curso gratuito [no Canvas](https://uva.instructure.com/courses/53973). Os quatro PDFs associados aos módulos estão catalogados em [periodos/historicos/materiais.md](../../privado/periodos/historicos/materiais.md), mas não foram baixados nem extraídos; estas notas não são transcrições integrais deles.
 
 ### M1 — Autoliderança e comunicação
 

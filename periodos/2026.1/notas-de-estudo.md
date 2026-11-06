@@ -2,7 +2,7 @@
 
 Notas autorais organizadas pelas cinco disciplinas e suas unidades. Elas sintetizam o texto e os recursos textuais acessíveis nas páginas HTML das unidades no Canvas, incluindo explicações, exemplos e resumos quando disponíveis. O PDF de Desenvolvimento Web U2 também foi conferido visualmente nas páginas 12–13. As notas são paráfrases para estudo; não são transcrições integrais nem extrações completas dos PDFs. Os materiais originais continuam acessíveis pelos links oficiais abaixo; cópias dos PDFs de aula e apoio não são armazenadas neste acervo.
 
-Use estas notas como base de revisão. Para detalhes, exemplos, exercícios, referências e eventuais diferenças entre a página do Canvas e o PDF, consulte a fonte oficial de cada unidade. A página HTML pode apresentar o material didático em formato textual, mas isso não confirma que todos os elementos ou páginas do PDF correspondente estejam reproduzidos nela. Os endereços e o estado de cada arquivo estão em [periodos/2026.1/materiais.md](materiais.md).
+Use estas notas como base de revisão. Para detalhes, exemplos, exercícios, referências e eventuais diferenças entre a página do Canvas e o PDF, consulte a fonte oficial de cada unidade. A página HTML pode apresentar o material didático em formato textual, mas isso não confirma que todos os elementos ou páginas do PDF correspondente estejam reproduzidos nela. Os endereços e o estado de cada arquivo estão em [periodos/2026.1/materiais.md](../../privado/periodos/2026.1/materiais.md).
 
 ## Desenvolvimento de Aplicações para Web
 
@@ -169,5 +169,5 @@ As páginas verificadas das quatro unidades não apresentavam link de PDF. As no
 ## Fontes e atualização
 
 - Os títulos, objetivos e tópicos foram conferidos nas páginas das unidades do Canvas em 8 de outubro de 2026. As sínteses foram reescritas para revisão rápida e não são transcrições integrais dos PDFs.
-- Os links oficiais podem exigir uma sessão autenticada e podem mudar quando a UVA reorganizar as turmas. Consulte o mapa em [periodos/2026.1/README.md](README.md) para navegar pelos módulos.
+- Os links oficiais podem exigir uma sessão autenticada e podem mudar quando a UVA reorganizar as turmas. Consulte o mapa em [periodos/2026.1/README.md](../../privado/periodos/2026.1/README.md) para navegar pelos módulos.
 - Ao preparar notas de um novo semestre, confirme as disciplinas ativas, leia as aulas publicadas e atualize este arquivo ou crie uma cópia com o novo período. Guarde apenas texto autoral e links, sem copiar o PDF para a pasta local.

@@ -8,7 +8,7 @@
     "curriculumVersion": "ECMP20261V",
     "trajectoryStatus": "active",
     "source": {
-      "file": "REGISTRO_ACADEMICO.md",
+      "file": "privado/REGISTRO_ACADEMICO.md",
       "section": "Histórico Detalhado",
       "observedAt": "2026-10-09"
     },
@@ -19,7 +19,7 @@
     ]
   },
   "source": {
-    "file": "REGISTRO_ACADEMICO.md",
+    "file": "privado/REGISTRO_ACADEMICO.md",
     "section": "Histórico Detalhado",
     "observedAt": "2026-10-09"
   },

@@ -7,3 +7,4 @@
 - Diferencie dados confirmados por fonte oficial de estimativas, material didático e campos desconhecidos. Registre fonte e data para notas, frequência e progresso.
 - Execute verificações focadas antes de concluir mudanças e relate claramente o que foi e o que não foi validado.
 - Conteúdo versionado é texto: PDF e documento (Word, Pages) viram Markdown com página e fonte; diagramas e imagens viram Mermaid ou descrição textual. Binários ficam fora do Git. `node tools/acervo/build.mjs --verificar-texto` aponta o que ainda é binário.
+- Dados pessoais do aluno (matrícula, notas, frequência, trajetória, trabalhos entregues, planejamento) ficam em `privado/`, no mesmo repositório. O restante é matéria e instituição. `dados/` nunca contém dado pessoal.

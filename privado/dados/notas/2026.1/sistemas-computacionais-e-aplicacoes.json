@@ -1,0 +1,23 @@
+{
+  "id": "uva:program:ciencia-da-computacao:nota:2026.1:sistemas-computacionais-e-aplicacoes",
+  "matriculaId": "uva:program:ciencia-da-computacao:enrollment:2026.1:sistemas-computacionais-e-aplicacoes",
+  "ordem": 4,
+  "courseTitle": "Sistemas Computacionais e Aplicações",
+  "status": "closed",
+  "canvasAvaTotals": {
+    "earnedPoints": 100,
+    "possiblePoints": 200,
+    "percent": 50
+  },
+  "source": {
+    "file": "privado/REGISTRO_ACADEMICO.md",
+    "section": "Inscrições anteriores no Canvas — 2026.1",
+    "observedAt": "2026-10-10"
+  },
+  "pendencias": [
+    {
+      "campo": "lyceum",
+      "motivo": "boletim do Lyceum sem decisão final localizada para 2026.1"
+    }
+  ]
+}

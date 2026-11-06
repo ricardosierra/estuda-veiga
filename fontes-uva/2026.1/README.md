@@ -57,4 +57,4 @@ Foram baixados 28 PDFs públicos indicados no inventário, que somavam 27.410.02
 
 - A camada textual selecionável foi extraída em todas as 28 fontes; não houve página totalmente vazia nos arquivos de texto.
 - Capturas de tela, ilustrações e textos existentes apenas como imagem podem não aparecer no arquivo texto; consulte os links oficiais para esses elementos.
-- Os seis PDFs de atividades enviados pelo estudante estão catalogados em [periodos/2026.1/materiais.md](../../periodos/2026.1/materiais.md), mas são anexos acessíveis por páginas autenticadas do Canvas. Eles não fazem parte dos 28 links públicos e aguardam a sessão autenticada para download e conversão.
+- Os seis PDFs de atividades enviados pelo estudante estão catalogados em [periodos/2026.1/materiais.md](../../privado/periodos/2026.1/materiais.md), mas são anexos acessíveis por páginas autenticadas do Canvas. Eles não fazem parte dos 28 links públicos e aguardam a sessão autenticada para download e conversão.

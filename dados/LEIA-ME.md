@@ -29,6 +29,14 @@ Tudo aqui é texto. Nada de PDF, imagem ou planilha.
 - Extração de texto de PDF sem camada de texto (escaneado) precisa de OCR e revisão antes de ser aceita. Página sem texto aparece marcada como tal.
 - `node tools/acervo/build.mjs --verificar-texto` lista binários rastreados (erro) e binários locais (aviso).
 
+## Dados privados do aluno
+
+- Tudo que identifica o aluno fica em `privado/`, dentro deste mesmo repositório: matrícula, turmas pessoais, notas, frequência, trajetória, trabalhos entregues e o planejamento pessoal.
+- `dados/` tem só matéria e instituição: currículo, disciplinas, ofertas, relações e períodos.
+- `privado/dados/` tem o mesmo formato de `dados/`. O gerador lê as duas pastas.
+- Um registro de `dados/` pode citar um arquivo de `privado/` na fonte. Não o contrário.
+- Nada de documento (PDF, Word) nem imagem entra no Git. Originais locais ficam em `originais/binarios/`, ignorado pelo Git.
+
 ## Estrutura
 
 | Pasta | O que guarda | Um arquivo por |

@@ -1,6 +1,6 @@
 # Notas de estudo — 2026.2
 
-Notas autorais e resumos baseados somente nos materiais e páginas que puderam ser consultados. O texto integral extraído de PDF é mantido separadamente em [fontes UVA 2026.2](../../fontes-uva/2026.2/README.md). Confira o [inventário de materiais](materiais.md) para saber o que ainda não foi baixado.
+Notas autorais e resumos baseados somente nos materiais e páginas que puderam ser consultados. O texto integral extraído de PDF é mantido separadamente em [fontes UVA 2026.2](../../fontes-uva/2026.2/README.md). Confira o [inventário de materiais](../../privado/periodos/2026.2/materiais.md) para saber o que ainda não foi baixado.
 
 ## Bases de Programação
 
@@ -15,15 +15,15 @@ Notas autorais e resumos baseados somente nos materiais e páginas que puderam s
 
 ### Capítulos 2 a 4 e plano de ensino
 
-Os PDFs apontados pelos módulos não foram obtidos: as tentativas de acesso direto responderam HTTP 403. Não há resumo integral desses documentos neste acervo. Os links e os próximos passos estão em [periodos/2026.2/materiais.md](materiais.md).
+Os PDFs apontados pelos módulos não foram obtidos: as tentativas de acesso direto responderam HTTP 403. Não há resumo integral desses documentos neste acervo. Os links e os próximos passos estão em [periodos/2026.2/materiais.md](../../privado/periodos/2026.2/materiais.md).
 
 ## Paradigmas de Linguagens de Programação
 
 O curso está listado no Canvas, mas seu primeiro módulo e os links de material exibem o nome “Análise e Projeto de Sistemas e Informação I” e o código ASI1. Até confirmar com a tutoria que o material pertence a Paradigmas, não resumi nem atribuí os tópicos do e-book a esta disciplina.
 
 - [Curso no Canvas](https://uva.instructure.com/courses/57159)
-- [Inventário e divergência dos materiais](materiais.md)
+- [Inventário e divergência dos materiais](../../privado/periodos/2026.2/materiais.md)
 
 ## Demais disciplinas matriculadas
 
-O Portal listava sete disciplinas para 2026.2, mas a consulta autenticada ao Canvas exibiu apenas Bases de Programação e Paradigmas. Não foram criadas notas de aulas para as outras cinco sem acesso aos respectivos cursos e materiais. A lista e o procedimento de revisão estão em [periodos/2026.2/README.md](README.md).
+O Portal listava sete disciplinas para 2026.2, mas a consulta autenticada ao Canvas exibiu apenas Bases de Programação e Paradigmas. Não foram criadas notas de aulas para as outras cinco sem acesso aos respectivos cursos e materiais. A lista e o procedimento de revisão estão em [periodos/2026.2/README.md](../../privado/periodos/2026.2/README.md).
