@@ -1,7 +1,7 @@
 # Estado de implementação do Estuda UVA
 
-**Atualizado em:** 10 de outubro de 2026
-**Repositório:** local, branch `main`, sem remoto configurado.
+**Atualizado em:** 15 de outubro de 2026
+**Repositório:** local, branch `master`, sem remoto configurado.
 
 Este documento separa o que está implementado e verificado do que ainda depende de acesso autenticado ou trabalho adicional. O planejamento acadêmico geral está em [PLANEJAMENTO.md](../PLANEJAMENTO.md); o passo a passo para usar o app está em [app/README.md](../app/README.md).
 
@@ -15,21 +15,24 @@ Este documento separa o que está implementado e verificado do que ainda depende
 - Ciência da Computação e Engenharia de Computação permanecem em trajetórias separadas. O compartilhamento exige referências explícitas dos dois currículos ao mesmo identificador canônico; relações candidatas continuam sem equivalência confirmada e não transferem nota, matrícula ou conclusão entre trajetórias.
 - O app pode abrir uma janela Chromium própria para Portal/Lyceum, solicitar login manual, navegar apenas por links acadêmicos oficiais observados e limitar cada leitura a 50 páginas e 10.000 linhas por tabela. Rotas `/login`, `/sso` e `/autologin` são bloqueadas mesmo quando o link parece acadêmico. Se uma tabela exceder o limite, a captura traz aviso e fica marcada como parcial.
 - Uma captura do Portal gera arquivos novos JSON e Markdown em `materias/catalogo/capturas/` e os sincroniza no SQLite. Links gravados têm query e fragmento removidos; campos identificados por rótulos de nome/aluno/estudante, CPF, RA, matrícula, identificação ou documento são omitidos.
-- No Canvas, o app lista cursos e módulos e importa um material escolhido. PDFs de material são temporários; o resultado da importação é Markdown por página e metadados de origem seguros.
+- No Canvas, o código local inclui captura sequencial e retomável de cursos visíveis, páginas de aula e PDFs publicados, com estado por curso/item em SQLite, cancelamento, repetição de falhas e controles de limite. “Espaço Curso” é excluído. A tela de Matérias apresenta o painel e o resultado por curso; PDFs são validados, convertidos localmente em Markdown por página e descartados em memória.
+- Materiais capturados levam associações de curso/módulo e período somente quando há correspondência confirmada com matrícula ativa no catálogo local. Vínculos sem período seguem como desconhecidos; a listagem da matéria não presume o semestre.
 - Antes de baixar, a importação procura a URL de origem sem query no SQLite e confirma que o Markdown e a aula ainda existem dentro do acervo. Se os dois arquivos locais estão presentes, reutiliza-os sem transferir o PDF novamente e atualiza o período no índice.
 - O apresentador de aula e o histórico registram sessões locais de estudo para retomada. Eles não alteram presença, notas, matrículas ou entregas oficiais.
 
 ## Fluxo operacional
 
-### Canvas: material textual
+### Canvas: captura textual em lote
 
-1. Abrir o app e entrar em **Canvas e importação**.
-2. Conectar a janela Chromium do app e autenticar manualmente, se solicitado.
-3. Atualizar a lista de cursos, escolher um curso e abrir o módulo ou item publicado.
-4. Para um PDF, iniciar a importação do item. O app extrai e grava o texto por página em Markdown, remove a query/fragmento da URL registrada e descarta os bytes temporários do PDF.
-5. Conferir a aula no acervo, acrescentar notas autorais e sincronizar o acervo.
+1. Abrir **Matérias** e acionar **Abrir Canvas para entrar**. A autenticação permanece manual na janela Chromium visível do app.
+2. De volta à lista local das matrículas, iniciar **Capturar todas as disciplinas**. O worker lê um curso/item por vez e ignora avaliações, fóruns, frequência, notas e entregas; o espaço de apoio não é tratado como disciplina.
+3. Conferir o progresso e os avisos no painel. A execução pode ser cancelada/retomada, e falhas retryable podem ser tentadas novamente. Limites alteráveis são validados no backend e ficam registrados no início da execução.
+4. Itens PDF e páginas compatíveis resultam em Markdown local. Bytes de PDF, cookies e URLs assinadas não são gravados; edições existentes não são substituídas. Associações compartilhadas apontam o mesmo material sem duplicar seu Markdown.
+5. Abra um material dentro da matéria para iniciar uma aula guiada local. A captura em lote, sozinha, não cria sessão de estudo.
 
-A importação atual é por item escolhido. A travessia integral de todos os cursos, módulos, páginas, vídeos, avaliações e anexos, incluindo cursos futuros e históricos, ainda não foi executada como uma captura completa nesta etapa. Materiais inacessíveis devem continuar identificados por URL/erro; não se registra que foram baixados quando não foram.
+**Limite desta atualização:** os comandos, UI, worker e testes estão no checkout, mas ainda não há evidência de uma varredura autenticada executada pelo app nesta rodada. O Canvas aberto no navegador do Codex usa um perfil distinto do Chromium próprio do Estuda UVA; os cookies não são transferidos. Os quatro PDFs oficiais de LFA permanecem pendentes no inventário até uma execução bem-sucedida nesse Chromium autenticado. O código compilado e os testes não comprovam que os cursos foram baixados.
+
+O importador individual continua disponível para itens que precisem de inspeção manual. A travessia integral de todos os cursos visíveis, páginas e anexos ainda não foi executada como captura autenticada nesta rodada. Materiais inacessíveis devem continuar identificados por URL/erro; não se registra que foram baixados quando não foram.
 
 ### Portal do Aluno/Lyceum: histórico oficial
 
