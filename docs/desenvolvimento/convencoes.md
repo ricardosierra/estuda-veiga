@@ -47,19 +47,16 @@ Resumo; o texto normativo está em [`AGENTS.md`](../../AGENTS.md) e não é repr
 - IDs de dados: `uva:discipline:<slug>`, `uva:program:<slug>`; IDs de curso do Canvas são numéricos (`LmsCourseId`).
 - Esta variedade de formatos de data é uma **inconsistência conhecida**, não uma convenção desejada.
 
-## TypeScript / React
+## TypeScript / React (removido)
 
-- Estado local com `useState`/`useEffect`; comandos via `invoke` do `@tauri-apps/api`.
-- Lógica testável em módulos `.ts` separados dos componentes `.tsx` (por exemplo `studyTypes.ts`), testada com `node --test` (`app/scripts/*.test.mjs`).
-- Acessibilidade observada: `aria-label` em botões de ícone, `role="status"` e `role="alert"` em avisos e erros, `nav` rotulado.
-- `typescript` 7.0.2 e `vite` 8.3.4 fixados em `app/package.json`; React fixado em 19.3.0.
+O frontend React/Vite foi removido no commit `aeab5f8`; não há mais código TypeScript no repositório. As convenções que valiam para ele (estado local com `useState`/`useEffect`, lógica em módulos `.ts` testada com `node --test`, `aria-label`, `role="status"` e `role="alert"`) ficam no histórico (`git show aeab5f8^:app/src/ui`). A interface atual é GPUI, em `app/crates/estuda-gpui`; suas convenções ainda não foram documentadas.
 
 ## Git e mensagens de commit
 
-- Branch padrão: `master` (o repositório está nela; o README descreve o repositório como local, sem remoto).
+- Branch padrão: `master` (o repositório está nela). Há remoto `origin` (`git@github.com:ricardosierra/faculdade.git`), **público** segundo o dono; a branch local está à frente do `origin/master`. Tudo o que é commitado e enviado, inclusive `privado/` e o histórico, fica público.
 - Estilo observado no histórico (42 commits): `tipo(escopo): resumo em português`, com tipos `feat`, `fix`, `docs`, `refactor`, `data` e escopos como `estuda-uva`, `acervo`, `fontes-uva`, `materias`, `features`. Exemplos: `feat(estuda-uva): painel acadêmico do Canvas e calculadora de nota final`, `docs: troca referências de main para master`.
 - Não há `CHANGELOG.md` neste repositório hoje.
-- **Esta documentação não cria commits.** As alterações ficam na árvore de trabalho.
+- Os commits desta documentação foram feitos por área, sem trailers de coautoria, e só com arquivos escritos por ela.
 
 ## Documentação
 

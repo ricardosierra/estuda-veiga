@@ -4,7 +4,7 @@
 
 ## Estado da medição
 
-**Não existe suíte de benchmark, perfil de desempenho nem orçamento de desempenho no repositório.** Nenhum teste mede tempo, memória ou vazão; os 152 testes de `estuda-core` rodaram em 3,74 s no total, mas isso mede a execução dos testes, não o aplicativo com o acervo real. Este documento registra apenas os **limites que existem no código** e custos que se deduzem da leitura dele. Qualquer número de latência ou de tamanho do acervo em uso real é **Não verificado**.
+**Não existe suíte de benchmark, perfil de desempenho nem orçamento de desempenho no repositório.** Nenhum teste mede tempo, memória ou vazão; os 152 testes de `estuda-core` (contagem de 2026-11-06, antes do esquema v8) rodaram em 3,74 s no total, mas isso mede a execução dos testes, não o aplicativo com o acervo real. Este documento registra apenas os **limites que existem no código** e custos que se deduzem da leitura dele. Qualquer número de latência ou de tamanho do acervo em uso real é **Não verificado**.
 
 ## Limites implementados
 
