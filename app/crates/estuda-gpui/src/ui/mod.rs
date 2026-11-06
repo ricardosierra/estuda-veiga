@@ -15,7 +15,12 @@ use std::time::Duration;
 
 use estuda_core::catalog::scanner::{LocalDocument, LocalDocumentContent};
 
+use std::sync::Arc;
+
+use crate::portal::Portal;
+use crate::speech::Narrator;
 use crate::services::Services;
+use estuda_core::lyceum::PortalState;
 
 use gpui_kit::component::input::{Input, InputEvent, InputState, TextareaState};
 use gpui_kit::gpui::{
@@ -96,7 +101,6 @@ impl Screen {
 pub enum SyncPhase {
     Idle,
     Login,
-    Running,
     Done,
 }
 
@@ -105,7 +109,6 @@ pub enum SyncPhase {
 pub enum SrcState {
     Idle,
     Waiting,
-    Reading,
     Done,
 }
 
@@ -154,6 +157,12 @@ pub struct AppView {
     pub draft_input: Option<Entity<TextareaState>>,
     msg_sub: Option<Subscription>,
     draft_sub: Option<Subscription>,
+    /// Sessão do Portal no Chromium do app (`None` se o runtime não puder ser criado).
+    pub portal: Option<Arc<Portal>>,
+    /// Narrador eSpeak NG, criado só na primeira vez que o aluno pede para ouvir.
+    pub narrator: Option<Narrator>,
+    /// Aviso de narração (voz ausente, motor indisponível).
+    pub narration_note: Option<String>,
 }
 
 impl AppView {
@@ -195,6 +204,9 @@ impl AppView {
             draft_input: None,
             msg_sub: None,
             draft_sub: None,
+            portal: None,
+            narrator: None,
+            narration_note: None,
         }
     }
 
@@ -207,7 +219,6 @@ impl AppView {
         match self.sync_phase {
             SyncPhase::Idle => ("Sem leitura nesta sessão", p.muted),
             SyncPhase::Login => ("Aguardando login", hex(LARANJA)),
-            SyncPhase::Running => ("Lendo portais…", hex(AZUL_MEDIO)),
             SyncPhase::Done => ("Leitura concluída", hex(crate::theme::PETROLEO)),
         }
     }
@@ -500,8 +511,7 @@ impl AppView {
             .child(
                 button(p, "sync-btn", "Sincronizar", Variant::Primary, Size::Md, Some("bolt"))
                     .on_click(cx.listener(|this, _: &ClickEvent, _, cx| {
-                        this.start_sync();
-                        cx.notify();
+                        this.start_sync(cx);
                     })),
             )
     }
@@ -529,15 +539,73 @@ impl AppView {
             .into_any_element()
     }
 
-    /// Ação do botão Sincronizar: entra na tela de Sincronização e pede o login.
-    pub fn start_sync(&mut self) {
-        if matches!(self.sync_phase, SyncPhase::Running | SyncPhase::Login) {
+    /// Ação do botão Sincronizar: entra na tela de Sincronização e abre o Portal no
+    /// Chromium do app. O login e o MFA são feitos pelo aluno na janela aberta.
+    pub fn start_sync(&mut self, cx: &mut Context<Self>) {
+        if matches!(self.sync_phase, SyncPhase::Login | SyncPhase::Done) {
             return;
         }
         self.screen = Screen::Sync;
         self.sync_phase = SyncPhase::Login;
         self.src_state = [SrcState::Waiting, SrcState::Idle, SrcState::Idle, SrcState::Idle, SrcState::Idle];
-        self.add_log("Portal aberto · aguardando login manual");
+        self.add_log("Abrindo o Portal no Chromium do app…");
+        let Some(portal) = self.portal.clone() else {
+            self.sync_phase = SyncPhase::Idle;
+            self.src_state[0] = SrcState::Idle;
+            self.add_log("Não foi possível iniciar a sessão do Portal.");
+            cx.notify();
+            return;
+        };
+        cx.spawn(async move |this, cx| {
+            let result = cx
+                .background_spawn(async move { portal.open_lyceum() })
+                .await;
+            let _ = this.update(cx, |this, cx| {
+                match result {
+                    Ok(status) => this.add_log(&format!("Portal aberto · {}", status.message)),
+                    Err(error) => {
+                        this.sync_phase = SyncPhase::Idle;
+                        this.src_state[0] = SrcState::Idle;
+                        this.add_log(&error);
+                    }
+                }
+                cx.notify();
+            });
+        })
+        .detach();
+        cx.notify();
+    }
+
+    /// Botão "Concluí o login": confere a sessão real no Portal. Não lê notas nem gera arquivos.
+    pub fn login_done(&mut self, cx: &mut Context<Self>) {
+        let Some(portal) = self.portal.clone() else {
+            return;
+        };
+        self.add_log("Conferindo a sessão do Portal…");
+        cx.notify();
+        cx.spawn(async move |this, cx| {
+            let status = cx
+                .background_spawn(async move { portal.lyceum_status() })
+                .await;
+            let _ = this.update(cx, |this, cx| {
+                match status {
+                    Some(status)
+                        if matches!(status.state, PortalState::Authenticated | PortalState::Partial) =>
+                    {
+                        this.src_state[0] = SrcState::Done;
+                        this.sync_phase = SyncPhase::Done;
+                        this.add_log(&format!("Sessão confirmada · {}", status.message));
+                    }
+                    Some(status) => {
+                        this.src_state[0] = SrcState::Waiting;
+                        this.add_log(&status.message);
+                    }
+                    None => this.add_log("Abra o Portal antes de concluir o login."),
+                }
+                cx.notify();
+            });
+        })
+        .detach();
     }
 
     pub fn add_log(&mut self, message: &str) {
@@ -553,6 +621,7 @@ impl AppView {
         let Some(document) = self.library.get(idx).cloned() else {
             return;
         };
+        self.stop_narration();
         self.screen = Screen::Leitor;
         self.doc = None;
         self.doc_idx = idx;
@@ -651,39 +720,43 @@ impl AppView {
         .detach();
     }
 
-    /// Após o login manual no Portal, a leitura das fontes avança em etapas.
-    /// Esta etapa ainda é a simulação do layout; a ligação com o `estuda-core` vem depois.
-    pub fn login_done(&mut self, cx: &mut Context<Self>) {
-        self.sync_phase = SyncPhase::Running;
-        self.src_state = [SrcState::Done, SrcState::Reading, SrcState::Idle, SrcState::Idle, SrcState::Idle];
-        self.add_log("Matrícula Ativo selecionada · URL de SSO descartada");
-        cx.notify();
-        cx.spawn(async move |this, cx| {
-            let names = ["Sistema Acadêmico", "Canvas", "Sistema de Provas", "Calendário Acadêmico"];
-            for (i, name) in names.iter().enumerate() {
-                cx.background_executor()
-                    .timer(Duration::from_millis(1300))
-                    .await;
-                let alive = this
-                    .update(cx, |this, cx| {
-                        this.src_state[i + 1] = SrcState::Done;
-                        if i + 2 < this.src_state.len() {
-                            this.src_state[i + 2] = SrcState::Reading;
-                        }
-                        this.add_log(&format!("{name} · leitura simulada concluída"));
-                        if i == names.len() - 1 {
-                            this.sync_phase = SyncPhase::Done;
-                            this.add_log("Lote gravado em 1 transação (simulação)");
-                        }
-                        cx.notify();
-                    })
-                    .is_ok();
-                if !alive {
-                    break;
+    /// Narra o Markdown do documento aberto com a voz pt-BR embutida (eSpeak NG).
+    pub fn narrate_doc(&mut self) {
+        let Some(doc) = self.doc.as_ref() else {
+            self.narration_note = Some("Abra um documento para ouvir.".into());
+            return;
+        };
+        if self.narrator.is_none() {
+            match Narrator::new() {
+                Ok(narrator) => self.narrator = Some(narrator),
+                Err(error) => {
+                    self.narration_note = Some(error.to_string());
+                    return;
                 }
             }
-        })
-        .detach();
+        }
+        if let Some(narrator) = &self.narrator {
+            self.narration_note = narrator.aviso_voz().map(str::to_string);
+            narrator.speak(&doc.markdown);
+        }
+    }
+
+    /// Pausa ou retoma a narração em andamento.
+    pub fn toggle_narration_pause(&mut self) {
+        if let Some(narrator) = &self.narrator {
+            if narrator.is_paused() {
+                narrator.resume();
+            } else {
+                narrator.pause();
+            }
+        }
+    }
+
+    /// Interrompe a narração (também ao trocar de documento ou sair do leitor).
+    pub fn stop_narration(&mut self) {
+        if let Some(narrator) = &self.narrator {
+            narrator.stop();
+        }
     }
 
     /// Envia a tentativa do aluno e agenda a devolutiva do tutor (700 ms).

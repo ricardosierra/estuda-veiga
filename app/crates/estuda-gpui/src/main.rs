@@ -1,7 +1,9 @@
 //! Estuda UVA nativo: interface GPUI com o layout do canvas "Estuda UVA".
 
 mod assets;
+mod portal;
 mod services;
+mod speech;
 mod theme;
 mod ui;
 
@@ -34,6 +36,7 @@ fn main() {
                         } else {
                             view.refresh_library(cx);
                         }
+                        view.portal = portal::Portal::new().ok().map(std::sync::Arc::new);
                         view.start_memory_monitor(cx);
                         view
                     });

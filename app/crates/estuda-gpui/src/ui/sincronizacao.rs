@@ -15,7 +15,6 @@ fn state_style(p: &Palette, state: SrcState) -> (&'static str, Hsla, Hsla, f32) 
     match state {
         SrcState::Idle => ("Parado", p.muted, p.border, 0.),
         SrcState::Waiting => ("Aguardando você", hex(LARANJA), hex(LARANJA), 15.),
-        SrcState::Reading => ("Lendo…", hex(AZUL_MEDIO), hex(AZUL_MEDIO), 60.),
         SrcState::Done => ("Lido agora", hex(PETROLEO), p.border, 100.),
     }
 }

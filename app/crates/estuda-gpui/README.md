@@ -18,9 +18,9 @@ O acervo padrão é a raiz do repositório (`app/crates/estuda-gpui/../../..`).
 | Tela | Estado |
 |---|---|
 | Biblioteca | Lista os documentos do índice em RAM (`estuda-core`), com filtros por categoria real e busca pelo cabeçalho. |
-| Leitor PDF→MD | Lê o Markdown do acervo em segundo plano. Mostra a origem do arquivo e no máximo 400 linhas. |
+| Leitor PDF→MD | Lê o Markdown do acervo em segundo plano. Mostra a origem do arquivo e no máximo 400 linhas. Ouvir, pausar e parar usam a voz pt-BR do eSpeak NG embutido. |
 | Painel, Acadêmico, Estudo, Auxílio, Usuário | Dados do protótipo do canvas (`ui/data.rs`). Não são do acervo. |
-| Sincronização | Simulação de fases do layout. Ainda não lê o Portal nem o Canvas. |
+| Sincronização | Sincronizar abre o Portal no Chromium do app (perfil em `~/Library/Application Support/br.edu.uva.estuda/chromium-profile`). "Concluí o login" confere a sessão real. Notas, Canvas e calendário ainda não são lidos. |
 | Cabeçalho | Busca, tema e botão Sincronizar. A busca leva à Biblioteca. |
 | Barra de RAM | RSS real do processo, lido de `ps` a cada 3 s. |
 
@@ -33,6 +33,17 @@ O limite de memória do layout (64 a 1024 MB) ainda não altera nenhum comportam
   prévia do dono.
 - O índice do acervo fica em RAM (`CatalogService`), sem varrer o disco a cada tela.
 - Perfil do Chromium e cookies não entram no repositório nem nos logs.
+
+## Narração (eSpeak NG)
+
+- Motor: eSpeak NG, o mesmo que o Ubuntu usa via Speech Dispatcher. Compilado a partir do fonte
+  pelo crate `espeak-rs-sys`, com a feature `compile-espeak-intonations` (sem ela não há dados de voz).
+- Dados de voz: `ESTUDA_ESPEAK_DATA`, a pasta `espeak-ng-data` ao lado do binário, ou o cache
+  do build em `target/`. Para distribuir, copie `espeak-ng-data` junto do binário.
+- **Licença:** o eSpeak NG é GPL-3.0-or-later e fica linkado estaticamente. Distribuir o binário
+  obriga a licenciar o app sob GPL-3.0-or-later (ou compatível) e a entregar o código-fonte. Uso
+  pessoal não tem essa obrigação.
+- O narrador é criado só quando o aluno pede para ouvir.
 
 ## Decisões de base
 

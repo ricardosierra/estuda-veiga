@@ -57,6 +57,7 @@ pub fn render(view: &AppView, p: &Palette, cx: &mut Context<AppView>) -> Div {
     let document = &doc.document;
     let subject = document.course.clone().unwrap_or_else(|| "Sem disciplina identificada".into());
     let converting = view.conv < 100;
+    let narrating = view.narrator.as_ref().is_some_and(|n| n.is_speaking());
     let conv_label = if converting {
         format!("convertendo {}%", view.conv)
     } else {
@@ -158,7 +159,7 @@ pub fn render(view: &AppView, p: &Palette, cx: &mut Context<AppView>) -> Div {
         .flex()
         .flex_col()
         .gap(px(16.))
-        .child(toolbar(p, cx, document.title.clone(), format!("{subject} · {}", document.category)))
+        .child(toolbar(p, cx, document.title.clone(), format!("{subject} · {}", document.category), narrating, view.narration_note.clone()))
         .child(
             div()
                 .flex()
@@ -169,7 +170,7 @@ pub fn render(view: &AppView, p: &Palette, cx: &mut Context<AppView>) -> Div {
         )
 }
 
-fn toolbar(p: &Palette, cx: &mut Context<AppView>, title: String, meta: String) -> Div {
+fn toolbar(p: &Palette, cx: &mut Context<AppView>, title: String, meta: String, narrating: bool, note: Option<String>) -> Div {
     div()
         .flex()
         .items_center()
@@ -188,6 +189,7 @@ fn toolbar(p: &Palette, cx: &mut Context<AppView>, title: String, meta: String) 
                 .child(meta),
         )
         .child(div().flex_1())
+        .child(narration_controls(p, cx, narrating, note.clone()))
         .child(
             kit::button_ex(
                 p,
@@ -232,4 +234,39 @@ fn empty(view: &AppView, p: &Palette) -> Div {
                 .text_color(p.muted)
                 .child(view.library_status.clone()),
         )
+}
+
+/// Controles de narração: Ouvir, Pausar/Continuar e Parar, com o aviso do motor se houver.
+fn narration_controls(p: &Palette, cx: &mut Context<AppView>, narrating: bool, note: Option<String>) -> Div {
+    let mut row = div().flex().items_center().gap(px(8.));
+    row = row.child(
+        kit::button(p, "narrate", "Ouvir", Variant::Outline, Size::Sm, None).on_click(cx.listener(
+            |this, _: &ClickEvent, _, cx| {
+                this.narrate_doc();
+                cx.notify();
+            },
+        )),
+    );
+    row = row.child(
+        kit::button(p, "narrate-pause", "Pausar / continuar", Variant::Outline, Size::Sm, None)
+            .on_click(cx.listener(|this, _: &ClickEvent, _, cx| {
+                this.toggle_narration_pause();
+                cx.notify();
+            })),
+    );
+    row = row.child(
+        kit::button(p, "narrate-stop", "Parar", Variant::Outline, Size::Sm, None).on_click(
+            cx.listener(|this, _: &ClickEvent, _, cx| {
+                this.stop_narration();
+                cx.notify();
+            }),
+        ),
+    );
+    if narrating {
+        row = row.child(div().text_size(px(12.)).text_color(p.muted).child("lendo…"));
+    }
+    if let Some(note) = note {
+        row = row.child(div().text_size(px(12.)).text_color(p.muted).child(note));
+    }
+    row
 }
