@@ -6,7 +6,7 @@ Notas autorais e resumos baseados somente nos materiais e páginas que puderam s
 
 ### Capítulo 1 — Algoritmos e fundamentos de programação
 
-- [Item no Canvas](https://uva.instructure.com/courses/55558/modules/items/1073053) · [Texto integral extraído](materias/fontes-uva/2026.2/bases-de-programacao/capitulo-01.txt)
+- [Item no Canvas](https://uva.instructure.com/courses/55558/modules/items/1073053) · [Texto integral extraído](materias/fontes-uva/2026.2/bases-de-programacao/capitulo-01.md)
 - O capítulo apresenta algoritmos como sequências finitas de passos para resolver problemas e compara formas de representação: descrição narrativa, fluxograma, diagrama de Chapin e pseudocódigo.
 - O processo de resolução começa pela compreensão do problema e identificação de dados de entrada, processamento e saída; depois organiza a solução, representa o algoritmo e testa os passos com exemplos.
 - A base de programação inclui tipos primitivos, variáveis e constantes, comandos de entrada e saída, atribuição, operadores aritméticos, relacionais, lógicos e literais, além de expressões.

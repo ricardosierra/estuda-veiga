@@ -6,6 +6,7 @@ Repositório local para organizar planejamento, cursos, notas e materiais acadê
 
 - [Portal do Aluno UVA](https://portalaluno.uva.br/Aluno/PortalAluno)
 - [Canvas UVA](https://uva.instructure.com/)
+- [Como navegar no Portal e nos seus 5 subsistemas (Lyceum, Canvas, Sistema de Provas, Zeev, Pagamento)](docs/NAVEGACAO_PORTAL_UVA.md)
 
 As credenciais devem ser digitadas diretamente no Portal. Não são armazenadas neste repositório.
 
@@ -19,8 +20,9 @@ As credenciais devem ser digitadas diretamente no Portal. Não são armazenadas 
 - [Semestres futuros](FUTUROS_SEMESTRES.md)
 - [Calendário acadêmico transcrito de 2026.1](CALENDARIO_2026.1.md)
 - [Trabalhos em texto por matéria](materias/README.md)
+- [Dados estruturados do acervo (um registro por arquivo) e como contribuir](dados/LEIA-ME.md) · [gerador e visualizações](tools/acervo/README.md)
 - [Aplicativo local Estuda UVA e passo a passo](app/README.md) · [estado de implementação e verificações](docs/ESTADO_IMPLEMENTACAO_ESTUDA_UVA.md)
 
 ## Git e arquivos
 
-Repositório Git local, na branch main, sem remoto configurado. Documentos Markdown, notas autorais e extrações textuais são versionados. PDFs e arquivos grandes ficam fora do histórico Git; quando possível, extraímos o texto para arquivos TXT ou Markdown com a página e a URL oficial. Arquivos Word e Pages-fonte de trabalhos ficam em originais, ignorado pelo Git. Credenciais e identificadores pessoais não devem ser adicionados ao repositório. Binários acadêmicos e de mídia são ignorados, com exceção dos três diagramas UML pequenos referenciados por um trabalho.
+Repositório Git local, na branch master, sem remoto configurado. Documentos Markdown, notas autorais e extrações textuais são versionados. PDFs e arquivos grandes ficam fora do histórico Git; todo PDF ou documento vira Markdown com a página e a URL oficial, e todo diagrama vira Mermaid ou descrição textual. Binários ficam fora do Git (`node tools/acervo/build.mjs --verificar-texto` aponta os que restam). Arquivos Word e Pages-fonte de trabalhos ficam em originais, ignorado pelo Git. Credenciais e identificadores pessoais não devem ser adicionados ao repositório. Binários acadêmicos e de mídia são ignorados pelo Git; os diagramas UML foram convertidos para Mermaid.

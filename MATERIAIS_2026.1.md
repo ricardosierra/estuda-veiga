@@ -25,10 +25,10 @@ Curso: <https://uva.instructure.com/courses/54293>.
 
 | Unidade | Material | Link UVA | Registro em texto |
 |---|---|---|---|
-| U1 | Introdução ao Desenvolvimento Front-End | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u1/documents/Desenvolvimento-Frontend-I---U1.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/desenvolvimento-web/unidade-u1.txt) |
-| U2 | Análise de Requisitos para Projetos Front-End | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u2/documents/Ilumno_Desenvolvimento-Frontend-I_U2.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/desenvolvimento-web/unidade-u2.txt) |
-| U3 | Ferramentas e Programas Essenciais para Desenvolvimento Front-End | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u3/documents/Ilumno_Desenvolvimento-Frontend-I_U3.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/desenvolvimento-web/unidade-u3.txt) |
-| U4 | Princípios de User Experience (UX) em Interfaces Web | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u4/documents/Ilumno_Desenvolvimento-Frontend-I_U4.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/desenvolvimento-web/unidade-u4.txt) |
+| U1 | Introdução ao Desenvolvimento Front-End | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u1/documents/Desenvolvimento-Frontend-I---U1.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/desenvolvimento-web/unidade-u1.md) |
+| U2 | Análise de Requisitos para Projetos Front-End | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u2/documents/Ilumno_Desenvolvimento-Frontend-I_U2.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/desenvolvimento-web/unidade-u2.md) |
+| U3 | Ferramentas e Programas Essenciais para Desenvolvimento Front-End | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u3/documents/Ilumno_Desenvolvimento-Frontend-I_U3.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/desenvolvimento-web/unidade-u3.md) |
+| U4 | Princípios de User Experience (UX) em Interfaces Web | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/def/dfe1/re/u4/documents/Ilumno_Desenvolvimento-Frontend-I_U4.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/desenvolvimento-web/unidade-u4.md) |
 
 ### Interfaces de Sistemas Computacionais
 
@@ -40,10 +40,10 @@ Curso: <https://uva.instructure.com/courses/54292>.
 
 | Unidade | Material | Link UVA | Registro em texto |
 |---|---|---|---|
-| U1 | A jornada empreendedora e o contexto de inovação | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/mno/mnn/mod5/re/u1/pdf/u1.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/laboratorio-de-gestao/unidade-u1.txt) |
-| U2 | Modelagem e Validação Focada no Valor | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/mno/mnn/mod5/re/u2/pdf/u2.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/laboratorio-de-gestao/unidade-u2.txt) |
-| U3 | Execução Ágil e Gestão de Resultados | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/mno/mnn/mod5/re/u3/pdf/u3.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/laboratorio-de-gestao/unidade-u3.txt) |
-| U4 | Sustentabilidade, Ética e Decisão Estratégica | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/mno/mnn/mod5/re/u4/pdf/u4.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/laboratorio-de-gestao/unidade-u4.txt) |
+| U1 | A jornada empreendedora e o contexto de inovação | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/mno/mnn/mod5/re/u1/pdf/u1.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/laboratorio-de-gestao/unidade-u1.md) |
+| U2 | Modelagem e Validação Focada no Valor | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/mno/mnn/mod5/re/u2/pdf/u2.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/laboratorio-de-gestao/unidade-u2.md) |
+| U3 | Execução Ágil e Gestão de Resultados | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/mno/mnn/mod5/re/u3/pdf/u3.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/laboratorio-de-gestao/unidade-u3.md) |
+| U4 | Sustentabilidade, Ética e Decisão Estratégica | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/mno/mnn/mod5/re/u4/pdf/u4.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/laboratorio-de-gestao/unidade-u4.md) |
 
 ### Leitura e Produção Acadêmica
 
@@ -51,10 +51,10 @@ Curso: <https://uva.instructure.com/courses/53442>.
 
 | Unidade | Material | Link UVA | Registro em texto |
 |---|---|---|---|
-| U1 | Estratégias de leitura, análise e interpretação de textos na universidade | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/jkl/lpa/mat-download/u1.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/leitura-e-producao-academica/unidade-u1.txt) |
-| U2 | Coesão e coerência: estruturação do parágrafo e estratégias argumentativas | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/jkl/lpa/mat-download/u2.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/leitura-e-producao-academica/unidade-u2.txt) |
-| U3 | O discurso científico e as formas de leitura e produção de textos: resumo e resenha | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/jkl/lpa/mat-download/u3.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/leitura-e-producao-academica/unidade-u3.txt) |
-| U4 | Construção de autoria na produção acadêmica: o ensaio | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/jkl/lpa/mat-download/u4.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/leitura-e-producao-academica/unidade-u4.txt) |
+| U1 | Estratégias de leitura, análise e interpretação de textos na universidade | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/jkl/lpa/mat-download/u1.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/leitura-e-producao-academica/unidade-u1.md) |
+| U2 | Coesão e coerência: estruturação do parágrafo e estratégias argumentativas | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/jkl/lpa/mat-download/u2.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/leitura-e-producao-academica/unidade-u2.md) |
+| U3 | O discurso científico e as formas de leitura e produção de textos: resumo e resenha | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/jkl/lpa/mat-download/u3.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/leitura-e-producao-academica/unidade-u3.md) |
+| U4 | Construção de autoria na produção acadêmica: o ensaio | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/jkl/lpa/mat-download/u4.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/leitura-e-producao-academica/unidade-u4.md) |
 
 ### Sistemas Computacionais e Aplicações
 
@@ -62,10 +62,10 @@ Curso: <https://uva.instructure.com/courses/53498>.
 
 | Unidade | Material | Link UVA | Registro em texto |
 |---|---|---|---|
-| U1 | Sistemas de Informação | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/stu/sif/mat-download/u1.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/sistemas-computacionais/unidade-u1.txt) |
-| U2 | Sistemas Organizacionais | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/stu/sif/mat-download/u2.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/sistemas-computacionais/unidade-u2.txt) |
-| U3 | Sistemas Integrados | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/stu/sif/mat-download/u3.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/sistemas-computacionais/unidade-u3.txt) |
-| U4 | Planejamento Estratégico e TI | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/stu/sif/mat-download/u4.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/sistemas-computacionais/unidade-u4.txt) |
+| U1 | Sistemas de Informação | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/stu/sif/mat-download/u1.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/sistemas-computacionais/unidade-u1.md) |
+| U2 | Sistemas Organizacionais | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/stu/sif/mat-download/u2.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/sistemas-computacionais/unidade-u2.md) |
+| U3 | Sistemas Integrados | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/stu/sif/mat-download/u3.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/sistemas-computacionais/unidade-u3.md) |
+| U4 | Planejamento Estratégico e TI | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/stu/sif/mat-download/u4.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/sistemas-computacionais/unidade-u4.md) |
 
 ## PDFs de apoio às disciplinas — 10 documentos únicos
 
@@ -73,23 +73,23 @@ Os documentos repetidos em mais de um curso aparecem uma vez nesta tabela. Os t�
 
 | Tipo | Documento | Link oficial | Referência no Canvas |
 |---|---|---|---|
-| Calendário | Calendário de Laboratório de Gestão de Negócios | [PDF oficial](https://ead.uva.br/filemanager/file/documentos/calendar/CALEND_UVA_GEAD_TE_SA_2026_02.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/apoio/calendario-gead-2026-02.txt) |
-| Calendário | Calendário de Leitura e Produção Acadêmica | [PDF oficial](https://ead.uva.br/filemanager/file/documentos/CALENDARIO_GRAD_2026_1_PRES_UVA.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/apoio/calendario-graduacao-2026-1-presencial.txt) |
-| Calendário | Calendário de Sistemas Computacionais e Aplicações | [PDF oficial](https://ead.uva.br/filemanager/file/documentos/calendar/CALEND_UVA_GEAD_TE_SA_2026_01.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/apoio/calendario-gead-2026-01.txt) |
-| Plano | Plano de Ensino de Leitura e Produção Acadêmica | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/jkl/lpa/pe/LPA_PE.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/leitura-e-producao-academica/plano-de-ensino.txt) |
-| Avaliação | Critérios de Avaliação da Graduação | [PDF oficial](https://ead.uva.br/filemanager/file/documentos/CRITERIOS_GRADUACAO_AVALIACAO_2024.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/apoio/CRITERIOS_GRADUACAO_AVALIACAO_2024.txt) |
-| Fórum | Critérios do Fórum Avaliativo da Graduação | [PDF oficial](https://ead.uva.br/filemanager/file/documentos/CRITERIOS_GRADUACAO_FORUM_AVALIATIVO_2018.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/apoio/CRITERIOS_GRADUACAO_FORUM_AVALIATIVO_2018.txt) |
-| Provas | Agendamento de prova avaliativa | [PDF oficial](https://ead.uva.br/filemanager/file/documentos/Apoio_aluno/disc_informcao_prova/grad/documentos/Agendamento_Prova_Avalia_v1.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/apoio/Agendamento_Prova_Avalia_v1.txt) |
-| Provas | Orientações gerais para prova presencial | [PDF oficial](https://ead.uva.br/filemanager/file/documentos/Apoio_aluno/disc_informcao_prova/grad/documentos/%5BSGP%5DOrientacoes_gerais_Prova_Presencial-ALUNOS.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/apoio/orientacoes-prova-presencial.txt) |
-| Provas | Orientações gerais para prova online | [PDF oficial](https://ead.uva.br/filemanager/file/documentos/Apoio_aluno/disc_informcao_prova/grad/documentos/%5BSGP%5DOrientacoes_gerais_Prova-Online-ALUNOS.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/apoio/orientacoes-prova-online.txt) |
-| Tutorial | Tutorial do Espaço Curso Graduação EAD/Semi | [PDF oficial](https://ead.uva.br/filemanager/file/documentos/INFO/grad/Tutorial_esp_curso_grad_EAD_Semi.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/apoio/Tutorial_esp_curso_grad_EAD_Semi.txt) |
+| Calendário | Calendário de Laboratório de Gestão de Negócios | [PDF oficial](https://ead.uva.br/filemanager/file/documentos/calendar/CALEND_UVA_GEAD_TE_SA_2026_02.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/apoio/calendario-gead-2026-02.md) |
+| Calendário | Calendário de Leitura e Produção Acadêmica | [PDF oficial](https://ead.uva.br/filemanager/file/documentos/CALENDARIO_GRAD_2026_1_PRES_UVA.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/apoio/calendario-graduacao-2026-1-presencial.md) |
+| Calendário | Calendário de Sistemas Computacionais e Aplicações | [PDF oficial](https://ead.uva.br/filemanager/file/documentos/calendar/CALEND_UVA_GEAD_TE_SA_2026_01.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/apoio/calendario-gead-2026-01.md) |
+| Plano | Plano de Ensino de Leitura e Produção Acadêmica | [PDF oficial](https://ead.uva.br/disciplinas/grad/publica/cont/jkl/lpa/pe/LPA_PE.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/leitura-e-producao-academica/plano-de-ensino.md) |
+| Avaliação | Critérios de Avaliação da Graduação | [PDF oficial](https://ead.uva.br/filemanager/file/documentos/CRITERIOS_GRADUACAO_AVALIACAO_2024.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/apoio/CRITERIOS_GRADUACAO_AVALIACAO_2024.md) |
+| Fórum | Critérios do Fórum Avaliativo da Graduação | [PDF oficial](https://ead.uva.br/filemanager/file/documentos/CRITERIOS_GRADUACAO_FORUM_AVALIATIVO_2018.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/apoio/CRITERIOS_GRADUACAO_FORUM_AVALIATIVO_2018.md) |
+| Provas | Agendamento de prova avaliativa | [PDF oficial](https://ead.uva.br/filemanager/file/documentos/Apoio_aluno/disc_informcao_prova/grad/documentos/Agendamento_Prova_Avalia_v1.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/apoio/Agendamento_Prova_Avalia_v1.md) |
+| Provas | Orientações gerais para prova presencial | [PDF oficial](https://ead.uva.br/filemanager/file/documentos/Apoio_aluno/disc_informcao_prova/grad/documentos/%5BSGP%5DOrientacoes_gerais_Prova_Presencial-ALUNOS.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/apoio/orientacoes-prova-presencial.md) |
+| Provas | Orientações gerais para prova online | [PDF oficial](https://ead.uva.br/filemanager/file/documentos/Apoio_aluno/disc_informcao_prova/grad/documentos/%5BSGP%5DOrientacoes_gerais_Prova-Online-ALUNOS.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/apoio/orientacoes-prova-online.md) |
+| Tutorial | Tutorial do Espaço Curso Graduação EAD/Semi | [PDF oficial](https://ead.uva.br/filemanager/file/documentos/INFO/grad/Tutorial_esp_curso_grad_EAD_Semi.pdf) | [Texto integral extraído](materias/fontes-uva/2026.1/apoio/Tutorial_esp_curso_grad_EAD_Semi.md) |
 
 ## Documentos institucionais — 2 PDFs
 
 | Documento | Link oficial | Onde foi identificado | Estado do texto |
 |---|---|---|---|
-| Cartilha de Plágio | [PDF oficial](https://ead.uva.br/filemanager/file/11/Cartilha_plagio.pdf) | Páginas de critérios de avaliação: [LPA](https://uva.instructure.com/courses/53442/modules/items/1044450) · [Sistemas](https://uva.instructure.com/courses/53498/modules/items/1045483) | [Texto integral extraído](materias/fontes-uva/2026.1/institucional/Cartilha_plagio.txt) |
-| Orientações sobre IA na educação | [PDF oficial](https://ead.uva.br/filemanager/file/11/Orientacoes-IA-educacao.pdf) | Páginas de critérios de avaliação: [LPA](https://uva.instructure.com/courses/53442/modules/items/1044450) · [Sistemas](https://uva.instructure.com/courses/53498/modules/items/1045483) | [Texto integral extraído](materias/fontes-uva/2026.1/institucional/Orientacoes-IA-educacao.txt) |
+| Cartilha de Plágio | [PDF oficial](https://ead.uva.br/filemanager/file/11/Cartilha_plagio.pdf) | Páginas de critérios de avaliação: [LPA](https://uva.instructure.com/courses/53442/modules/items/1044450) · [Sistemas](https://uva.instructure.com/courses/53498/modules/items/1045483) | [Texto integral extraído](materias/fontes-uva/2026.1/institucional/Cartilha_plagio.md) |
+| Orientações sobre IA na educação | [PDF oficial](https://ead.uva.br/filemanager/file/11/Orientacoes-IA-educacao.pdf) | Páginas de critérios de avaliação: [LPA](https://uva.instructure.com/courses/53442/modules/items/1044450) · [Sistemas](https://uva.instructure.com/courses/53498/modules/items/1045483) | [Texto integral extraído](materias/fontes-uva/2026.1/institucional/Orientacoes-IA-educacao.md) |
 
 ## Trabalhos em PDF enviados ao Canvas — 6 anexos
 

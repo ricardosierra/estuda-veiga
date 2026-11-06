@@ -16,7 +16,7 @@
 3. Comparar os cursos do Canvas com as matrículas do Portal. Registrar separadamente qualquer diferença.
 4. Para cada curso disponível, abrir Módulos e percorrer todos os itens: guia, calendário, plano, aulas, fóruns, atividades, provas e encerramento.
 5. Atualizar o mapa de cursos do novo semestre com os links oficiais e os títulos como aparecem no Canvas.
-6. Registrar os materiais no inventário. Baixar os conteúdos disponíveis por meios oficiais, extrair o texto selecionável para arquivos .txt, verificar a extração e então descartar a cópia PDF local.
+6. Registrar os materiais no inventário. Baixar os conteúdos disponíveis por meios oficiais, converter o texto selecionável para Markdown (`.md`), verificar a extração e então descartar a cópia PDF local.
 7. Criar notas de estudo autorais separadas das extrações integrais. Marcar conteúdo escaneado, imagem ausente, link com erro ou item ainda não acessível.
 8. Só inserir datas e horários apresentados em calendários oficiais ou no Portal; não estimar.
 9. Conferir a frequência no Portal periodicamente e registrar somente o que estiver no relatório oficial.

@@ -4,7 +4,7 @@ Datas transcritas dos calendários oficiais em texto no acervo. Este é um regis
 
 ## Bloco 1 — fevereiro a abril
 
-Fonte: [calendário oficial do bloco 1](https://ead.uva.br/filemanager/file/documentos/calendar/CALEND_UVA_GEAD_TE_SA_2026_01.pdf). A mesma versão aparece no [calendário de graduação presencial](https://ead.uva.br/filemanager/file/documentos/CALENDARIO_GRAD_2026_1_PRES_UVA.pdf). Extração completa: [texto do PDF](materias/fontes-uva/2026.1/apoio/calendario-gead-2026-01.txt).
+Fonte: [calendário oficial do bloco 1](https://ead.uva.br/filemanager/file/documentos/calendar/CALEND_UVA_GEAD_TE_SA_2026_01.pdf). A mesma versão aparece no [calendário de graduação presencial](https://ead.uva.br/filemanager/file/documentos/CALENDARIO_GRAD_2026_1_PRES_UVA.pdf). Extração completa: [texto do PDF](materias/fontes-uva/2026.1/apoio/calendario-gead-2026-01.md).
 
 | Data em 2026 | Atividade | Onde |
 |---|---|---|
@@ -24,7 +24,7 @@ Fonte: [calendário oficial do bloco 1](https://ead.uva.br/filemanager/file/docu
 
 ## Bloco 2 — abril a julho
 
-Fonte: [calendário oficial do bloco 2](https://ead.uva.br/filemanager/file/documentos/calendar/CALEND_UVA_GEAD_TE_SA_2026_02.pdf). Extração completa: [texto do PDF](materias/fontes-uva/2026.1/apoio/calendario-gead-2026-02.txt).
+Fonte: [calendário oficial do bloco 2](https://ead.uva.br/filemanager/file/documentos/calendar/CALEND_UVA_GEAD_TE_SA_2026_02.pdf). Extração completa: [texto do PDF](materias/fontes-uva/2026.1/apoio/calendario-gead-2026-02.md).
 
 | Data em 2026 | Atividade | Onde |
 |---|---|---|

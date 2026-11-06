@@ -25,7 +25,7 @@ Nas páginas de módulos, foram encontrados quatro PDFs, vídeos, páginas de co
 
 Também apareciam a [introdução](https://uva.instructure.com/courses/53973/modules/items/1047961), um anexo introdutório no item [1047962](https://uva.instructure.com/courses/53973/modules/items/1047962) e a [página de encerramento](https://uva.instructure.com/courses/53973/modules/items/1047983).
 
-**Estado:** as páginas HTML foram lidas e resumidas, mas os quatro PDFs não foram baixados nem convertidos integralmente. A prévia do DocViewer de M4 mostrou 25 páginas, sem que isso tenha produzido uma extração textual local validada. Por isso não há arquivos .txt desses quatro PDFs.
+**Estado:** as páginas HTML foram lidas e resumidas, mas os quatro PDFs não foram baixados nem convertidos integralmente. A prévia do DocViewer de M4 mostrou 25 páginas, sem que isso tenha produzido uma extração textual local validada. Por isso não há arquivos .md desses quatro PDFs.
 
 As sínteses autorais dos conteúdos acessíveis estão em [NOTAS_DE_ESTUDO_HISTORICOS.md](NOTAS_DE_ESTUDO_HISTORICOS.md).
 
