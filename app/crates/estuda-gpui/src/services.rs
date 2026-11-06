@@ -72,33 +72,3 @@ mod tests {
         println!("por formato: {by_format:?}");
     }
 }
-
-#[cfg(test)]
-mod ensaio_resolucao_temporaria {
-    /// TEMPORÁRIO (não commitar): ensaia a escolha JSON numa cópia do acervo.
-    #[test]
-    #[ignore]
-    fn ensaia_escolha_json() {
-        let raiz = std::path::PathBuf::from(std::env::var("ESTUDA_RAIZ").expect("ESTUDA_RAIZ"));
-        let banco = std::path::PathBuf::from(std::env::var("ESTUDA_BANCO").expect("ESTUDA_BANCO"));
-        let sync = estuda_core::sync::SyncEngine::open(&banco, &raiz).expect("abrir sync");
-        let conflitos = sync.open_conflicts().expect("listar conflitos");
-        let alvo = "materias/catalogo/disciplinas.json";
-        let c = conflitos.iter().find(|c| c.relative_path == alvo).expect("conflito do disciplinas.json");
-        let json = c.json.clone().expect("valor json");
-        let antes = std::fs::read_to_string(raiz.join(alvo)).expect("ler fonte");
-        println!("fonte antes: {} bytes; json-valor: {} bytes; json-valor começa com: {:?}", antes.len(), json.len(), json.chars().take(40).collect::<String>());
-        println!("fonte antes começa com: {:?}", antes.chars().take(40).collect::<String>());
-        sync.resolve_conflict(alvo, &json).expect("resolver com json");
-        let depois = std::fs::read_to_string(raiz.join(alvo)).expect("ler fonte depois");
-        println!("fonte depois: {} bytes; começa com: {:?}", depois.len(), depois.chars().take(40).collect::<String>());
-        println!("fonte depois começa como JSON: {}", depois.trim_start().starts_with('{') || depois.trim_start().starts_with('['));
-        println!("fonte depois == valor json: {}", depois == json);
-        let catalogo = estuda_core::catalog::academic::load(&sync);
-        match catalogo {
-            Ok(c) => println!("disciplinas carregadas: {}", c.disciplines.len()),
-            Err(e) => println!("carregamento acadêmico erro: {e}"),
-        }
-        println!("conflitos restantes: {}", sync.open_conflicts().map(|v| v.len()).unwrap_or(0));
-    }
-}
