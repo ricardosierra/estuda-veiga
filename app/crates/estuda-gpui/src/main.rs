@@ -31,6 +31,9 @@ fn main() {
                             Err(error) => (None, Some(error)),
                         };
                         let mut view = ui::AppView::new(services);
+                        if let Some(screen) = std::env::var("ESTUDA_TELA").ok().and_then(|name| ui::AppView::screen_from_name(&name)) {
+                            view.screen = screen;
+                        }
                         if let Some(status) = status {
                             view.library_status = status;
                         } else {

@@ -215,6 +215,11 @@ impl AppView {
         }
     }
 
+    /// Tela inicial pelo nome (`ESTUDA_TELA=academico`), usada só para conferir o layout.
+    pub fn screen_from_name(name: &str) -> Option<Screen> {
+        Screen::ALL.into_iter().find(|screen| screen.key() == name)
+    }
+
     pub fn go(&mut self, screen: Screen) {
         self.screen = screen;
     }
