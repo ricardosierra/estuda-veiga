@@ -9,9 +9,11 @@ Legenda de efeitos: **SQLite** = escreve no banco do app (`.estuda-uva.sqlite3` 
 
 ## 1. Comandos Tauri (backend ↔ interface)
 
-A interface chama cada comando com `invoke("nome", { argumentos })` (`@tauri-apps/api/core`). Os argumentos Rust em `snake_case` chegam do TypeScript em `camelCase` (por exemplo `course_id` → `courseId`). Os parâmetros `State` e `AppHandle` são injetados pelo Tauri e não aparecem na chamada. Todo comando que retorna `Result<_, String>` rejeita a promessa com uma mensagem em português em caso de erro.
+> **Aviso (2026-11-06):** o frontend React que chamava estes comandos foi removido no commit `aeab5f8`. A coluna "Chamado por" e a frase "a interface chama 50 deles" descrevem a interface **anterior** e só podem ser conferidas no histórico (`git show aeab5f8^:app/src/ui`). O shell `app/src-tauri` ainda registra os 52 comandos, mas hoje nenhuma interface os invoca; a interface GPUI atual só usa `CatalogService` de `estuda-core`.
 
-Estão registrados **52** comandos em `tauri::generate_handler!`. A interface chama 50 deles; `disconnect_canvas` e `local_catalog_snapshot` estão registrados mas **nenhuma tela os invoca** (busca por `invoke` em `app/src`).
+A interface (anterior) chamava cada comando com `invoke("nome", { argumentos })` (`@tauri-apps/api/core`). Os argumentos Rust em `snake_case` chegam do TypeScript em `camelCase` (por exemplo `course_id` → `courseId`). Os parâmetros `State` e `AppHandle` são injetados pelo Tauri e não aparecem na chamada. Todo comando que retorna `Result<_, String>` rejeita a promessa com uma mensagem em português em caso de erro.
+
+Estão registrados **52** comandos em `tauri::generate_handler!`. A interface React chamava 50 deles; `disconnect_canvas` e `local_catalog_snapshot` já estavam registrados sem uso (busca por `invoke` em `app/src`, antes da remoção). Contagem de 52 conferida por revisão independente em `generate_handler!` e `#[tauri::command]`.
 
 Todas as operações que usam o Chromium passam por um `Mutex` (`canvas_operation`), então rodam uma de cada vez. O estado da sessão (`session`), as importações ativas (`active_imports`) e as capturas ativas (`active_captures`) ficam em memória (`AppState`) e se perdem ao fechar o app.
 
@@ -116,8 +118,8 @@ Nenhum comando desta seção usa rede nem IA.
 
 | Evento | Quando | Quem escuta |
 |---|---|---|
-| `local-sync-updated` (`SyncReport`) | o monitor reconcilia depois de alterações em `materias` ou `docs` | `App.tsx` |
-| `canvas-capture-updated` (`CaptureRun`) | mudança de estado ou progresso da captura em lote | `App.tsx` |
+| `local-sync-updated` (`SyncReport`) | o monitor reconcilia depois de alterações em `materias` ou `docs` | (React removido) |
+| `canvas-capture-updated` (`CaptureRun`) | mudança de estado ou progresso da captura em lote | (React removido) |
 
 ## 2. Comandos de linha de comando
 
@@ -138,20 +140,9 @@ Execute a partir da **raiz do repositório** (`Faculdade/`), salvo indicação. 
 
 Referência: [tools/acervo/README.md](../../tools/acervo/README.md) e [dados/LEIA-ME.md](../../dados/LEIA-ME.md).
 
-### 2.2 Frontend e shell Tauri (a partir de `app/`)
+### 2.2 Frontend e shell Tauri (removido)
 
-Os scripts de `app/package.json`:
-
-| Comando | O que faz | Verificado em 2026-11-06 |
-|---|---|---|
-| `npm install` | Instala as dependências do frontend e a CLI do Tauri (2.12.1) | Não executado (`node_modules` já existe) |
-| `npm test` (ou `npm test --prefix app` a partir da raiz) | `node --experimental-strip-types --test scripts/*.test.mjs` | Sim: 40 passaram, 0 falharam. Cobre lógica TypeScript, não a interface renderizada |
-| `npm run build` | `tsc -b && vite build`; gera `app/dist/` (ignorado pelo Git) | **Não executado** nesta revisão |
-| `npm run dev` | Servidor Vite em `127.0.0.1:1420` (porta estrita). Roda só o frontend, sem backend Tauri; os comandos `invoke` não funcionam fora do shell | Não executado |
-| `npm run tauri dev` | CLI do Tauri em modo de desenvolvimento | Não executado. `tauri.conf.json` define só `frontendDist: "../dist"` (sem `devUrl` nem `beforeDevCommand`), então rode `npm run build` antes; não confirmado |
-| `npm run tauri build` | Gera o app e o DMG para macOS (`targets: ["app", "dmg"]`; assinatura ad hoc, sem notarização) | Não executado. Gera binários, ignorados pelo Git |
-
-O `README.md` de `app/` ainda mostra `cargo ... --manifest-path src-tauri/Cargo.toml --lib` para testes; ver §2.3.
+`app/package.json`, `app/package-lock.json`, `app/scripts/`, `app/src/`, `app/index.html` e `app/vite.config.ts` foram apagados no commit `aeab5f8`. Portanto **não existem mais** `npm install`, `npm test`, `npm run build`, `npm run dev` e `npm run tauri dev/build` a partir de `app/`. Em 2026-11-06, antes da remoção, `npm test` passou (40 testes) e `npm run build` não foi executado. `app/src-tauri/tauri.conf.json` ainda define `frontendDist: "../dist"`, e `app/dist` ainda existe em disco sem ser gerado por nenhum comando do repositório. Para recuperar os testes antigos: `git show aeab5f8^:app/scripts`.
 
 ### 2.3 Rust
 
@@ -159,25 +150,25 @@ Três manifestos independentes (não há workspace na raiz):
 
 | Manifesto | Pacotes | Observação |
 |---|---|---|
-| `app/Cargo.toml` | workspace com `estuda-core` e `estuda-gpui` (`exclude = ["src-tauri"]`) | `app/Cargo.lock` ainda **não está versionado** |
+| `app/Cargo.toml` | workspace com `estuda-core`, `estuda-gpui` e `estuda-sync` (`exclude = ["src-tauri"]`) | `app/Cargo.lock` ainda **não está versionado** |
 | `crates/estuda-domain/Cargo.toml` | `estuda-domain`, com `[workspace]` próprio e sem dependências | |
 | `app/src-tauri/Cargo.toml` | `estuda-uva` (shell Tauri) | Fora do workspace; depende de `estuda-core` por caminho |
 
 | Comando | O que faz | Verificado em 2026-11-06 |
 |---|---|---|
-| `cargo test --locked --offline --manifest-path app/Cargo.toml -p estuda-core --lib` | Testes do núcleo | Sim: **152 passaram**, 0 falharam. Usa SQLite e pastas temporárias. O teste `launches_real_isolated_chromium_and_reads_fixture_dom` abre um Chromium real (headless, perfil temporário) em `/opt/homebrew/bin/chromium` e **falha por pânico** se esse arquivo não existir |
-| `cargo test --locked --offline --manifest-path crates/estuda-domain/Cargo.toml` | Testes do crate de domínio | Sim: **14 passaram**, 0 falharam |
-| `cargo check --locked --offline --manifest-path app/Cargo.toml -p estuda-gpui` | Compila o esqueleto GPUI | **Falhou** com `--locked`: "cannot update the lock file … app/Cargo.lock because --locked was passed". Sem `--locked` não foi tentado. O crate só contém `fn main() {}` e não depende de GPUI |
+| `cargo test --locked --offline --manifest-path app/Cargo.toml -p estuda-core --lib` | Testes do núcleo | Sim: **152 passaram**, 0 falharam (antes do esquema v8 e de testes novos; um revisor contou 154 no código posterior). Usa SQLite e pastas temporárias. O teste `launches_real_isolated_chromium_and_reads_fixture_dom` abre um Chromium real (headless, perfil temporário) em `/opt/homebrew/bin/chromium` e **falha por pânico** se esse arquivo não existir |
+| `cargo test --locked --offline --manifest-path crates/estuda-domain/Cargo.toml` | Testes do crate de domínio | Sim: **14 passaram** na execução; o crate foi alterado depois e tem 17 `#[test]` (4 + 4 + 9) |
+| `cargo check --locked --offline --manifest-path app/Cargo.toml -p estuda-gpui` | Compila a interface GPUI (binário `estuda-uva`, `gpui-kit = "0.9.0"`) | **Falhou** duas vezes: primeiro com "cannot update the lock file" (lock desatualizado, numa versão anterior do crate) e depois com `E0583` (módulo `speech` ausente, edição não commitada de outra sessão). Sem `--locked` não foi tentado |
 | `cargo fmt --manifest-path app/Cargo.toml --all -- --check` | Verifica a formatação | Executado: **terminou com código 1** (há diferenças de formatação; a saída lista arquivos de `estuda-core` como `study_summaries.rs` e também de `crates/estuda-domain/src`, sem investigação da causa) |
 | `cargo test --offline --manifest-path app/src-tauri/Cargo.toml --lib` | Documentado em `app/README.md` | Não executado. `app/src-tauri/src/lib.rs` não contém nenhum `#[test]`, então esse comando não exerce nada do núcleo, que foi extraído |
 | `cargo check --offline --manifest-path app/src-tauri/Cargo.toml` | Compila o shell Tauri | Não executado |
 
-Dependências nativas do GPUI ainda não se aplicam: nenhum `Cargo.toml` do repositório declara `gpui`.
+Dependências nativas do GPUI em cada sistema: **não verificadas**. `app/crates/estuda-gpui/Cargo.toml` declara `gpui-kit`.
 
 ## 3. Resumo do que foi e do que não foi validado
 
-- **Validado nesta revisão:** validação de dados (234 registros), política de texto, 13 testes Node do gerador, 40 testes npm, 152 testes do `estuda-core`, 14 testes do `estuda-domain`.
-- **Falhou ou apontou problema:** `cargo check --locked` do `estuda-gpui` (lockfile não versionado e desatualizado) e `cargo fmt --check`.
+- **Validado nesta revisão:** validação de dados (234 registros), política de texto, 13 testes Node do gerador, 40 testes npm (antes da remoção do frontend), 152 testes do `estuda-core` e 14 do `estuda-domain` (contagens anteriores a alterações posteriores).
+- **Falhou ou apontou problema:** `cargo check` do `estuda-gpui` (lockfile desatualizado e, depois, módulo ausente) e `cargo fmt --check`.
 - **Não executado:** `npm run build`, `npm run tauri dev/build`, qualquer comando que escreve (geração de `build/`, conversão de PDF, `separar-privado.mjs --aplicar`), `cargo` do `src-tauri`.
 - **Sem verificação em execução real:** tudo que depende de sessão autenticada (Canvas, Portal/Lyceum) e da API da Anthropic. Os testes automatizados usam fixtures e servidores simulados e não comprovam capturas reais.
 
@@ -185,6 +176,6 @@ Dependências nativas do GPUI ainda não se aplicam: nenhum `Cargo.toml` do repo
 
 - `app/src-tauri/src/lib.rs` — comandos, `AppState`, `run()` e `generate_handler!`.
 - `app/crates/estuda-core/src/` — módulos que executam cada comando.
-- `app/src/ui/App.tsx`, `LessonPresenter.tsx`, `StudySummaryPanel.tsx`, `FinalGradeCalculator.tsx` — chamadas `invoke`.
-- `app/package.json`, `app/vite.config.ts`, `app/src-tauri/tauri.conf.json` — scripts e configuração.
+- `git show aeab5f8^:app/src/ui/App.tsx` e demais `.tsx` — chamadas `invoke` da interface removida.
+- `app/src-tauri/tauri.conf.json` — configuração do shell; `app/crates/estuda-gpui/` — interface atual.
 - `tools/acervo/` — gerador, validador e seus testes.

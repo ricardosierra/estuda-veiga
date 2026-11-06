@@ -9,11 +9,11 @@ Termos usados na documentação, com o sentido que têm neste projeto. Quando o 
 | Termo | Sentido |
 |---|---|
 | **Acervo** | A pasta raiz do repositório vista pelo aplicativo: arquivos acadêmicos em texto mais `dados/` e `privado/`. No código, "library" (`library_path`). |
-| **Estuda UVA** | O aplicativo desktop local. Hoje Tauri com React; GPUI é planejado. |
+| **Estuda UVA** | O aplicativo desktop local. A interface em desenvolvimento é GPUI (`estuda-gpui`); o frontend Tauri/React foi removido em `aeab5f8`. |
 | **estuda-core** | Crate Rust com o núcleo (domínio acadêmico, acervo, SQLite, sincronização, Canvas e Portal). Não conhece Tauri nem GPUI. `app/crates/estuda-core`. |
 | **estuda-domain** | Crate Rust sem I/O com `Confidence`, identificadores tipados e `Layer` de publicação. Existe e tem testes, mas `estuda-core` não depende dele. `crates/estuda-domain`. |
-| **estuda-gpui** | Crate da futura interface GPUI. Contém só `fn main() {}`. **Planejado**. |
-| **Shell Tauri / legado** | `app/src-tauri` e o frontend `app/src`: interface em uso, mantida enquanto GPUI não existe. |
+| **estuda-gpui** | Crate da interface GPUI (binário `estuda-uva`, 8 telas, `gpui-kit`). Em desenvolvimento ativo; usa só `CatalogService` de `estuda-core`. **Parcial**. |
+| **Shell Tauri / legado** | `app/src-tauri`: registra 52 comandos sobre `estuda-core`, mas não tem mais interface (o frontend `app/src` foi removido em `aeab5f8`). Mantido para paridade. |
 | **Offline-first** | Tudo o que o app mostra vem de arquivos e SQLite locais; a rede só é usada quando o estudante pede. |
 | **Text-first** | O Git versiona somente texto. Binários ficam fora; seu texto extraído entra com fonte. |
 
