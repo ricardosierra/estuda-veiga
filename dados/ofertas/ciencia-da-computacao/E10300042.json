@@ -1,0 +1,16 @@
+{
+  "id": "uva:program:ciencia-da-computacao:offering:E10300042",
+  "code": "E10300042",
+  "title": "Sistemas Digitais",
+  "workloadHours": 66,
+  "status": "pending",
+  "canonicalDisciplineId": "uva:program:ciencia-da-computacao:discipline:sistemas-digitais",
+  "source": {
+    "file": "REGISTRO_ACADEMICO.md",
+    "section": "Pendências curriculares exibidas",
+    "observedAt": "2026-10-09"
+  },
+  "programId": "uva:program:ciencia-da-computacao",
+  "ordem": 18,
+  "pendencias": []
+}

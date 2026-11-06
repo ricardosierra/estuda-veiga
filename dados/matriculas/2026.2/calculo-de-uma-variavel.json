@@ -1,0 +1,26 @@
+{
+  "id": "uva:program:ciencia-da-computacao:enrollment:2026.2:calculo-de-uma-variavel",
+  "programId": "uva:program:ciencia-da-computacao",
+  "semester": "2026.2",
+  "title": "Cálculo de Uma Variável",
+  "section": "21PRD3262A",
+  "startDate": "13/10/2026",
+  "instructorAsDisplayed": "Ronaldo Camara Cavalcante",
+  "status": "enrolled",
+  "ordem": 0,
+  "disciplinaId": "uva:discipline:calculo-de-uma-variavel",
+  "canvasCourseId": "57352",
+  "docente": "Ronaldo Camara Cavalcante",
+  "cargaHoraria": null,
+  "source": {
+    "file": "REGISTRO_ACADEMICO.md",
+    "section": "Disciplinas matriculadas em 2026.2",
+    "observedAt": "2026-10-09"
+  },
+  "pendencias": [
+    {
+      "campo": "cargaHoraria",
+      "motivo": "carga horária da disciplina não consta nos planos de ensino locais nem no Portal"
+    }
+  ]
+}

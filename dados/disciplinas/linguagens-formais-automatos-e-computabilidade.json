@@ -1,0 +1,15 @@
+{
+  "id": "uva:program:engenharia-de-computacao:discipline:linguagens-formais-automatos-e-computabilidade",
+  "title": "LINGUAGENS FORMAIS, AUTOMATOS E COMPUTABILIDADE",
+  "offeringIds": [
+    "uva:program:engenharia-de-computacao:offering:INF8261_22"
+  ],
+  "identityStatus": "canonical_single_offering",
+  "source": {
+    "file": "ENGENHARIA_DE_COMPUTACAO.md",
+    "section": "Disciplinas pendentes no Histórico Detalhado",
+    "observedAt": "2026-10-09"
+  },
+  "ordem": 58,
+  "pendencias": []
+}

@@ -1,0 +1,12 @@
+{
+  "id": "uva:discipline:leitura-e-producao-academica",
+  "title": "Leitura e Produção Acadêmica",
+  "offeringIds": [],
+  "identityStatus": "matricula_registrada",
+  "source": {
+    "file": "CURSOS_2026.1.md",
+    "section": "Como navegar",
+    "observedAt": "2026-10-08"
+  },
+  "pendencias": []
+}

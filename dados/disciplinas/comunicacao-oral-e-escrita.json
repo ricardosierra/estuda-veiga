@@ -1,0 +1,15 @@
+{
+  "id": "uva:program:engenharia-de-computacao:discipline:comunicacao-oral-e-escrita",
+  "title": "COMUNICAÇÃO ORAL E ESCRITA",
+  "offeringIds": [
+    "uva:program:engenharia-de-computacao:offering:UVA8001_22"
+  ],
+  "identityStatus": "canonical_single_offering",
+  "source": {
+    "file": "ENGENHARIA_DE_COMPUTACAO.md",
+    "section": "Disciplinas pendentes no Histórico Detalhado",
+    "observedAt": "2026-10-09"
+  },
+  "ordem": 42,
+  "pendencias": []
+}

@@ -1,0 +1,16 @@
+{
+  "id": "uva:program:engenharia-de-computacao:offering:INF8093_22",
+  "code": "INF8093_22",
+  "title": "ESTAGIO SUPERVISIONADO EM ENG DA COMPUTAÇAO",
+  "workloadHours": 330,
+  "status": "pending",
+  "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:estagio-supervisionado-em-eng-da-computacao",
+  "source": {
+    "file": "ENGENHARIA_DE_COMPUTACAO.md",
+    "section": "Disciplinas pendentes no Histórico Detalhado",
+    "observedAt": "2026-10-09"
+  },
+  "programId": "uva:program:engenharia-de-computacao",
+  "ordem": 38,
+  "pendencias": []
+}

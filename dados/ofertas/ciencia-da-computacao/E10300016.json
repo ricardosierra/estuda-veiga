@@ -1,0 +1,16 @@
+{
+  "id": "uva:program:ciencia-da-computacao:offering:E10300016",
+  "code": "E10300016",
+  "title": "Estruturas de Dados",
+  "workloadHours": 66,
+  "status": "pending",
+  "canonicalDisciplineId": "uva:program:ciencia-da-computacao:discipline:estruturas-de-dados",
+  "source": {
+    "file": "REGISTRO_ACADEMICO.md",
+    "section": "Pendências curriculares exibidas",
+    "observedAt": "2026-10-09"
+  },
+  "programId": "uva:program:ciencia-da-computacao",
+  "ordem": 1,
+  "pendencias": []
+}

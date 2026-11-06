@@ -1,0 +1,15 @@
+{
+  "id": "uva:program:engenharia-de-computacao:discipline:governanca-corporativa-em-ti",
+  "title": "GOVERNANÇA CORPORATIVA EM TI",
+  "offeringIds": [
+    "uva:program:engenharia-de-computacao:offering:INF8081_22"
+  ],
+  "identityStatus": "canonical_single_offering",
+  "source": {
+    "file": "ENGENHARIA_DE_COMPUTACAO.md",
+    "section": "Disciplinas pendentes no Histórico Detalhado",
+    "observedAt": "2026-10-09"
+  },
+  "ordem": 55,
+  "pendencias": []
+}

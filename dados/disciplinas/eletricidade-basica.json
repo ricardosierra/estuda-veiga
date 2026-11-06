@@ -1,0 +1,15 @@
+{
+  "id": "uva:program:engenharia-de-computacao:discipline:eletricidade-basica",
+  "title": "ELETRICIDADE BASICA",
+  "offeringIds": [
+    "uva:program:engenharia-de-computacao:offering:ECP8003_22"
+  ],
+  "identityStatus": "canonical_single_offering",
+  "source": {
+    "file": "ENGENHARIA_DE_COMPUTACAO.md",
+    "section": "Disciplinas pendentes no Histórico Detalhado",
+    "observedAt": "2026-10-09"
+  },
+  "ordem": 43,
+  "pendencias": []
+}

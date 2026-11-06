@@ -1,0 +1,16 @@
+{
+  "id": "uva:program:engenharia-de-computacao:offering:ICT8002_22",
+  "code": "ICT8002_22",
+  "title": "CALCULO NUMERICO",
+  "workloadHours": 66,
+  "status": "pending",
+  "canonicalDisciplineId": "uva:discipline:calculo-numerico",
+  "source": {
+    "file": "ENGENHARIA_DE_COMPUTACAO.md",
+    "section": "Disciplinas pendentes no Histórico Detalhado",
+    "observedAt": "2026-10-09"
+  },
+  "programId": "uva:program:engenharia-de-computacao",
+  "ordem": 16,
+  "pendencias": []
+}

@@ -1,0 +1,16 @@
+{
+  "id": "uva:program:engenharia-de-computacao:offering:INF8050_22",
+  "code": "INF8050_22",
+  "title": "GESTAO DE NEGOCIOS E ETICA",
+  "workloadHours": 66,
+  "status": "pending",
+  "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:gestao-de-negocios-e-etica",
+  "source": {
+    "file": "ENGENHARIA_DE_COMPUTACAO.md",
+    "section": "Disciplinas pendentes no Histórico Detalhado",
+    "observedAt": "2026-10-09"
+  },
+  "programId": "uva:program:engenharia-de-computacao",
+  "ordem": 18,
+  "pendencias": []
+}

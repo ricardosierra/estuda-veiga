@@ -1,0 +1,16 @@
+{
+  "id": "uva:program:engenharia-de-computacao:offering:ENG8033_22",
+  "code": "ENG8033_22",
+  "title": "PRINCIPIOS DA ENGENHARIA",
+  "workloadHours": 99,
+  "status": "pending",
+  "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:principios-da-engenharia",
+  "source": {
+    "file": "ENGENHARIA_DE_COMPUTACAO.md",
+    "section": "Disciplinas pendentes no Histórico Detalhado",
+    "observedAt": "2026-10-09"
+  },
+  "programId": "uva:program:engenharia-de-computacao",
+  "ordem": 0,
+  "pendencias": []
+}

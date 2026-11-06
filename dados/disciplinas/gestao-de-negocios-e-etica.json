@@ -1,0 +1,15 @@
+{
+  "id": "uva:program:engenharia-de-computacao:discipline:gestao-de-negocios-e-etica",
+  "title": "GESTAO DE NEGOCIOS E ETICA",
+  "offeringIds": [
+    "uva:program:engenharia-de-computacao:offering:INF8050_22"
+  ],
+  "identityStatus": "canonical_single_offering",
+  "source": {
+    "file": "ENGENHARIA_DE_COMPUTACAO.md",
+    "section": "Disciplinas pendentes no Histórico Detalhado",
+    "observedAt": "2026-10-09"
+  },
+  "ordem": 54,
+  "pendencias": []
+}

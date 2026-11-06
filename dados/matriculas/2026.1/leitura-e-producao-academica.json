@@ -1,0 +1,32 @@
+{
+  "id": "uva:program:ciencia-da-computacao:enrollment:2026.1:leitura-e-producao-academica",
+  "programId": "uva:program:ciencia-da-computacao",
+  "semester": "2026.1",
+  "title": "Leitura e Produção Acadêmica",
+  "section": null,
+  "status": "closed",
+  "ordem": 3,
+  "disciplinaId": "uva:discipline:leitura-e-producao-academica",
+  "canvasCourseId": "53442",
+  "docente": null,
+  "cargaHoraria": null,
+  "source": {
+    "file": "CURSOS_2026.1.md",
+    "section": "Como navegar",
+    "observedAt": "2026-10-08"
+  },
+  "pendencias": [
+    {
+      "campo": "section",
+      "motivo": "turma não registrada nas fontes de 2026.1"
+    },
+    {
+      "campo": "docente",
+      "motivo": "docente não registrado nas fontes de 2026.1"
+    },
+    {
+      "campo": "cargaHoraria",
+      "motivo": "carga horária não consta nas fontes de 2026.1"
+    }
+  ]
+}

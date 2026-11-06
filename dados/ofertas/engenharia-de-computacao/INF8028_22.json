@@ -1,0 +1,16 @@
+{
+  "id": "uva:program:engenharia-de-computacao:offering:INF8028_22",
+  "code": "INF8028_22",
+  "title": "COMPUTACAO GRAFICA I",
+  "workloadHours": 66,
+  "status": "pending",
+  "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:computacao-grafica-i",
+  "source": {
+    "file": "ENGENHARIA_DE_COMPUTACAO.md",
+    "section": "Disciplinas pendentes no Histórico Detalhado",
+    "observedAt": "2026-10-09"
+  },
+  "programId": "uva:program:engenharia-de-computacao",
+  "ordem": 20,
+  "pendencias": []
+}

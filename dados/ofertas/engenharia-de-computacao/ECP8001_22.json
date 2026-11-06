@@ -1,0 +1,16 @@
+{
+  "id": "uva:program:engenharia-de-computacao:offering:ECP8001_22",
+  "code": "ECP8001_22",
+  "title": "MATEMATICA DISCRETA I",
+  "workloadHours": 66,
+  "status": "pending",
+  "canonicalDisciplineId": "uva:program:engenharia-de-computacao:discipline:matematica-discreta-i",
+  "source": {
+    "file": "ENGENHARIA_DE_COMPUTACAO.md",
+    "section": "Disciplinas pendentes no Histórico Detalhado",
+    "observedAt": "2026-10-09"
+  },
+  "programId": "uva:program:engenharia-de-computacao",
+  "ordem": 5,
+  "pendencias": []
+}

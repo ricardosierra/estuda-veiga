@@ -1,0 +1,26 @@
+{
+  "id": "55558",
+  "titulo": "Bases de Programação",
+  "tipo": "curricular",
+  "situacao": "em_andamento",
+  "periodo": "2026.2",
+  "codigo": "E10300000",
+  "secao": null,
+  "source": {
+    "file": "CURSOS_2026.2.md",
+    "section": "Matrículas informadas pelo Portal do Aluno",
+    "observedAt": "2026-10-14"
+  },
+  "observacao": "Canvas mostra o curso em 'Inscrições anteriores', com período 2026.2.21.",
+  "pendencias": [
+    {
+      "campo": "codigo",
+      "motivo": "código aparece só na tabela de notas do REGISTRO_ACADEMICO.md; fora da sequência E10300003–E10300055; não confirmado no Canvas"
+    },
+    {
+      "campo": "secao",
+      "motivo": "seção Canvas não registrada; o Portal informa a turma 21CMP2262A"
+    }
+  ],
+  "url": "https://uva.instructure.com/courses/55558"
+}

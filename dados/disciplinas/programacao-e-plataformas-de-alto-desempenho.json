@@ -1,0 +1,15 @@
+{
+  "id": "uva:program:ciencia-da-computacao:discipline:programacao-e-plataformas-de-alto-desempenho",
+  "title": "Programação e Plataformas de Alto Desempenho",
+  "offeringIds": [
+    "uva:program:ciencia-da-computacao:offering:E10300050"
+  ],
+  "identityStatus": "canonical_single_offering",
+  "source": {
+    "file": "REGISTRO_ACADEMICO.md",
+    "section": "Pendências curriculares exibidas",
+    "observedAt": "2026-10-09"
+  },
+  "ordem": 26,
+  "pendencias": []
+}

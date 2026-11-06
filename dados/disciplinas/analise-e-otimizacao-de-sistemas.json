@@ -1,0 +1,15 @@
+{
+  "id": "uva:program:ciencia-da-computacao:discipline:analise-e-otimizacao-de-sistemas",
+  "title": "Análise e Otimização de Sistemas",
+  "offeringIds": [
+    "uva:program:ciencia-da-computacao:offering:E10300055"
+  ],
+  "identityStatus": "canonical_single_offering",
+  "source": {
+    "file": "REGISTRO_ACADEMICO.md",
+    "section": "Pendências curriculares exibidas",
+    "observedAt": "2026-10-09"
+  },
+  "ordem": 5,
+  "pendencias": []
+}

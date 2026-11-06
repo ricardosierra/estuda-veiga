@@ -1,0 +1,19 @@
+{
+  "id": "uva:trabalho:estatistica-ava1-amostra-populacao",
+  "titulo": "AVA 1 — Amostra versus população: métodos de pesquisa e análise estatística",
+  "arquivo": "materias/estatistica-para-computacao/ava1-amostra-populacao-analise-estatistica.md",
+  "disciplinaId": "uva:discipline:estatistica-para-computacao",
+  "canvasCourseId": "57827",
+  "periodo": "2026.2",
+  "pendencias": [
+    {
+      "campo": "periodo",
+      "motivo": "período derivado do curso Canvas 57827 (2026.2); o cabeçalho do arquivo não informa período"
+    }
+  ],
+  "source": {
+    "file": "materias/estatistica-para-computacao/ava1-amostra-populacao-analise-estatistica.md",
+    "section": "Cabeçalho do trabalho",
+    "observedAt": "2026-11-06"
+  }
+}

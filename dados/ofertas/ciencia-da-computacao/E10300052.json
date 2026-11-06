@@ -1,0 +1,16 @@
+{
+  "id": "uva:program:ciencia-da-computacao:offering:E10300052",
+  "code": "E10300052",
+  "title": "Computação Gráfica e Processamento de Imagens",
+  "workloadHours": 66,
+  "status": "pending",
+  "canonicalDisciplineId": "uva:program:ciencia-da-computacao:discipline:computacao-grafica-e-processamento-de-imagens",
+  "source": {
+    "file": "REGISTRO_ACADEMICO.md",
+    "section": "Pendências curriculares exibidas",
+    "observedAt": "2026-10-09"
+  },
+  "programId": "uva:program:ciencia-da-computacao",
+  "ordem": 32,
+  "pendencias": []
+}

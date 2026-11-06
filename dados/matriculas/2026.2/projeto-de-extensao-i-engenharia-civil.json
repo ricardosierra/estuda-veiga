@@ -1,0 +1,34 @@
+{
+  "id": "uva:program:ciencia-da-computacao:enrollment:2026.2:projeto-de-extensao-i",
+  "programId": "uva:program:ciencia-da-computacao",
+  "semester": "2026.2",
+  "title": "Projeto de Extensão I",
+  "section": "21CIV2262A",
+  "startDate": "13/10/2026",
+  "instructorAsDisplayed": "A",
+  "status": "enrolled",
+  "ordem": 6,
+  "disciplinaId": "uva:discipline:projeto-de-extensao-i-engenharia-civil",
+  "canvasCourseId": "57897",
+  "docente": null,
+  "cargaHoraria": null,
+  "source": {
+    "file": "REGISTRO_ACADEMICO.md",
+    "section": "Disciplinas matriculadas em 2026.2",
+    "observedAt": "2026-10-09"
+  },
+  "pendencias": [
+    {
+      "campo": "cargaHoraria",
+      "motivo": "carga horária da disciplina não consta nos planos de ensino locais nem no Portal"
+    },
+    {
+      "campo": "docente",
+      "motivo": "Portal exibe apenas \"A\" como docente; nome não encontrado nos planos de ensino locais"
+    },
+    {
+      "campo": "vinculo",
+      "motivo": "turma de Engenharia Civil listada como matrícula do estudante em Ciência da Computação; confirmar na secretaria"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "uva:program:ciencia-da-computacao:offering:E10300034",
+  "code": "E10300034",
+  "title": "Arquitetura, Organização e Funcionamento de Computadores e Sistemas Operacionais",
+  "workloadHours": 66,
+  "status": "pending",
+  "canonicalDisciplineId": "uva:program:ciencia-da-computacao:discipline:arquitetura-organizacao-e-funcionamento-de-computadores-e-sistemas-operacionais",
+  "source": {
+    "file": "REGISTRO_ACADEMICO.md",
+    "section": "Pendências curriculares exibidas",
+    "observedAt": "2026-10-09"
+  },
+  "programId": "uva:program:ciencia-da-computacao",
+  "ordem": 9,
+  "pendencias": []
+}

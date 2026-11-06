@@ -1,0 +1,17 @@
+{
+  "id": "uva:relation:partial-overlap-candidate:algoritmos:e10300030:inf8262_22",
+  "type": "partial_overlap_candidate",
+  "ccOfferingId": "uva:program:ciencia-da-computacao:offering:E10300030",
+  "ecOfferingId": "uva:program:engenharia-de-computacao:offering:INF8262_22",
+  "equivalenceConfirmed": false,
+  "evidence": [
+    "title_terms_overlap_only"
+  ],
+  "note": "Sobreposição de títulos selecionada para revisão; ementas e equivalência oficial não foram confirmadas.",
+  "sourceFiles": [
+    "REGISTRO_ACADEMICO.md",
+    "ENGENHARIA_DE_COMPUTACAO.md"
+  ],
+  "ordem": 10,
+  "pendencias": []
+}

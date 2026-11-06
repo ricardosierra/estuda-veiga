@@ -1,0 +1,23 @@
+{
+  "id": "uva:trabalho:bases-ava2-monitoramento-esteira",
+  "titulo": "AVA 2 — Monitoramento de esteira de transporte com sensor",
+  "arquivo": "materias/bases-de-programacao/ava2-monitoramento-de-esteira.md",
+  "disciplinaId": "uva:discipline:bases-de-programacao",
+  "canvasCourseId": null,
+  "periodo": null,
+  "pendencias": [
+    {
+      "campo": "canvasCourseId",
+      "motivo": "cabeçalho não informa o curso Canvas"
+    },
+    {
+      "campo": "periodo",
+      "motivo": "cabeçalho não informa o período"
+    }
+  ],
+  "source": {
+    "file": "materias/bases-de-programacao/ava2-monitoramento-de-esteira.md",
+    "section": "Cabeçalho do trabalho",
+    "observedAt": "2026-11-06"
+  }
+}

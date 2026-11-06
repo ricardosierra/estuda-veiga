@@ -1,0 +1,19 @@
+{
+  "id": "uva:relation:same-subject-candidate:sistemas-embarcados",
+  "type": "same_subject_candidate",
+  "ccOfferingId": "uva:program:ciencia-da-computacao:offering:E30000029",
+  "ecOfferingId": "uva:program:engenharia-de-computacao:offering:INF8092_22",
+  "canonicalDisciplineId": "uva:discipline:sistemas-embarcados",
+  "equivalenceConfirmed": false,
+  "evidence": [
+    "matching_title_after_case_normalization",
+    "matching_workload_hours"
+  ],
+  "note": "Candidata a mesma disciplina; equivalência curricular e aproveitamento não foram confirmados por fonte institucional.",
+  "sourceFiles": [
+    "REGISTRO_ACADEMICO.md",
+    "ENGENHARIA_DE_COMPUTACAO.md"
+  ],
+  "ordem": 2,
+  "pendencias": []
+}

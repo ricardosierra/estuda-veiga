@@ -1,0 +1,27 @@
+{
+  "id": "uva:program:ciencia-da-computacao",
+  "institutionId": "uva",
+  "programTitle": "Ciência da Computação",
+  "programCode": "210062",
+  "curriculo": {
+    "id": "uva:curriculum:ecmp20261v",
+    "curriculumVersion": "ECMP20261V",
+    "trajectoryStatus": "active",
+    "source": {
+      "file": "REGISTRO_ACADEMICO.md",
+      "section": "Histórico Detalhado",
+      "observedAt": "2026-10-09"
+    },
+    "limitations": [
+      "A ordem da lista pendente é a ordem exibida pelo portal, não uma previsão de oferta ou sequência de pré-requisitos.",
+      "As 330 horas cursadas não estão discriminadas por disciplina no registro disponível.",
+      "Os cursos matriculados não incluem códigos oficiais de oferta que não foram mostrados pelo portal nesta captura."
+    ]
+  },
+  "source": {
+    "file": "REGISTRO_ACADEMICO.md",
+    "section": "Histórico Detalhado",
+    "observedAt": "2026-10-09"
+  },
+  "pendencias": []
+}

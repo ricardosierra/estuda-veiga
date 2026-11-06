@@ -1,0 +1,16 @@
+{
+  "id": "uva:discipline:calculo-numerico",
+  "title": "Cálculo Numérico",
+  "offeringIds": [
+    "uva:program:ciencia-da-computacao:offering:E10300048",
+    "uva:program:engenharia-de-computacao:offering:ICT8002_22"
+  ],
+  "identityStatus": "same_title_and_workload_candidate",
+  "source": {
+    "file": "REGISTRO_ACADEMICO.md",
+    "section": "Pendências curriculares exibidas",
+    "observedAt": "2026-10-09"
+  },
+  "ordem": 0,
+  "pendencias": []
+}

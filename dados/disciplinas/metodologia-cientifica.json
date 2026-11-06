@@ -1,0 +1,15 @@
+{
+  "id": "uva:program:engenharia-de-computacao:discipline:metodologia-cientifica",
+  "title": "METODOLOGIA CIENTIFICA",
+  "offeringIds": [
+    "uva:program:engenharia-de-computacao:offering:UVA8004_22"
+  ],
+  "identityStatus": "canonical_single_offering",
+  "source": {
+    "file": "ENGENHARIA_DE_COMPUTACAO.md",
+    "section": "Disciplinas pendentes no Histórico Detalhado",
+    "observedAt": "2026-10-09"
+  },
+  "ordem": 61,
+  "pendencias": []
+}

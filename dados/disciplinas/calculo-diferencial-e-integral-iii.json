@@ -1,0 +1,15 @@
+{
+  "id": "uva:program:engenharia-de-computacao:discipline:calculo-diferencial-e-integral-iii",
+  "title": "CALCULO DIFERENCIAL E INTEGRAL III",
+  "offeringIds": [
+    "uva:program:engenharia-de-computacao:offering:ENG8030_22"
+  ],
+  "identityStatus": "canonical_single_offering",
+  "source": {
+    "file": "ENGENHARIA_DE_COMPUTACAO.md",
+    "section": "Disciplinas pendentes no Histórico Detalhado",
+    "observedAt": "2026-10-09"
+  },
+  "ordem": 38,
+  "pendencias": []
+}

@@ -1,0 +1,21 @@
+{
+  "id": "57897",
+  "titulo": "Projeto de Extensão I (Engenharia Civil)",
+  "tipo": "curricular",
+  "situacao": "em_andamento",
+  "periodo": "2026.2",
+  "codigo": "EP30000011",
+  "secao": "EP30000011-21CIV2262A-2026.2.21",
+  "source": {
+    "file": "CURSOS_2026.2.md",
+    "section": "Favoritos que devem aparecer na lista de cursos do Canvas",
+    "observedAt": "2026-10-13"
+  },
+  "pendencias": [
+    {
+      "campo": "vinculo",
+      "motivo": "turma de Engenharia Civil (21CIV2262A) listada como matrícula do estudante em Ciência da Computação; confirmar na secretaria"
+    }
+  ],
+  "url": "https://uva.instructure.com/courses/57897"
+}

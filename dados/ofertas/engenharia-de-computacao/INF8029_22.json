@@ -1,0 +1,16 @@
+{
+  "id": "uva:program:engenharia-de-computacao:offering:INF8029_22",
+  "code": "INF8029_22",
+  "title": "ENGENHARIA DE SOFTWARE",
+  "workloadHours": 66,
+  "status": "pending",
+  "canonicalDisciplineId": "uva:discipline:engenharia-de-software",
+  "source": {
+    "file": "ENGENHARIA_DE_COMPUTACAO.md",
+    "section": "Disciplinas pendentes no Histórico Detalhado",
+    "observedAt": "2026-10-09"
+  },
+  "programId": "uva:program:engenharia-de-computacao",
+  "ordem": 32,
+  "pendencias": []
+}

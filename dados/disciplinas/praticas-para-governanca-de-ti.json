@@ -1,0 +1,15 @@
+{
+  "id": "uva:program:ciencia-da-computacao:discipline:praticas-para-governanca-de-ti",
+  "title": "Práticas para Governança de TI",
+  "offeringIds": [
+    "uva:program:ciencia-da-computacao:offering:E10300045"
+  ],
+  "identityStatus": "canonical_single_offering",
+  "source": {
+    "file": "REGISTRO_ACADEMICO.md",
+    "section": "Pendências curriculares exibidas",
+    "observedAt": "2026-10-09"
+  },
+  "ordem": 23,
+  "pendencias": []
+}

@@ -1,0 +1,16 @@
+{
+  "id": "uva:program:ciencia-da-computacao:offering:E10300043",
+  "code": "E10300043",
+  "title": "Projeto de Extensão V - Ciência da Computação",
+  "workloadHours": 80,
+  "status": "pending",
+  "canonicalDisciplineId": "uva:program:ciencia-da-computacao:discipline:projeto-de-extensao-v-ciencia-da-computacao",
+  "source": {
+    "file": "REGISTRO_ACADEMICO.md",
+    "section": "Pendências curriculares exibidas",
+    "observedAt": "2026-10-09"
+  },
+  "programId": "uva:program:ciencia-da-computacao",
+  "ordem": 20,
+  "pendencias": []
+}

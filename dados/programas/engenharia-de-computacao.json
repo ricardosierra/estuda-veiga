@@ -1,0 +1,28 @@
+{
+  "id": "uva:program:engenharia-de-computacao",
+  "institutionId": "uva",
+  "programTitle": "Engenharia de Computação",
+  "programCode": "310171",
+  "curriculo": {
+    "id": "uva:curriculum:curr-ecp20122ni-ajv",
+    "curriculumVersion": "CURR_ECP20122NI_AJV",
+    "curriculumVersionConfidence": "portal_text_accessibility_could_not_distinguish_I_from_1",
+    "trajectoryStatus": "evadido",
+    "source": {
+      "file": "ENGENHARIA_DE_COMPUTACAO.md",
+      "section": "Disciplinas pendentes no Histórico Detalhado",
+      "observedAt": "2026-10-09"
+    },
+    "limitations": [
+      "As 1.446 horas cursadas não estão discriminadas por disciplina no registro disponível.",
+      "A matriz pública consultada não foi confirmada como a versão curricular individual deste vínculo.",
+      "A tela não informa qual disciplina foi concluída, dispensada ou reprovada no vínculo antigo."
+    ]
+  },
+  "source": {
+    "file": "ENGENHARIA_DE_COMPUTACAO.md",
+    "section": "Disciplinas pendentes no Histórico Detalhado",
+    "observedAt": "2026-10-09"
+  },
+  "pendencias": []
+}

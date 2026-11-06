@@ -16,10 +16,7 @@
 # Originais completos dos trabalhos: preservar localmente, fora do Git.
 /originais/
 
-# Diagramas UML pequenos e referenciados no trabalho convertido.
-!materias/paradigmas-de-programacao/diagramas/diag_classes.png
-!materias/paradigmas-de-programacao/diagramas/diag_estados.png
-!materias/paradigmas-de-programacao/diagramas/diag_sequencia.png
+# Binários ficam fora do Git. Diagramas viram Mermaid (.md); ícone do app é exceção.
 !/app/src-tauri/icons/icon.png
 
 # Arquivos do sistema e configurações locais.
@@ -49,3 +46,10 @@
 /.estuda-uva/sync-tmp/
 /.estuda-uva/mirrors/
 **/.estuda-sync-*.tmp
+
+# Gerado por tools/acervo a partir de dados/ (não versionar; ver dados/LEIA-ME.md).
+/build/
+/materias/catalogo/curriculos/
+/materias/catalogo/disciplinas.json
+/materias/catalogo/relacoes.json
+/materias/catalogo/trajetorias.json

@@ -1,0 +1,17 @@
+{
+  "id": "uva:relation:partial-overlap-candidate:computacao-grafica-e-imagens:e10300052:inf8028_22",
+  "type": "partial_overlap_candidate",
+  "ccOfferingId": "uva:program:ciencia-da-computacao:offering:E10300052",
+  "ecOfferingId": "uva:program:engenharia-de-computacao:offering:INF8028_22",
+  "equivalenceConfirmed": false,
+  "evidence": [
+    "title_terms_overlap_only"
+  ],
+  "note": "Sobreposição de títulos selecionada para revisão; ementas e equivalência oficial não foram confirmadas.",
+  "sourceFiles": [
+    "REGISTRO_ACADEMICO.md",
+    "ENGENHARIA_DE_COMPUTACAO.md"
+  ],
+  "ordem": 7,
+  "pendencias": []
+}

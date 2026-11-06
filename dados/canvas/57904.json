@@ -1,0 +1,21 @@
+{
+  "id": "57904",
+  "titulo": "Linguagens Formais e Autômatos",
+  "tipo": "curricular",
+  "situacao": "em_andamento",
+  "periodo": "2026.2",
+  "codigo": "E10300019",
+  "secao": "E10300019-21CMP2262A-2026.2.21",
+  "source": {
+    "file": "CURSOS_2026.2.md",
+    "section": "Favoritos que devem aparecer na lista de cursos do Canvas",
+    "observedAt": "2026-10-13"
+  },
+  "pendencias": [
+    {
+      "campo": "materiais",
+      "motivo": "quatro unidades oficiais listadas no Canvas; PDFs não baixados (HTTP 403 no acesso direto); captura autenticada pendente"
+    }
+  ],
+  "url": "https://uva.instructure.com/courses/57904"
+}

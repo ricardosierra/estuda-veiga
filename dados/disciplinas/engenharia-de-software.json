@@ -1,0 +1,16 @@
+{
+  "id": "uva:discipline:engenharia-de-software",
+  "title": "Engenharia de Software",
+  "offeringIds": [
+    "uva:program:ciencia-da-computacao:offering:E10300003",
+    "uva:program:engenharia-de-computacao:offering:INF8029_22"
+  ],
+  "identityStatus": "same_title_and_workload_candidate",
+  "source": {
+    "file": "REGISTRO_ACADEMICO.md",
+    "section": "Pendências curriculares exibidas",
+    "observedAt": "2026-10-09"
+  },
+  "ordem": 1,
+  "pendencias": []
+}

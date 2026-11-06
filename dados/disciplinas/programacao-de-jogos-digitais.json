@@ -1,0 +1,15 @@
+{
+  "id": "uva:program:ciencia-da-computacao:discipline:programacao-de-jogos-digitais",
+  "title": "Programação de Jogos Digitais",
+  "offeringIds": [
+    "uva:program:ciencia-da-computacao:offering:E10300029"
+  ],
+  "identityStatus": "canonical_single_offering",
+  "source": {
+    "file": "REGISTRO_ACADEMICO.md",
+    "section": "Pendências curriculares exibidas",
+    "observedAt": "2026-10-09"
+  },
+  "ordem": 24,
+  "pendencias": []
+}

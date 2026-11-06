@@ -1,0 +1,15 @@
+{
+  "id": "uva:program:ciencia-da-computacao:discipline:microprocessadores-e-microcontroladores",
+  "title": "Microprocessadores e Microcontroladores",
+  "offeringIds": [
+    "uva:program:ciencia-da-computacao:offering:E90100031"
+  ],
+  "identityStatus": "canonical_single_offering",
+  "source": {
+    "file": "REGISTRO_ACADEMICO.md",
+    "section": "Pendências curriculares exibidas",
+    "observedAt": "2026-10-09"
+  },
+  "ordem": 19,
+  "pendencias": []
+}

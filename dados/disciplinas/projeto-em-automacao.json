@@ -1,0 +1,15 @@
+{
+  "id": "uva:program:engenharia-de-computacao:discipline:projeto-em-automacao",
+  "title": "PROJETO EM AUTOMACAO",
+  "offeringIds": [
+    "uva:program:engenharia-de-computacao:offering:INF8263_22"
+  ],
+  "identityStatus": "canonical_single_offering",
+  "source": {
+    "file": "ENGENHARIA_DE_COMPUTACAO.md",
+    "section": "Disciplinas pendentes no Histórico Detalhado",
+    "observedAt": "2026-10-09"
+  },
+  "ordem": 70,
+  "pendencias": []
+}

@@ -1,0 +1,15 @@
+{
+  "id": "uva:program:engenharia-de-computacao:discipline:laboratorio-de-criatividade-e-inovacao",
+  "title": "LABORATÓRIO DE CRIATIVIDADE E INOVAÇÃO",
+  "offeringIds": [
+    "uva:program:engenharia-de-computacao:offering:ENG8034_22"
+  ],
+  "identityStatus": "canonical_single_offering",
+  "source": {
+    "file": "ENGENHARIA_DE_COMPUTACAO.md",
+    "section": "Disciplinas pendentes no Histórico Detalhado",
+    "observedAt": "2026-10-09"
+  },
+  "ordem": 57,
+  "pendencias": []
+}

@@ -1,0 +1,58 @@
+{
+  "id": "uva:trajectory:engenharia-de-computacao:310171",
+  "institutionId": "uva",
+  "programId": "uva:program:engenharia-de-computacao",
+  "programTitle": "Engenharia de Computação",
+  "programCode": "310171",
+  "curriculumId": "uva:curriculum:curr-ecp20122ni-ajv",
+  "status": "evadido",
+  "series": 5,
+  "admissionDate": "2012-08-27",
+  "admissionType": "transferencia_externa_motivo_cortado_na_fonte",
+  "progress": {
+    "totalHours": 5047,
+    "completedHours": 1446,
+    "enrolledHours": 0,
+    "remainingHours": 3601,
+    "completedHoursByOfferingKnown": false,
+    "sourceReportedDiscrepancyHours": 180,
+    "note": "As 43 pendências somam 3.421 h; o portal declara 3.601 h faltantes. A origem não explica a diferença."
+  },
+  "complementaryActivities": {
+    "requiredHours": 300,
+    "completedHours": 0
+  },
+  "source": {
+    "file": "ENGENHARIA_DE_COMPUTACAO.md",
+    "section": "Dados que o portal exibe; Disciplinas pendentes; Notas, frequência e turmas",
+    "observedAt": "2026-10-09"
+  },
+  "limitations": [
+    "Notas, aprovações, frequência e distribuição das 1.446 horas não foram fornecidas nas telas observadas.",
+    "Não inferir motivo da evasão nem equivalência entre disciplinas."
+  ],
+  "contexto": [
+    "O estudante já cursou 1.446 h de Engenharia de Computação (Histórico Detalhado do Portal).",
+    "O Portal mostra o vínculo como \"Evadido\", sem data nem motivo. O rótulo não é conclusão de aproveitamento.",
+    "Objetivo do estudante: verificar o aproveitamento das disciplinas já cursadas em Ciência da Computação. Disciplinas de mesmo nome estão em relacoes/, com equivalenceConfirmed = false.",
+    "Histórico Escolar com CR aparece no catálogo da Secretaria Virtual (R$ 0,00). Não foi solicitado."
+  ],
+  "pendencias": [
+    {
+      "campo": "disciplinasCursadas",
+      "motivo": "as disciplinas que compõem as 1.446 h cursadas não aparecem nas telas observadas"
+    },
+    {
+      "campo": "notas",
+      "motivo": "boletim, frequência e índice de rendimento de Engenharia não apresentaram registros no Portal"
+    },
+    {
+      "campo": "aproveitamento",
+      "motivo": "nenhuma equivalência confirmada; depende de ementas ou documento oficial da UVA"
+    },
+    {
+      "campo": "capturaPortal",
+      "motivo": "capturar o histórico e as disciplinas cursadas deste vínculo, após login do estudante no Portal ou pelo app"
+    }
+  ]
+}

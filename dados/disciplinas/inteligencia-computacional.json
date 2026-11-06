@@ -1,0 +1,15 @@
+{
+  "id": "uva:program:engenharia-de-computacao:discipline:inteligencia-computacional",
+  "title": "INTELIGENCIA COMPUTACIONAL",
+  "offeringIds": [
+    "uva:program:engenharia-de-computacao:offering:INF8045_22"
+  ],
+  "identityStatus": "canonical_single_offering",
+  "source": {
+    "file": "ENGENHARIA_DE_COMPUTACAO.md",
+    "section": "Disciplinas pendentes no Histórico Detalhado",
+    "observedAt": "2026-10-09"
+  },
+  "ordem": 56,
+  "pendencias": []
+}

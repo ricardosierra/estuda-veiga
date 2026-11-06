@@ -1,0 +1,32 @@
+{
+  "id": "uva:program:ciencia-da-computacao:enrollment:2026.1:laboratorio-de-gestao-de-negocios",
+  "programId": "uva:program:ciencia-da-computacao",
+  "semester": "2026.1",
+  "title": "Laboratório de Gestão de Negócios",
+  "section": null,
+  "status": "closed",
+  "ordem": 2,
+  "disciplinaId": "uva:discipline:laboratorio-de-gestao-de-negocios",
+  "canvasCourseId": "54292",
+  "docente": null,
+  "cargaHoraria": null,
+  "source": {
+    "file": "CURSOS_2026.1.md",
+    "section": "Como navegar",
+    "observedAt": "2026-10-08"
+  },
+  "pendencias": [
+    {
+      "campo": "section",
+      "motivo": "turma não registrada nas fontes de 2026.1"
+    },
+    {
+      "campo": "docente",
+      "motivo": "docente não registrado nas fontes de 2026.1"
+    },
+    {
+      "campo": "cargaHoraria",
+      "motivo": "carga horária não consta nas fontes de 2026.1"
+    }
+  ]
+}

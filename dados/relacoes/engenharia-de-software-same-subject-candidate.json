@@ -1,0 +1,19 @@
+{
+  "id": "uva:relation:same-subject-candidate:engenharia-de-software",
+  "type": "same_subject_candidate",
+  "ccOfferingId": "uva:program:ciencia-da-computacao:offering:E10300003",
+  "ecOfferingId": "uva:program:engenharia-de-computacao:offering:INF8029_22",
+  "canonicalDisciplineId": "uva:discipline:engenharia-de-software",
+  "equivalenceConfirmed": false,
+  "evidence": [
+    "matching_title_after_case_normalization",
+    "matching_workload_hours"
+  ],
+  "note": "Candidata a mesma disciplina; equivalência curricular e aproveitamento não foram confirmados por fonte institucional.",
+  "sourceFiles": [
+    "REGISTRO_ACADEMICO.md",
+    "ENGENHARIA_DE_COMPUTACAO.md"
+  ],
+  "ordem": 1,
+  "pendencias": []
+}

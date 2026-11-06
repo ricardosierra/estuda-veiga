@@ -1,0 +1,15 @@
+{
+  "id": "uva:program:ciencia-da-computacao:discipline:modelagem-computacional",
+  "title": "Modelagem Computacional",
+  "offeringIds": [
+    "uva:program:ciencia-da-computacao:offering:E10300046"
+  ],
+  "identityStatus": "canonical_single_offering",
+  "source": {
+    "file": "REGISTRO_ACADEMICO.md",
+    "section": "Pendências curriculares exibidas",
+    "observedAt": "2026-10-09"
+  },
+  "ordem": 20,
+  "pendencias": []
+}

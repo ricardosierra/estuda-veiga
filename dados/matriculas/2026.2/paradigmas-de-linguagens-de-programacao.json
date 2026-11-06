@@ -1,0 +1,26 @@
+{
+  "id": "uva:program:ciencia-da-computacao:enrollment:2026.2:paradigmas-de-linguagens-de-programacao",
+  "programId": "uva:program:ciencia-da-computacao",
+  "semester": "2026.2",
+  "title": "Paradigmas de Linguagens de Programação",
+  "section": "21CMP2262A",
+  "startDate": "03/08/2026",
+  "instructorAsDisplayed": "Marco Aurelio Novaes Esteves",
+  "status": "enrolled",
+  "ordem": 3,
+  "disciplinaId": "uva:discipline:paradigmas-de-linguagens-de-programacao",
+  "canvasCourseId": "57159",
+  "docente": "Marco Aurelio Novaes Esteves",
+  "cargaHoraria": null,
+  "source": {
+    "file": "REGISTRO_ACADEMICO.md",
+    "section": "Disciplinas matriculadas em 2026.2",
+    "observedAt": "2026-10-09"
+  },
+  "pendencias": [
+    {
+      "campo": "cargaHoraria",
+      "motivo": "carga horária da disciplina não consta nos planos de ensino locais nem no Portal"
+    }
+  ]
+}

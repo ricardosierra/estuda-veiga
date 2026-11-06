@@ -1,0 +1,19 @@
+{
+  "id": "uva:trabalho:lfa-ava1-afd-termina-em-1",
+  "titulo": "AVA 1 — Autômato Finito Determinístico para cadeias binárias terminadas em 1",
+  "arquivo": "materias/linguagens-formais-e-automatos/ava1-automato-finito-deterministico.md",
+  "disciplinaId": "uva:discipline:linguagens-formais-e-automatos",
+  "canvasCourseId": "57904",
+  "periodo": "2026.2",
+  "pendencias": [
+    {
+      "campo": "periodo",
+      "motivo": "período derivado do curso Canvas 57904 (2026.2); o cabeçalho do arquivo não informa período"
+    }
+  ],
+  "source": {
+    "file": "materias/linguagens-formais-e-automatos/ava1-automato-finito-deterministico.md",
+    "section": "Cabeçalho do trabalho",
+    "observedAt": "2026-11-06"
+  }
+}

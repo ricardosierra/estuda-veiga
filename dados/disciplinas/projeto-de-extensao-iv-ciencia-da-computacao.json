@@ -1,0 +1,15 @@
+{
+  "id": "uva:program:ciencia-da-computacao:discipline:projeto-de-extensao-iv-ciencia-da-computacao",
+  "title": "Projeto de Extensão IV - Ciência da Computação",
+  "offeringIds": [
+    "uva:program:ciencia-da-computacao:offering:E10300038"
+  ],
+  "identityStatus": "canonical_single_offering",
+  "source": {
+    "file": "REGISTRO_ACADEMICO.md",
+    "section": "Pendências curriculares exibidas",
+    "observedAt": "2026-10-09"
+  },
+  "ordem": 29,
+  "pendencias": []
+}

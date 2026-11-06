@@ -1,0 +1,15 @@
+{
+  "id": "uva:program:ciencia-da-computacao:discipline:projeto-e-implementacao-de-redes-de-computadores",
+  "title": "Projeto e Implementação de Redes de Computadores",
+  "offeringIds": [
+    "uva:program:ciencia-da-computacao:offering:E10300039"
+  ],
+  "identityStatus": "canonical_single_offering",
+  "source": {
+    "file": "REGISTRO_ACADEMICO.md",
+    "section": "Pendências curriculares exibidas",
+    "observedAt": "2026-10-09"
+  },
+  "ordem": 31,
+  "pendencias": []
+}

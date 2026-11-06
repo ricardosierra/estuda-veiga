@@ -1,0 +1,15 @@
+{
+  "id": "uva:program:ciencia-da-computacao:discipline:analise-de-negocios-com-uso-de-big-data",
+  "title": "Análise de Negócios com Uso de Big Data",
+  "offeringIds": [
+    "uva:program:ciencia-da-computacao:offering:E10300036"
+  ],
+  "identityStatus": "canonical_single_offering",
+  "source": {
+    "file": "REGISTRO_ACADEMICO.md",
+    "section": "Pendências curriculares exibidas",
+    "observedAt": "2026-10-09"
+  },
+  "ordem": 4,
+  "pendencias": []
+}

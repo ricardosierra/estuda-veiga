@@ -1,0 +1,15 @@
+{
+  "id": "uva:program:ciencia-da-computacao:discipline:analise-e-peogramcao-orientada-a-objetos-grafia-exibida-no-portal",
+  "title": "Análise e “Peogramção” Orientada a Objetos (grafia exibida no portal)",
+  "offeringIds": [
+    "uva:program:ciencia-da-computacao:offering:E10300035"
+  ],
+  "identityStatus": "canonical_single_offering",
+  "source": {
+    "file": "REGISTRO_ACADEMICO.md",
+    "section": "Pendências curriculares exibidas",
+    "observedAt": "2026-10-09"
+  },
+  "ordem": 6,
+  "pendencias": []
+}
