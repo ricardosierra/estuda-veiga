@@ -45,7 +45,7 @@ Contagem por `grep -c '#\[test\]\|#\[tokio::test\]'` (soma 152, igual ao total e
 ## O que os testes exercitam (exemplos reais)
 
 - **Sincronização** (`sync.rs`): edição única propaga para SQLite, Markdown e JSON; edições divergentes viram conflito; remoção de arquivo vira *tombstone* e conflito de restauração; repetição de `sync_outbox` depois de interrupção.
-- **Migração do banco** (`storage.rs`): migrações de versões 2, 3, 4, 5 e 6 até 7; banco com `user_version` 99 é recusado.
+- **Esquema do banco** (`schema.rs`, `storage.rs`): baseline v8 sem `ALTER`, banco antigo movido para backup e regenerado, banco com `user_version` 99 recusado e deixado intacto.
 - **Segurança de importação** (`lib.rs`): `material_urls_require_https_and_uva_host_boundaries` recusa HTTP, `file://`, `usuario@host`, porta 8080 e hosts parecidos (`ead.uva.br.attacker.example`); importação nunca deixa PDF no disco; arquivos manuais não são sobrescritos.
 - **Escopo do acervo** (`catalog/scanner.rs`): links simbólicos para fora da raiz não aparecem; arquivos fora das pastas acadêmicas são ignorados. Os testes ainda usam `cursos/...` (ver [decisões pendentes](../arquitetura/decisoes-pendentes.md)).
 - **Chromium real** (`lib.rs`, `#[tokio::test] launches_real_isolated_chromium_and_reads_fixture_dom`): abre `/opt/homebrew/bin/chromium` em modo *headless* com perfil temporário e lê um DOM de teste. **Panica se esse caminho não existir.** Para rodar em outra máquina é preciso instalar o Chromium nesse caminho ou alterar o teste (mudança de código, fora deste trabalho documental).

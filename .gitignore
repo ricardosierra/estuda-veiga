@@ -30,9 +30,15 @@
 /.estuda-uva.sqlite3-wal
 /.estuda-uva.sqlite3-shm
 /.estuda-uva.sqlite3-journal
+# Backups gerados quando um banco antigo é regenerado (nunca vão ao Git).
+*.bak.sqlite3
+*.bak.sqlite3-wal
+*.bak.sqlite3-shm
+*.bak.sqlite3-journal
 /app/node_modules/
 /app/dist/
 /app/src-tauri/target/
+/app/target/
 /app/src-tauri/gen/schemas/
 /app/src-tauri/.estuda-uva-data/
 /app/src-tauri/chromium-profile/
@@ -53,3 +59,6 @@
 /materias/catalogo/disciplinas.json
 /materias/catalogo/relacoes.json
 /materias/catalogo/trajetorias.json
+
+# Crates de domínio (docs/arquitetura/02): artefatos de compilação.
+/crates/*/target/

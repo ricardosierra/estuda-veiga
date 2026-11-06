@@ -90,7 +90,7 @@ pub fn safe_slug(value: &str) -> String {
     }
 }
 
-pub(crate) fn escape_markdown_text(value: &str) -> String {
+pub fn escape_markdown_text(value: &str) -> String {
     value
         .chars()
         .map(|character| match character {

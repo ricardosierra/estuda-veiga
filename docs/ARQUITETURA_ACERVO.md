@@ -5,7 +5,7 @@
 ## 1. Princípios
 
 1. **Um conteúdo, um lugar.** Cada matéria tem uma pasta em `materias/` e um registro em `dados/disciplinas/`. Cada texto oficial tem uma pasta em `fontes-uva/`. Quem precisa do conteúdo aponta para ele; não copia.
-2. **Conteúdo compartilhável e dado pessoal são camadas separadas.** Nada pessoal entra na camada compartilhada.
+2. **Conteúdo compartilhável e dado pessoal são camadas separadas, mas ambas podem ser públicas.** Decisão do dono em 6/11/2026: notas, matrículas e trabalhos podem ser publicados. A separação continua obrigatória (nunca misturar dado pessoal em registro de catálogo); o que nunca é publicado são credenciais, bancos SQLite, perfis do navegador e binários originais.
 3. **Ligação por identificador estável.** Os registros usam IDs como `uva:discipline:…` e `uva:program:…`. Os caminhos de fonte (`source.file`) são validados: o gerador recusa fonte inexistente.
 4. **Texto é a forma versionada.** PDF e Word ficam fora do Git. O texto extraído entra em `fontes-uva/` com página e fonte.
 
@@ -15,10 +15,11 @@
 |---|---|---|---|
 | Conteúdo | `materias/`, `fontes-uva/`, `docs/`, `app/`, `tools/` | sim, se o texto for próprio ou público | atividades, textos de unidade, código |
 | Estrutura acadêmica | `cursos/`, `periodos/`, `dados/instituicao`, `dados/programas`, `dados/disciplinas`, `dados/ofertas`, `dados/relacoes`, `dados/periodos`, `dados/canvas` | sim, sem dado de pessoa | código do curso, currículo, nome da disciplina |
-| Pessoal | `dados/matriculas/`, `dados/notas/`, `dados/trajetorias/`, `REGISTRO_ACADEMICO.md`, `.estuda-uva.sqlite3`, `materias/catalogo/capturas/` | não | notas, frequência, situação, nomes de docentes |
+| Pessoal | `privado/` (antes: `dados/matriculas/`, `dados/notas/`, `dados/trajetorias/`, `REGISTRO_ACADEMICO.md`), `materias/catalogo/capturas/` | **sim, separado do catálogo** | notas, frequência, situação, nomes de docentes |
+| Somente local | `.estuda-uva.sqlite3`, `.estuda-uva/`, perfil do Chromium, `.env`, `originais/` | não | bancos, cookies, tokens, PDFs originais |
 | Gerado | `build/`, `materias/catalogo/*.json`, `.estuda-uva/mirrors/` | não versionar | saídas do gerador e do app |
 
-Nomes de professores são dados de terceiros. Por isso ficam na camada pessoal, junto das matrículas.
+Nomes de professores são dados de terceiros. Ficam na camada pessoal, junto das matrículas, e não no catálogo.
 
 ## 3. Como evitar duplicação
 
@@ -35,7 +36,7 @@ Nomes de professores são dados de terceiros. Por isso ficam na camada pessoal, 
 
 ## 5. Escala para novas pessoas
 
-Cada estudante deve ter uma área de dados pessoais fora do conteúdo compartilhado, ou um repositório privado próprio, que referencia os IDs compartilhados. O conteúdo compartilhado não muda quando uma pessoa entra. Pendente: decidir onde fica a área pessoal de cada estudante e como o gerador lê dois repositórios.
+Cada estudante tem uma área de dados pessoais separada do catálogo (hoje `privado/`, no mesmo repositório), que referencia os IDs compartilhados. O conteúdo compartilhado não muda quando uma pessoa entra. Pendente: decidir onde fica a área pessoal de cada estudante e como o gerador lê dois repositórios.
 
 ## 6. Rede P2P e "blockchain": recomendação
 
@@ -52,7 +53,7 @@ Proposta em fases:
 
 Limites que valem antes de qualquer fase de rede:
 
-- **Dado pessoal fica fora do log.** Notas, frequência, matrícula e nomes de docentes não são replicados. Blockchain torna o dado imutável, o que conflita com correção e exclusão de dados pessoais previstas na LGPD.
+- **Dado pessoal em rede é decisão à parte.** Mesmo com a política de publicação aberta, replicar notas, frequência, matrícula e nomes de docentes em log imutável conflita com correção/exclusão da LGPD; decidir antes da fase 2. Blockchain torna o dado imutável, o que conflita com correção e exclusão de dados pessoais previstas na LGPD.
 - **Direitos autorais.** Textos extraídos de materiais da UVA e de e-books de terceiros não devem ser replicados entre usuários sem permissão. Antes da fase 2, é preciso decidir o que é compartilhável.
 - **Identidade.** Sem chave por pessoa não há autoria verificável. Cada estudante teria um par de chaves Ed25519.
 
@@ -65,7 +66,7 @@ Decisões pendentes:
 ## 7. Pendências conhecidas
 
 - `cursos/engenharia-de-computacao/README.md` mistura informação do curso com dados pessoais (situação, notas, frequência). Precisa ser separado.
-- `REGISTRO_ACADEMICO.md` é pessoal e já está no histórico Git. Se o repositório for publicado, esse histórico vai junto.
+- `REGISTRO_ACADEMICO.md` é pessoal e está no histórico Git. Com a política de 6/11/2026 isso não é problema; não é preciso reescrever histórico.
 - `materias/paradigmas-de-programacao/` usa nome diferente do registro canônico `paradigmas-de-linguagens-de-programacao`.
 - Dois diagramas referenciados por `materias/README.md` (`diagrama-afd-termina-em-1.png` e `automato_termina_em_1.jff`) não existem no acervo. A referência virou texto.
 - `fontes-uva/2026.2/bases-de-programacao/capitulo-01.md` e `BPR_Cap_01.md` têm conteúdos diferentes; é preciso conferir qual é a versão correta.

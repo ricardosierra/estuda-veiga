@@ -37,7 +37,7 @@ Esta documentação descreve o código e os arquivos que existem. O que é só p
 
 ### Dados
 - [Visão geral](dados/visao-geral.md)
-- [Banco privado (do aplicativo)](dados/banco-privado.md): esquema real, versão 7.
+- [Banco privado (do aplicativo)](dados/banco-privado.md): esquema real, versão 8 (baseline única, sem `ALTER`).
 - [Banco público](dados/banco-publico.md): não existe; contém o projeto futuro.
 - [Sincronização](dados/sincronizacao.md): três superfícies, conflitos, outbox.
 - [Migrações](dados/migracoes.md)

@@ -1,0 +1,13 @@
+# Workspace nativo do Estuda UVA (Rust + GPUI).
+# `src-tauri` é o aplicativo legado (Tauri/React); permanece fora do workspace,
+# preservado para comparação de paridade, e consome `estuda-core` por caminho.
+[workspace]
+resolver = "3"
+members = ["crates/estuda-core", "crates/estuda-gpui", "crates/estuda-sync"]
+exclude = ["src-tauri"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.90"
+authors = ["Sierra"]

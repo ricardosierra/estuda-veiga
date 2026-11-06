@@ -21,7 +21,7 @@ pub enum CaptureRunStatus {
 }
 
 impl CaptureRunStatus {
-    pub(crate) fn as_db(self) -> &'static str {
+    pub fn as_db(self) -> &'static str {
         match self {
             Self::Running => "running",
             Self::WaitingForLogin => "waiting_for_login",
@@ -32,7 +32,7 @@ impl CaptureRunStatus {
         }
     }
 
-    pub(crate) fn from_db(value: &str) -> Option<Self> {
+    pub fn from_db(value: &str) -> Option<Self> {
         match value {
             "running" => Some(Self::Running),
             "waiting_for_login" => Some(Self::WaitingForLogin),
@@ -44,7 +44,7 @@ impl CaptureRunStatus {
         }
     }
 
-    pub(crate) fn is_incomplete(self) -> bool {
+    pub fn is_incomplete(self) -> bool {
         matches!(
             self,
             Self::Running | Self::WaitingForLogin | Self::Cancelled | Self::Partial | Self::Failed
@@ -65,7 +65,7 @@ pub enum CaptureItemStatus {
 }
 
 impl CaptureItemStatus {
-    pub(crate) fn as_db(self) -> &'static str {
+    pub fn as_db(self) -> &'static str {
         match self {
             Self::Pending => "pending",
             Self::Running => "running",
@@ -77,7 +77,7 @@ impl CaptureItemStatus {
         }
     }
 
-    pub(crate) fn from_db(value: &str) -> Option<Self> {
+    pub fn from_db(value: &str) -> Option<Self> {
         match value {
             "pending" => Some(Self::Pending),
             "running" => Some(Self::Running),
@@ -90,7 +90,7 @@ impl CaptureItemStatus {
         }
     }
 
-    pub(crate) fn is_terminal(self) -> bool {
+    pub fn is_terminal(self) -> bool {
         !matches!(self, Self::Pending | Self::Running)
     }
 }

@@ -52,7 +52,7 @@ Em toda a documentação, cada recurso tem um destes rótulos:
 - **Text-first.** O que entra no Git é texto. PDF, Word, Pages e imagens ficam fora do Git; o texto extraído entra com página e fonte. Diagramas viram Mermaid ou descrição textual. `node tools/acervo/build.mjs --verificar-texto` lista o que ainda é binário.
 - **Rust.** O núcleo (`estuda-core`) não conhece Tauri nem GPUI. O shell Tauri em `app/src-tauri` e a interface React em `app/src` são a camada legada de apresentação.
 - **SQLite, Markdown e JSON.** O mesmo registro existe nas três formas e é mantido coerente. Registros estruturados em `dados/` são um arquivo JSON por registro, com `source` e `pendencias`.
-- **Privado separado de público.** Notas, frequência, matrícula, trajetória e trabalhos entregues ficam em `privado/`. `dados/` nunca contém dado pessoal. Ver [docs/seguranca/privacidade.md](docs/seguranca/privacidade.md).
+- **Dado pessoal em `privado/`.** Notas, frequência, matrícula, trajetória e trabalhos entregues ficam em `privado/`, pasta do mesmo repositório. Pela decisão de 2026-11-06, todo o conteúdo do acervo pode ir ao Git e ao acervo público desde que os dados pessoais estejam nessa pasta; a separação é de pasta, não de sigilo. `dados/` nunca contém dado pessoal. Ver [docs/seguranca/privacidade.md](docs/seguranca/privacidade.md).
 - **Somente leitura na instituição.** O aplicativo não envia atividades, não agenda provas e não modifica registros da UVA. Ver [docs/automacoes/limites-e-seguranca.md](docs/automacoes/limites-e-seguranca.md).
 
 ## Requisitos
@@ -128,7 +128,7 @@ Entradas de leitura que já existiam e continuam válidas. Os itens em `privado/
 
 - **Código Rust ou frontend:** [docs/desenvolvimento/contribuindo-codigo.md](docs/desenvolvimento/contribuindo-codigo.md).
 - **Conteúdo de disciplinas, exercícios, resoluções, bibliografia, metadados, traduções e correções documentais:** [docs/contribuindo/conteudo.md](docs/contribuindo/conteudo.md).
-- Contribuições não podem incluir matrícula, notas, frequência, credenciais, cookies, tokens nem material acadêmico sem autorização de distribuição.
+- Contribuições não podem incluir senhas, cookies, tokens, `.env`, bancos SQLite, perfil do Chromium, binários (PDF, Word, imagens) nem material acadêmico sem autorização de distribuição. Matrícula, notas e frequência podem entrar desde que os dados pessoais fiquem em `privado/` (decisão de 2026-11-06); RA, CPF e RG continuam fora. Dados de docentes e de outros colaboradores seguem pendentes ([lacunas e contradições](docs/referencia/lacunas-e-contradicoes.md) §1).
 - Mudança em banco de dados (esquema, migração, `INSERT`, `UPDATE`, `DELETE`) exige proposta e aprovação explícita antes de qualquer execução. Ver [docs/dados/migracoes.md](docs/dados/migracoes.md).
 - Convenções do repositório: branch `master`, versão `v0.1.0` como início, commits sem trailers de coautoria.
 

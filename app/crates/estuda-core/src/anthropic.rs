@@ -16,6 +16,7 @@ const MAX_OUTPUT_TOKENS: u32 = 8_000;
 pub struct AnthropicConfig {
     api_key: String,
     model: String,
+    workspace_id: Option<String>,
 }
 
 impl AnthropicConfig {
@@ -34,6 +35,7 @@ impl AnthropicConfig {
     fn parse(contents: &str) -> Result<Self, AnthropicError> {
         let mut api_key = None;
         let mut model = None;
+        let mut workspace_id = None;
         for line in contents.lines() {
             let line = line.trim();
             if line.is_empty() || line.starts_with('#') {
@@ -54,6 +56,11 @@ impl AnthropicConfig {
                             AnthropicError::MalformedConfiguration("ANTHROPIC_MODEL")
                         })?);
                 }
+                "ANTHROPIC_WORKSPACE_ID" => {
+                    workspace_id = Some(parse_env_value(raw_value).map_err(|_| {
+                        AnthropicError::MalformedConfiguration("ANTHROPIC_WORKSPACE_ID")
+                    })?);
+                }
                 _ => {}
             }
         }
@@ -64,11 +71,21 @@ impl AnthropicConfig {
         let model = model
             .filter(|value| !value.trim().is_empty())
             .unwrap_or_else(|| DEFAULT_MODEL.to_owned());
-        Ok(Self { api_key, model })
+        let workspace_id = workspace_id.filter(|value| !value.trim().is_empty());
+        Ok(Self {
+            api_key,
+            model,
+            workspace_id,
+        })
     }
 
     pub fn model(&self) -> &str {
         &self.model
+    }
+
+    /// Workspace enviado no header `anthropic-workspace-id`. Ausente quando a chave já pertence a um workspace.
+    pub fn workspace_id(&self) -> Option<&str> {
+        self.workspace_id.as_deref()
     }
 }
 
@@ -198,13 +215,17 @@ impl AnthropicClient {
         });
         let request_body =
             serde_json::to_vec(&request_body).map_err(|_| AnthropicError::Request)?;
-        let response = self
+        let mut request = self
             .http
             .post(&self.endpoint)
             .timeout(self.timeout)
             .header("x-api-key", &self.config.api_key)
             .header("anthropic-version", ANTHROPIC_API_VERSION)
-            .header(reqwest::header::CONTENT_TYPE, "application/json")
+            .header(reqwest::header::CONTENT_TYPE, "application/json");
+        if let Some(workspace_id) = self.config.workspace_id() {
+            request = request.header("anthropic-workspace-id", workspace_id);
+        }
+        let response = request
             .body(request_body)
             .send()
             .await
@@ -415,6 +436,28 @@ mod tests {
     }
 
     #[test]
+    fn workspace_id_is_optional_and_ignored_when_blank() {
+        let temporary = tempfile::tempdir().unwrap();
+        let with_workspace = config_file(
+            &temporary.path().join("workspace.env"),
+            "ANTHROPIC_API_KEY=synthetic-test-key\nANTHROPIC_WORKSPACE_ID=\"wrkspc_synthetic\"\n",
+        );
+        assert_eq!(with_workspace.workspace_id(), Some("wrkspc_synthetic"));
+
+        let without_workspace = config_file(
+            &temporary.path().join("none.env"),
+            "ANTHROPIC_API_KEY=synthetic-test-key\n",
+        );
+        assert_eq!(without_workspace.workspace_id(), None);
+
+        let blank_workspace = config_file(
+            &temporary.path().join("blank.env"),
+            "ANTHROPIC_API_KEY=synthetic-test-key\nANTHROPIC_WORKSPACE_ID=\n",
+        );
+        assert_eq!(blank_workspace.workspace_id(), None);
+    }
+
+    #[test]
     fn missing_or_empty_api_key_returns_redacted_error() {
         let temporary = tempfile::tempdir().unwrap();
         for body in ["", "ANTHROPIC_API_KEY=\n", "ANTHROPIC_API_KEY=\"\"\n"] {
@@ -512,6 +555,38 @@ mod tests {
         assert_eq!(pair.model, "claude-haiku-5-5");
         assert_eq!(pair.input_tokens, 120);
         assert_eq!(pair.output_tokens, 900);
+    }
+
+    #[tokio::test]
+    async fn messages_api_sends_workspace_header_when_configured() {
+        let temporary = tempfile::tempdir().unwrap();
+        let config = config_file(
+            &temporary.path().join(".env"),
+            "ANTHROPIC_API_KEY=synthetic-test-key\nANTHROPIC_WORKSPACE_ID=wrkspc_synthetic\n",
+        );
+        let body = valid_response(
+            "## Resumo curto\nConceito breve.\n\n## Resumo longo\nExplicação detalhada.",
+            "end_turn",
+        );
+        let (endpoint, worker) = spawn_mock(200, body);
+        let client = AnthropicClient::with_endpoint(config, endpoint);
+        let sources = [SummarySource {
+            label: "materias/2026.2/bases/aula.md".into(),
+            markdown: "Material de teste acadêmico.".into(),
+        }];
+
+        client
+            .generate_pair("Bases de Programação", &sources)
+            .await
+            .unwrap();
+        let request = worker.join().unwrap();
+        let (headers, _) = request.split_once("\r\n\r\n").unwrap();
+
+        assert!(
+            headers
+                .to_ascii_lowercase()
+                .contains("anthropic-workspace-id: wrkspc_synthetic")
+        );
     }
 
     #[tokio::test]

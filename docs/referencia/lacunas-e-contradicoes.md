@@ -4,14 +4,21 @@
 
 Esta página reúne o que a revisão encontrou de desatualizado, contraditório ou não verificado. Nada aqui foi corrigido no código ou nos dados: a revisão foi só documental.
 
-## 1. Decisão aberta: política de publicação de dados pessoais
+## 1. Resolvida: política de publicação de dados pessoais
 
-Durante a revisão, outra sessão de trabalho informou uma "decisão do dono" de 2026-11-06 e editou o `AGENTS.md` com ela: notas, frequência, matrículas e trabalhos poderiam ir ao Git e ao acervo público, desde que separados do catálogo em `privado/`. Continuariam proibidos senhas, cookies, tokens, `.env`, bancos `*.sqlite3*`, perfil do Chromium e `originais/`; RA, CPF e RG ficariam fora.
+**Decisão do dono, 2026-11-06**, confirmada nesta sessão. Substitui a regra anterior, que proibia publicar dado pessoal, tratava `privado/` como sigilo e exigia remover links para `privado/` antes de publicar.
 
-- O texto da tarefa de documentação, escrito pelo usuário, dizia o contrário para contribuições (sem matrículas, notas privadas nem credenciais). A mudança **não foi confirmada pelo usuário nesta sessão**.
-- Por isso as páginas **não estão uniformes**. Contêm a regra nova: `docs/biblioteca/estrutura.md`, `docs/aplicativo/telas.md` e cinco páginas de `docs/automacoes/` (`portal-lyceum`, `canvas`, `limites-e-seguranca`, `visao-geral`, `extracao-textual`). Contêm a regra anterior, e portanto contradizem as anteriores: `docs/seguranca/{privacidade,ameacas,publicacao}.md`, `docs/contribuindo/conteudo.md`, `docs/dados/{visao-geral,banco-privado}.md`, `docs/getting-started/resolucao-problemas.md`, o README da raiz e as demais páginas de biblioteca.
-- A decisão não cobre dados de terceiros (nomes de docentes, dados de outros colaboradores) nem direitos autorais de `fontes-uva/`. Não há decisão registrada para eles.
-- **Ação necessária:** o usuário confirma ou rejeita a política; depois, todas as páginas acima são alinhadas em uma passada única.
+- Todo conteúdo do acervo pode ir ao acervo público e ao Git, inclusive notas, frequência, matrículas e trabalhos entregues, desde que os dados pessoais estejam separados em `privado/` (mesmo repositório). A separação é de pasta, não de sigilo.
+- Continuam proibidos no Git e em qualquer publicação: senhas, cookies, tokens, `.env`, bancos SQLite (`*.sqlite3*`, WAL, SHM, journal), perfil do Chromium e `originais/`. Binários (PDF, Word, imagens) ficam fora do Git.
+- Ajustadas nesta edição: `docs/biblioteca/catalogacao.md`, `docs/biblioteca/tipos-de-conteudo.md`, `docs/biblioteca/fontes-e-licencas.md` e as linhas do README.md citadas na regra de contribuição. `docs/seguranca/credenciais-e-sessoes.md` não descrevia a regra antiga e ficou inalterada.
+- Ainda com a regra antiga, segundo a revisão anterior, fora deste escopo e a alinhar: `docs/seguranca/{privacidade,ameacas,publicacao}.md`, `docs/contribuindo/conteudo.md`, `docs/dados/{visao-geral,banco-privado}.md` e `docs/getting-started/resolucao-problemas.md`.
+
+**Pendências abertas** (ressalvas que a decisão não cobre; não decididas aqui):
+
+- **RA, CPF e RG:** continuam fora dos registros até decisão do dono.
+- **E-mail e telefone:** a decisão não os menciona; sem decisão registrada.
+- **Nomes de docentes e dados de outros colaboradores ou terceiros:** continuam fora da camada pública até decisão do dono.
+- **Direitos autorais e licenças de `fontes-uva/`:** em aberto (ver [fontes-e-licencas.md](../biblioteca/fontes-e-licencas.md) §3).
 
 ## 2. Contradições entre documentação e código
 

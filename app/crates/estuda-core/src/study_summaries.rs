@@ -11,7 +11,6 @@ use std::{
     path::{Component, Path},
     sync::Arc,
 };
-use tauri::State;
 use unicode_normalization::{UnicodeNormalization, char::is_combining_mark};
 
 const MAX_SUMMARY_SOURCE_BYTES: usize = 2 * 1024 * 1024;
@@ -323,7 +322,7 @@ async fn refreshed_subject_sources(
     let course_title = course_title.to_owned();
     let semester = semester.to_owned();
     let catalog = Arc::clone(catalog);
-    tauri::async_runtime::spawn_blocking(move || {
+    tokio::task::spawn_blocking(move || {
         catalog.refresh()?;
         collect_subject_source_set(
             &catalog,
@@ -337,21 +336,20 @@ async fn refreshed_subject_sources(
     .map_err(|_| "Não foi possível atualizar o catálogo local.".to_owned())?
 }
 
-#[tauri::command]
-pub(crate) async fn get_subject_summary_snapshot(
+pub async fn subject_summary_snapshot(
     course_id: String,
     course_title: String,
     semester: String,
-    state: State<'_, crate::AppState>,
+    store: &AcademicStore,
+    catalog: &Arc<CatalogService>,
 ) -> Result<SubjectSummarySnapshot, String> {
     validate_subject(&course_title, &semester)?;
     if course_id.trim().is_empty() || course_id.len() > 256 {
         return Err("A matrícula ativa desta matéria é inválida.".into());
     }
     let collected =
-        refreshed_subject_sources(&state.store, &state.catalog, &course_title, &semester).await?;
-    let latest_summary = state
-        .store
+        refreshed_subject_sources(store, catalog, &course_title, &semester).await?;
+    let latest_summary = store
         .latest_study_summary(&course_id, &semester)
         .map_err(|error| error.to_string())?;
     Ok(SubjectSummarySnapshot {
@@ -361,20 +359,20 @@ pub(crate) async fn get_subject_summary_snapshot(
     })
 }
 
-#[tauri::command]
-pub(crate) async fn generate_subject_summaries(
+pub async fn generate_subject_summaries(
     course_id: String,
     course_title: String,
     semester: String,
     confirmed_source_hash: String,
-    state: State<'_, crate::AppState>,
+    store: &AcademicStore,
+    catalog: &Arc<CatalogService>,
 ) -> Result<StudySummary, String> {
     validate_subject(&course_title, &semester)?;
     if course_id.trim().is_empty() || course_id.len() > 256 {
         return Err("A matrícula ativa desta matéria é inválida.".into());
     }
     let collected =
-        refreshed_subject_sources(&state.store, &state.catalog, &course_title, &semester).await?;
+        refreshed_subject_sources(store, catalog, &course_title, &semester).await?;
     if collected.sources.is_empty() {
         return Err("Não há materiais legíveis para resumir.".into());
     }
@@ -387,7 +385,7 @@ pub(crate) async fn generate_subject_summaries(
         AnthropicConfig::read_default().map_err(|error| error.to_string())?,
     );
     generate_and_store_with(
-        &state.store,
+        store,
         &course_id,
         &course_title,
         &semester,

@@ -19,7 +19,7 @@ Tudo aqui é texto. Nada de PDF, imagem ou planilha.
 2. **Toda informação tem fonte.** O campo `source` cita o arquivo do repositório, a seção e a data em que o dado foi observado.
    O arquivo citado precisa existir.
 3. **Confirmado, estimado e pendente são coisas diferentes.** Se a fonte só mostra um valor provisório (ex.: um código que aparece numa tabela mas não foi confirmado no Canvas), registre o valor e uma pendência dizendo isso.
-4. **Nunca registre dado pessoal ou sensível**: RA, CPF, RG, senha, cookie, token, e-mail, login, nem caminhos absolutos da sua máquina.
+4. **Nunca registre segredos nem identificadores**: RA, CPF, RG, senha, cookie, token, e-mail, login, nem caminhos absolutos da sua máquina. Notas, matrículas e trabalhos podem ser públicos (decisão de 6/11/2026), mas ficam em `privado/`, separados do catálogo.
 5. **Matrícula é do estudante, notas são do estudante.** Não copie o Portal inteiro; registre só o que a fonte mostra.
 
 ## Conteúdo em texto
@@ -30,6 +30,8 @@ Tudo aqui é texto. Nada de PDF, imagem ou planilha.
 - `node tools/acervo/build.mjs --verificar-texto` lista binários rastreados (erro) e binários locais (aviso).
 
 ## Dados privados do aluno
+
+**Política (6/11/2026):** `privado/` é uma camada de *separação*, não de sigilo. Pode ser publicada e versionada. Só não entram credenciais, bancos SQLite, perfis do navegador e binários originais.
 
 - Tudo que identifica o aluno fica em `privado/`, dentro deste mesmo repositório: matrícula, turmas pessoais, notas, frequência, trajetória, trabalhos entregues e o planejamento pessoal.
 - `dados/` tem só matéria e instituição: currículo, disciplinas, ofertas, relações e períodos.

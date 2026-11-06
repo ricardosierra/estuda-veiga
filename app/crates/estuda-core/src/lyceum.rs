@@ -437,7 +437,7 @@ fn capture_to_markdown(capture: &PortalCapture) -> String {
     output
 }
 
-pub(crate) fn write_new_file_beneath(
+pub fn write_new_file_beneath(
     root: &Path,
     relative_path: &str,
     contents: &[u8],

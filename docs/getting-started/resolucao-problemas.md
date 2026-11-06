@@ -39,4 +39,4 @@ Problemas conhecidos, com a causa verificada no código ou em uma execução des
 
 ## Antes de pedir ajuda
 
-Não cole no chat, em issues ou em commits: cookies, tokens, URLs com parâmetros de autenticação (SSO), conteúdo do `.env`, CPF, matrícula, notas ou frequência. Ver [privacidade.md](../seguranca/privacidade.md).
+Não cole no chat, em issues ou em commits: cookies, tokens, senhas, URLs com parâmetros de autenticação (SSO), conteúdo do `.env`, CPF, RA ou RG. Notas, frequência e matrículas saíram desta lista pela política de 6/11/2026, que as admite no acervo desde que estejam em `privado/`. Ver [privacidade.md](../seguranca/privacidade.md).

@@ -15,7 +15,7 @@ use std::{
 };
 use thiserror::Error;
 
-const CURRENT_SCHEMA_VERSION: i64 = 7;
+const CURRENT_SCHEMA_VERSION: i64 = crate::schema::CURRENT_VERSION;
 
 #[derive(Debug, Error)]
 pub enum StorageError {
@@ -560,167 +560,6 @@ fn legacy_material_source_key(
     (key, source_kind.to_owned(), canonical_origin)
 }
 
-fn migrate_capture_schema(connection: &Connection) -> Result<(), StorageError> {
-    connection
-        .execute_batch("BEGIN IMMEDIATE;")
-        .map_err(sql_error)?;
-    let migration = (|| {
-        for (column, statement) in [
-            (
-                "source_key",
-                "ALTER TABLE materials ADD COLUMN source_key TEXT NOT NULL DEFAULT '';",
-            ),
-            (
-                "source_kind",
-                "ALTER TABLE materials ADD COLUMN source_kind TEXT NOT NULL DEFAULT 'pdf';",
-            ),
-            (
-                "source_etag",
-                "ALTER TABLE materials ADD COLUMN source_etag TEXT;",
-            ),
-            (
-                "source_last_modified",
-                "ALTER TABLE materials ADD COLUMN source_last_modified TEXT;",
-            ),
-            (
-                "source_validator_host",
-                "ALTER TABLE materials ADD COLUMN source_validator_host TEXT;",
-            ),
-            (
-                "text_sha256",
-                "ALTER TABLE materials ADD COLUMN text_sha256 TEXT;",
-            ),
-        ] {
-            if !material_column_exists(connection, column)? {
-                connection.execute_batch(statement).map_err(sql_error)?;
-            }
-        }
-        connection
-            .execute_batch(
-                "CREATE INDEX IF NOT EXISTS materials_source_version
-                   ON materials(source_key, text_sha256, imported_at DESC);
-                 CREATE TABLE IF NOT EXISTS material_associations (
-                   material_id TEXT NOT NULL,
-                   course_id TEXT NOT NULL,
-                   course_title TEXT NOT NULL,
-                   module_title TEXT NOT NULL,
-                   item_title TEXT NOT NULL,
-                   semester TEXT,
-                   created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                   PRIMARY KEY(material_id,course_id,module_title,item_title)
-                 );
-                 CREATE INDEX IF NOT EXISTS material_associations_course
-                   ON material_associations(course_id,semester,material_id);
-                 CREATE TABLE IF NOT EXISTS capture_runs (
-                   id TEXT PRIMARY KEY,
-                   scope TEXT NOT NULL,
-                   limits_snapshot TEXT NOT NULL,
-                   status TEXT NOT NULL,
-                   courses_total INTEGER NOT NULL DEFAULT 0,
-                   courses_done INTEGER NOT NULL DEFAULT 0,
-                   items_total INTEGER NOT NULL DEFAULT 0,
-                   captured INTEGER NOT NULL DEFAULT 0,
-                   reused INTEGER NOT NULL DEFAULT 0,
-                   ignored INTEGER NOT NULL DEFAULT 0,
-                   failed INTEGER NOT NULL DEFAULT 0,
-                   needs_review INTEGER NOT NULL DEFAULT 0,
-                   pending INTEGER NOT NULL DEFAULT 0,
-                   current_course_id TEXT,
-                   current_course_title TEXT,
-                   current_module_title TEXT,
-                   current_item_title TEXT,
-                   warning TEXT,
-                   started_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                   updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                   finished_at TEXT
-                 );
-                 CREATE INDEX IF NOT EXISTS capture_runs_latest
-                   ON capture_runs(status,updated_at DESC);
-                 CREATE TABLE IF NOT EXISTS capture_items (
-                   run_id TEXT NOT NULL,
-                   position INTEGER NOT NULL DEFAULT 0,
-                   reference_key TEXT NOT NULL,
-                   content_key TEXT,
-                   canvas_item_id TEXT,
-                   course_id TEXT NOT NULL,
-                   course_title TEXT NOT NULL,
-                   module_title TEXT NOT NULL,
-                   title TEXT NOT NULL,
-                   source_kind TEXT NOT NULL,
-                   source_url TEXT NOT NULL,
-                   status TEXT NOT NULL,
-                   retryable INTEGER NOT NULL DEFAULT 0,
-                   attempts INTEGER NOT NULL DEFAULT 0,
-                   material_id TEXT,
-                   message TEXT,
-                   updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                   PRIMARY KEY(run_id,reference_key)
-                 );
-                 CREATE INDEX IF NOT EXISTS capture_items_course_order
-                   ON capture_items(run_id,course_id,position,reference_key);",
-            )
-            .map_err(sql_error)?;
-
-        let materials = {
-            let mut statement = connection
-                .prepare("SELECT id,course_id,course_title,module_title,title,origin,semester,source_key FROM materials")
-                .map_err(sql_error)?;
-            let rows = statement
-                .query_map([], |row| {
-                    Ok((
-                        row.get::<_, String>(0)?,
-                        row.get::<_, String>(1)?,
-                        row.get::<_, String>(2)?,
-                        row.get::<_, String>(3)?,
-                        row.get::<_, String>(4)?,
-                        row.get::<_, String>(5)?,
-                        row.get::<_, Option<String>>(6)?,
-                        row.get::<_, String>(7)?,
-                    ))
-                })
-                .map_err(sql_error)?;
-            rows.collect::<Result<Vec<_>, _>>().map_err(sql_error)?
-        };
-        for (id, course_id, course_title, module_title, title, origin, semester, existing_key) in
-            materials
-        {
-            let (derived_key, source_kind, canonical_origin) =
-                legacy_material_source_key(&id, &origin, "pdf");
-            let source_key = if existing_key.is_empty() {
-                derived_key
-            } else {
-                existing_key
-            };
-            connection
-                .execute(
-                    "UPDATE materials SET source_key=?1,source_kind=COALESCE(NULLIF(source_kind,''),?2),
-                       origin=COALESCE(?3,origin) WHERE id=?4",
-                    params![source_key, source_kind, canonical_origin, id],
-                )
-                .map_err(sql_error)?;
-            connection
-                .execute(
-                    "INSERT OR IGNORE INTO material_associations(
-                       material_id,course_id,course_title,module_title,item_title,semester
-                     ) VALUES(?1,?2,?3,?4,?5,?6)",
-                    params![id, course_id, course_title, module_title, title, semester],
-                )
-                .map_err(sql_error)?;
-        }
-        connection
-            .pragma_update(None, "user_version", 7)
-            .map_err(sql_error)?;
-        Ok::<(), StorageError>(())
-    })();
-    match migration {
-        Ok(()) => connection.execute_batch("COMMIT;").map_err(sql_error),
-        Err(error) => {
-            let _ = connection.execute_batch("ROLLBACK;");
-            Err(error)
-        }
-    }
-}
-
 fn backfill_missing_material_sources(connection: &Connection) -> Result<(), StorageError> {
     let materials = {
         let mut statement = connection
@@ -771,119 +610,103 @@ pub struct AcademicStore {
     database_path: Mutex<PathBuf>,
 }
 
+/// Cria (ou confirma) o esquema da baseline v8. Só `CREATE ... IF NOT EXISTS`: não há `ALTER`.
+/// Bancos com versão menor nunca chegam aqui: [`open_connection`] os regenera antes.
 fn initialize_storage_schema(connection: &Connection) -> Result<(), StorageError> {
-    let schema_version = connection
-        .pragma_query_value(None, "user_version", |row| row.get::<_, i64>(0))
-        .map_err(sql_error)?;
+    let schema_version = user_version(connection)?;
     if schema_version > CURRENT_SCHEMA_VERSION {
         return Err(StorageError::Sql(format!(
             "o banco está na versão {schema_version}, mais nova que a versão suportada {CURRENT_SCHEMA_VERSION}"
         )));
     }
-    connection.execute_batch("PRAGMA journal_mode=WAL;
-        CREATE TABLE IF NOT EXISTS courses (
-          id TEXT PRIMARY KEY, title TEXT NOT NULL, url TEXT NOT NULL, kind TEXT NOT NULL, seen_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-        );
-        CREATE TABLE IF NOT EXISTS materials (
-          id TEXT PRIMARY KEY, course_id TEXT NOT NULL, course_title TEXT NOT NULL, module_title TEXT NOT NULL,
-          title TEXT NOT NULL, path TEXT NOT NULL, lesson_path TEXT NOT NULL DEFAULT '', origin TEXT NOT NULL, pages INTEGER NOT NULL,
-          semester TEXT,
-          sha256 TEXT NOT NULL, imported_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-        );
-        CREATE TABLE IF NOT EXISTS study_sessions (
-          id TEXT PRIMARY KEY, course_id TEXT NOT NULL, material_id TEXT NOT NULL,
-          correct INTEGER NOT NULL, total INTEGER NOT NULL, percent INTEGER NOT NULL,
-          studied_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-        );
-        CREATE TABLE IF NOT EXISTS lesson_sessions (
-          id TEXT PRIMARY KEY, resource_path TEXT NOT NULL, course_id TEXT, course_title TEXT NOT NULL,
-          material_title TEXT NOT NULL, section_index INTEGER NOT NULL DEFAULT 0, section_count INTEGER NOT NULL,
-          started_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-          completed_at TEXT
-        );
-        CREATE INDEX IF NOT EXISTS lesson_sessions_resource_opened ON lesson_sessions(resource_path, completed_at, updated_at);
-        CREATE INDEX IF NOT EXISTS lesson_sessions_history ON lesson_sessions(updated_at DESC);
-        CREATE TABLE IF NOT EXISTS practice_questions (
-          material_id TEXT NOT NULL, position INTEGER NOT NULL, prompt TEXT NOT NULL, answer TEXT NOT NULL, source_page INTEGER NOT NULL,
-          PRIMARY KEY(material_id, position)
-        );
-        CREATE TABLE IF NOT EXISTS academic_events (
-          id TEXT PRIMARY KEY, semester TEXT NOT NULL, course_id TEXT, course_title TEXT,
-          title TEXT NOT NULL, starts_at TEXT NOT NULL, all_day INTEGER NOT NULL,
-          source_kind TEXT NOT NULL, source_url TEXT NOT NULL, source_label TEXT NOT NULL,
-          verified_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-        );
-        CREATE INDEX IF NOT EXISTS academic_events_semester_date ON academic_events(semester, starts_at);
-        CREATE TABLE IF NOT EXISTS settings (key TEXT PRIMARY KEY, value TEXT NOT NULL);")
+    connection
+        .execute_batch(crate::schema::BASELINE)
         .map_err(sql_error)?;
-    crate::catalog::academic::initialize_schema(connection).map_err(StorageError::Sql)?;
-    let materials_have_semester = connection
+    crate::catalog::academic::initialize_schema(connection).map_err(StorageError::Sql)
+}
+
+fn user_version(connection: &Connection) -> Result<i64, StorageError> {
+    connection
+        .pragma_query_value(None, "user_version", |row| row.get::<_, i64>(0))
+        .map_err(sql_error)
+}
+
+fn has_user_tables(connection: &Connection) -> Result<bool, StorageError> {
+    connection
         .query_row(
-            "SELECT EXISTS(SELECT 1 FROM pragma_table_info('materials') WHERE name='semester')",
+            "SELECT EXISTS(SELECT 1 FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%')",
             [],
             |row| row.get::<_, i64>(0),
         )
-        .map_err(sql_error)?;
-    if materials_have_semester == 0 {
-        connection
-            .execute("ALTER TABLE materials ADD COLUMN semester TEXT", [])
-            .map_err(sql_error)?;
+        .map(|exists| exists != 0)
+        .map_err(sql_error)
+}
+
+/// Abre o banco já no esquema atual.
+///
+/// - versão maior que a suportada: erro, arquivo intocado;
+/// - versão menor (ou sem versão, mas com tabelas): o arquivo vira backup e um banco novo é
+///   criado pela baseline; o conteúdo regenerável volta na próxima sincronização dos arquivos;
+/// - senão: `CREATE ... IF NOT EXISTS`, que não escreve nada se o esquema já existe.
+fn open_connection(path: &Path) -> Result<Connection, StorageError> {
+    let mut connection = Connection::open(path).map_err(sql_error)?;
+    let version = user_version(&connection)?;
+    if version > CURRENT_SCHEMA_VERSION {
+        return Err(StorageError::Sql(format!(
+            "o banco está na versão {version}, mais nova que a versão suportada {CURRENT_SCHEMA_VERSION}"
+        )));
     }
-    if schema_version < 5 {
+    let mut regenerated_from = None;
+    if version < CURRENT_SCHEMA_VERSION && (version != 0 || has_user_tables(&connection)?) {
+        drop(connection);
+        regenerated_from = Some(quarantine_old_database(path, version)?);
+        connection = Connection::open(path).map_err(sql_error)?;
+    }
+    initialize_storage_schema(&connection)?;
+    if let Some(backup) = regenerated_from {
         connection
-            .execute_batch(
-                "BEGIN IMMEDIATE;
-                 CREATE TABLE IF NOT EXISTS lesson_interactions (
-                   id TEXT PRIMARY KEY,
-                   session_id TEXT NOT NULL,
-                   activity_id TEXT NOT NULL,
-                   section_index INTEGER NOT NULL,
-                   kind TEXT NOT NULL,
-                   prompt TEXT NOT NULL,
-                   response TEXT NOT NULL,
-                   assessment TEXT NOT NULL,
-                   source_page INTEGER,
-                   source_heading TEXT NOT NULL,
-                   source_excerpt TEXT NOT NULL,
-                   source_sha256 TEXT NOT NULL,
-                   attempted_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-                 );
-                 CREATE INDEX IF NOT EXISTS lesson_interactions_session_order
-                   ON lesson_interactions(session_id, attempted_at, id);
-                 PRAGMA user_version=5;
-                 COMMIT;",
+            .execute(
+                "INSERT OR REPLACE INTO settings(key,value) VALUES('__regenerated_from_backup',?1)",
+                [backup.to_string_lossy().as_ref()],
             )
             .map_err(sql_error)?;
     }
-    if schema_version < 6 {
-        connection
-            .execute_batch(
-                "BEGIN IMMEDIATE;
-                 CREATE TABLE IF NOT EXISTS study_summaries (
-                   id TEXT PRIMARY KEY,
-                   course_id TEXT NOT NULL,
-                   course_title TEXT NOT NULL,
-                   semester TEXT NOT NULL,
-                   source_hash TEXT NOT NULL,
-                   source_manifest_json TEXT NOT NULL,
-                   short_text TEXT NOT NULL,
-                   long_text TEXT NOT NULL,
-                   model TEXT NOT NULL,
-                   input_tokens INTEGER NOT NULL,
-                   output_tokens INTEGER NOT NULL,
-                   created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-                 );
-                 CREATE INDEX IF NOT EXISTS study_summaries_subject_latest
-                   ON study_summaries(course_id, semester, created_at DESC);
-                 PRAGMA user_version=6;
-                 COMMIT;",
-            )
-            .map_err(sql_error)?;
+    Ok(connection)
+}
+
+/// Move o banco antigo (e `-wal`/`-shm`) para `<nome>.v<versão>-<epoch>.bak.sqlite3`. Nada é
+/// apagado; o WAL é consolidado antes para o backup ficar completo num único arquivo.
+fn quarantine_old_database(path: &Path, version: i64) -> Result<PathBuf, StorageError> {
+    if let Ok(old) = Connection::open(path) {
+        let _ = old.query_row("PRAGMA wal_checkpoint(TRUNCATE)", [], |_| Ok(()));
     }
-    if schema_version < 7 {
-        migrate_capture_schema(connection)?;
+    let stem = path
+        .file_name()
+        .and_then(|name| name.to_str())
+        .unwrap_or("estuda-uva.sqlite3")
+        .trim_end_matches(".sqlite3")
+        .to_owned();
+    let epoch = std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .map(|elapsed| elapsed.as_secs())
+        .unwrap_or(0);
+    let parent = path.parent().unwrap_or_else(|| Path::new("."));
+    let mut backup = parent.join(format!("{stem}.v{version}-{epoch}.bak.sqlite3"));
+    let mut counter = 1;
+    while backup.exists() {
+        backup = parent.join(format!("{stem}.v{version}-{epoch}-{counter}.bak.sqlite3"));
+        counter += 1;
     }
-    Ok(())
+    std::fs::rename(path, &backup).map_err(|error| StorageError::Io(error.to_string()))?;
+    for suffix in ["-wal", "-shm", "-journal"] {
+        let sidecar = PathBuf::from(format!("{}{suffix}", path.display()));
+        if sidecar.exists() {
+            let target = PathBuf::from(format!("{}{suffix}", backup.display()));
+            std::fs::rename(&sidecar, target)
+                .map_err(|error| StorageError::Io(error.to_string()))?;
+        }
+    }
+    Ok(backup)
 }
 
 impl AcademicStore {
@@ -893,8 +716,7 @@ impl AcademicStore {
         }
         std::fs::create_dir_all(&library_path)
             .map_err(|error| StorageError::Io(error.to_string()))?;
-        let connection = Connection::open(database_path).map_err(sql_error)?;
-        initialize_storage_schema(&connection)?;
+        let connection = open_connection(database_path)?;
         let store = Self {
             connection: Mutex::new(connection),
             library_path: Mutex::new(library_path),
@@ -2189,7 +2011,7 @@ impl AcademicStore {
                 && std::fs::metadata(&destination_path)
                     .map(|metadata| metadata.len() > 0)
                     .unwrap_or(false);
-            let mut destination = Connection::open(&destination_path).map_err(sql_error)?;
+            let mut destination = open_connection(&destination_path)?;
             if !destination_exists {
                 let backup_result =
                     Backup::new(&active_connection, &mut destination).and_then(|backup| {
@@ -2553,69 +2375,6 @@ mod tests {
     }
 
     #[test]
-    fn capture_schema_migrates_v6_to_v7_preserves_materials_and_adds_capture_tables() {
-        let temporary = tempfile::tempdir().unwrap();
-        let database = temporary.path().join("app/estuda.sqlite3");
-        let library = temporary.path().join("Faculdade");
-        std::fs::create_dir_all(database.parent().unwrap()).unwrap();
-        let connection = Connection::open(&database).unwrap();
-        connection
-            .execute_batch(
-                "CREATE TABLE materials (
-                   id TEXT PRIMARY KEY, course_id TEXT NOT NULL, course_title TEXT NOT NULL,
-                   module_title TEXT NOT NULL, title TEXT NOT NULL, path TEXT NOT NULL,
-                   lesson_path TEXT NOT NULL DEFAULT '', origin TEXT NOT NULL, pages INTEGER NOT NULL,
-                   semester TEXT, sha256 TEXT NOT NULL, imported_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-                 );
-                 INSERT INTO materials(id,course_id,course_title,module_title,title,path,lesson_path,origin,pages,semester,sha256)
-                   VALUES('material-v6','41','Bases de Programação','Unidade 1','Apostila','materias/apostila.md','materias/AULA.md','https://uva.instructure.com/courses/41/files/82?download_frd=1#page=2',4,'2026.2','pdf-hash');
-                 PRAGMA user_version=6;",
-            )
-            .unwrap();
-        drop(connection);
-
-        let store = AcademicStore::open(&database, library).unwrap();
-        let connection = store.connection.lock().unwrap();
-        let version = connection
-            .pragma_query_value(None, "user_version", |row| row.get::<_, i64>(0))
-            .unwrap();
-        let material_count: i64 = connection
-            .query_row(
-                "SELECT COUNT(*) FROM materials WHERE id='material-v6'",
-                [],
-                |row| row.get(0),
-            )
-            .unwrap();
-        let source_key: String = connection
-            .query_row(
-                "SELECT source_key FROM materials WHERE id='material-v6'",
-                [],
-                |row| row.get(0),
-            )
-            .unwrap();
-        let association_count: i64 = connection
-            .query_row(
-                "SELECT COUNT(*) FROM material_associations WHERE material_id='material-v6'",
-                [],
-                |row| row.get(0),
-            )
-            .unwrap();
-        let capture_tables: i64 = connection
-            .query_row(
-                "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name IN ('capture_runs','capture_items')",
-                [],
-                |row| row.get(0),
-            )
-            .unwrap();
-
-        assert_eq!(version, 7);
-        assert_eq!(material_count, 1);
-        assert!(source_key.starts_with("pdf:"));
-        assert_eq!(association_count, 1);
-        assert_eq!(capture_tables, 2);
-    }
-
-    #[test]
     fn capture_run_counts_follow_item_state_changes() {
         use crate::canvas_capture::{CaptureItemStatus, CaptureRunStatus};
 
@@ -2808,124 +2567,6 @@ mod tests {
     }
 
     #[test]
-    fn study_summary_schema_migrates_v4_to_v7_and_preserves_prior_generations() {
-        let temporary = tempfile::tempdir().unwrap();
-        let database = temporary.path().join("app/estuda.sqlite3");
-        let library = temporary.path().join("Faculdade");
-        std::fs::create_dir_all(database.parent().unwrap()).unwrap();
-        let connection = Connection::open(&database).unwrap();
-        connection
-            .execute_batch(
-                "CREATE TABLE lesson_sessions (
-                   id TEXT PRIMARY KEY, resource_path TEXT NOT NULL, course_id TEXT, course_title TEXT NOT NULL,
-                   material_title TEXT NOT NULL, section_index INTEGER NOT NULL DEFAULT 0, section_count INTEGER NOT NULL,
-                   started_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                   completed_at TEXT
-                 );
-                 PRAGMA user_version=4;",
-            )
-            .unwrap();
-        drop(connection);
-
-        let store = AcademicStore::open(&database, library).unwrap();
-        store
-            .save_study_summary(&study_summary("summary-a", "source-a"))
-            .unwrap();
-        store
-            .save_study_summary(&study_summary("summary-b", "source-b"))
-            .unwrap();
-
-        let connection = store.connection.lock().unwrap();
-        let schema_version = connection
-            .pragma_query_value(None, "user_version", |row| row.get::<_, i64>(0))
-            .unwrap();
-        let stored_row_count: i64 = connection
-            .query_row("SELECT COUNT(*) FROM study_summaries", [], |row| row.get(0))
-            .unwrap();
-        drop(connection);
-        let latest = store
-            .latest_study_summary("enrollment-1", "2026.2")
-            .unwrap()
-            .unwrap();
-
-        assert_eq!(schema_version, 7);
-        assert_eq!(stored_row_count, 2);
-        assert_eq!(latest.source_hash, "source-b");
-    }
-
-    #[test]
-    fn study_summary_schema_migrates_v5_to_v7() {
-        let temporary = tempfile::tempdir().unwrap();
-        let database = temporary.path().join("app/estuda.sqlite3");
-        let library = temporary.path().join("Faculdade");
-        std::fs::create_dir_all(database.parent().unwrap()).unwrap();
-        let connection = Connection::open(&database).unwrap();
-        connection.execute_batch("PRAGMA user_version=5;").unwrap();
-        drop(connection);
-
-        let store = AcademicStore::open(&database, library).unwrap();
-        let schema_version = store
-            .connection
-            .lock()
-            .unwrap()
-            .pragma_query_value(None, "user_version", |row| row.get::<_, i64>(0))
-            .unwrap();
-        let table_exists: i64 = store.connection.lock().unwrap()
-            .query_row("SELECT EXISTS(SELECT 1 FROM sqlite_master WHERE type='table' AND name='study_summaries')", [], |row| row.get(0))
-            .unwrap();
-
-        assert_eq!(schema_version, 7);
-        assert_eq!(table_exists, 1);
-    }
-
-    #[test]
-    fn schema_v4_migrates_to_v7_without_losing_local_tables() {
-        let temporary = tempfile::tempdir().unwrap();
-        let database = temporary.path().join("app/estuda.sqlite3");
-        let library = temporary.path().join("Faculdade");
-        std::fs::create_dir_all(database.parent().unwrap()).unwrap();
-        let connection = Connection::open(&database).unwrap();
-        connection
-            .execute_batch(
-                "CREATE TABLE lesson_sessions (
-                   id TEXT PRIMARY KEY, resource_path TEXT NOT NULL, course_id TEXT, course_title TEXT NOT NULL,
-                   material_title TEXT NOT NULL, section_index INTEGER NOT NULL DEFAULT 0, section_count INTEGER NOT NULL,
-                   started_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                   completed_at TEXT
-                 );
-                 INSERT INTO lesson_sessions(id,resource_path,course_title,material_title,section_count)
-                   VALUES('kept-session','materias/aula.md','Bases','Aula',2);
-                 PRAGMA user_version=4;",
-            )
-            .unwrap();
-        drop(connection);
-
-        let store = AcademicStore::open(&database, library).unwrap();
-
-        let version = store
-            .connection
-            .lock()
-            .unwrap()
-            .pragma_query_value(None, "user_version", |row| row.get::<_, i64>(0))
-            .unwrap();
-        assert_eq!(version, 7);
-        assert_eq!(
-            store
-                .get_lesson_session("kept-session")
-                .unwrap()
-                .unwrap()
-                .id,
-            "kept-session"
-        );
-        let table_exists: i64 = store.connection.lock().unwrap()
-            .query_row("SELECT EXISTS(SELECT 1 FROM sqlite_master WHERE type='table' AND name='lesson_interactions')", [], |row| row.get(0)).unwrap();
-        assert_eq!(table_exists, 1);
-        let summaries_exist: i64 = store.connection.lock().unwrap()
-            .query_row("SELECT EXISTS(SELECT 1 FROM sqlite_master WHERE type='table' AND name='study_summaries')", [], |row| row.get(0)).unwrap();
-        assert_eq!(summaries_exist, 1);
-    }
-
-    #[test]
     fn lesson_interactions_keep_repeated_attempts_and_detect_changed_source() {
         let temporary = tempfile::tempdir().unwrap();
         let library = temporary.path().join("Faculdade");
@@ -3069,107 +2710,6 @@ mod tests {
     }
 
     #[test]
-    fn schema_upgrade_from_v3_adds_academic_projection_without_losing_local_records() {
-        let temporary = tempfile::tempdir().unwrap();
-        let library = temporary.path().join("Faculdade");
-        std::fs::create_dir_all(&library).unwrap();
-        let database = library.join(".estuda-uva.sqlite3");
-        let connection = Connection::open(&database).unwrap();
-        connection
-            .execute_batch(
-                "CREATE TABLE materials (
-                   id TEXT PRIMARY KEY, course_id TEXT NOT NULL, course_title TEXT NOT NULL, module_title TEXT NOT NULL,
-                   title TEXT NOT NULL, path TEXT NOT NULL, lesson_path TEXT NOT NULL DEFAULT '', origin TEXT NOT NULL,
-                   pages INTEGER NOT NULL, semester TEXT, sha256 TEXT NOT NULL, imported_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-                 );
-                 INSERT INTO materials(id,course_id,course_title,module_title,title,path,lesson_path,origin,pages,semester,sha256)
-                   VALUES('material-before-v4','course-1','Bases','Unidade 1','Aula local','materias/aula.md','materias/AULA.md','local',1,'2026.1','hash');",
-            )
-            .unwrap();
-        connection.pragma_update(None, "user_version", 3).unwrap();
-        drop(connection);
-
-        let store = AcademicStore::open(&database, library).unwrap();
-        let connection = store.connection.lock().unwrap();
-        let schema_version = connection
-            .pragma_query_value(None, "user_version", |row| row.get::<_, i64>(0))
-            .unwrap();
-        let academic_tables: i64 = connection
-            .query_row(
-                "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name IN (
-                   'academic_institutions','academic_programs','academic_curricula','academic_disciplines',
-                   'academic_offerings','academic_discipline_offerings','academic_relations',
-                   'academic_trajectories','academic_enrollments','academic_outcomes'
-                 )",
-                [],
-                |row| row.get(0),
-            )
-            .unwrap();
-        let (material_count, title, semester): (i64, String, String) = connection
-            .query_row(
-                "SELECT COUNT(*),MAX(title),MAX(semester) FROM materials WHERE id='material-before-v4'",
-                [],
-                |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)),
-            )
-            .unwrap();
-
-        assert_eq!(schema_version, CURRENT_SCHEMA_VERSION);
-        assert_eq!(academic_tables, 10);
-        assert_eq!(material_count, 1);
-        assert_eq!(title, "Aula local");
-        assert_eq!(semester, "2026.1");
-    }
-
-    #[test]
-    fn schema_upgrade_adds_material_semester_without_replacing_existing_materials() {
-        let temporary = tempfile::tempdir().unwrap();
-        let library = temporary.path().join("Faculdade");
-        std::fs::create_dir_all(&library).unwrap();
-        let database = library.join(".estuda-uva.sqlite3");
-        let connection = Connection::open(&database).unwrap();
-        connection
-            .execute_batch(
-                "CREATE TABLE materials (
-                   id TEXT PRIMARY KEY, course_id TEXT NOT NULL, course_title TEXT NOT NULL, module_title TEXT NOT NULL,
-                   title TEXT NOT NULL, path TEXT NOT NULL, lesson_path TEXT NOT NULL DEFAULT '', origin TEXT NOT NULL,
-                   pages INTEGER NOT NULL, sha256 TEXT NOT NULL, imported_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-                 );
-                 INSERT INTO materials(id,course_id,course_title,module_title,title,path,lesson_path,origin,pages,sha256)
-                   VALUES('material-before-migration','course-1','Bases','Unidade 1','Aula local','materias/aula.md','materias/AULA.md','local',1,'hash');",
-            )
-            .unwrap();
-        connection.pragma_update(None, "user_version", 2).unwrap();
-        drop(connection);
-
-        let store = AcademicStore::open(&database, library).unwrap();
-
-        let connection = store.connection.lock().unwrap();
-        let has_semester = connection
-            .query_row(
-                "SELECT EXISTS(SELECT 1 FROM pragma_table_info('materials') WHERE name='semester')",
-                [],
-                |row| row.get::<_, i64>(0),
-            )
-            .unwrap();
-        let (count, title): (i64, String) = connection
-            .query_row(
-                "SELECT COUNT(*),MAX(title) FROM materials WHERE id='material-before-migration'",
-                [],
-                |row| Ok((row.get(0)?, row.get(1)?)),
-            )
-            .unwrap();
-        assert_eq!(has_semester, 1);
-        assert_eq!(count, 1);
-        assert_eq!(title, "Aula local");
-        assert_eq!(
-            connection
-                .pragma_query_value(None, "user_version", |row| row.get::<_, i64>(0))
-                .unwrap(),
-            CURRENT_SCHEMA_VERSION
-        );
-    }
-
-    #[test]
     fn unsupported_destination_schema_is_left_untouched() {
         let temporary = tempfile::tempdir().unwrap();
         let source_library = temporary.path().join("origem");
@@ -3191,5 +2731,214 @@ mod tests {
         assert!(error.to_string().contains("mais nova"));
         assert_eq!(std::fs::read(destination_database).unwrap(), original_bytes);
         assert_eq!(store.library_path().unwrap(), source_library);
+    }
+
+    fn table_names(connection: &Connection) -> std::collections::BTreeSet<String> {
+        let mut statement = connection
+            .prepare(
+                "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'",
+            )
+            .unwrap();
+        statement
+            .query_map([], |row| row.get::<_, String>(0))
+            .unwrap()
+            .map(Result::unwrap)
+            .collect()
+    }
+
+    #[test]
+    fn fresh_database_uses_the_single_baseline_with_every_table() {
+        let temporary = tempfile::tempdir().unwrap();
+        let store = AcademicStore::open(
+            &temporary.path().join("app/estuda.sqlite3"),
+            temporary.path().join("Faculdade"),
+        )
+        .unwrap();
+        let connection = store.connection.lock().unwrap();
+        assert_eq!(user_version(&connection).unwrap(), CURRENT_SCHEMA_VERSION);
+        assert_eq!(CURRENT_SCHEMA_VERSION, 8);
+        let tables = table_names(&connection);
+        for expected in crate::schema::BASELINE_TABLES {
+            assert!(tables.contains(*expected), "falta a tabela {expected}");
+        }
+        assert!(tables.contains("academic_enrollments"));
+        let materials_columns: i64 = connection
+            .query_row(
+                "SELECT COUNT(*) FROM pragma_table_info('materials')
+                 WHERE name IN ('semester','source_key','source_kind','source_etag','source_last_modified','source_validator_host','text_sha256')",
+                [],
+                |row| row.get(0),
+            )
+            .unwrap();
+        assert_eq!(materials_columns, 7);
+        assert_eq!(
+            connection
+                .query_row(
+                    "SELECT COUNT(*) FROM settings WHERE key='__regenerated_from_backup'",
+                    [],
+                    |r| r.get::<_, i64>(0)
+                )
+                .unwrap(),
+            0
+        );
+    }
+
+    #[test]
+    fn reopening_keeps_rows_and_does_not_regenerate() {
+        let temporary = tempfile::tempdir().unwrap();
+        let database = temporary.path().join("app/estuda.sqlite3");
+        let library = temporary.path().join("Faculdade");
+        let store = AcademicStore::open(&database, library.clone()).unwrap();
+        store.set_setting("anotacao", "mantida").unwrap();
+        drop(store);
+
+        let store = AcademicStore::open(&database, library).unwrap();
+        assert_eq!(
+            store.get_setting("anotacao").unwrap().as_deref(),
+            Some("mantida")
+        );
+        assert_eq!(
+            store.get_setting("__regenerated_from_backup").unwrap(),
+            None
+        );
+        let backups = std::fs::read_dir(database.parent().unwrap())
+            .unwrap()
+            .flatten()
+            .filter(|entry| entry.file_name().to_string_lossy().contains(".bak."))
+            .count();
+        assert_eq!(backups, 0);
+    }
+
+    #[test]
+    fn older_database_is_backed_up_whole_and_regenerated_from_the_baseline() {
+        let temporary = tempfile::tempdir().unwrap();
+        let database = temporary.path().join("app/estuda.sqlite3");
+        let library = temporary.path().join("Faculdade");
+        std::fs::create_dir_all(database.parent().unwrap()).unwrap();
+        let connection = Connection::open(&database).unwrap();
+        connection
+            .execute_batch(
+                "PRAGMA journal_mode=WAL;
+                 CREATE TABLE lesson_sessions (
+                   id TEXT PRIMARY KEY, resource_path TEXT NOT NULL, course_id TEXT, course_title TEXT NOT NULL,
+                   material_title TEXT NOT NULL, section_index INTEGER NOT NULL DEFAULT 0, section_count INTEGER NOT NULL,
+                   started_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                   completed_at TEXT
+                 );
+                 INSERT INTO lesson_sessions(id,resource_path,course_title,material_title,section_count)
+                   VALUES('sessao-antiga','materias/aula.md','Bases','Aula',2);
+                 PRAGMA user_version=5;",
+            )
+            .unwrap();
+        drop(connection);
+
+        let store = AcademicStore::open(&database, library).unwrap();
+
+        // O banco novo está na baseline e não herdou linhas por ALTER/cópia.
+        assert!(store.get_lesson_session("sessao-antiga").unwrap().is_none());
+        {
+            let connection = store.connection.lock().unwrap();
+            assert_eq!(user_version(&connection).unwrap(), CURRENT_SCHEMA_VERSION);
+            assert!(table_names(&connection).contains("exam_records"));
+        }
+        // O antigo foi preservado inteiro, com a sua versão, e o novo diz de onde regenerou.
+        let backup = PathBuf::from(
+            store
+                .get_setting("__regenerated_from_backup")
+                .unwrap()
+                .unwrap(),
+        );
+        assert!(backup.is_file());
+        assert!(
+            backup
+                .file_name()
+                .unwrap()
+                .to_string_lossy()
+                .contains(".v5-")
+        );
+        let old = Connection::open_with_flags(&backup, rusqlite::OpenFlags::SQLITE_OPEN_READ_ONLY)
+            .unwrap();
+        assert_eq!(user_version(&old).unwrap(), 5);
+        let kept: i64 = old
+            .query_row(
+                "SELECT COUNT(*) FROM lesson_sessions WHERE id='sessao-antiga'",
+                [],
+                |r| r.get(0),
+            )
+            .unwrap();
+        assert_eq!(kept, 1);
+    }
+
+    #[test]
+    fn unversioned_database_with_tables_is_treated_as_old_and_empty_one_is_not() {
+        let temporary = tempfile::tempdir().unwrap();
+        let library = temporary.path().join("Faculdade");
+        let with_tables = temporary.path().join("a/estuda.sqlite3");
+        std::fs::create_dir_all(with_tables.parent().unwrap()).unwrap();
+        Connection::open(&with_tables)
+            .unwrap()
+            .execute_batch("CREATE TABLE sobra(x INTEGER);")
+            .unwrap();
+        let store = AcademicStore::open(&with_tables, library.clone()).unwrap();
+        assert!(
+            store
+                .get_setting("__regenerated_from_backup")
+                .unwrap()
+                .is_some()
+        );
+
+        let empty = temporary.path().join("b/estuda.sqlite3");
+        std::fs::create_dir_all(empty.parent().unwrap()).unwrap();
+        Connection::open(&empty).unwrap();
+        let store = AcademicStore::open(&empty, library).unwrap();
+        assert!(
+            store
+                .get_setting("__regenerated_from_backup")
+                .unwrap()
+                .is_none()
+        );
+    }
+
+    #[test]
+    fn newer_database_is_refused_and_left_byte_identical() {
+        let temporary = tempfile::tempdir().unwrap();
+        let database = temporary.path().join("app/estuda.sqlite3");
+        std::fs::create_dir_all(database.parent().unwrap()).unwrap();
+        let connection = Connection::open(&database).unwrap();
+        connection.pragma_update(None, "user_version", 99).unwrap();
+        drop(connection);
+        let before = std::fs::read(&database).unwrap();
+        let error = AcademicStore::open(&database, temporary.path().join("Faculdade"))
+            .err()
+            .unwrap();
+        assert!(error.to_string().contains("mais nova"));
+        assert_eq!(std::fs::read(&database).unwrap(), before);
+    }
+
+    #[test]
+    fn engine_tables_refuse_invented_verification_states() {
+        let temporary = tempfile::tempdir().unwrap();
+        let store = AcademicStore::open(
+            &temporary.path().join("app/estuda.sqlite3"),
+            temporary.path().join("Faculdade"),
+        )
+        .unwrap();
+        let connection = store.connection.lock().unwrap();
+        let insert = |existence: &str, due_state: &str| {
+            connection.execute(
+                "INSERT INTO ava_checks(subject_key,term,kind,existence,due_at_state,submission_state,grade_state,feedback_state,read_at)
+                 VALUES('uva:discipline:x','2026.2','ava1',?1,?2,'unknown','unknown','unknown','2026-11-06T10:00:00Z')",
+                [existence, due_state],
+            )
+        };
+        assert!(insert("unknown", "unknown").is_ok());
+        assert!(insert("nao-entregue", "unknown").is_err());
+        assert!(connection
+            .execute(
+                "INSERT INTO exam_records(subject_key,term,name,date_state,scheduling,status,source_system,read_at)
+                 VALUES('uva:discipline:x','2026.2','A2','unknown','talvez','unknown','ExamSystem','2026-11-06T10:00:00Z')",
+                [],
+            )
+            .is_err());
     }
 }

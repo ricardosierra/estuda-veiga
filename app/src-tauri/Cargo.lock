@@ -1051,12 +1051,39 @@ dependencies = [
 ]
 
 [[package]]
+name = "estuda-core"
+version = "0.1.0"
+dependencies = [
+ "chromiumoxide",
+ "docx-lite",
+ "ego-tree",
+ "futures-util",
+ "iwork",
+ "notify",
+ "pdf-extract",
+ "quick-xml 0.36.2",
+ "reqwest 0.12.28",
+ "rusqlite",
+ "scraper",
+ "serde",
+ "serde_json",
+ "sha2",
+ "thiserror 2.0.21",
+ "tokio",
+ "unicode-normalization",
+ "url",
+ "uuid",
+ "zip 0.6.6",
+]
+
+[[package]]
 name = "estuda-uva"
 version = "0.1.0"
 dependencies = [
  "chromiumoxide",
  "docx-lite",
  "ego-tree",
+ "estuda-core",
  "futures-util",
  "iwork",
  "lopdf",

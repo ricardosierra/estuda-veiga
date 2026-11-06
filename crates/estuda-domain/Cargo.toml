@@ -1,0 +1,13 @@
+[package]
+name = "estuda-domain"
+version = "0.1.0"
+description = "Tipos de domínio do Estuda UVA: identidades, confiança e fronteira privado/público. Sem UI, sem banco, sem dependências."
+edition = "2024"
+rust-version = "1.90"
+publish = false
+
+# Pacote isolado de propósito: o app Tauri (app/src-tauri) continua sem workspace.
+# Quando os crates forem extraídos (docs/arquitetura/02), um Cargo.toml na raiz assume.
+[workspace]
+
+[dependencies]

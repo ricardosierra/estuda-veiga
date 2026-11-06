@@ -61,9 +61,9 @@ Fluxo de proposta:
 1. Escreva a proposta (em issue, PR ou mensagem), contendo: (a) o SQL exato ou o código da migração; (b) a justificativa técnica; (c) o impacto estimado (tabelas afetadas, risco de bloqueio ou perda de dados, reversibilidade).
 2. Aguarde a aprovação explícita.
 3. Só então implemente. O padrão existente em `storage.rs`:
-   - incrementar `CURRENT_SCHEMA_VERSION` (hoje 7);
-   - novo bloco `if schema_version < N { BEGIN IMMEDIATE; …; PRAGMA user_version=N; COMMIT; }` em `initialize_storage_schema`, sempre idempotente (`IF NOT EXISTS`) e transacional;
-   - um teste que cria o esquema da versão anterior em banco temporário e confirma a migração (ver os testes de migração em `storage.rs`);
+   - editar `BASELINE` em `app/crates/estuda-core/src/schema.rs`: só `CREATE ... IF NOT EXISTS`, **nunca `ALTER TABLE`**; somar 1 a `CURRENT_VERSION` (hoje 8) e ao `PRAGMA user_version` no fim do script; atualizar `BASELINE_TABLES`;
+   - bancos de versão menor são movidos para `*.bak.sqlite3` e regenerados pela abertura (`open_connection`): não escreva migração incremental;
+   - um teste em banco temporário para a tabela nova (modelo: `fresh_database_uses_the_single_baseline_with_every_table`);
    - o código recusa bancos com versão maior que a suportada.
 4. Atenção: as tabelas `sync_*` (`sync.rs`) e `academic_*` (`catalog/academic.rs`) são criadas com `CREATE TABLE IF NOT EXISTS` **sem** `user_version` próprio; alterá-las exige estratégia explícita na proposta.
 5. Nunca teste migração no banco real `.estuda-uva.sqlite3`.

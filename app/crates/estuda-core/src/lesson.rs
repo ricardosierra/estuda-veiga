@@ -157,7 +157,7 @@ fn normalize(value: &str) -> String {
         .collect::<String>()
 }
 
-pub(crate) fn definition_in(line: &str) -> Option<(&str, &str)> {
+pub fn definition_in(line: &str) -> Option<(&str, &str)> {
     let text = line.trim().trim_start_matches(['#', '-', '*', ' ']);
     for marker in [
         " significa ",
