@@ -6,6 +6,7 @@ use crate::{
         group_module_items, module_item_url, parse_course_page, parse_courses, parse_module_items,
         sanitize_source_url,
     },
+    canvas_api,
     download::validate_material_url,
     lyceum::{self, PortalCapture, PortalState, PortalStatus, VisibleLink},
 };
@@ -413,6 +414,348 @@ impl CanvasSession {
         serde_json::from_str(&json).map_err(|_| {
             BrowserError::Page("não foi possível interpretar os prazos do Canvas".into())
         })
+    }
+
+    /// Lê um caminho `/api/v1/...` do Canvas com a sessão autenticada desta janela. Segue a
+    /// paginação do cabeçalho `Link` até `max_pages`. Devolve as linhas e se a lista foi cortada.
+    async fn canvas_api_json(
+        &self,
+        path: &str,
+        max_pages: usize,
+    ) -> Result<(Vec<serde_json::Value>, bool), String> {
+        canvas_api::validate_api_path(path)?;
+        let path_literal = serde_json::to_string(path).map_err(|error| error.to_string())?;
+        let expression = format!(
+            r#"(async () => {{
+            const maxPages = {max_pages};
+            let url = new URL({path_literal}, location.origin);
+            const rows = [];
+            let truncated = false;
+            for (let page = 0; url; page += 1) {{
+                if (page >= maxPages) {{ truncated = true; break; }}
+                if (url.origin !== location.origin || !url.pathname.startsWith("/api/v1/")) throw new Error("origem do Canvas inválida");
+                const response = await fetch(url, {{ credentials: "same-origin", headers: {{ Accept: "application/json" }} }});
+                if (!response.ok) return JSON.stringify({{ ok: false, status: response.status }});
+                const text = (await response.text()).replace(/^while\(1\);/, "");
+                const body = JSON.parse(text);
+                if (!Array.isArray(body)) {{ rows.push(body); break; }}
+                rows.push(...body);
+                const next = (response.headers.get("Link") || "").split(",").find(link => /rel="next"/.test(link));
+                const match = next && next.match(/<([^>]+)>/);
+                url = match ? new URL(match[1], location.origin) : null;
+            }}
+            return JSON.stringify({{ ok: true, rows, truncated }});
+        }})()"#
+        );
+        #[derive(serde::Deserialize)]
+        struct ApiReply {
+            ok: bool,
+            status: Option<u16>,
+            #[serde(default)]
+            rows: Vec<serde_json::Value>,
+            #[serde(default)]
+            truncated: bool,
+        }
+        let result = timeout(Duration::from_secs(45), self.page.evaluate(expression))
+            .await
+            .map_err(|_| "o Canvas não respondeu a tempo".to_owned())?
+            .map_err(|_| "não foi possível consultar a API do Canvas".to_owned())?;
+        let json = result
+            .into_value::<String>()
+            .map_err(|_| "o Canvas respondeu em formato inesperado".to_owned())?;
+        let reply: ApiReply = serde_json::from_str(&json)
+            .map_err(|_| "não foi possível interpretar a resposta do Canvas".to_owned())?;
+        if !reply.ok {
+            return Err(match reply.status {
+                Some(401) => "sessão do Canvas expirada (HTTP 401)".to_owned(),
+                Some(403) => "acesso negado pelo Canvas (HTTP 403)".to_owned(),
+                Some(404) => "recurso não encontrado no Canvas (HTTP 404)".to_owned(),
+                Some(status) => format!("Canvas retornou HTTP {status}"),
+                None => "Canvas recusou a consulta".to_owned(),
+            });
+        }
+        Ok((reply.rows, reply.truncated))
+    }
+
+    async fn canvas_api_list<T: serde::de::DeserializeOwned>(
+        &self,
+        path: &str,
+        max_pages: usize,
+    ) -> Result<(Vec<T>, bool), String> {
+        let (rows, truncated) = self.canvas_api_json(path, max_pages).await?;
+        let items = rows
+            .into_iter()
+            .map(serde_json::from_value)
+            .collect::<Result<Vec<T>, _>>()
+            .map_err(|_| "o Canvas devolveu um registro em formato inesperado".to_owned())?;
+        Ok((items, truncated))
+    }
+
+    async fn canvas_api_one<T: serde::de::DeserializeOwned>(
+        &self,
+        path: &str,
+    ) -> Result<T, String> {
+        let (mut rows, _) = self.canvas_api_json(path, 1).await?;
+        let row = rows
+            .pop()
+            .ok_or_else(|| "o Canvas não devolveu conteúdo".to_owned())?;
+        serde_json::from_value(row)
+            .map_err(|_| "o Canvas devolveu um registro em formato inesperado".to_owned())
+    }
+
+    /// Procedimentos C4–C7 de `docs/NAVEGACAO_PORTAL_UVA.md`: notas e feedback das AVAs, fóruns,
+    /// avisos e Caixa de Entrada. Somente leitura pela API; nada é postado, enviado ou marcado como
+    /// lido. Falhas de um item viram aviso e deixam a captura parcial, sem interromper o resto.
+    pub async fn capture_canvas_academic(
+        &self,
+        courses: &[Course],
+        options: canvas_api::CanvasAcademicOptions,
+    ) -> Result<canvas_api::CanvasAcademicCapture, BrowserError> {
+        self.page
+            .goto(format!("{}/courses", canvas_api::CANVAS_ORIGIN))
+            .await
+            .map_err(|_| BrowserError::Page("não foi possível abrir o Canvas".into()))?;
+        if !matches!(self.status().await.state, CanvasState::Authenticated) {
+            return Err(BrowserError::Page(
+                "Entre manualmente no Canvas na janela Chromium antes de capturar.".into(),
+            ));
+        }
+        let mut capture = canvas_api::CanvasAcademicCapture {
+            captured_at: lyceum::captured_at_utc(),
+            options,
+            courses: Vec::new(),
+            conversations: Vec::new(),
+            warnings: Vec::new(),
+            complete: true,
+            json_path: None,
+            markdown_path: None,
+        };
+        if courses.len() > canvas_api::MAX_COURSES {
+            capture.warnings.push(format!(
+                "Só as primeiras {} disciplinas foram lidas.",
+                canvas_api::MAX_COURSES
+            ));
+            capture.complete = false;
+        }
+        for course in courses.iter().take(canvas_api::MAX_COURSES) {
+            let mut record = canvas_api::CourseAcademicCapture::new(course);
+            if options.grades {
+                self.capture_course_grades(course, &mut record).await;
+            }
+            if options.forums {
+                self.capture_course_forums(course, &mut record).await;
+            }
+            if options.announcements {
+                match canvas_api::announcements_path(&course.id) {
+                    Ok(path) => match self
+                        .canvas_api_list::<canvas_api::ApiTopic>(&path, canvas_api::MAX_LIST_PAGES)
+                        .await
+                    {
+                        Ok((topics, truncated)) => {
+                            record.announcements =
+                                topics.into_iter().map(canvas_api::announcement).collect();
+                            if truncated {
+                                record
+                                    .warnings
+                                    .push("Lista de avisos cortada no limite de páginas.".into());
+                            }
+                        }
+                        Err(error) => record.warnings.push(format!("Avisos não lidos: {error}.")),
+                    },
+                    Err(error) => record.warnings.push(error),
+                }
+            }
+            if !record.warnings.is_empty() {
+                capture.complete = false;
+            }
+            capture.courses.push(record);
+        }
+        if options.inbox {
+            self.capture_inbox(&mut capture).await;
+        }
+        Ok(capture)
+    }
+
+    async fn capture_course_grades(
+        &self,
+        course: &Course,
+        record: &mut canvas_api::CourseAcademicCapture,
+    ) {
+        let path = match canvas_api::assignments_path(&course.id) {
+            Ok(path) => path,
+            Err(error) => return record.warnings.push(error),
+        };
+        match self
+            .canvas_api_list::<canvas_api::ApiAssignment>(&path, canvas_api::MAX_LIST_PAGES)
+            .await
+        {
+            Ok((assignments, truncated)) => {
+                record.grades = canvas_api::grades_from_assignments(assignments);
+                if truncated {
+                    record
+                        .warnings
+                        .push("Lista de atividades cortada no limite de páginas.".into());
+                }
+            }
+            Err(error) => {
+                return record.warnings.push(format!("Notas não lidas: {error}."));
+            }
+        }
+        let mut lookups = 0;
+        let mut failures = 0;
+        for item in record
+            .grades
+            .iter_mut()
+            .filter(|item| item.has_submission())
+        {
+            if lookups >= canvas_api::MAX_COMMENT_LOOKUPS_PER_COURSE {
+                break;
+            }
+            lookups += 1;
+            let Ok(path) = canvas_api::submission_comments_path(&course.id, item.assignment_id)
+            else {
+                continue;
+            };
+            match self
+                .canvas_api_one::<canvas_api::ApiSubmission>(&path)
+                .await
+            {
+                Ok(submission) => canvas_api::attach_comments(item, submission),
+                Err(_) => failures += 1,
+            }
+        }
+        if failures > 0 {
+            record
+                .warnings
+                .push(format!("Feedback de {failures} atividade(s) não foi lido."));
+        }
+        let skipped = record
+            .grades
+            .iter()
+            .filter(|item| item.has_submission() && !item.comments_checked)
+            .count()
+            .saturating_sub(failures);
+        if skipped > 0 {
+            record.warnings.push(format!(
+                "Feedback de {skipped} atividade(s) ficou fora do limite desta captura."
+            ));
+        }
+    }
+
+    async fn capture_course_forums(
+        &self,
+        course: &Course,
+        record: &mut canvas_api::CourseAcademicCapture,
+    ) {
+        let path = match canvas_api::discussion_topics_path(&course.id) {
+            Ok(path) => path,
+            Err(error) => return record.warnings.push(error),
+        };
+        let topics = match self
+            .canvas_api_list::<canvas_api::ApiTopic>(&path, canvas_api::MAX_LIST_PAGES)
+            .await
+        {
+            Ok((topics, truncated)) => {
+                if truncated {
+                    record
+                        .warnings
+                        .push("Lista de fóruns cortada no limite de páginas.".into());
+                }
+                topics
+            }
+            Err(error) => return record.warnings.push(format!("Fóruns não lidos: {error}.")),
+        };
+        if topics.len() > canvas_api::MAX_TOPICS_PER_COURSE {
+            record.warnings.push(format!(
+                "Só os primeiros {} fóruns foram lidos.",
+                canvas_api::MAX_TOPICS_PER_COURSE
+            ));
+        }
+        let mut failures = 0;
+        let mut truncated = 0;
+        for topic in topics.into_iter().take(canvas_api::MAX_TOPICS_PER_COURSE) {
+            let mut forum = canvas_api::forum_topic(topic);
+            if let Ok(path) = canvas_api::discussion_view_path(&course.id, forum.topic_id) {
+                match self
+                    .canvas_api_one::<canvas_api::ApiDiscussionView>(&path)
+                    .await
+                {
+                    Ok(view) => {
+                        canvas_api::apply_discussion_view(&mut forum, view);
+                        if !forum.entries_complete {
+                            truncated += 1;
+                        }
+                    }
+                    Err(_) => failures += 1,
+                }
+            }
+            record.forums.push(forum);
+        }
+        if truncated > 0 {
+            record.warnings.push(format!(
+                "{truncated} fórum(ns) passaram de {} respostas e foram cortados.",
+                canvas_api::MAX_ENTRIES_PER_TOPIC
+            ));
+        }
+        if failures > 0 {
+            record.warnings.push(format!(
+                "Respostas de {failures} fórum(ns) não foram lidas (o Canvas pode exigir postagem inicial)."
+            ));
+        }
+    }
+
+    async fn capture_inbox(&self, capture: &mut canvas_api::CanvasAcademicCapture) {
+        let conversations = match self
+            .canvas_api_list::<canvas_api::ApiConversation>(
+                &canvas_api::conversations_path(),
+                canvas_api::MAX_LIST_PAGES,
+            )
+            .await
+        {
+            Ok((conversations, truncated)) => {
+                if truncated {
+                    capture
+                        .warnings
+                        .push("Lista da Caixa de Entrada cortada no limite de páginas.".into());
+                    capture.complete = false;
+                }
+                conversations
+            }
+            Err(error) => {
+                capture
+                    .warnings
+                    .push(format!("Caixa de Entrada não lida: {error}."));
+                capture.complete = false;
+                return;
+            }
+        };
+        let mut failures = 0;
+        for (index, summary) in conversations.into_iter().enumerate() {
+            let mut conversation = canvas_api::conversation_summary(summary);
+            if index < canvas_api::MAX_CONVERSATIONS {
+                match self
+                    .canvas_api_one::<canvas_api::ApiConversation>(&canvas_api::conversation_path(
+                        conversation.conversation_id,
+                    ))
+                    .await
+                {
+                    Ok(detail) => canvas_api::apply_conversation_detail(&mut conversation, detail),
+                    Err(_) => failures += 1,
+                }
+            }
+            capture.conversations.push(conversation);
+        }
+        let unread = capture
+            .conversations
+            .iter()
+            .filter(|conversation| !conversation.messages_checked)
+            .count();
+        if failures > 0 || unread > 0 {
+            capture.warnings.push(format!(
+                "Mensagens de {unread} conversa(s) não foram lidas nesta captura."
+            ));
+            capture.complete = false;
+        }
     }
 
     pub async fn open_module_item(

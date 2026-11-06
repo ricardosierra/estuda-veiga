@@ -17,6 +17,7 @@ path = "src/main.rs"
 [dependencies]
 chromiumoxide = "=0.9.1"
 docx-lite = "=0.2.0"
+ego-tree = "0.10"
 futures-util = "0.3"
 iwork = "=0.4.0"
 notify = "=8.2.0"

@@ -437,7 +437,11 @@ fn capture_to_markdown(capture: &PortalCapture) -> String {
     output
 }
 
-fn write_new_file_beneath(root: &Path, relative_path: &str, contents: &[u8]) -> Result<(), String> {
+pub(crate) fn write_new_file_beneath(
+    root: &Path,
+    relative_path: &str,
+    contents: &[u8],
+) -> Result<(), String> {
     let relative = Path::new(relative_path);
     if relative.is_absolute()
         || relative

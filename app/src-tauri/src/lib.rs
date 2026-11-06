@@ -3,9 +3,11 @@ mod archive;
 mod browser;
 mod calendar;
 mod canvas;
+mod canvas_api;
 mod canvas_capture;
 mod catalog;
 mod download;
+mod grading;
 mod lesson;
 mod lyceum;
 mod pdf;
@@ -151,6 +153,53 @@ async fn refresh_lyceum_catalog(
         .await
         .map_err(error_text)??;
     Ok(capture)
+}
+
+/// Procedimentos C4–C7 de `docs/NAVEGACAO_PORTAL_UVA.md`: lê notas e feedback das AVAs, fóruns,
+/// avisos e Caixa de Entrada do Canvas pela API, sem IA, e grava uma captura nova (JSON +
+/// Markdown) em `materias/catalogo/capturas/`, pasta ignorada pelo Git.
+#[tauri::command]
+async fn refresh_canvas_academic(
+    options: canvas_api::CanvasAcademicOptions,
+    state: State<'_, AppState>,
+) -> Result<canvas_api::CanvasAcademicCapture, String> {
+    if !options.any() {
+        return Err(
+            "Escolha ao menos uma parte para ler: notas, fóruns, avisos ou Caixa de Entrada."
+                .into(),
+        );
+    }
+    let _canvas_operation = state.canvas_operation.lock().await;
+    let capture = {
+        let slot = state.session.lock().await;
+        let session = slot
+            .as_ref()
+            .ok_or_else(|| "Conecte-se ao Canvas primeiro.".to_owned())?;
+        if !matches!(session.status().await.state, CanvasState::Authenticated) {
+            return Err("Entre manualmente no Canvas na janela Chromium e tente novamente.".into());
+        }
+        let courses = session.list_courses().await.map_err(error_text)?;
+        if courses.is_empty() && !options.inbox {
+            return Err("O Canvas não apresentou disciplinas; nenhuma captura foi salva.".into());
+        }
+        session
+            .capture_canvas_academic(&courses, options)
+            .await
+            .map_err(error_text)?
+    };
+    let root = state.store.library_path().map_err(error_text)?;
+    let sync = Arc::clone(&state.sync);
+    tauri::async_runtime::spawn_blocking(move || canvas_api::persist_capture(&root, &sync, capture))
+        .await
+        .map_err(error_text)?
+}
+
+/// Procedimento M1: nota final ponderada, cálculo local sem rede.
+#[tauri::command]
+fn calculate_final_grade(
+    input: grading::FinalGradeInput,
+) -> Result<grading::FinalGradeResult, String> {
+    grading::final_grade(&input)
 }
 
 #[tauri::command]
@@ -1765,6 +1814,8 @@ pub fn run() {
             open_lyceum,
             lyceum_status,
             refresh_lyceum_catalog,
+            refresh_canvas_academic,
+            calculate_final_grade,
             set_chromium_path,
             set_library_path,
             sync_local_catalog,
