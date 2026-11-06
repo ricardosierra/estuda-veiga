@@ -20,15 +20,15 @@ Como as frequências nas aulas estão baixas, manter uma rotina para abrir, acom
 6. Dentro de cada disciplina, abrir **Módulos**; consultar o guia da disciplina, plano de ensino e calendário quando disponíveis.
 7. Abrir cada unidade e revisar o conteúdo, páginas, vídeos e anexos publicados.
 8. Para cada unidade, registrar em notas próprias o tema, os conceitos centrais, dúvidas e uma pergunta de revisão. Manter o link oficial para consultar exemplos e detalhes completos.
-9. Atualizar as notas e o inventário do semestre; extrair o texto pesquisável para materias/fontes-uva/<semestre>/, conferir que a extração não está vazia e então apagar a cópia PDF local. Manter somente links oficiais e arquivos de texto neste acervo.
+9. Atualizar as notas e o inventário do semestre; extrair o texto pesquisável para fontes-uva/<semestre>/, conferir que a extração não está vazia e então apagar a cópia PDF local. Manter somente links oficiais e arquivos de texto neste acervo.
 
 ### Acesso autenticado registrado
 
-Em 8 de outubro de 2026, o Portal do Aluno abriu após selecionar a matrícula identificada como ativa, e a opção Plataforma Virtual — CANVAS encaminhou à conta autenticada. O identificador da matrícula, CPF e senha não foram gravados em arquivos. A lista do Canvas foi consultada no mesmo dia; a cobertura por período está em [CURSOS_2026.1.md](CURSOS_2026.1.md), [CURSOS_2026.2.md](CURSOS_2026.2.md) e [CURSOS_HISTORICOS.md](CURSOS_HISTORICOS.md).
+Em 8 de outubro de 2026, o Portal do Aluno abriu após selecionar a matrícula identificada como ativa, e a opção Plataforma Virtual — CANVAS encaminhou à conta autenticada. O identificador da matrícula, CPF e senha não foram gravados em arquivos. A lista do Canvas foi consultada no mesmo dia; a cobertura por período está em [periodos/2026.1/README.md](periodos/2026.1/README.md), [periodos/2026.2/README.md](periodos/2026.2/README.md) e [periodos/historicos/README.md](periodos/historicos/README.md).
 
 ## Semestres conferidos
 
-O Canvas mostrou cinco inscrições anteriores de 2026.1 e, na lista atual de 2026.2, dois cartões curriculares. O Portal listava sete matrículas para 2026.2; cinco não apareciam como cartões do Canvas na consulta. Veja o mapa de [2026.1](CURSOS_2026.1.md), [2026.2](CURSOS_2026.2.md) e os [cursos históricos](CURSOS_HISTORICOS.md). Materiais e estado das extrações: [2026.1](MATERIAIS_2026.1.md), [2026.2](MATERIAIS_2026.2.md) e [históricos](MATERIAIS_HISTORICOS.md).
+O Canvas mostrou cinco inscrições anteriores de 2026.1 e, na lista atual de 2026.2, dois cartões curriculares. O Portal listava sete matrículas para 2026.2; cinco não apareciam como cartões do Canvas na consulta. Veja o mapa de [2026.1](periodos/2026.1/README.md), [2026.2](periodos/2026.2/README.md) e os [cursos históricos](periodos/historicos/README.md). Materiais e estado das extrações: [2026.1](periodos/2026.1/materiais.md), [2026.2](periodos/2026.2/materiais.md) e [históricos](periodos/historicos/materiais.md).
 
 ## Como percorrer uma disciplina
 
@@ -40,7 +40,7 @@ O Canvas mostrou cinco inscrições anteriores de 2026.1 e, na lista atual de 20
 6. Use o fórum de dúvidas/tutoria quando necessário. Registre apenas a ação que realmente foi feita; não indique presença ou conclusão sem ter participado.
 7. Depois de concluir uma unidade, anote data, conteúdo revisado, dúvida ou tarefa pendente e o próximo passo no checklist.
 
-Os links específicos de 2026.1 e 2026.2 permanecem como registros históricos. Em 8 de outubro de 2026, o Canvas não listava cursos nem calendário de 2027.1. Consulte [FUTUROS_SEMESTRES.md](FUTUROS_SEMESTRES.md) e só registre disciplinas, datas e horários depois de vê-los em fonte oficial.
+Os links específicos de 2026.1 e 2026.2 permanecem como registros históricos. Em 8 de outubro de 2026, o Canvas não listava cursos nem calendário de 2027.1. Consulte [periodos/futuros.md](periodos/futuros.md) e só registre disciplinas, datas e horários depois de vê-los em fonte oficial.
 
 ## Andamento desta conferência
 
@@ -55,7 +55,7 @@ Os links específicos de 2026.1 e 2026.2 permanecem como registros históricos. 
 
 - Em 8 de outubro de 2026, o Canvas não mostrava cartões ou inscrições de 2027.1 e o calendário oficial não havia sido localizado.
 - Não estimar disciplinas, datas, horários ou prazos. Reabrir Portal e Canvas quando o período for publicado e registrar somente as informações oficiais.
-- O procedimento para catalogar futuras disciplinas está em [FUTUROS_SEMESTRES.md](FUTUROS_SEMESTRES.md).
+- O procedimento para catalogar futuras disciplinas está em [periodos/futuros.md](periodos/futuros.md).
 - O aplicativo local Estuda UVA permanece em desenvolvimento; não lance datas nele sem confirmar a fonte, o período e o comportamento esperado do calendário.
 
 ## Rotina para o próximo período e seguintes
@@ -66,7 +66,7 @@ Os links específicos de 2026.1 e 2026.2 permanecem como registros históricos. 
 2. Conferir quais disciplinas estão ativas e abrir cada curso.
 3. Ler o guia da disciplina, o plano de ensino, o calendário e os critérios de avaliação.
 4. Abrir **Módulos** e conferir a sequência completa de aulas, fóruns, atividades, provas e itens de apoio.
-5. Criar ou atualizar arquivos Markdown de notas por semestre; manter os links oficiais, extrair texto pesquisável para materias/fontes-uva/<semestre>/ e apagar cada cópia PDF local depois de conferir a extração. Arquivos Word e Pages-fonte de trabalhos ficam fora do Git.
+5. Criar ou atualizar arquivos Markdown de notas por semestre; manter os links oficiais, extrair texto pesquisável para fontes-uva/<semestre>/ e apagar cada cópia PDF local depois de conferir a extração. Arquivos Word e Pages-fonte de trabalhos ficam fora do Git.
 6. Registrar neste acervo as datas de aula, avaliações e entregas encontradas nos calendários oficiais.
 
 ### A cada semana

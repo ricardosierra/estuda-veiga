@@ -142,11 +142,11 @@ Estas inscrições estão em período anterior; não confundir seus percentuais 
 
 ## Matrícula anterior — Engenharia de Computação
 
-O Portal do Aluno também apresenta um vínculo anterior em **Engenharia de Computação**, código 310171, com status **Evadido**, série 5 e ingresso em 27/08/2012 por transferência externa (o texto do motivo está cortado na tela). O Histórico Detalhado informa 1.446 h cursadas, 3.601 h faltantes, 0 h matriculadas e 5.047 h totais. Os nomes das 43 disciplinas pendentes, seus códigos e cargas estão em [ENGENHARIA_DE_COMPUTACAO.md](ENGENHARIA_DE_COMPUTACAO.md).
+O Portal do Aluno também apresenta um vínculo anterior em **Engenharia de Computação**, código 310171, com status **Evadido**, série 5 e ingresso em 27/08/2012 por transferência externa (o texto do motivo está cortado na tela). O Histórico Detalhado informa 1.446 h cursadas, 3.601 h faltantes, 0 h matriculadas e 5.047 h totais. Os nomes das 43 disciplinas pendentes, seus códigos e cargas estão em [cursos/engenharia-de-computacao/README.md](cursos/engenharia-de-computacao/README.md).
 
-Esse vínculo é separado da matrícula atual em Ciência da Computação. A lista pendente não explica quais disciplinas formam as 1.446 h cursadas. Boletim, frequência e índice de rendimento não apresentaram registros; o Canvas não exibiu cursos curriculares de Engenharia de Computação. Não inferi notas, causa da evasão ou equivalências com a matrícula atual. O histórico e as limitações estão descritos em [ENGENHARIA_DE_COMPUTACAO.md](ENGENHARIA_DE_COMPUTACAO.md).
+Esse vínculo é separado da matrícula atual em Ciência da Computação. A lista pendente não explica quais disciplinas formam as 1.446 h cursadas. Boletim, frequência e índice de rendimento não apresentaram registros; o Canvas não exibiu cursos curriculares de Engenharia de Computação. Não inferi notas, causa da evasão ou equivalências com a matrícula atual. O histórico e as limitações estão descritos em [cursos/engenharia-de-computacao/README.md](cursos/engenharia-de-computacao/README.md).
 
-No Lyceum, com o vínculo evadido selecionado, o catálogo da Secretaria Virtual ofereceu **Histórico Escolar com CR** como serviço eletrônico de R$ 0,00. A solicitação não foi avançada nem enviada. Esse é o caminho encontrado para obter o histórico analítico; notas e disciplinas concluídas ainda precisam ser confirmadas no documento emitido. O passo a passo e os limites da consulta estão em [ENGENHARIA_DE_COMPUTACAO.md](ENGENHARIA_DE_COMPUTACAO.md).
+No Lyceum, com o vínculo evadido selecionado, o catálogo da Secretaria Virtual ofereceu **Histórico Escolar com CR** como serviço eletrônico de R$ 0,00. A solicitação não foi avançada nem enviada. Esse é o caminho encontrado para obter o histórico analítico; notas e disciplinas concluídas ainda precisam ser confirmadas no documento emitido. O passo a passo e os limites da consulta estão em [cursos/engenharia-de-computacao/README.md](cursos/engenharia-de-computacao/README.md).
 
 ## Pendências e observações para revisar
 
@@ -162,4 +162,4 @@ No Lyceum, com o vínculo evadido selecionado, o catálogo da Secretaria Virtual
 
 - [Portal do Aluno UVA](https://portalaluno.uva.br/Aluno/PortalAluno): perfil acadêmico, boletim, frequência, matrículas, horário das aulas e Histórico Detalhado.
 - [Canvas UVA](https://uva.instructure.com/): notas de atividades e inscrições de 2026.1/2026.2.
-- Inventários locais de 2026.1: [CURSOS_2026.1.md](CURSOS_2026.1.md) e [MATERIAIS_2026.1.md](MATERIAIS_2026.1.md).
+- Inventários locais de 2026.1: [periodos/2026.1/README.md](periodos/2026.1/README.md) e [periodos/2026.1/materiais.md](periodos/2026.1/materiais.md).

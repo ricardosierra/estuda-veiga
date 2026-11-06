@@ -21,7 +21,7 @@ Ideias ainda não priorizadas. Cada uma diz o problema que resolve e a dependên
 
 ## Estudo
 
-- [ ] **Checklist de prontidão para prova.** Cruzar as datas do calendário do período (hoje só existe `CALENDARIO_2026.1.md`; falta o de 2026.2) com os conceitos do índice (P2) e mostrar o que falta revisar.
+- [ ] **Checklist de prontidão para prova.** Cruzar as datas do calendário do período (hoje só existe `periodos/2026.1/calendario.md`; falta o de 2026.2) com os conceitos do índice (P2) e mostrar o que falta revisar.
 - [ ] **Cartões de revisão.** Gerar cartões a partir das notas de estudo com repetição espaçada. Pode ser feito sem IA, a partir do índice local.
 - [ ] **Plano de estudo semanal.** Distribuir os conceitos pendentes pelas semanas até a prova. Sonnet gera, Opus revisa se for para prova.
 

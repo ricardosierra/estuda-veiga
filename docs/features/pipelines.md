@@ -110,7 +110,7 @@ Modelos por etapa seguem [roteamento-modelos.md](roteamento-modelos.md).
 
 ## P6. Ingestão de material novo
 
-**Objetivo:** classificar um arquivo novo de `materias/fontes-uva/<período>/` e propor os metadados.
+**Objetivo:** classificar um arquivo novo de `fontes-uva/<período>/` e propor os metadados.
 
 **Entradas:** arquivo novo (PDF ou Word). O original é preservado.
 
